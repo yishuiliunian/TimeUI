@@ -7,13 +7,31 @@
 //
 
 #import "DZAppDelegate.h"
-
+#import "DZDragViewController.h"
+#import "DZAstirFrameViewController.h"
 @implementation DZAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    DZDragViewController* dragVC = [[DZDragViewController alloc] init];
+    
+    DZAstirFrameViewController* v1 = [DZAstirFrameViewController new];
+    v1.view.backgroundColor = [UIColor redColor];
+    
+    UIViewController* v2 = [UIViewController new];
+    v2.view.backgroundColor = [UIColor blueColor];
+    
+    UIViewController* v3 = [UIViewController new];
+    v3.view.backgroundColor = [UIColor greenColor];
+    
+    dragVC.topViewController = v1;
+    dragVC.bottomViewController = v2;
+    dragVC.centerViewController = v3;
+    self.window.rootViewController = dragVC;
+    //
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
