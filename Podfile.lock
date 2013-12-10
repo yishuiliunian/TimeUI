@@ -1,14 +1,28 @@
 PODS:
+  - CocoaLumberjack (1.6.5.1):
+    - CocoaLumberjack/Core
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.6.5.1)
+  - CocoaLumberjack/Extensions (1.6.5.1):
+    - CocoaLumberjack/Core
   - FMDB (2.1):
     - FMDB/standard
   - FMDB/common (2.1)
   - FMDB/standard (2.1):
     - FMDB/common
+  - PNChart (0.2.2)
+  - PulsingHalo (0.0.1)
 
 DEPENDENCIES:
+  - CocoaLumberjack
   - FMDB
+  - PNChart (~> 0.2.2)
+  - PulsingHalo
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
   FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
+  PNChart: 55161d5bf01a4a8e5593e5c45b34af70eae7ed83
+  PulsingHalo: 6c5b7e18ca5c6c1319d5e2fd277f123ed74a1435
 
 COCOAPODS: 0.28.0

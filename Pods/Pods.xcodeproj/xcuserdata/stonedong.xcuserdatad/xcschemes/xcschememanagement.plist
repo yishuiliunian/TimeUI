@@ -4,7 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PNChart.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PulsingHalo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>665688C940AB49FDA1DCF311</key>
+		<key>42C8721B8FCB46F68C519115</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C18B4859C318406294CCB25C</key>
+		<key>45A79A105CEF4750B5394DDB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51EF56B43F2B4A5FBEB1AE61</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5EF393E278504EE4A1BEC866</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F00271ADBB7F40F69DBE17BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

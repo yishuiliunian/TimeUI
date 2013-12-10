@@ -9,7 +9,7 @@
 #import "UIView+FrameAnimation.h"
 #import "DZKVODefines.h"
 #import <objc/runtime.h>
-
+#import "DZAnimationState.h"
 @implementation UIView (FrameAnimation)
 
 @dynamic currentStateIndex;
@@ -33,6 +33,40 @@
 - (NSArray*) states
 {
     return objc_getAssociatedObject(self, kDZObjectKeyStates);
+}
+
+
+- (void) didMoveToAnimationStateIndex:(NSInteger)index
+{
+  
+}
+
+- (void) moveToIndex:(NSInteger)index withProgress:(float)progress
+{
+    if (self.currentStateIndex == index) {
+        return;
+    }
+    NSArray* states = self.states;
+    DZAnimationState* aimState = nil;
+    if (index >= states.count || index < 0) {
+        aimState = DZAnimationStateZero;
+    }
+    else
+    {
+        aimState = states[index];
+    }
+    DZAnimationState* originState = states[self.currentStateIndex];
+    DZAnimationState* inState = [originState stateMoveTo:aimState inProcess:progress];
+    if ([inState isSupportAnimationKey:DZAnimationKeyFrame]) {
+        self.frame = inState.frame;
+    }
+    if ([inState isSupportAnimationKey:DZAnimationKeyAlpha]) {
+        self.alpha = inState.alpha;
+    }
+    if (ABS(progress - 1.00) <= 0.00001 ) {
+        self.currentStateIndex = index;
+        [self didMoveToAnimationStateIndex:self.currentStateIndex];
+    }
 }
 
 @end

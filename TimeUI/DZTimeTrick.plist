@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DZTIME</key>
+	<dict>
+		<key>GUID</key>
+		<string>char(40)</string>
+		<key>DATE_BEGIN</key>
+		<string>char(19)</string>
+		<key>DATE_END</key>
+		<string>char(19)</string>
+		<key>DETAIL</key>
+		<string>varchar(1000)</string>
+		<key>TYPE</key>
+		<string>varchar(200)</string>
+		<key>PRIMARAY_KEY</key>
+		<string>GUID</string>
+	</dict>
+	<key>DZTYPE</key>
+	<dict>
+		<key>IDENTIFIY</key>
+		<string>varchar(200)</string>
+		<key>NAME</key>
+		<string>varchar(200)</string>
+		<key>DETAIL</key>
+		<string>varchar(1000)</string>
+		<key>PRIMARAY_KEY</key>
+		<string>IDENTIFIY</string>
+	</dict>
+</dict>
+</plist>

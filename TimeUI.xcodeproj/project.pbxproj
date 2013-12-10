@@ -8,6 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		38A8D4EEDC6D4F34B3F3559A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB0C93DA505486994ECA5C1 /* libPods.a */; };
+		65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EEB1856E86700FE5D89 /* DZAppConfigure.m */; };
+		65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */; };
+		65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF618572F1D00FE5D89 /* NSString+WizString.mm */; };
+		65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF918572F5500FE5D89 /* pinyin.cpp */; };
+		65238EFD185731C100FE5D89 /* DZTimeTrick.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65238EFC185731C100FE5D89 /* DZTimeTrick.plist */; };
+		65238F00185734A300FE5D89 /* WizDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EFF185734A300FE5D89 /* WizDataBase.m */; };
+		65238F03185734BF00FE5D89 /* WizGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F02185734BF00FE5D89 /* WizGlobals.m */; };
+		65238F071857357B00FE5D89 /* DZGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F061857357B00FE5D89 /* DZGlobals.m */; };
+		65238F0A1857366E00FE5D89 /* DZTimeDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F091857366E00FE5D89 /* DZTimeDB.m */; };
+		65238F0D185736E000FE5D89 /* DZDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F0C185736E000FE5D89 /* DZDBManager.m */; };
+		65238F151857383800FE5D89 /* DZFileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F141857383800FE5D89 /* DZFileUtility.m */; };
+		65238F191857393500FE5D89 /* DZAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F181857393500FE5D89 /* DZAccountManager.m */; };
+		65238F1D185739C300FE5D89 /* DZAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F1C185739C300FE5D89 /* DZAccount.m */; };
+		65238F21185748A400FE5D89 /* DZTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F20185748A400FE5D89 /* DZTime.m */; };
+		65238F2518574A1700FE5D89 /* NSString+database.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F2418574A1700FE5D89 /* NSString+database.m */; };
+		65238F2818574FF200FE5D89 /* NSData+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F2618574FF200FE5D89 /* NSData+SSToolkitAdditions.m */; };
+		65238F2B1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F2A1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m */; };
+		65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F2D185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m */; };
+		65238F311857584300FE5D89 /* DZTimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F301857584300FE5D89 /* DZTimeType.m */; };
+		654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E5A231856DDEF00DED026 /* DZGeometryTools.m */; };
 		656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AB18324B2D001F7B7C /* Foundation.framework */; };
 		656F68AE18324B2D001F7B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AD18324B2D001F7B7C /* CoreGraphics.framework */; };
 		656F68B018324B2D001F7B7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AF18324B2D001F7B7C /* UIKit.framework */; };
@@ -21,6 +41,7 @@
 		656F68CF18324B2D001F7B7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 656F68CD18324B2D001F7B7C /* InfoPlist.strings */; };
 		656F68D118324B2D001F7B7C /* TimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 656F68D018324B2D001F7B7C /* TimeUITests.m */; };
 		656F68DD183250E8001F7B7C /* DZDragViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656F68DC183250E8001F7B7C /* DZDragViewController.m */; };
+		659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 659910B71856E3F9003EDCAD /* UIView+Shadow.m */; };
 		65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CB61855E06200796395 /* DZAstirFrameViewController.m */; };
 		65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */; };
 		65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBF1855E5C300796395 /* DZAnimationState.m */; };
@@ -38,6 +59,46 @@
 
 /* Begin PBXFileReference section */
 		19EFE6C5BBC546CAB07882C4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		65238EEA1856E86700FE5D89 /* DZAppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAppConfigure.h; sourceTree = "<group>"; };
+		65238EEB1856E86700FE5D89 /* DZAppConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAppConfigure.m; sourceTree = "<group>"; };
+		65238EF218572ED900FE5D89 /* FMDatabase+WizDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+WizDb.h"; sourceTree = "<group>"; };
+		65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+WizDb.m"; sourceTree = "<group>"; };
+		65238EF518572F1D00FE5D89 /* NSString+WizString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WizString.h"; sourceTree = "<group>"; };
+		65238EF618572F1D00FE5D89 /* NSString+WizString.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+WizString.mm"; sourceTree = "<group>"; };
+		65238EF918572F5500FE5D89 /* pinyin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pinyin.cpp; sourceTree = "<group>"; };
+		65238EFA18572F5500FE5D89 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		65238EFC185731C100FE5D89 /* DZTimeTrick.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DZTimeTrick.plist; sourceTree = "<group>"; };
+		65238EFE185734A300FE5D89 /* WizDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizDataBase.h; sourceTree = "<group>"; };
+		65238EFF185734A300FE5D89 /* WizDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizDataBase.m; sourceTree = "<group>"; };
+		65238F01185734BF00FE5D89 /* WizGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizGlobals.h; sourceTree = "<group>"; };
+		65238F02185734BF00FE5D89 /* WizGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizGlobals.m; sourceTree = "<group>"; };
+		65238F051857357B00FE5D89 /* DZGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGlobals.h; sourceTree = "<group>"; };
+		65238F061857357B00FE5D89 /* DZGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZGlobals.m; sourceTree = "<group>"; };
+		65238F081857366E00FE5D89 /* DZTimeDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTimeDB.h; sourceTree = "<group>"; };
+		65238F091857366E00FE5D89 /* DZTimeDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTimeDB.m; sourceTree = "<group>"; };
+		65238F0B185736E000FE5D89 /* DZDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDBManager.h; sourceTree = "<group>"; };
+		65238F0C185736E000FE5D89 /* DZDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZDBManager.m; sourceTree = "<group>"; };
+		65238F0E1857373A00FE5D89 /* DZTimeDBInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZTimeDBInterface.h; sourceTree = "<group>"; };
+		65238F131857383800FE5D89 /* DZFileUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZFileUtility.h; sourceTree = "<group>"; };
+		65238F141857383800FE5D89 /* DZFileUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZFileUtility.m; sourceTree = "<group>"; };
+		65238F171857393500FE5D89 /* DZAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAccountManager.h; sourceTree = "<group>"; };
+		65238F181857393500FE5D89 /* DZAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAccountManager.m; sourceTree = "<group>"; };
+		65238F1B185739C300FE5D89 /* DZAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAccount.h; sourceTree = "<group>"; };
+		65238F1C185739C300FE5D89 /* DZAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAccount.m; sourceTree = "<group>"; };
+		65238F1F185748A400FE5D89 /* DZTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTime.h; sourceTree = "<group>"; };
+		65238F20185748A400FE5D89 /* DZTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTime.m; sourceTree = "<group>"; };
+		65238F2318574A1700FE5D89 /* NSString+database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+database.h"; sourceTree = "<group>"; };
+		65238F2418574A1700FE5D89 /* NSString+database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+database.m"; sourceTree = "<group>"; };
+		65238F2618574FF200FE5D89 /* NSData+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SSToolkitAdditions.m"; sourceTree = "<group>"; };
+		65238F2718574FF200FE5D89 /* NSDate+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SSToolkitAdditions.h"; sourceTree = "<group>"; };
+		65238F291857502A00FE5D89 /* NSData+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SSToolkitAdditions.h"; sourceTree = "<group>"; };
+		65238F2A1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SSToolkitAdditions.m"; sourceTree = "<group>"; };
+		65238F2C185753C100FE5D89 /* NSBundle+SSToolkitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+SSToolkitAdditions.h"; sourceTree = "<group>"; };
+		65238F2D185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+SSToolkitAdditions.m"; sourceTree = "<group>"; };
+		65238F2F1857584300FE5D89 /* DZTimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTimeType.h; sourceTree = "<group>"; };
+		65238F301857584300FE5D89 /* DZTimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTimeType.m; sourceTree = "<group>"; };
+		654E5A221856DDEF00DED026 /* DZGeometryTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGeometryTools.h; sourceTree = "<group>"; };
+		654E5A231856DDEF00DED026 /* DZGeometryTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZGeometryTools.m; sourceTree = "<group>"; };
 		656F68A818324B2D001F7B7C /* TimeUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656F68AB18324B2D001F7B7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		656F68AD18324B2D001F7B7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -56,6 +117,9 @@
 		656F68D018324B2D001F7B7C /* TimeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUITests.m; sourceTree = "<group>"; };
 		656F68DB183250E8001F7B7C /* DZDragViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DZDragViewController.h; path = Classes/DZDragViewController.h; sourceTree = "<group>"; };
 		656F68DC183250E8001F7B7C /* DZDragViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DZDragViewController.m; path = Classes/DZDragViewController.m; sourceTree = "<group>"; };
+		659910B51856E346003EDCAD /* DZUITools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZUITools.h; sourceTree = "<group>"; };
+		659910B61856E3F9003EDCAD /* UIView+Shadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shadow.h"; sourceTree = "<group>"; };
+		659910B71856E3F9003EDCAD /* UIView+Shadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shadow.m"; sourceTree = "<group>"; };
 		65C47CB51855E06200796395 /* DZAstirFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAstirFrameViewController.h; sourceTree = "<group>"; };
 		65C47CB61855E06200796395 /* DZAstirFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAstirFrameViewController.m; sourceTree = "<group>"; };
 		65C47CB91855E0D500796395 /* DZKVODefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZKVODefines.h; sourceTree = "<group>"; };
@@ -91,6 +155,102 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65238EF118572ECE00FE5D89 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				65238F221857492A00FE5D89 /* normal */,
+				65238F01185734BF00FE5D89 /* WizGlobals.h */,
+				65238F02185734BF00FE5D89 /* WizGlobals.m */,
+				65238F081857366E00FE5D89 /* DZTimeDB.h */,
+				65238F091857366E00FE5D89 /* DZTimeDB.m */,
+				65238F0B185736E000FE5D89 /* DZDBManager.h */,
+				65238F0C185736E000FE5D89 /* DZDBManager.m */,
+				65238F0E1857373A00FE5D89 /* DZTimeDBInterface.h */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		65238EF818572F5500FE5D89 /* Pinyin */ = {
+			isa = PBXGroup;
+			children = (
+				65238EF918572F5500FE5D89 /* pinyin.cpp */,
+				65238EFA18572F5500FE5D89 /* pinyin.h */,
+			);
+			path = Pinyin;
+			sourceTree = "<group>";
+		};
+		65238F041857354A00FE5D89 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				65238EF518572F1D00FE5D89 /* NSString+WizString.h */,
+				65238EF618572F1D00FE5D89 /* NSString+WizString.mm */,
+				65238F051857357B00FE5D89 /* DZGlobals.h */,
+				65238F061857357B00FE5D89 /* DZGlobals.m */,
+			);
+			name = Strings;
+			sourceTree = "<group>";
+		};
+		65238F0F1857379600FE5D89 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				65238F131857383800FE5D89 /* DZFileUtility.h */,
+				65238F141857383800FE5D89 /* DZFileUtility.m */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
+		65238F161857392700FE5D89 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				65238F171857393500FE5D89 /* DZAccountManager.h */,
+				65238F181857393500FE5D89 /* DZAccountManager.m */,
+				65238F1B185739C300FE5D89 /* DZAccount.h */,
+				65238F1C185739C300FE5D89 /* DZAccount.m */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		65238F1E1857489100FE5D89 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65238F1F185748A400FE5D89 /* DZTime.h */,
+				65238F20185748A400FE5D89 /* DZTime.m */,
+				65238F2F1857584300FE5D89 /* DZTimeType.h */,
+				65238F301857584300FE5D89 /* DZTimeType.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		65238F221857492A00FE5D89 /* normal */ = {
+			isa = PBXGroup;
+			children = (
+				65238F291857502A00FE5D89 /* NSData+SSToolkitAdditions.h */,
+				65238F2618574FF200FE5D89 /* NSData+SSToolkitAdditions.m */,
+				65238F2718574FF200FE5D89 /* NSDate+SSToolkitAdditions.h */,
+				65238F2A1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m */,
+				65238F2C185753C100FE5D89 /* NSBundle+SSToolkitAdditions.h */,
+				65238F2D185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m */,
+				65238EF218572ED900FE5D89 /* FMDatabase+WizDb.h */,
+				65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */,
+				65238EFE185734A300FE5D89 /* WizDataBase.h */,
+				65238EFF185734A300FE5D89 /* WizDataBase.m */,
+				65238F2318574A1700FE5D89 /* NSString+database.h */,
+				65238F2418574A1700FE5D89 /* NSString+database.m */,
+			);
+			name = normal;
+			sourceTree = "<group>";
+		};
+		654E5A211856DDAF00DED026 /* UITools */ = {
+			isa = PBXGroup;
+			children = (
+				654E5A221856DDEF00DED026 /* DZGeometryTools.h */,
+				654E5A231856DDEF00DED026 /* DZGeometryTools.m */,
+				659910B61856E3F9003EDCAD /* UIView+Shadow.h */,
+				659910B71856E3F9003EDCAD /* UIView+Shadow.m */,
+			);
+			name = UITools;
+			sourceTree = "<group>";
+		};
 		656F689F18324B2D001F7B7C = {
 			isa = PBXGroup;
 			children = (
@@ -126,11 +286,14 @@
 		656F68B118324B2D001F7B7C /* TimeUI */ = {
 			isa = PBXGroup;
 			children = (
+				65238F1E1857489100FE5D89 /* Models */,
 				65C47CBA1855E0F600796395 /* ViewControllers */,
 				65C47CB81855E0C500796395 /* Commons */,
 				656F68DA18324B38001F7B7C /* DragViewController */,
 				656F68BA18324B2D001F7B7C /* DZAppDelegate.h */,
 				656F68BB18324B2D001F7B7C /* DZAppDelegate.m */,
+				65238EEA1856E86700FE5D89 /* DZAppConfigure.h */,
+				65238EEB1856E86700FE5D89 /* DZAppConfigure.m */,
 				656F68BD18324B2D001F7B7C /* Images.xcassets */,
 				656F68B218324B2D001F7B7C /* Supporting Files */,
 			);
@@ -178,7 +341,15 @@
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				65238F161857392700FE5D89 /* Account */,
+				65238F0F1857379600FE5D89 /* Files */,
+				65238F041857354A00FE5D89 /* Strings */,
+				65238EF818572F5500FE5D89 /* Pinyin */,
+				65238EF118572ECE00FE5D89 /* Database */,
+				654E5A211856DDAF00DED026 /* UITools */,
 				65C47CB91855E0D500796395 /* DZKVODefines.h */,
+				659910B51856E346003EDCAD /* DZUITools.h */,
+				65238EFC185731C100FE5D89 /* DZTimeTrick.plist */,
 			);
 			name = Commons;
 			sourceTree = "<group>";
@@ -275,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				656F68B618324B2D001F7B7C /* InfoPlist.strings in Resources */,
+				65238EFD185731C100FE5D89 /* DZTimeTrick.plist in Resources */,
 				656F68BE18324B2D001F7B7C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,10 +500,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				656F68DD183250E8001F7B7C /* DZDragViewController.m in Sources */,
+				65238F00185734A300FE5D89 /* WizDataBase.m in Sources */,
+				65238F151857383800FE5D89 /* DZFileUtility.m in Sources */,
+				65238F2B1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m in Sources */,
+				65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */,
+				65238F03185734BF00FE5D89 /* WizGlobals.m in Sources */,
 				65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */,
+				65238F071857357B00FE5D89 /* DZGlobals.m in Sources */,
+				65238F0D185736E000FE5D89 /* DZDBManager.m in Sources */,
+				65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */,
+				65238F1D185739C300FE5D89 /* DZAccount.m in Sources */,
+				65238F2818574FF200FE5D89 /* NSData+SSToolkitAdditions.m in Sources */,
 				65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */,
+				65238F0A1857366E00FE5D89 /* DZTimeDB.m in Sources */,
+				65238F311857584300FE5D89 /* DZTimeType.m in Sources */,
+				65238F2518574A1700FE5D89 /* NSString+database.m in Sources */,
 				656F68BC18324B2D001F7B7C /* DZAppDelegate.m in Sources */,
+				659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */,
+				65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */,
 				65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */,
+				65238F21185748A400FE5D89 /* DZTime.m in Sources */,
+				65238F191857393500FE5D89 /* DZAccountManager.m in Sources */,
+				654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */,
+				65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */,
+				65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */,
 				656F68B818324B2D001F7B7C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

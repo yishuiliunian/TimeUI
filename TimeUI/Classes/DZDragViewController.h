@@ -12,4 +12,6 @@
 @property (nonatomic, strong) UIViewController* topViewController;
 @property (nonatomic, strong) UIViewController* centerViewController;
 @property (nonatomic, strong) UIViewController* bottomViewController;
+
+@property (nonatomic, assign) float middleHeight;
 @end

@@ -8,12 +8,15 @@
 
 #import "DZDragViewController.h"
 #import "DZAstirFrameViewController.h"
+#import "UIView+FrameAnimation.h"
+#import "DZAnimationState.h"
 @interface DZDragViewController ()
 {
     float _dragBottomViewYoffSet;
     float _dragTopViewYoffSet;
     
     UIPanGestureRecognizer* _bottomPanGestrueRecognizer;
+    UIView* animationView;
 }
 @end
 
@@ -47,12 +50,7 @@
     if (topViewController) {
         [self addDragChildViewController:topViewController];
     }
-    CALayer* layer = _topViewController.view.layer;
-    layer.shadowColor = [UIColor lightGrayColor].CGColor;
-    layer.shadowOffset = CGSizeMake(5, 5);
-    layer.shadowOpacity = 0.4;
-    layer.shadowRadius = 5;
-
+    [_topViewController.view addShadow];
 }
 
 - (void) setBottomViewController:(UIViewController *)bottomViewController
@@ -69,12 +67,7 @@
         }
         [bottomViewController.view addGestureRecognizer:_bottomPanGestrueRecognizer];
     }
-    
-    CALayer* layer = _bottomViewController.view.layer;
-    layer.shadowColor = [UIColor lightGrayColor].CGColor;
-    layer.shadowOffset = CGSizeMake(-5, -5);
-    layer.shadowOpacity = 0.4;
-    layer.shadowRadius = 5;
+    [_bottomViewController.view addShadow];
 }
 
 
@@ -111,35 +104,60 @@
         // Custom initialization
         _dragBottomViewYoffSet = 300;
         _dragTopViewYoffSet = 100;
+        _middleHeight = 100;
     }
     return self;
 }
 - (void) layoutChildViewControllers
 {
-    static int i = 0;
     [self.view insertSubview:_centerViewController.view belowSubview:_bottomViewController.view];
     [self.view insertSubview:_centerViewController.view belowSubview:_topViewController.view];
     [self.view insertSubview:_bottomViewController.view belowSubview:_topViewController.view];
     [self setOffsetsWithBottonViewYoffSet:_dragBottomViewYoffSet];
     _centerViewController.view.frame = self.view.bounds;
     
-    _bottomViewController.view.frame = CGRectMake(0, _dragBottomViewYoffSet, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)- i++);
-    _topViewController.view.frame = CGRectMake(0, _dragTopViewYoffSet, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)- i++);
+    _bottomViewController.view.frame = CGRectMake(0,
+                                                  _dragBottomViewYoffSet,
+                                                  CGRectGetWidth(self.view.frame),
+                                                  CGRectGetHeight(self.view.frame) - _dragBottomViewYoffSet);
+    
+    CGPrintRect(_bottomViewController.view.frame);
+    
+    _topViewController.view.frame = CGRectMake(0, 0,
+                                               CGRectGetWidth(self.view.frame),
+                                               _dragBottomViewYoffSet - _middleHeight);
+    
+    CGPrintRect(_topViewController.view.frame);
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
 }
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self layoutChildViewControllers];
+    
+    [self.view addSubview:animationView];
+    
+//    NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(handle) userInfo:Nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) handle
+{
+    static int i = 0;
+    i = (i+1) % 100;
+    
+    NSInteger index = (animationView.currentStateIndex + 1 ) % 10;
+    [animationView moveToIndex:index withProgress:i/99.0f];
 }
 
 @end

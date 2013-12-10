@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class DZAnimationState;
+
 @interface UIView (FrameAnimation)
 @property (nonatomic, assign) NSInteger currentStateIndex;
 @property (nonatomic, strong) NSArray* states;
+- (void) moveToIndex:(NSInteger)index withProgress:(float)progress;
 @end

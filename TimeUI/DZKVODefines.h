@@ -11,6 +11,9 @@
 
 static NSString* const kDZKVOKeyFrame = @"frame";
 
+static NSString* const kDZKeyFrame = @"kDZKeyFrame";
+static NSString* const kDZKeyAlpha = @"kDZKeyAlpha";
+
 static void const* kDZObjectKeyStates = &kDZObjectKeyStates;
 static void const* kDZObjectKeyCurrentStateIndex = &kDZObjectKeyCurrentStateIndex;
 #endif
