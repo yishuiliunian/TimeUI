@@ -10,4 +10,5 @@
 
 @interface DZGlobals : NSObject
 + (NSString*) fileMD5:(NSString*)path;
++(NSString*) genGUID;
 @end

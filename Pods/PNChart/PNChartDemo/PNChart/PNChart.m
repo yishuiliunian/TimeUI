@@ -18,6 +18,7 @@
         self.backgroundColor = [UIColor whiteColor];
         self.clipsToBounds = NO;
         self.type = PNLineType;
+        _showLabel = YES;
         self.strokeColor = PNFreshGreen;
     }
     
@@ -28,16 +29,23 @@
 	if (self.type == PNLineType) {
 		_lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 		_lineChart.backgroundColor = [UIColor clearColor];
+        _lineChart.showLabel = _showLabel;
 		[self addSubview:_lineChart];
 		[_lineChart setYValues:_yValues];
 		[_lineChart setXLabels:_xLabels];
 		[_lineChart setStrokeColor:_strokeColor];
 		[_lineChart strokeChart];
+        _lineChart.delegate = self;
+
 
 	}else if (self.type == PNBarType)
 	{
 		_barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 		_barChart.backgroundColor = [UIColor clearColor];
+        if (_barBackgroundColor) {
+            _barChart.barBackgroundColor = _barBackgroundColor;
+        }
+        _barChart.showLabel = _showLabel;
 		[self addSubview:_barChart];
 		[_barChart setYValues:_yValues];
 		[_barChart setXLabels:_xLabels];
@@ -59,10 +67,37 @@
 
 -(void)strokeChart
 {
-	[self setUpChart];
-	
+    if (_lineChart) {
+		
+		[_lineChart strokeChart];
+        [_lineChart setStrokeColor:_strokeColor];
+        
+	}else if (_barChart)
+	{
+		
+		[_barChart strokeChart];
+        [_barChart setStrokeColor:_strokeColor];
+        
+	}else if (_circleChart)
+    {
+        [_circleChart strokeChart];
+        [_circleChart setStrokeColor:_strokeColor];
+    }else{
+        [self setUpChart];
+    }
 }
 
+-(void)userClickedOnLineKeyPoint:(CGPoint)point andPointIndex:(NSInteger)index{
+    [_delegate userClickedOnLineKeyPoint:point andPointIndex:index];
+}
 
-
+-(void)userClickedOnLinePoint:(CGPoint)point {
+    [_delegate userClickedOnLinePoint:point];
+}
+- (void) layoutSubviews
+{
+    _lineChart.frame = self.bounds;
+    _barChart.frame = self.bounds;
+    _circleChart.frame = self.bounds;
+}
 @end

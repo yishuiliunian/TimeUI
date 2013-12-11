@@ -5,24 +5,40 @@ PODS:
   - CocoaLumberjack/Core (1.6.5.1)
   - CocoaLumberjack/Extensions (1.6.5.1):
     - CocoaLumberjack/Core
+  - CTFeedback (1.0.4)
   - FMDB (2.1):
     - FMDB/standard
   - FMDB/common (2.1)
   - FMDB/standard (2.1):
     - FMDB/common
+  - KXKiOS7ColorsAndGradients (1.0.0)
   - PNChart (0.2.2)
   - PulsingHalo (0.0.1)
+  - TTCounterLabel (1.0.3):
+    - TTTAttributedLabel (~> 1.7.1)
+  - TTTAttributedLabel (1.7.5)
 
 DEPENDENCIES:
   - CocoaLumberjack
+  - CTFeedback
   - FMDB
-  - PNChart (~> 0.2.2)
+  - KXKiOS7ColorsAndGradients (~> 1.0.0)
+  - PNChart (from `git://github.com/yishuiliunian/PNChart.git`)
   - PulsingHalo
+  - TTCounterLabel
+
+EXTERNAL SOURCES:
+  PNChart:
+    :git: git://github.com/yishuiliunian/PNChart.git
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
+  CTFeedback: 2694741ba0c753d6f222ee120424807fed9f5c9f
   FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
+  KXKiOS7ColorsAndGradients: 27cb28a573213b4bc7e9c751956fd6b1b53215f5
   PNChart: 55161d5bf01a4a8e5593e5c45b34af70eae7ed83
   PulsingHalo: 6c5b7e18ca5c6c1319d5e2fd277f123ed74a1435
+  TTCounterLabel: c5067a72c7110647a170c0b3e03a899324004ca3
+  TTTAttributedLabel: 1eb635d4d844cb7abce4d839faefca2a3409950d
 
 COCOAPODS: 0.28.0

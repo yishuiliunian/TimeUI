@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface DZAstirFrameViewController : UIViewController
+{
+    float _maxHeight;
+    float _minHeight;
+}
 @property (nonatomic, assign) float maxHeight;
 @property (nonatomic, assign) float minHeight;
 @end

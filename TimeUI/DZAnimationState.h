@@ -24,6 +24,7 @@ typedef enum {
 @property (nonatomic, assign) float alpha;
 
 + (DZAnimationState*) zeroState;
++ (DZAnimationState*) animationStateWithDic:(NSDictionary*)dic;
 
 - (instancetype) initWithDic:(NSDictionary*)dic;
 
@@ -31,3 +32,5 @@ typedef enum {
 
 - (BOOL) isSupportAnimationKey:(DZAnimationKey)key;
 @end
+
+extern DZAnimationState* DZAnimatinStateCreateWithDic(NSDictionary* dic);

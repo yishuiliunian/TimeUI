@@ -23,6 +23,10 @@
     });
     return state;
 }
++ (DZAnimationState*) animationStateWithDic:(NSDictionary *)dic
+{
+    return [[DZAnimationState alloc] initWithDic:dic];
+}
 
 - (void) commonInit
 {
@@ -93,3 +97,5 @@
 }
 
 @end
+
+DZAnimationState* DZAnimatinStateCreateWithDic(NSDictionary* dic)  {return [DZAnimationState animationStateWithDic:dic];}

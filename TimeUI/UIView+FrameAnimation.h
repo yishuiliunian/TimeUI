@@ -15,4 +15,5 @@
 @property (nonatomic, assign) NSInteger currentStateIndex;
 @property (nonatomic, strong) NSArray* states;
 - (void) moveToIndex:(NSInteger)index withProgress:(float)progress;
+- (void) moveAllSubViewsToIndex:(NSUInteger)index withProcess:(float)process;
 @end

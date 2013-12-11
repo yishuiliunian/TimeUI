@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString* const kDZKeyIdentifiy = @"identifiy";
+static NSString* const kDZKeyName = @"name";
+static NSString* const kDZKeyDetail = @"detail";
+
 @interface DZTimeType : NSObject
 @property (nonatomic, strong) NSString* identifiy;
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* detail;
+
 @end

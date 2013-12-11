@@ -27,6 +27,12 @@
 		65238F2B1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F2A1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m */; };
 		65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F2D185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m */; };
 		65238F311857584300FE5D89 /* DZTimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F301857584300FE5D89 /* DZTimeType.m */; };
+		65238F3618575FBB00FE5D89 /* InitTypesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 65238F3518575FBB00FE5D89 /* InitTypesData.json */; };
+		65238F3A1857644B00FE5D89 /* DZTimeTrickManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F391857644B00FE5D89 /* DZTimeTrickManger.m */; };
+		65238F3E185764DA00FE5D89 /* DZUserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F3D185764DA00FE5D89 /* DZUserDataManager.m */; };
+		65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F4218576B3D00FE5D89 /* DZCenterButtonViewController.m */; };
+		65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F4718577B2B00FE5D89 /* DZChartViewController.m */; };
+		65238F501858369000FE5D89 /* DZLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238F4F1858369000FE5D89 /* DZLineChart.m */; };
 		654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E5A231856DDEF00DED026 /* DZGeometryTools.m */; };
 		656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AB18324B2D001F7B7C /* Foundation.framework */; };
 		656F68AE18324B2D001F7B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AD18324B2D001F7B7C /* CoreGraphics.framework */; };
@@ -97,6 +103,17 @@
 		65238F2D185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+SSToolkitAdditions.m"; sourceTree = "<group>"; };
 		65238F2F1857584300FE5D89 /* DZTimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTimeType.h; sourceTree = "<group>"; };
 		65238F301857584300FE5D89 /* DZTimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTimeType.m; sourceTree = "<group>"; };
+		65238F3518575FBB00FE5D89 /* InitTypesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitTypesData.json; sourceTree = "<group>"; };
+		65238F381857644B00FE5D89 /* DZTimeTrickManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTimeTrickManger.h; sourceTree = "<group>"; };
+		65238F391857644B00FE5D89 /* DZTimeTrickManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTimeTrickManger.m; sourceTree = "<group>"; };
+		65238F3C185764DA00FE5D89 /* DZUserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZUserDataManager.h; sourceTree = "<group>"; };
+		65238F3D185764DA00FE5D89 /* DZUserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZUserDataManager.m; sourceTree = "<group>"; };
+		65238F4118576B3D00FE5D89 /* DZCenterButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCenterButtonViewController.h; sourceTree = "<group>"; };
+		65238F4218576B3D00FE5D89 /* DZCenterButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCenterButtonViewController.m; sourceTree = "<group>"; };
+		65238F4618577B2B00FE5D89 /* DZChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZChartViewController.h; sourceTree = "<group>"; };
+		65238F4718577B2B00FE5D89 /* DZChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZChartViewController.m; sourceTree = "<group>"; };
+		65238F4E1858369000FE5D89 /* DZLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLineChart.h; sourceTree = "<group>"; };
+		65238F4F1858369000FE5D89 /* DZLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLineChart.m; sourceTree = "<group>"; };
 		654E5A221856DDEF00DED026 /* DZGeometryTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGeometryTools.h; sourceTree = "<group>"; };
 		654E5A231856DDEF00DED026 /* DZGeometryTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZGeometryTools.m; sourceTree = "<group>"; };
 		656F68A818324B2D001F7B7C /* TimeUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +257,70 @@
 			name = normal;
 			sourceTree = "<group>";
 		};
+		65238F3218575E4D00FE5D89 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				65238F3518575FBB00FE5D89 /* InitTypesData.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		65238F371857643800FE5D89 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				65238F381857644B00FE5D89 /* DZTimeTrickManger.h */,
+				65238F391857644B00FE5D89 /* DZTimeTrickManger.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		65238F3B185764CD00FE5D89 /* UserData */ = {
+			isa = PBXGroup;
+			children = (
+				65238F3C185764DA00FE5D89 /* DZUserDataManager.h */,
+				65238F3D185764DA00FE5D89 /* DZUserDataManager.m */,
+			);
+			name = UserData;
+			sourceTree = "<group>";
+		};
+		65238F4018576AF300FE5D89 /* ButtonViewController */ = {
+			isa = PBXGroup;
+			children = (
+				65238F4118576B3D00FE5D89 /* DZCenterButtonViewController.h */,
+				65238F4218576B3D00FE5D89 /* DZCenterButtonViewController.m */,
+			);
+			name = ButtonViewController;
+			sourceTree = "<group>";
+		};
+		65238F44185779D400FE5D89 /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				65C47CBB1855E52100796395 /* UIView+FrameAnimation.h */,
+				65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */,
+				65C47CBE1855E5C300796395 /* DZAnimationState.h */,
+				65C47CBF1855E5C300796395 /* DZAnimationState.m */,
+			);
+			name = animation;
+			sourceTree = "<group>";
+		};
+		65238F4518577B1000FE5D89 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				65238F4618577B2B00FE5D89 /* DZChartViewController.h */,
+				65238F4718577B2B00FE5D89 /* DZChartViewController.m */,
+			);
+			name = Charts;
+			sourceTree = "<group>";
+		};
+		65238F4D1858367600FE5D89 /* PNPart */ = {
+			isa = PBXGroup;
+			children = (
+				65238F4E1858369000FE5D89 /* DZLineChart.h */,
+				65238F4F1858369000FE5D89 /* DZLineChart.m */,
+			);
+			name = PNPart;
+			sourceTree = "<group>";
+		};
 		654E5A211856DDAF00DED026 /* UITools */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +367,9 @@
 		656F68B118324B2D001F7B7C /* TimeUI */ = {
 			isa = PBXGroup;
 			children = (
+				65238F4D1858367600FE5D89 /* PNPart */,
+				65238F371857643800FE5D89 /* Managers */,
+				65238F3218575E4D00FE5D89 /* Resources */,
 				65238F1E1857489100FE5D89 /* Models */,
 				65C47CBA1855E0F600796395 /* ViewControllers */,
 				65C47CB81855E0C500796395 /* Commons */,
@@ -341,6 +425,7 @@
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				65238F3B185764CD00FE5D89 /* UserData */,
 				65238F161857392700FE5D89 /* Account */,
 				65238F0F1857379600FE5D89 /* Files */,
 				65238F041857354A00FE5D89 /* Strings */,
@@ -357,12 +442,11 @@
 		65C47CBA1855E0F600796395 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				65238F4518577B1000FE5D89 /* Charts */,
+				65238F44185779D400FE5D89 /* animation */,
+				65238F4018576AF300FE5D89 /* ButtonViewController */,
 				65C47CB51855E06200796395 /* DZAstirFrameViewController.h */,
 				65C47CB61855E06200796395 /* DZAstirFrameViewController.m */,
-				65C47CBB1855E52100796395 /* UIView+FrameAnimation.h */,
-				65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */,
-				65C47CBE1855E5C300796395 /* DZAnimationState.h */,
-				65C47CBF1855E5C300796395 /* DZAnimationState.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -446,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				656F68B618324B2D001F7B7C /* InfoPlist.strings in Resources */,
+				65238F3618575FBB00FE5D89 /* InitTypesData.json in Resources */,
 				65238EFD185731C100FE5D89 /* DZTimeTrick.plist in Resources */,
 				656F68BE18324B2D001F7B7C /* Images.xcassets in Resources */,
 			);
@@ -499,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65238F3E185764DA00FE5D89 /* DZUserDataManager.m in Sources */,
 				656F68DD183250E8001F7B7C /* DZDragViewController.m in Sources */,
 				65238F00185734A300FE5D89 /* WizDataBase.m in Sources */,
 				65238F151857383800FE5D89 /* DZFileUtility.m in Sources */,
@@ -509,11 +595,13 @@
 				65238F071857357B00FE5D89 /* DZGlobals.m in Sources */,
 				65238F0D185736E000FE5D89 /* DZDBManager.m in Sources */,
 				65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */,
+				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,
 				65238F1D185739C300FE5D89 /* DZAccount.m in Sources */,
 				65238F2818574FF200FE5D89 /* NSData+SSToolkitAdditions.m in Sources */,
 				65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */,
 				65238F0A1857366E00FE5D89 /* DZTimeDB.m in Sources */,
 				65238F311857584300FE5D89 /* DZTimeType.m in Sources */,
+				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
 				65238F2518574A1700FE5D89 /* NSString+database.m in Sources */,
 				656F68BC18324B2D001F7B7C /* DZAppDelegate.m in Sources */,
 				659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */,
@@ -525,6 +613,8 @@
 				65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */,
 				65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */,
 				656F68B818324B2D001F7B7C /* main.m in Sources */,
+				65238F3A1857644B00FE5D89 /* DZTimeTrickManger.m in Sources */,
+				65238F501858369000FE5D89 /* DZLineChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

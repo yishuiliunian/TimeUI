@@ -14,11 +14,24 @@
 //
 #import "DZDBManager.h"
 #import "DZTime.h"
+#import "DZTimeType.h"
+#import "DZTimeTrickManger.h"
+
 @implementation DZAppConfigure
 + (BOOL) initApp
 {
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    //initTypes
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"InitTypesData" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    NSArray* typesInitial = [NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments| NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:Nil];
+    for (NSDictionary* dic  in typesInitial) {
+        DZTimeType* type = [DZTimeType new];
+        [type setValuesForKeysWithDictionary:dic];
+        [DZActiveTimeDataBase updateTimeType:type];
+    }
     return YES;
 }
 @end

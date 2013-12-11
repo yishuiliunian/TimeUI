@@ -6,6 +6,12 @@
 // project.
 
 
+// CTFeedback
+#define COCOAPODS_POD_AVAILABLE_CTFeedback
+#define COCOAPODS_VERSION_MAJOR_CTFeedback 1
+#define COCOAPODS_VERSION_MINOR_CTFeedback 0
+#define COCOAPODS_VERSION_PATCH_CTFeedback 4
+
 // CocoaLumberjack
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
 // This library does not follow semantic-versioning,
@@ -45,6 +51,12 @@
 #define COCOAPODS_VERSION_MINOR_FMDB_standard 1
 #define COCOAPODS_VERSION_PATCH_FMDB_standard 0
 
+// KXKiOS7ColorsAndGradients
+#define COCOAPODS_POD_AVAILABLE_KXKiOS7ColorsAndGradients
+#define COCOAPODS_VERSION_MAJOR_KXKiOS7ColorsAndGradients 1
+#define COCOAPODS_VERSION_MINOR_KXKiOS7ColorsAndGradients 0
+#define COCOAPODS_VERSION_PATCH_KXKiOS7ColorsAndGradients 0
+
 // PNChart
 #define COCOAPODS_POD_AVAILABLE_PNChart
 #define COCOAPODS_VERSION_MAJOR_PNChart 0
@@ -56,4 +68,16 @@
 #define COCOAPODS_VERSION_MAJOR_PulsingHalo 0
 #define COCOAPODS_VERSION_MINOR_PulsingHalo 0
 #define COCOAPODS_VERSION_PATCH_PulsingHalo 1
+
+// TTCounterLabel
+#define COCOAPODS_POD_AVAILABLE_TTCounterLabel
+#define COCOAPODS_VERSION_MAJOR_TTCounterLabel 1
+#define COCOAPODS_VERSION_MINOR_TTCounterLabel 0
+#define COCOAPODS_VERSION_PATCH_TTCounterLabel 3
+
+// TTTAttributedLabel
+#define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
+#define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
+#define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 7
+#define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 5
 

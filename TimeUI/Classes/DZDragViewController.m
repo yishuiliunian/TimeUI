@@ -127,7 +127,7 @@
                                                CGRectGetWidth(self.view.frame),
                                                _dragBottomViewYoffSet - _middleHeight);
     
-    CGPrintRect(_topViewController.view.frame);
+    _centerViewController.view.frame = CGRectMake(0, CGRectGetMaxY(_topViewController.view.frame), CGRectGetWidth(self.view.frame), _middleHeight);
 }
 - (void)viewDidLoad
 {

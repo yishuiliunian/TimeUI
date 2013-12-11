@@ -69,4 +69,15 @@
     }
 }
 
+- (void) moveAllSubViewsToIndex:(NSUInteger)index withProcess:(float)process
+{
+    NSArray* subViews = [self subviews];
+    for (UIView* eachView in subViews) {
+        NSArray* states = eachView.states;
+        if (states) {
+            [eachView moveToIndex:index withProgress:process];
+        }
+    }
+}
+
 @end

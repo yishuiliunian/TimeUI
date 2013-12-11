@@ -10,6 +10,8 @@
 #import "DZDragViewController.h"
 #import "DZAstirFrameViewController.h"
 #import "DZAppConfigure.h"
+#import "DZCenterButtonViewController.h"
+#import "DZChartViewController.h"
 @implementation DZAppDelegate
 
 
@@ -30,8 +32,8 @@
     v3.view.backgroundColor = [UIColor greenColor];
     
     dragVC.topViewController = v2;
-    dragVC.bottomViewController = v1;
-    dragVC.centerViewController = v3;
+    dragVC.bottomViewController = [DZChartViewController new];
+    dragVC.centerViewController = [[DZCenterButtonViewController alloc] init];
     self.window.rootViewController = dragVC;
     //
     

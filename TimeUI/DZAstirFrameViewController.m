@@ -15,7 +15,8 @@
 @end
 
 @implementation DZAstirFrameViewController
-
+@synthesize maxHeight = _maxHeight;
+@synthesize minHeight = _minHeight;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,6 +45,7 @@
             }
             
             [eachView moveToIndex:(eachView.currentStateIndex + 1)%2 withProgress:progress];
+            NSLog(@"asdfasd");
         }
     }
 }
@@ -51,18 +53,6 @@
 {
     [super viewDidLoad];
     
-    UIView* a = [[UIView alloc] init];
-    
-    DZAnimationState* s1 = [[DZAnimationState alloc] initWithDic:@{kDZKeyAlpha:@(1),
-                                                                   kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(40, 10, 10, 10)]}];
-    
-    DZAnimationState* s2 = [[DZAnimationState alloc] initWithDic:@{kDZKeyAlpha:@(.5),
-                                                                   kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(90, 40, 70, 90)]}];
-    
-    a.states = @[s1, s2];
-    [self.view addSubview:a];
-    a.backgroundColor = [UIColor orangeColor];
-    a.frame = s1.frame;
 	// Do any additional setup after loading the view.
 }
 

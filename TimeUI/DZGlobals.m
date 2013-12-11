@@ -40,4 +40,16 @@
                    digest[14], digest[15]];
     return s;
 }
++(NSString*) genGUID
+{
+	CFUUIDRef theUUID = CFUUIDCreate(NULL);
+	CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+	CFRelease(theUUID);
+	//
+	NSString* str = [NSString stringWithString:(__bridge NSString*)string];
+	//
+	CFRelease(string);
+	//
+	return [str lowercaseString];
+}
 @end
