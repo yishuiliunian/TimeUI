@@ -7,7 +7,7 @@
 //
 
 #import "DZAstirFrameViewController.h"
-
+#import "DZTimeType.h"
 @interface DZChartViewController : DZAstirFrameViewController
-
+- (void) showLineChartForType:(DZTimeType*)type;
 @end

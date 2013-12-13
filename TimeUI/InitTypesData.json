@@ -1,2 +1,9 @@
 [{"identifiy":"吃饭", "name":"吃饭", "detail":"吃饭"},
- {"identifiy":"睡觉", "name":"睡觉", "detail":"睡觉"}]
+ {"identifiy":"睡觉", "name":"睡觉", "detail":"睡觉"},
+ {"identifiy":"敲代码", "name":"敲代码", "detail":"敲代码"},
+ {"identifiy":"看书", "name":"看书", "detail":"看书"},
+ {"identifiy":"Youku", "name":"Youku", "detail":"Youku"},
+ {"identifiy":"看视频", "name":"看视频", "detail":"看视频"},
+ {"identifiy":"瞎扯淡", "name":"瞎扯淡", "detail":"瞎扯淡"},
+ {"identifiy":"发呆", "name":"发呆", "detail":"发呆"},
+  {"identifiy":"看网页", "name":"看网页，看论坛", "detail":"论坛"}]

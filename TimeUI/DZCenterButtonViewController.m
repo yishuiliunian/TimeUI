@@ -11,11 +11,15 @@
 #import "DZTimeTrickManger.h"
 #import "DZAnimationState.h"
 #import "UIView+FrameAnimation.h"
+#import "MZLoadingCircle.h"
 #import <TTCounterLabel.h>
+#import <KXKiOS7Colors.h>
+#import "DZAudioManager.h"
 @interface DZCenterButtonViewController ()
 {
     UIButton* _centerButton;
     TTCounterLabel* _countLabel;
+    MZLoadingCircle* _loadingCircle;
 }
 @end
 
@@ -34,37 +38,54 @@
 
 - (void) addTime
 {
-    NSArray* types = [DZActiveTimeDataBase allTimeTypes];
-    [[DZTimeTrickManger shareManager]  addTimeLogWithType:types.lastObject detail:@""];
+    [[DZTimeTrickManger shareManager] addTimeWithDetail:@""];
+    [_countLabel reset];
+    _countLabel.startValue = 0;
+    [_countLabel start];
+    
+    [[DZAudioManager  shareManager] playBlum];
+}
+
+
+- (void) initLoadingCircle
+{
+//    _loadingCircle = [[MZLoadingCircle alloc] init];
+//    [_loadingCircle willMoveToParentViewController:self];
+//    [self.view addSubview:_loadingCircle.view];
+//    [_loadingCircle didMoveToParentViewController:self];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [KXKiOS7Colors lightOrange];
     _centerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_centerButton setTitle:@"asdfa" forState:UIControlStateNormal];
+    [_centerButton setTitle:@"点击以保存" forState:UIControlStateNormal];
     [_centerButton addTarget:self action:@selector(addTime) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_centerButton];
-    _centerButton.backgroundColor = [UIColor redColor];
     
     
     
     DZAnimationState* s1 = [[DZAnimationState alloc] initWithDic:@{kDZKeyAlpha:@(1),
-                                                                   kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(40, 40, 100, 100)]}];
+                                                                   kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(200, 0, 100, 100)]}];
     
     DZAnimationState* s2 = [[DZAnimationState alloc] initWithDic:@{kDZKeyAlpha:@(.5),
-                                                                   kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(240, 40, 50, 50)]}];
+                                                                   kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(200, 0, 100, 100)]}];
     
     _centerButton.states = @[s1, s2];
     _centerButton.frame = s1.frame;
     
     _countLabel = [[TTCounterLabel alloc] init];
     _countLabel.states = @[DZAnimatinStateCreateWithDic(@{kDZKeyAlpha:@(1),
-                                                          kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(10, 10, 100, 100)]}),
+                                                          kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(10, 0, 200, 100)]}),
                            DZAnimatinStateCreateWithDic(@{kDZKeyAlpha:@(1),
-                                                          kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(200, 40, 100, 100)]}),];
-    _countLabel.frame = [_countLabel.states[0] frame];
+                                                          kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(10, 0, 200, 100)]}),];
+    
+    _countLabel.startValue = [DZTimeTrickManger shareManager].alreadyCostTime*1000;
     [self.view addSubview:_countLabel];
+    [self initLoadingCircle];
+    _loadingCircle.view.frame = CGRectMake(200, 0, 60, 60);
+    [_countLabel start];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,9 +96,8 @@
 
 - (void) viewWillLayoutSubviews
 {
-  float process =   CGRectGetMinY(self.view.frame) / CGRectGetHeight(self.view.superview.frame);
-    [_centerButton moveToIndex:(_centerButton.currentStateIndex + 1)%2 withProgress:process];
-    [_countLabel moveToIndex:(_countLabel.currentStateIndex + 1)%2 withProgress:process];
+    _countLabel.frame = [_countLabel.states[0] frame];
+
 }
 
 @end

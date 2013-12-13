@@ -14,4 +14,6 @@
 @property (nonatomic, strong) NSDate* end;
 @property (nonatomic, strong) NSString* typeId;
 @property (nonatomic, strong) NSString* detail;
+
+- (NSDictionary*) parseDayCost;
 @end

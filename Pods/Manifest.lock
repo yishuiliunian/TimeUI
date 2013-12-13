@@ -12,8 +12,10 @@ PODS:
   - FMDB/standard (2.1):
     - FMDB/common
   - KXKiOS7ColorsAndGradients (1.0.0)
+  - NSDate-TKExtensions (0.4)
   - PNChart (0.2.2)
   - PulsingHalo (0.0.1)
+  - TheAmazingAudioEngine (1.2)
   - TTCounterLabel (1.0.3):
     - TTTAttributedLabel (~> 1.7.1)
   - TTTAttributedLabel (1.7.5)
@@ -23,8 +25,10 @@ DEPENDENCIES:
   - CTFeedback
   - FMDB
   - KXKiOS7ColorsAndGradients (~> 1.0.0)
+  - NSDate-TKExtensions
   - PNChart (from `git://github.com/yishuiliunian/PNChart.git`)
   - PulsingHalo
+  - TheAmazingAudioEngine
   - TTCounterLabel
 
 EXTERNAL SOURCES:
@@ -36,8 +40,10 @@ SPEC CHECKSUMS:
   CTFeedback: 2694741ba0c753d6f222ee120424807fed9f5c9f
   FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
   KXKiOS7ColorsAndGradients: 27cb28a573213b4bc7e9c751956fd6b1b53215f5
+  NSDate-TKExtensions: a8600d99a8ee39ffa442c81e94ba1781c96c32d1
   PNChart: 55161d5bf01a4a8e5593e5c45b34af70eae7ed83
   PulsingHalo: 6c5b7e18ca5c6c1319d5e2fd277f123ed74a1435
+  TheAmazingAudioEngine: e544f61ab180d6e83c9478cc47355420f61d7281
   TTCounterLabel: c5067a72c7110647a170c0b3e03a899324004ca3
   TTTAttributedLabel: 1eb635d4d844cb7abce4d839faefca2a3409950d
 

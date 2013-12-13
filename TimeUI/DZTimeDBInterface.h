@@ -13,9 +13,14 @@
 - (BOOL) updateTime:(DZTime *)time;
 - (DZTime*) timeByGuid:(NSString*)guid;
 - (NSArray*) allTimes;
+//
 
+- (NSArray*) timesByType:(DZTimeType*)type;
+- (NSArray*) timesInOneWeakByType:(DZTimeType*)type;
 //
 - (BOOL) updateTimeType:(DZTimeType*)type;
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy;
 - (NSArray*) allTimeTypes;
+
+
 @end

@@ -8,6 +8,8 @@
 
 #import "DZChartViewController.h"
 #import <PNChart.h>
+#import "DZTime.h"
+#import <KXKiOS7Colors.h>
 @interface DZChartViewController ()
 {
     PNChart* _charView;
@@ -39,8 +41,36 @@
     _charView.frame = self.view.bounds;
     _charView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [_charView strokeChart];
-
+    _charView.backgroundColor = [KXKiOS7Colors lightBlue];
 	// Do any additional setup after loading the view.
+}
+
+- (NSDictionary*) parseOnweakTimeData:(NSArray*)array
+{
+    
+    float a[7] = {0,0,0,0,0,0,0};
+    for (DZTime* time  in array) {
+        NSDictionary* costs = [time parseDayCost];
+        NSArray* keys = costs.allKeys;
+        for (NSNumber* each  in keys) {
+            float cost = [costs[each] floatValue];
+            a[[each intValue]] += cost;
+        }
+    }
+    
+    NSMutableDictionary* dic = [NSMutableDictionary new];
+    for (int i = 0 ; i < 7 ; i++) {
+        dic[[@(i) stringValue]] = @(a[i]);
+    }
+    return dic;
+}
+- (void) showLineChartForType:(DZTimeType*)type
+{
+    NSArray* array =  [DZActiveTimeDataBase timesInOneWeakByType:type];
+    NSDictionary* dic = [self parseOnweakTimeData:array];
+    _charView.lineChart.xLabels = dic.allKeys;
+    _charView.lineChart.yValues = dic.allValues;
+    [_charView.lineChart strokeChart];
 }
 
 - (void)didReceiveMemoryWarning

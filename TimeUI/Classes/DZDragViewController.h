@@ -7,11 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DZTypesViewController.h"
+#import "DZCenterButtonViewController.h"
+#import "DZChartViewController.h"
+typedef enum {
+    DZDragViewStateCenter,
+    DZDragViewStateBottom,
+    DZDragViewStateTop
+}DZDragViewState;
 
-@interface DZDragViewController : UIViewController
-@property (nonatomic, strong) UIViewController* topViewController;
-@property (nonatomic, strong) UIViewController* centerViewController;
-@property (nonatomic, strong) UIViewController* bottomViewController;
-
+@interface DZDragViewController : UIViewController <DZSelectTypeDelegate>
+@property (nonatomic, strong) DZTypesViewController* topViewController;
+@property (nonatomic, strong) DZCenterButtonViewController* centerViewController;
+@property (nonatomic, strong) DZChartViewController* bottomViewController;
+@property (nonatomic, assign , readonly) DZDragViewState dragState;
 @property (nonatomic, assign) float middleHeight;
 @end

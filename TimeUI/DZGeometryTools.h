@@ -7,15 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DZDevices.h"
 
 #ifdef __cplusplus
+
+
+
 extern "C"
 {
 #endif
 
     void CGPrintRect(CGRect rect ); 
-    
+    CATransform3D CATransform3DPerspect(CATransform3D t, CGPoint center, float disZ);
+    CATransform3D CATransform3DMakePerspective(CGPoint center, float disZ);
 #ifdef __cplusplus
 }
 #endif

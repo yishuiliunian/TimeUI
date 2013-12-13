@@ -12,4 +12,8 @@
 #import "DZGeometryTools.h"
 #import "UIView+Shadow.h"
 #import "DZGlobals.h"
+#import "DZDevices.h"
+
+
+
 #endif

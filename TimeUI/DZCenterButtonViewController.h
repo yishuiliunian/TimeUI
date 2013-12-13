@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "DZAstirFrameViewController.h"
 @interface DZCenterButtonViewController : DZAstirFrameViewController
-
+@property (nonatomic, strong) DZTimeType* currentType;
 @end

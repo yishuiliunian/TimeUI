@@ -10,6 +10,9 @@
 @class DZTimeType;
 @interface DZTimeTrickManger : NSObject
 @property (nonatomic, strong, readonly) NSDate* lastTrickDate;
+@property (nonatomic, assign, readonly) float alreadyCostTime;
+@property (nonatomic, strong) DZTimeType* timeType;
 + (DZTimeTrickManger*) shareManager;
 - (void) addTimeLogWithType:(DZTimeType*)type detail:(NSString*)detail;
+- (void) addTimeWithDetail:(NSString*)detail;
 @end

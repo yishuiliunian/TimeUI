@@ -72,6 +72,10 @@
 {
     
     _yLabels = yLabels;
+    NSArray* labels = [_yLabelsMap allValues];
+    for (UIView* each  in labels) {
+        [each removeFromSuperview];
+    }
     [_yLabelsMap removeAllObjects];
     float level = _yValueMax /[yLabels count];
 	
@@ -88,12 +92,15 @@
         index +=1 ;
 		num -= 1;
 	}
-
 }
 
 -(void)setXLabels:(NSArray *)xLabels
 {
     _xLabels = xLabels;
+    NSArray* labels = [_xLabelsMap allValues];
+    for (UIView* each  in labels) {
+        [each removeFromSuperview];
+    }
     [_xLabelsMap removeAllObjects];
     if(_showLabel){
         _xLabelWidth = (self.frame.size.width - chartMargin - 30.0)/[xLabels count];

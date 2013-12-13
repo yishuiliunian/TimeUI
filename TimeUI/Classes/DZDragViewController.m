@@ -10,6 +10,8 @@
 #import "DZAstirFrameViewController.h"
 #import "UIView+FrameAnimation.h"
 #import "DZAnimationState.h"
+
+#import "DZTimeTrickManger.h"
 @interface DZDragViewController ()
 {
     float _dragBottomViewYoffSet;
@@ -18,12 +20,14 @@
     UIPanGestureRecognizer* _bottomPanGestrueRecognizer;
     UIView* animationView;
 }
+
 @end
 
 @implementation DZDragViewController
 @synthesize topViewController = _topViewController;
 @synthesize bottomViewController = _bottomViewController;
 @synthesize centerViewController = _centerViewController;
+@synthesize dragState = _dragState;
 
 - (void) addDragChildViewController:(UIViewController*)vc
 {
@@ -60,24 +64,48 @@
         [_bottomViewController.view removeGestureRecognizer:_bottomPanGestrueRecognizer];
     }
     _bottomViewController = bottomViewController;
-    if (bottomViewController) {
-        [self addDragChildViewController:bottomViewController];
-        if (!_bottomPanGestrueRecognizer) {
-            _bottomPanGestrueRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleBottomPanGestrueRecognizer:)];
-        }
-        [bottomViewController.view addGestureRecognizer:_bottomPanGestrueRecognizer];
-    }
     [_bottomViewController.view addShadow];
 }
 
-
+- (void) setDragState:(DZDragViewState)dragState withAnimation:(BOOL)animation
+{
+    _dragState = dragState;
+    switch (dragState) {
+        case DZDragViewStateTop:
+            _dragBottomViewYoffSet = _middleHeight;
+            break;
+        case DZDragViewStateBottom:
+            _dragBottomViewYoffSet = CGRectGetHeight(self.view.bounds);
+            break;
+        case DZDragViewStateCenter:
+            _dragBottomViewYoffSet = (CGRectGetHeight(self.view.frame) + _middleHeight)/2 ;
+        default:
+            break;
+    }
+    [self layoutChildViewControllersWithAnimation:animation];
+}
 - (void) handleBottomPanGestrueRecognizer:(UIPanGestureRecognizer*)panRcg
 {
+    CGPoint ponit = [panRcg locationInView:self.view];
     if (panRcg.state == UIGestureRecognizerStateChanged) {
-        CGPoint ponit = [panRcg locationInView:self.view];
         [self setOffsetsWithBottonViewYoffSet:ponit.y];
-        [self layoutChildViewControllers];
-        NSLog(@"%f %f",ponit.x, ponit.y);
+        [self layoutChildViewControllersWithAnimation:NO];
+    }
+    else if (panRcg.state == UIGestureRecognizerStateEnded)
+    {
+        float middleLine = CGRectGetHeight(self.view.frame) /2;
+        if (ponit.y < middleLine - _middleHeight) {
+            [self setDragState:DZDragViewStateTop withAnimation:YES];
+        }
+        else if (ponit.y > middleLine + _middleHeight)
+        {
+            [self setDragState:DZDragViewStateBottom withAnimation:YES];
+        }
+        else
+        {
+            [self setDragState:DZDragViewStateCenter withAnimation:YES];
+        }
+        
     }
 }
 - (void) setCenterViewController:(UIViewController *)centerViewController
@@ -88,6 +116,12 @@
     _centerViewController = centerViewController;
     if (centerViewController) {
         [self addDragChildViewController:centerViewController];
+    }
+    if (_centerViewController) {
+        if (!_bottomPanGestrueRecognizer) {
+            _bottomPanGestrueRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleBottomPanGestrueRecognizer:)];
+        }
+        [_centerViewController.view addGestureRecognizer:_bottomPanGestrueRecognizer];
     }
 }
 
@@ -108,26 +142,33 @@
     }
     return self;
 }
-- (void) layoutChildViewControllers
+- (void) layoutChildViewControllersWithAnimation:(BOOL)animation
 {
     [self.view insertSubview:_centerViewController.view belowSubview:_bottomViewController.view];
     [self.view insertSubview:_centerViewController.view belowSubview:_topViewController.view];
     [self.view insertSubview:_bottomViewController.view belowSubview:_topViewController.view];
     [self setOffsetsWithBottonViewYoffSet:_dragBottomViewYoffSet];
-    _centerViewController.view.frame = self.view.bounds;
+    void(^animationBlock)(void) = ^(void) {
+        _bottomViewController.view.frame = CGRectMake(0,
+                                                      _dragBottomViewYoffSet,
+                                                      CGRectGetWidth(self.view.frame),
+                                                      CGRectGetHeight(self.view.frame) - _dragBottomViewYoffSet);
+        
+        _topViewController.view.frame = CGRectMake(0, 0,
+                                                   CGRectGetWidth(self.view.frame),
+                                                   _dragBottomViewYoffSet - _middleHeight);
+        
+        _centerViewController.view.frame = CGRectMake(0, CGRectGetMaxY(_topViewController.view.frame), CGRectGetWidth(self.view.frame), _middleHeight);
+    };
     
-    _bottomViewController.view.frame = CGRectMake(0,
-                                                  _dragBottomViewYoffSet,
-                                                  CGRectGetWidth(self.view.frame),
-                                                  CGRectGetHeight(self.view.frame) - _dragBottomViewYoffSet);
+    if (animation) {
+        [UIView animateWithDuration:0.25 animations:animationBlock];
+    }
+    else
+    {
+        animationBlock();
+    }
     
-    CGPrintRect(_bottomViewController.view.frame);
-    
-    _topViewController.view.frame = CGRectMake(0, 0,
-                                               CGRectGetWidth(self.view.frame),
-                                               _dragBottomViewYoffSet - _middleHeight);
-    
-    _centerViewController.view.frame = CGRectMake(0, CGRectGetMaxY(_topViewController.view.frame), CGRectGetWidth(self.view.frame), _middleHeight);
 }
 - (void)viewDidLoad
 {
@@ -138,12 +179,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self layoutChildViewControllers];
+    [self setDragState:DZDragViewStateCenter withAnimation:NO];
     
-    [self.view addSubview:animationView];
-    
-//    NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(handle) userInfo:Nil repeats:YES];
-//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -151,13 +188,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) handle
-{
-    static int i = 0;
-    i = (i+1) % 100;
-    
-    NSInteger index = (animationView.currentStateIndex + 1 ) % 10;
-    [animationView moveToIndex:index withProgress:i/99.0f];
-}
 
+- (void) typesViewController:(DZTypesViewController *)vc didSelect:(DZTimeType *)type
+{
+    [_bottomViewController showLineChartForType:type];
+    [[DZTimeTrickManger shareManager] setTimeType:type];
+}
 @end

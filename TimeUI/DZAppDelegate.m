@@ -12,6 +12,10 @@
 #import "DZAppConfigure.h"
 #import "DZCenterButtonViewController.h"
 #import "DZChartViewController.h"
+#import "DZTypesViewController.h"
+#import "DZTableViewController.h"
+
+
 @implementation DZAppDelegate
 
 
@@ -22,21 +26,19 @@
     // Override point for customization after application launch.
     DZDragViewController* dragVC = [[DZDragViewController alloc] init];
     
-    DZAstirFrameViewController* v1 = [DZAstirFrameViewController new];
-    v1.view.backgroundColor = [UIColor redColor];
+    DZTypesViewController* v1 = [DZTypesViewController new];
+    v1.selectDelegate = dragVC;
     
-    UIViewController* v2 = [UIViewController new];
-    v2.view.backgroundColor = [UIColor blueColor];
+    DZChartViewController* v2 = [DZChartViewController new];
     
-    UIViewController* v3 = [UIViewController new];
-    v3.view.backgroundColor = [UIColor greenColor];
+    DZCenterButtonViewController* v3 = [[DZCenterButtonViewController alloc] init];
     
-    dragVC.topViewController = v2;
-    dragVC.bottomViewController = [DZChartViewController new];
-    dragVC.centerViewController = [[DZCenterButtonViewController alloc] init];
-    self.window.rootViewController = dragVC;
+    dragVC.topViewController = v1;
+    dragVC.bottomViewController = v2;
+    dragVC.centerViewController = v3;
+//    self.window.rootViewController = dragVC;
     //
-    
+    self.window.rootViewController = [DZTableViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

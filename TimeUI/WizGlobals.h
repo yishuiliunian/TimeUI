@@ -43,7 +43,6 @@
 //#define DEVICE_VERSION_BELOW_7 (DeviceSystemMajorVersion() < 7)
 //#define DEVICE_VERSION_ABOVE_6 (DeviceSystemMajorVersion() > 6)
 //
-//#define CGRectLoadViewFrame (DEVICE_VERSION_BELOW_7?[[UIScreen mainScreen] applicationFrame]:[UIScreen mainScreen].bounds)
 //
 //#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 //

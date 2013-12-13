@@ -57,6 +57,12 @@
 #define COCOAPODS_VERSION_MINOR_KXKiOS7ColorsAndGradients 0
 #define COCOAPODS_VERSION_PATCH_KXKiOS7ColorsAndGradients 0
 
+// NSDate-TKExtensions
+#define COCOAPODS_POD_AVAILABLE_NSDate_TKExtensions
+#define COCOAPODS_VERSION_MAJOR_NSDate_TKExtensions 0
+#define COCOAPODS_VERSION_MINOR_NSDate_TKExtensions 4
+#define COCOAPODS_VERSION_PATCH_NSDate_TKExtensions 0
+
 // PNChart
 #define COCOAPODS_POD_AVAILABLE_PNChart
 #define COCOAPODS_VERSION_MAJOR_PNChart 0
@@ -80,4 +86,10 @@
 #define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
 #define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 7
 #define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 5
+
+// TheAmazingAudioEngine
+#define COCOAPODS_POD_AVAILABLE_TheAmazingAudioEngine
+#define COCOAPODS_VERSION_MAJOR_TheAmazingAudioEngine 1
+#define COCOAPODS_VERSION_MINOR_TheAmazingAudioEngine 2
+#define COCOAPODS_VERSION_PATCH_TheAmazingAudioEngine 0
 

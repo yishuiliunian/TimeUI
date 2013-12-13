@@ -15,4 +15,5 @@
     #import <Foundation/Foundation.h>
     #import "DZUITools.h"
     #import <DDLog.h>
+    #import "DZDBManager.h"
 #endif

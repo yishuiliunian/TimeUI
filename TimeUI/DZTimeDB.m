@@ -11,7 +11,7 @@
 #import "NSDate+SSToolkitAdditions.h"
 #import "DZTime.h"
 #import "DZTimeType.h"
-
+#import <NSDate-TKExtensions.h>
 static NSString* const kDZTableTimeName = @"DZTIME";
 static NSString* const kDZ_T_Time_C_Date_Begin = @"DATE_BEGIN";
 static NSString* const kDZ_T_Time_C_Date_End = @"DATE_END";
@@ -103,6 +103,21 @@ static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
     return [self timeArrayFromFMResult:re].lastObject;
 }
 
+- (NSArray*) timesByType:(DZTimeType *)type
+{
+    NSString* sql = [NSString selecteSql:kDZTableTimeName whereArray:@[kDZ_T_Time_C_Type] decorate:Nil];
+    FMResultSet* reset = [_dataBase executeQuery:sql withArgumentsInArray:@[type.identifiy]];
+    return [self timeArrayFromFMResult:reset];
+}
+
+- (NSArray*) timesInOneWeakByType:(DZTimeType *)type
+{
+    NSDate* now = [NSDate date];
+    NSDate* oneWeak = [now TKDateBySubtractingWeeks:1];
+    NSString* sql = [NSString selecteSql:kDZTableTimeName whereArray:@[kDZ_T_Time_C_Type] decorate:[NSString stringWithFormat:@" and %@ > ? and %@ < ?", kDZ_T_Time_C_Date_Begin, kDZ_T_Time_C_Date_End]];
+    FMResultSet* rest = [_dataBase executeQuery:sql withArgumentsInArray:@[type.identifiy, [oneWeak ISO8601String], [now ISO8601String]]];
+    return [self timeArrayFromFMResult:rest];
+}
 
 - (BOOL) isExistType:(DZTimeType*)type
 {
