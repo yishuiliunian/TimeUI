@@ -9,8 +9,11 @@
 #import "DZTableViewController.h"
 #import "DZGeometryTools.h"
 #import "DZInputCellView.h"
-@interface DZTableViewController () <DZPullDownDelegate, UIScrollViewDelegate>
-
+#import "DZTimeType.h"
+#import "DZTypeCell.h"
+@interface DZTableViewController () <DZPullDownDelegate, UIScrollViewDelegate, DZInputCellViewDelegate>
+{
+}
 @end
 
 @implementation DZTableViewController
@@ -40,10 +43,10 @@
     _tableView.dataSource = self;
     self.view = _tableView;
     _tableView.delegate = self;
+    _tableView.actionDelegate = self;
     DZPullDownView* pullView = [[DZPullDownView alloc] init];
     pullView.height = 44;
     pullView.delegate = self;
-    
     _tableView.topPullDownView = pullView;
 }
 
@@ -69,43 +72,6 @@
 
 - (void) viewWillLayoutSubviews
 {
-    
-}
-
-- (CGFloat) dzTableView:(DZTableView *)tableView cellHeightAtRow:(NSInteger)row
-{
-    return 40;
-}
-- (NSInteger) numberOfRowsInDZTableView:(DZTableView *)tableView
-{
-    return 100;
-}
-
-- (DZTableViewCell*) dzTableView:(DZTableView *)tableView cellAtRow:(NSInteger)row
-{
-    static NSString* const cellIdentifiy = @"detifail";
-    DZTableViewCell* cell = [tableView dequeueDZTalbeViewCellForIdentifiy:cellIdentifiy];
-    if (!cell) {
-        cell = [[DZTableViewCell alloc] initWithIdentifiy:cellIdentifiy];
-    }
-    float redColor = 20.0f;
-    
-    cell.backgroundColor = [UIColor colorWithRed:redColor / 255.0 * (row %10) green:redColor / 255.0 * (row %10) blue:redColor / 255.0 * (row %10) alpha:1];
-    return cell;
-}
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    _tableView.topPullDownView.topYOffSet = _tableView.contentOffset.y ;
-}
-
-- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (_tableView.topPullDownView.state == DZPullDownViewStateToggled) {
-        DZInputCellView* inputView = [[DZInputCellView alloc] init];
-        [inputView showInView:[UIApplication sharedApplication].keyWindow withAnimation:YES completion:^{
-            
-        }];
-    }
     
 }
 

@@ -13,7 +13,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "DZAppConfigure.h"
     #import "DZUITools.h"
-    #import <DDLog.h>
     #import "DZDBManager.h"
 #endif

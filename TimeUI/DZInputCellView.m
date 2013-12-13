@@ -8,7 +8,7 @@
 
 #import "DZInputCellView.h"
 
-@interface DZInputCellView ()
+@interface DZInputCellView () <UITextFieldDelegate>
 {
     UIView* _containerView;
     
@@ -39,6 +39,8 @@
         _textField = [[UITextField alloc] init];
         [_containerView addSubview:_textField];
         _textField.backgroundColor = [UIColor whiteColor];
+        
+        [_textField addTarget:self action:@selector(_hideSelf) forControlEvents:UIControlEventEditingDidEndOnExit];
     }
     return self;
 }
@@ -46,9 +48,19 @@
 - (void) _hideSelf
 {
     [self hideWithAnimation:YES completion:^{
-        if ([_delegate respondsToSelector:@selector(dzInputCellViewUserCancel:)]) {
-            [_delegate dzInputCellViewUserCancel:self];
+        NSString* text = _textField.text;
+        if (!text || [text isEqual:@""]) {
+            if ([_delegate respondsToSelector:@selector(dzInputCellViewUserCancel:)]) {
+                [_delegate dzInputCellViewUserCancel:self];
+            }
         }
+        else
+        {
+            if ([_delegate respondsToSelector:@selector(dzInputCellView:hideWithText:)]) {
+                [_delegate dzInputCellView:self hideWithText:text];
+            }
+        }
+        
     }];
 }
 
@@ -126,6 +138,8 @@
     }
 }
 
-
-
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [self _hideSelf];
+}
 @end

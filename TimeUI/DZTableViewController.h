@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DZAstirFrameViewController.h"
 #import "DZTableView.h"
-@interface DZTableViewController : UIViewController <DZTableViewSourceDelegate>
+@interface DZTableViewController : DZAstirFrameViewController <DZTableViewSourceDelegate, DZTableViewActionDelegate>
 @property (nonatomic, strong ,readonly) DZTableView* tableView;
 @end

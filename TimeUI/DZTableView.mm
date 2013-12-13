@@ -20,7 +20,7 @@ typedef struct {
     BOOL funcPullDownCell;
 }DZTableDataSourceResponse;
 
-typedef map<int, float> DZCellHeightMap;
+typedef map<int, float> DZCellYoffsetMap;
 typedef vector<float>   DZCellHeightVector;
 
 @interface DZTableView ()
@@ -30,7 +30,7 @@ typedef vector<float>   DZCellHeightVector;
     NSMutableDictionary* _visibleCellsMap;
     int64_t     _numberOfCells;
     DZCellHeightVector _cellHeights;
-    DZCellHeightMap _cellYOffsets;
+    DZCellYoffsetMap _cellYOffsets;
 }
 
 @end
@@ -38,13 +38,39 @@ typedef vector<float>   DZCellHeightVector;
 @implementation DZTableView
 @synthesize dataSource              = _dataSource;
 @synthesize topPullDownView = _topPullDownView;
+
+- (void) handleTapGestrue:(UITapGestureRecognizer*)tapGestrue
+{
+    CGPoint point = [tapGestrue locationInView:self];
+    NSArray* cells = _visibleCellsMap.allValues;
+    for (DZTableViewCell* each in cells) {
+        CGRect rect = each.frame;
+        if (CGRectContainsPoint(rect, point)) {
+            if ([_actionDelegate respondsToSelector:@selector(dzTableView:didTapAtRow:)]) {
+                [_actionDelegate dzTableView:self didTapAtRow:each.index];
+            }
+        }
+    }
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        _visibleCellsMap = [NSMutableDictionary new];
+        _cacheCells = [NSMutableSet new];
+        [self addTapTarget:self selector:@selector(handleTapGestrue:)];
+    }
+    return self;
+}
+
 - (void) setDataSource:(id<DZTableViewSourceDelegate>)dataSource
 {
     _dataSource                         = dataSource;
     _dataSourceReponse.funcNumberOfRows = [_dataSource respondsToSelector:@selector(numberOfRowsInDZTableView:)];
     _dataSourceReponse.funcCellAtRow    = [_dataSource respondsToSelector:@selector(dzTableView:cellAtRow:)];
     _dataSourceReponse.funcHeightRow    = [_dataSource respondsToSelector:@selector(dzTableView:cellHeightAtRow:)];
-    _dataSourceReponse.funcPullDownCell = [_dataSource respondsToSelector:@selector(pullDownCellInDZTableView:)];
 }
 
 - (DZTableViewCell*) dequeueDZTalbeViewCellForIdentifiy:(NSString*)identifiy
@@ -90,6 +116,7 @@ typedef vector<float>   DZCellHeightVector;
 
 - (void) reduceContentSize
 {
+      _numberOfCells = [_dataSource numberOfRowsInDZTableView:self];
     float height = 0;
     for (int i = 0  ; i < _numberOfCells; i ++) {
         float cellHeight = (_dataSourceReponse.funcHeightRow? [_dataSource dzTableView:self cellHeightAtRow:i] : kDZTableViewDefaultHeight);
@@ -97,14 +124,18 @@ typedef vector<float>   DZCellHeightVector;
         height += cellHeight;
         _cellYOffsets.insert(pair<int, float>(i, height));
     }
+    if (height < CGRectGetHeight(self.frame)) {
+        height = CGRectGetHeight(self.frame) + 2;
+    }
     CGSize size = CGSizeMake(CGRectGetWidth(self.frame), height);
+    
     [self setContentSize:size];
 }
 - (void) reloadData
 {
     NSCAssert(_dataSourceReponse.funcCellAtRow, @"dztalbeview %@ delegate %@ not response to selector numberOfRowsInDZTableView: ", self, _dataSource);
     NSCAssert(_dataSourceReponse.funcCellAtRow, @"dztalbeview %@ delegate %@ not response to selector dzTableView:cellAtRow: ", self, _dataSource);
-    _numberOfCells = [_dataSource numberOfRowsInDZTableView:self];
+
     [self reduceContentSize];
     [self layoutNeedDisplayCells];
 }
@@ -176,14 +207,21 @@ typedef vector<float>   DZCellHeightVector;
     }
 }
 
+- (void) addCell:(DZTableViewCell*)cell atRow:(NSInteger)row
+{
+    [self addSubview:cell];
+    cell.index =  row;
+    [_visibleCellsMap setObject:cell  forKey:@(row)];
+}
+
+
 - (void) layoutNeedDisplayCells
 {
     NSRange displayRange = [self displayRange];
     for (int i = (int)displayRange.location ; i < displayRange.length + displayRange.location; i ++) {
         DZTableViewCell* cell = [self _cellForRow:i];
-        [self addSubview:cell];
+        [self addCell:cell atRow:i];
         cell.frame = [self _rectForCellAtRow:i];
-        [_visibleCellsMap setObject:cell  forKey:@(i)];
     }
     [self cleanUnusedCellsWithDispalyRange:displayRange];
     [self displayPullDownView];
@@ -197,24 +235,60 @@ typedef vector<float>   DZCellHeightVector;
 
 
 
-- (id)initWithFrame:(CGRect)frame
+
+- (NSArray*) cellsBetween:(NSInteger)start end:(NSInteger)end
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        _visibleCellsMap = [NSMutableDictionary new];
-        _cacheCells = [NSMutableSet new];
+    NSMutableArray* array = [NSMutableArray new];
+    for (int i = start ; i < end; i++) {
+        DZTableViewCell* cell = _visibleCellsMap[@(i)];
+        if (cell) {
+            [array addObject:cell];
+        }
     }
-    return self;
+    return array;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void) insertRowAt:(NSSet *)rowsSet withAnimation:(BOOL)animation
 {
-    // Drawing code
+    NSNumber* row = [rowsSet anyObject];
+    int rowIndex = [row intValue];
+    NSRange displayRange  =[self displayRange];
+    DZCellYoffsetMap oldCellHeightMap = DZCellYoffsetMap(_cellYOffsets);
+    DZCellHeightVector oldCellHeightVecotr = DZCellHeightVector(_cellHeights);
+    [self reduceContentSize];
+    if (NSLocationInRange(rowIndex, displayRange)) {
+        
+        NSArray* afterCells = [self cellsBetween:rowIndex end:displayRange.location + displayRange.length - rowIndex];
+        for (DZTableViewCell* each  in afterCells) {
+            each.index += 1;
+            _visibleCellsMap[@(each.index)] = each;
+        }
+        [_visibleCellsMap removeObjectForKey:@(rowIndex)];
+        
+        DZTableViewCell* anOtherCell = [self _cellForRow:rowIndex];
+        [self addCell:anOtherCell atRow:rowIndex];
+        CGRect anOtherCellFrame = [self _rectForCellAtRow:rowIndex];
+        anOtherCell.frame = CGRectOffset(anOtherCellFrame, - CGRectGetWidth(anOtherCellFrame), 0);
+        void(^animationBlock)(void) = ^(void) {
+            for (DZTableViewCell* each  in afterCells) {
+                CGRect rect = [self _rectForCellAtRow:each.index];
+                each.frame = rect;
+            }
+            anOtherCell.frame = anOtherCellFrame;
+        };
+        if (animation) {
+            [UIView animateWithDuration:DZAnimationDefualtDuration animations:animationBlock completion:^(BOOL finished) {
+                
+            }];
+        }
+        else
+        {
+            animationBlock();
+        }
+        
+    }
 }
-*/
+
+
 
 @end

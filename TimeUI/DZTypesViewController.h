@@ -7,7 +7,7 @@
 //
 
 #import "DZAstirFrameViewController.h"
-
+#import "DZTableViewController.h"
 @class DZTypesViewController;
 @protocol DZSelectTypeDelegate <NSObject>
 
@@ -15,6 +15,6 @@
 
 @end
 
-@interface DZTypesViewController : DZAstirFrameViewController
+@interface DZTypesViewController : DZTableViewController
 @property (nonatomic, weak) id<DZSelectTypeDelegate> selectDelegate;
 @end

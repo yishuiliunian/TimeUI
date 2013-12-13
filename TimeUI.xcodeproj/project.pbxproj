@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38A8D4EEDC6D4F34B3F3559A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB0C93DA505486994ECA5C1 /* libPods.a */; };
+		65020B2B185B0D3200D1ECBA /* DZTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2A185B0D3200D1ECBA /* DZTypeCell.m */; };
 		65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EEB1856E86700FE5D89 /* DZAppConfigure.m */; };
 		65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */; };
 		65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF618572F1D00FE5D89 /* NSString+WizString.mm */; };
@@ -77,6 +78,9 @@
 
 /* Begin PBXFileReference section */
 		19EFE6C5BBC546CAB07882C4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		65020B29185B0D3200D1ECBA /* DZTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTypeCell.h; sourceTree = "<group>"; };
+		65020B2A185B0D3200D1ECBA /* DZTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTypeCell.m; sourceTree = "<group>"; };
+		65020B2C185B140000D1ECBA /* DZTableViewActionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZTableViewActionDelegate.h; sourceTree = "<group>"; };
 		65238EEA1856E86700FE5D89 /* DZAppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAppConfigure.h; sourceTree = "<group>"; };
 		65238EEB1856E86700FE5D89 /* DZAppConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAppConfigure.m; sourceTree = "<group>"; };
 		65238EF218572ED900FE5D89 /* FMDatabase+WizDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+WizDb.h"; sourceTree = "<group>"; };
@@ -551,12 +555,15 @@
 				65C6BAA71859636D00984D25 /* DZTableView.h */,
 				65C6BAA81859636D00984D25 /* DZTableView.mm */,
 				65C6BAAA1859639200984D25 /* DZTableViewSourceDelegate.h */,
+				65020B2C185B140000D1ECBA /* DZTableViewActionDelegate.h */,
 				6526C8E5185A201100A53B79 /* DZPullDownDelegate.h */,
 				65E4E06D1859664E005316E8 /* DZTableViewCell.h */,
 				65E4E06E1859664E005316E8 /* DZTableViewCell.m */,
 				6526C8D71859777100A53B79 /* DZTableViewCell_private.h */,
 				6526C8D81859883B00A53B79 /* DZTableViewController.h */,
 				6526C8D91859883B00A53B79 /* DZTableViewController.m */,
+				65020B29185B0D3200D1ECBA /* DZTypeCell.h */,
+				65020B2A185B0D3200D1ECBA /* DZTypeCell.m */,
 				6526C8E11859BFDF00A53B79 /* DZPullDownView.h */,
 				6526C8E21859BFDF00A53B79 /* DZPullDownView.m */,
 				657C74A1185AF8FE008728EB /* DZInputCellView.h */,
@@ -700,6 +707,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65238F3E185764DA00FE5D89 /* DZUserDataManager.m in Sources */,
+				65020B2B185B0D3200D1ECBA /* DZTypeCell.m in Sources */,
 				656F68DD183250E8001F7B7C /* DZDragViewController.m in Sources */,
 				65238F00185734A300FE5D89 /* WizDataBase.m in Sources */,
 				65238F531858423200FE5D89 /* MZLoadingCircle.m in Sources */,

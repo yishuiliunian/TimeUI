@@ -36,9 +36,9 @@
     dragVC.topViewController = v1;
     dragVC.bottomViewController = v2;
     dragVC.centerViewController = v3;
-//    self.window.rootViewController = dragVC;
+    self.window.rootViewController = dragVC;
     //
-    self.window.rootViewController = [DZTableViewController new];
+//    self.window.rootViewController = [DZTableViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

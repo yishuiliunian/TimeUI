@@ -9,10 +9,13 @@
 #import "DZTypesViewController.h"
 #import "DZDBManager.h"
 #import "DZTimeType.h"
-@interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate>
+#import "DZInputCellView.h"
+#import "DZTypeCell.h"
+@interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate>
 {
-    UITableView* _typesTableView;
     NSMutableArray* _typesArray;
+    NSMutableArray* _timeTypes;
+
 }
 @end
 
@@ -30,52 +33,74 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _typesTableView = [[UITableView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:_typesTableView];
-    _typesTableView.dataSource = self;
-    _typesTableView.delegate = self;
-    _typesArray = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
-	// Do any additional setup after loading the view.
+    _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
+    [self.tableView reloadData];
+   
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat) dzTableView:(DZTableView *)tableView cellHeightAtRow:(NSInteger)row
 {
-    DZTimeType* type = _typesArray[indexPath.row];
+    return 40;
+}
+- (NSInteger) numberOfRowsInDZTableView:(DZTableView *)tableView
+{
+    return _timeTypes.count;
+}
+
+- (DZTableViewCell*) dzTableView:(DZTableView *)tableView cellAtRow:(NSInteger)row
+{
+    static NSString* const cellIdentifiy = @"detifail";
+    DZTypeCell* cell = (DZTypeCell*)[tableView dequeueDZTalbeViewCellForIdentifiy:cellIdentifiy];
+    if (!cell) {
+        cell = [[DZTypeCell alloc] initWithIdentifiy:cellIdentifiy];
+    }
+    DZTimeType* type = [_timeTypes objectAtIndex:row];
+    cell.textLabel.text = type.name;
+    cell.backgroundColor = [UIColor lightGrayColor];
+    return cell;
+}
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    self.tableView.topPullDownView.topYOffSet = self.tableView.contentOffset.y ;
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (self.tableView.topPullDownView.state == DZPullDownViewStateToggled) {
+        DZInputCellView* inputView = [[DZInputCellView alloc] init];
+        inputView.delegate = self;
+        [inputView showInView:[UIApplication sharedApplication].keyWindow withAnimation:YES completion:^{
+            
+        }];
+    }
+    
+}
+
+
+- (void) dzTableView:(DZTableView *)tableView didTapAtRow:(NSInteger)row
+{
+    DZTimeType* type = [_timeTypes objectAtIndex:row];
     if ([_selectDelegate respondsToSelector:@selector(typesViewController:didSelect:)]) {
         [_selectDelegate typesViewController:self didSelect:type];
     }
 }
 
-- (void) viewWillLayoutSubviews
+- (void) dzInputCellView:(DZInputCellView *)inputView hideWithText:(NSString *)text
 {
-    _typesTableView.frame = self.view.bounds;
-}
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_typesArray count];
+    DZTimeType* type = [DZTimeType new];
+    type.name = text;
+    type.identifiy = text;
+    type.detail = text;
+    [DZActiveTimeDataBase updateTimeType:type];
+    [_timeTypes insertObject:type atIndex:0];
+    [self.tableView insertRowAt:[NSSet setWithObject:@(0)] withAnimation:YES];
 }
 
-- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) dzInputCellViewUserCancel:(DZInputCellView *)inputView
 {
-    static NSString* const cellIdentifiy = @"types_cells";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifiy];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifiy];
-    }
-    DZTimeType* type = [_typesArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = type.name;
-    return cell;
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 @end
