@@ -8,7 +8,8 @@
 
 #import "DZTableViewController.h"
 #import "DZGeometryTools.h"
-@interface DZTableViewController () <DZPullDownDelegate>
+#import "DZInputCellView.h"
+@interface DZTableViewController () <DZPullDownDelegate, UIScrollViewDelegate>
 
 @end
 
@@ -38,16 +39,11 @@
     }
     _tableView.dataSource = self;
     self.view = _tableView;
-    
+    _tableView.delegate = self;
     DZPullDownView* pullView = [[DZPullDownView alloc] init];
-    
-    UILabel* a = [[UILabel alloc] init];
-    a.textAlignment = NSTextAlignmentCenter;
-    a.text = @"asdfasdfasdfasdfasd";
     pullView.height = 44;
-    a.backgroundColor = [UIColor blueColor];
-    pullView.contentView = a;
     pullView.delegate = self;
+    
     _tableView.topPullDownView = pullView;
 }
 
@@ -97,11 +93,20 @@
     cell.backgroundColor = [UIColor colorWithRed:redColor / 255.0 * (row %10) green:redColor / 255.0 * (row %10) blue:redColor / 255.0 * (row %10) alpha:1];
     return cell;
 }
-
-
-- (void) pullDownView:(DZPullDownView *)pullDownView didChangedState:(DZPullDownViewState)originState toState:(DZPullDownViewState)aimState
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"change state %d to state %d",originState, aimState);
+    _tableView.topPullDownView.topYOffSet = _tableView.contentOffset.y ;
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (_tableView.topPullDownView.state == DZPullDownViewStateToggled) {
+        DZInputCellView* inputView = [[DZInputCellView alloc] init];
+        [inputView showInView:[UIApplication sharedApplication].keyWindow withAnimation:YES completion:^{
+            
+        }];
+    }
+    
 }
 
 @end

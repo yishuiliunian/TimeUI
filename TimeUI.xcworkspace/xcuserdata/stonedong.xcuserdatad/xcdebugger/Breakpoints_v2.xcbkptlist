@@ -374,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeUI/DZTableView.mm"
-            timestampString = "408603537.432457"
+            timestampString = "408613686.524734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-layoutNeedDisplayCells"
             landmarkType = "5">
          </BreakpointContent>
@@ -389,58 +389,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TimeUI/DZTableView.mm"
-            timestampString = "408603436.524955"
+            filePath = "TimeUI/DZPullDownView.m"
+            timestampString = "408613073.742514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "-displayPullDownView"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "-initWithFrame:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DZTableView displayPullDownView]"
-                  moduleName = "TimeUI"
-                  urlString = "file:///Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/DZTableView.mm"
-                  timestampString = "408535688.004901"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166"
-                  offsetFromSymbolStart = "54">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DZTableView displayPullDownView]"
-                  moduleName = "TimeUI"
-                  urlString = "file:///Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/DZTableView.mm"
-                  timestampString = "408535688.005245"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166"
-                  offsetFromSymbolStart = "944">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DZTableView displayPullDownView]"
-                  moduleName = "TimeUI"
-                  urlString = "file:///Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/DZTableView.mm"
-                  timestampString = "408535688.005555"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166"
-                  offsetFromSymbolStart = "976">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -449,14 +405,60 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TimeUI/DZTableViewController.m"
-            timestampString = "408608766.946022"
+            filePath = "TimeUI/DZPullDownView.m"
+            timestampString = "408613910.113361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "-pullDownView:didChangedState:toState:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-setTopYOffSet:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeUI/DZInputCellView.m"
+            timestampString = "408616768.402136"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-_hideSelf"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DZInputCellView _hideSelf]"
+                  moduleName = "TimeUI"
+                  urlString = "file:///Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/DZInputCellView.m"
+                  timestampString = "408616768.41212"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "62">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__28-[DZInputCellView _hideSelf]_block_invoke"
+                  moduleName = "TimeUI"
+                  urlString = "file:///Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/DZInputCellView.m"
+                  timestampString = "408616768.41242"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "18">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

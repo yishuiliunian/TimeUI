@@ -173,7 +173,6 @@ typedef vector<float>   DZCellHeightVector;
     {
         [self addSubview:_topPullDownView];
         _topPullDownView.frame = CGRectMake(0, -_topPullDownView.height, CGRectGetWidth(self.frame), _topPullDownView.height);
-        _topPullDownView.topYOffSet = self.contentOffset.y;
     }
 }
 

@@ -14,7 +14,7 @@
 @interface DZPullDownView : UIView
 @property (nonatomic, weak) id<DZPullDownDelegate> delegate;
 @property (nonatomic, assign, readonly) DZPullDownViewState state;
-@property (nonatomic, strong) UIView* contentView;
+@property (nonatomic, strong, readonly) UILabel* textLabel;
 @property (nonatomic, assign) float height;
 @property (nonatomic, assign) float topYOffSet;
 @end

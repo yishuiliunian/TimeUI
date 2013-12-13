@@ -55,6 +55,8 @@
 		657A56141858D78F00521B01 /* DZAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56131858D78F00521B01 /* DZAudioManager.m */; };
 		657A56171858D94300521B01 /* DZSingletonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56161858D94300521B01 /* DZSingletonFactory.m */; };
 		657A56191858DDDA00521B01 /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 657A56181858DC0100521B01 /* test.m4a */; };
+		657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 657C74A2185AF8FE008728EB /* DZInputCellView.m */; };
+		657C74A8185AFE60008728EB /* UIView+AddTaps.m in Sources */ = {isa = PBXBuildFile; fileRef = 657C74A7185AFE60008728EB /* UIView+AddTaps.m */; };
 		659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 659910B71856E3F9003EDCAD /* UIView+Shadow.m */; };
 		65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CB61855E06200796395 /* DZAstirFrameViewController.m */; };
 		65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */; };
@@ -161,6 +163,11 @@
 		657A56151858D94300521B01 /* DZSingletonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSingletonFactory.h; sourceTree = "<group>"; };
 		657A56161858D94300521B01 /* DZSingletonFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSingletonFactory.m; sourceTree = "<group>"; };
 		657A56181858DC0100521B01 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.m4a; sourceTree = "<group>"; };
+		657C74A1185AF8FE008728EB /* DZInputCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZInputCellView.h; sourceTree = "<group>"; };
+		657C74A2185AF8FE008728EB /* DZInputCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZInputCellView.m; sourceTree = "<group>"; };
+		657C74A4185AFA36008728EB /* DZAnimationDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZAnimationDefines.h; sourceTree = "<group>"; };
+		657C74A6185AFE60008728EB /* UIView+AddTaps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AddTaps.h"; sourceTree = "<group>"; };
+		657C74A7185AFE60008728EB /* UIView+AddTaps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AddTaps.m"; sourceTree = "<group>"; };
 		659910B51856E346003EDCAD /* DZUITools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZUITools.h; sourceTree = "<group>"; };
 		659910B61856E3F9003EDCAD /* UIView+Shadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shadow.h"; sourceTree = "<group>"; };
 		659910B71856E3F9003EDCAD /* UIView+Shadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shadow.m"; sourceTree = "<group>"; };
@@ -374,10 +381,13 @@
 		654E5A211856DDAF00DED026 /* UITools */ = {
 			isa = PBXGroup;
 			children = (
+				659910B51856E346003EDCAD /* DZUITools.h */,
 				654E5A221856DDEF00DED026 /* DZGeometryTools.h */,
 				654E5A231856DDEF00DED026 /* DZGeometryTools.m */,
 				659910B61856E3F9003EDCAD /* UIView+Shadow.h */,
 				659910B71856E3F9003EDCAD /* UIView+Shadow.m */,
+				657C74A6185AFE60008728EB /* UIView+AddTaps.h */,
+				657C74A7185AFE60008728EB /* UIView+AddTaps.m */,
 			);
 			name = UITools;
 			sourceTree = "<group>";
@@ -483,9 +493,18 @@
 			name = Audio;
 			sourceTree = "<group>";
 		};
+		657C74A5185AFA43008728EB /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				657C74A4185AFA36008728EB /* DZAnimationDefines.h */,
+			);
+			name = Animation;
+			sourceTree = "<group>";
+		};
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				657C74A5185AFA43008728EB /* Animation */,
 				6526C8DB1859891C00A53B79 /* Devices */,
 				65C6BAA5185962F000984D25 /* Controls */,
 				657A56111858D77100521B01 /* Audio */,
@@ -497,7 +516,6 @@
 				65238EF118572ECE00FE5D89 /* Database */,
 				654E5A211856DDAF00DED026 /* UITools */,
 				65C47CB91855E0D500796395 /* DZKVODefines.h */,
-				659910B51856E346003EDCAD /* DZUITools.h */,
 				65238EFC185731C100FE5D89 /* DZTimeTrick.plist */,
 				657A56151858D94300521B01 /* DZSingletonFactory.h */,
 				657A56161858D94300521B01 /* DZSingletonFactory.m */,
@@ -541,6 +559,8 @@
 				6526C8D91859883B00A53B79 /* DZTableViewController.m */,
 				6526C8E11859BFDF00A53B79 /* DZPullDownView.h */,
 				6526C8E21859BFDF00A53B79 /* DZPullDownView.m */,
+				657C74A1185AF8FE008728EB /* DZInputCellView.h */,
+				657C74A2185AF8FE008728EB /* DZInputCellView.m */,
 			);
 			name = tableView;
 			sourceTree = "<group>";
@@ -687,6 +707,7 @@
 				65238F2B1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m in Sources */,
 				65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */,
 				65238F03185734BF00FE5D89 /* WizGlobals.m in Sources */,
+				657C74A8185AFE60008728EB /* UIView+AddTaps.m in Sources */,
 				65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */,
 				6526C8E31859BFDF00A53B79 /* DZPullDownView.m in Sources */,
 				65238F071857357B00FE5D89 /* DZGlobals.m in Sources */,
@@ -702,6 +723,7 @@
 				65238F311857584300FE5D89 /* DZTimeType.m in Sources */,
 				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
 				65238F2518574A1700FE5D89 /* NSString+database.m in Sources */,
+				657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */,
 				6526C8DE1859893300A53B79 /* DZDevices.m in Sources */,
 				65C6BAA91859636D00984D25 /* DZTableView.mm in Sources */,
 				656F68BC18324B2D001F7B7C /* DZAppDelegate.m in Sources */,

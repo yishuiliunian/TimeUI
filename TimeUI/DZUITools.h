@@ -13,7 +13,7 @@
 #import "UIView+Shadow.h"
 #import "DZGlobals.h"
 #import "DZDevices.h"
-
-
+#import "DZAnimationDefines.h"
+#import "UIView+AddTaps.h"
 
 #endif
