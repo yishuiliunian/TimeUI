@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DZCellActionItem.h"
 
 @interface DZCellActionsView : UIView
-
+@property (nonatomic, strong, readonly) DZCellActionItem* abledItem;
+@property (nonatomic, strong) NSArray* items;
+- (instancetype) initWithItems:(NSArray*)items;
+- (void) setEableItemWithMaskOffSet:(float)offSet;
 @end

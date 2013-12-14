@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DZCellActionItem : UIView
+@class DZTableViewCell;
 
+@interface DZCellActionItem : UIButton
+@property (nonatomic, weak) DZTableViewCell* linkedTableViewCell;
+@property (nonatomic, assign) UIEdgeInsets edgeInset;
 @end

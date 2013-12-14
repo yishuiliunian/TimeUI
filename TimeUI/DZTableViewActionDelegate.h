@@ -12,5 +12,7 @@
 @protocol DZTableViewActionDelegate <NSObject>
 
 - (void) dzTableView:(DZTableView*)tableView didTapAtRow:(NSInteger)row;
+- (void) dzTableView:(DZTableView *)tableView deleteCellAtRow:(NSInteger)row;
+- (void) dzTableView:(DZTableView *)tableView editCellDataAtRow:(NSInteger)row;
 
 @end

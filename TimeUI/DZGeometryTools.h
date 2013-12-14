@@ -16,8 +16,15 @@
 extern "C"
 {
 #endif
-
-    void CGPrintRect(CGRect rect ); 
+    /**
+     *  打印一个CGRect
+     *
+     *  @param rect 要打印的CGRect
+     */
+    void CGPrintRect(CGRect rect );
+    float CGDistanceBetweenPoints(CGPoint p1, CGPoint p2);
+    CGPoint CGPointCenterRect(CGRect rect);
+    CGRect CGRectUseEdge(CGRect parent, UIEdgeInsets edge);
     CATransform3D CATransform3DPerspect(CATransform3D t, CGPoint center, float disZ);
     CATransform3D CATransform3DMakePerspective(CGPoint center, float disZ);
 #ifdef __cplusplus

@@ -17,9 +17,13 @@
 @property (nonatomic, strong, readonly) NSArray* visibleCells;
 @property (nonatomic, weak) id<DZTableViewActionDelegate> actionDelegate;
 @property (nonatomic, weak) id<DZTableViewSourceDelegate> dataSource;
-@property (nonatomic, weak) id<DZPullDownDelegate> pulldownDelegate;
+//
+@property (nonatomic, assign) NSInteger selectedIndex;
+
 @property (nonatomic, strong) DZPullDownView* topPullDownView;
+
 - (DZTableViewCell*) dequeueDZTalbeViewCellForIdentifiy:(NSString*)identifiy;
 - (void) reloadData;
 - (void) insertRowAt:(NSSet *)rowsSet withAnimation:(BOOL)animation;
+- (void) removeRowAt:(NSInteger)row withAnimation:(BOOL)animation;
 @end

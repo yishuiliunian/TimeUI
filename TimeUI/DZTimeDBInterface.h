@@ -22,5 +22,6 @@
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy;
 - (NSArray*) allTimeTypes;
 
+- (BOOL) delteTimeType:(DZTimeType*)type;
 
 @end

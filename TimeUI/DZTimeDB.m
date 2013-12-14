@@ -110,6 +110,12 @@ static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
     return [self timeArrayFromFMResult:reset];
 }
 
+- (BOOL) delteTimeType:(DZTimeType *)type
+{
+    NSString* sql = [NSString deleteSql:kDZTableType whereArray:@[kDZ_T_Type_C_Identifiy] decorate:nil];
+    return [_dataBase executeUpdate:sql withArgumentsInArray:@[type.identifiy]];
+}
+
 - (NSArray*) timesInOneWeakByType:(DZTimeType *)type
 {
     NSDate* now = [NSDate date];

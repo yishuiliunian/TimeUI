@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		38A8D4EEDC6D4F34B3F3559A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB0C93DA505486994ECA5C1 /* libPods.a */; };
 		65020B2B185B0D3200D1ECBA /* DZTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2A185B0D3200D1ECBA /* DZTypeCell.m */; };
+		65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2F185B42D100D1ECBA /* DZCellActionsView.m */; };
+		65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B36185B433800D1ECBA /* DZCellActionItem.m */; };
 		65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EEB1856E86700FE5D89 /* DZAppConfigure.m */; };
 		65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */; };
 		65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF618572F1D00FE5D89 /* NSString+WizString.mm */; };
@@ -81,6 +83,10 @@
 		65020B29185B0D3200D1ECBA /* DZTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTypeCell.h; sourceTree = "<group>"; };
 		65020B2A185B0D3200D1ECBA /* DZTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTypeCell.m; sourceTree = "<group>"; };
 		65020B2C185B140000D1ECBA /* DZTableViewActionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZTableViewActionDelegate.h; sourceTree = "<group>"; };
+		65020B2E185B42D100D1ECBA /* DZCellActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCellActionsView.h; sourceTree = "<group>"; };
+		65020B2F185B42D100D1ECBA /* DZCellActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionsView.m; sourceTree = "<group>"; };
+		65020B35185B433800D1ECBA /* DZCellActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCellActionItem.h; sourceTree = "<group>"; };
+		65020B36185B433800D1ECBA /* DZCellActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionItem.m; sourceTree = "<group>"; };
 		65238EEA1856E86700FE5D89 /* DZAppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAppConfigure.h; sourceTree = "<group>"; };
 		65238EEB1856E86700FE5D89 /* DZAppConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAppConfigure.m; sourceTree = "<group>"; };
 		65238EF218572ED900FE5D89 /* FMDatabase+WizDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+WizDb.h"; sourceTree = "<group>"; };
@@ -215,6 +221,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65020B31185B42E500D1ECBA /* actions */ = {
+			isa = PBXGroup;
+			children = (
+				65020B2E185B42D100D1ECBA /* DZCellActionsView.h */,
+				65020B2F185B42D100D1ECBA /* DZCellActionsView.m */,
+				65020B35185B433800D1ECBA /* DZCellActionItem.h */,
+				65020B36185B433800D1ECBA /* DZCellActionItem.m */,
+			);
+			name = actions;
+			sourceTree = "<group>";
+		};
+		65020B32185B42ED00D1ECBA /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				65020B31185B42E500D1ECBA /* actions */,
+				65E4E06D1859664E005316E8 /* DZTableViewCell.h */,
+				65E4E06E1859664E005316E8 /* DZTableViewCell.m */,
+				6526C8D71859777100A53B79 /* DZTableViewCell_private.h */,
+				65020B29185B0D3200D1ECBA /* DZTypeCell.h */,
+				65020B2A185B0D3200D1ECBA /* DZTypeCell.m */,
+				657C74A1185AF8FE008728EB /* DZInputCellView.h */,
+				657C74A2185AF8FE008728EB /* DZInputCellView.m */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		65020B33185B430D00D1ECBA /* table */ = {
+			isa = PBXGroup;
+			children = (
+				65C6BAA71859636D00984D25 /* DZTableView.h */,
+				65C6BAA81859636D00984D25 /* DZTableView.mm */,
+				65C6BAAA1859639200984D25 /* DZTableViewSourceDelegate.h */,
+				65020B2C185B140000D1ECBA /* DZTableViewActionDelegate.h */,
+				6526C8D81859883B00A53B79 /* DZTableViewController.h */,
+				6526C8D91859883B00A53B79 /* DZTableViewController.m */,
+			);
+			name = table;
+			sourceTree = "<group>";
+		};
+		65020B34185B431C00D1ECBA /* pulldown */ = {
+			isa = PBXGroup;
+			children = (
+				6526C8E5185A201100A53B79 /* DZPullDownDelegate.h */,
+				6526C8E11859BFDF00A53B79 /* DZPullDownView.h */,
+				6526C8E21859BFDF00A53B79 /* DZPullDownView.m */,
+			);
+			name = pulldown;
+			sourceTree = "<group>";
+		};
 		65238EF118572ECE00FE5D89 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,13 +585,12 @@
 		65C47CBA1855E0F600796395 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				65EA7636185B69EE00EBF03E /* types */,
 				65238F4518577B1000FE5D89 /* Charts */,
 				65238F44185779D400FE5D89 /* animation */,
 				65238F4018576AF300FE5D89 /* ButtonViewController */,
 				65C47CB51855E06200796395 /* DZAstirFrameViewController.h */,
 				65C47CB61855E06200796395 /* DZAstirFrameViewController.m */,
-				65238F5A185853B100FE5D89 /* DZTypesViewController.h */,
-				65238F5B185853B100FE5D89 /* DZTypesViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -552,24 +606,20 @@
 		65C6BAA6185962F700984D25 /* tableView */ = {
 			isa = PBXGroup;
 			children = (
-				65C6BAA71859636D00984D25 /* DZTableView.h */,
-				65C6BAA81859636D00984D25 /* DZTableView.mm */,
-				65C6BAAA1859639200984D25 /* DZTableViewSourceDelegate.h */,
-				65020B2C185B140000D1ECBA /* DZTableViewActionDelegate.h */,
-				6526C8E5185A201100A53B79 /* DZPullDownDelegate.h */,
-				65E4E06D1859664E005316E8 /* DZTableViewCell.h */,
-				65E4E06E1859664E005316E8 /* DZTableViewCell.m */,
-				6526C8D71859777100A53B79 /* DZTableViewCell_private.h */,
-				6526C8D81859883B00A53B79 /* DZTableViewController.h */,
-				6526C8D91859883B00A53B79 /* DZTableViewController.m */,
-				65020B29185B0D3200D1ECBA /* DZTypeCell.h */,
-				65020B2A185B0D3200D1ECBA /* DZTypeCell.m */,
-				6526C8E11859BFDF00A53B79 /* DZPullDownView.h */,
-				6526C8E21859BFDF00A53B79 /* DZPullDownView.m */,
-				657C74A1185AF8FE008728EB /* DZInputCellView.h */,
-				657C74A2185AF8FE008728EB /* DZInputCellView.m */,
+				65020B34185B431C00D1ECBA /* pulldown */,
+				65020B33185B430D00D1ECBA /* table */,
+				65020B32185B42ED00D1ECBA /* cells */,
 			);
 			name = tableView;
+			sourceTree = "<group>";
+		};
+		65EA7636185B69EE00EBF03E /* types */ = {
+			isa = PBXGroup;
+			children = (
+				65238F5A185853B100FE5D89 /* DZTypesViewController.h */,
+				65238F5B185853B100FE5D89 /* DZTypesViewController.m */,
+			);
+			name = types;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -730,6 +780,7 @@
 				65238F0A1857366E00FE5D89 /* DZTimeDB.m in Sources */,
 				65238F311857584300FE5D89 /* DZTimeType.m in Sources */,
 				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
+				65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */,
 				65238F2518574A1700FE5D89 /* NSString+database.m in Sources */,
 				657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */,
 				6526C8DE1859893300A53B79 /* DZDevices.m in Sources */,
@@ -743,6 +794,7 @@
 				65238F191857393500FE5D89 /* DZAccountManager.m in Sources */,
 				654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */,
 				6526C8DA1859883B00A53B79 /* DZTableViewController.m in Sources */,
+				65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */,
 				65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */,
 				65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */,
 				656F68B818324B2D001F7B7C /* main.m in Sources */,

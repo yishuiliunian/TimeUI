@@ -15,13 +15,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         _textLabel = [UILabel new];
-        [self addSubview:_textLabel];
+        [_contentView addSubview:_textLabel];
     }
     return self;
 }
 
 - (void) layoutSubviews
 {
+    [super layoutSubviews];
     _textLabel.frame = self.bounds;
 }
 

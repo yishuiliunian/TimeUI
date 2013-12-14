@@ -31,6 +31,8 @@ typedef vector<float>   DZCellHeightVector;
     int64_t     _numberOfCells;
     DZCellHeightVector _cellHeights;
     DZCellYoffsetMap _cellYOffsets;
+    
+    BOOL    _isLayoutCells;
 }
 
 @end
@@ -49,6 +51,12 @@ typedef vector<float>   DZCellHeightVector;
             if ([_actionDelegate respondsToSelector:@selector(dzTableView:didTapAtRow:)]) {
                 [_actionDelegate dzTableView:self didTapAtRow:each.index];
             }
+            each.isSelected = YES;
+            _selectedIndex = each.index;
+        }
+        else
+        {
+            each.isSelected = NO;
         }
     }
 }
@@ -61,6 +69,7 @@ typedef vector<float>   DZCellHeightVector;
         _visibleCellsMap = [NSMutableDictionary new];
         _cacheCells = [NSMutableSet new];
         [self addTapTarget:self selector:@selector(handleTapGestrue:)];
+        _selectedIndex = NSNotFound;
     }
     return self;
 }
@@ -102,21 +111,52 @@ typedef vector<float>   DZCellHeightVector;
     return _visibleCellsMap.allValues;
 }
 
+- (void) deleteCellOfItem:(DZCellActionItem*)item
+{
+    if ([_actionDelegate respondsToSelector:@selector(dzTableView:deleteCellAtRow:)]) {
+        [_actionDelegate dzTableView:self deleteCellAtRow:item.linkedTableViewCell.index];
+    }
+}
+
+- (void) editCellOfItem:(DZCellActionItem*)item
+{
+    if ([_actionDelegate respondsToSelector:@selector(dzTableView:editCellDataAtRow:)]) {
+        [_actionDelegate dzTableView:self editCellDataAtRow:item.linkedTableViewCell.index];
+    }
+}
+
+- (void) updateVisibleCell:(DZTableViewCell*)cell withIndex:(NSInteger)index
+{
+    for (DZCellActionItem* each  in cell.actionsView.items) {
+        each.linkedTableViewCell = cell;
+    }
+    _visibleCellsMap[@(index)] = cell;
+}
 - (DZTableViewCell*) _cellForRow:(NSInteger)rowIndex
 {
     DZTableViewCell* cell = [_visibleCellsMap objectForKey:@(rowIndex)];
-    if (cell) {
-        return cell;
-    }
-    if (_dataSourceReponse.funcCellAtRow) {
+    if (!cell) {
         cell = [_dataSource dzTableView:self cellAtRow:rowIndex];
+        DZCellActionItem* deleteItem = [DZCellActionItem buttonWithType:UIButtonTypeCustom];
+        deleteItem.backgroundColor = [UIColor redColor];
+        [deleteItem addTarget:self action:@selector(deleteCellOfItem:) forControlEvents:UIControlEventTouchUpInside];
+        [deleteItem setTitle:@"删除" forState:UIControlStateNormal];
+        deleteItem.edgeInset = UIEdgeInsetsMake(0, 10, 0, 260);
+        DZCellActionItem* editItem = [DZCellActionItem buttonWithType:UIButtonTypeCustom];
+        editItem.edgeInset = UIEdgeInsetsMake(0, 80, 0, 180);
+        editItem.backgroundColor = [UIColor greenColor];
+        [editItem setTitle:@"编辑" forState:UIControlStateNormal];
+        [editItem addTarget:self action:@selector(editCellOfItem:) forControlEvents:UIControlEventTouchUpInside];
+        cell.actionsView.items = @[deleteItem,editItem ];
     }
     return cell;
 }
 
 - (void) reduceContentSize
 {
-      _numberOfCells = [_dataSource numberOfRowsInDZTableView:self];
+    _numberOfCells = [_dataSource numberOfRowsInDZTableView:self];
+    _cellYOffsets = DZCellYoffsetMap();
+    _cellHeights = DZCellHeightVector();
     float height = 0;
     for (int i = 0  ; i < _numberOfCells; i ++) {
         float cellHeight = (_dataSourceReponse.funcHeightRow? [_dataSource dzTableView:self cellHeightAtRow:i] : kDZTableViewDefaultHeight);
@@ -142,6 +182,9 @@ typedef vector<float>   DZCellHeightVector;
 
 - (NSRange) displayRange
 {
+    if (_numberOfCells == 0) {
+        return NSMakeRange(0, 0);
+    }
     int  beginIndex = 0;
     float beiginHeight = self.contentOffset.y;
     float displayBeginHeight = -0.00000001f;
@@ -168,6 +211,7 @@ typedef vector<float>   DZCellHeightVector;
             break;
         }
     }
+    
     return NSMakeRange(beginIndex, endIndex - beginIndex + 1);
 }
 
@@ -211,35 +255,59 @@ typedef vector<float>   DZCellHeightVector;
 {
     [self addSubview:cell];
     cell.index =  row;
-    [_visibleCellsMap setObject:cell  forKey:@(row)];
+    [self updateVisibleCell:cell withIndex:row];
 }
 
 
 - (void) layoutNeedDisplayCells
 {
+    [self beginLayoutCells];
     NSRange displayRange = [self displayRange];
     for (int i = (int)displayRange.location ; i < displayRange.length + displayRange.location; i ++) {
         DZTableViewCell* cell = [self _cellForRow:i];
         [self addCell:cell atRow:i];
         cell.frame = [self _rectForCellAtRow:i];
+        if (_selectedIndex == i) {
+            cell.isSelected = YES;
+        }
+        else
+        {
+            cell.isSelected = NO;
+        }
     }
     [self cleanUnusedCellsWithDispalyRange:displayRange];
     [self displayPullDownView];
+    [self endLayoutCells];
     
 }
 
 - (void) layoutSubviews
 {
-    [self layoutNeedDisplayCells];
+    if ([self canBeginLayoutCells]) {
+        [self layoutNeedDisplayCells];
+    }
+}
+
+- (void) beginLayoutCells
+{
+    _isLayoutCells = YES;
 }
 
 
+- (void) endLayoutCells
+{
+    _isLayoutCells = YES;
+}
 
+- (BOOL) canBeginLayoutCells
+{
+    return _isLayoutCells;
+}
 
 - (NSArray*) cellsBetween:(NSInteger)start end:(NSInteger)end
 {
     NSMutableArray* array = [NSMutableArray new];
-    for (int i = start ; i < end; i++) {
+    for (int i = start ; i <= end; i++) {
         DZTableViewCell* cell = _visibleCellsMap[@(i)];
         if (cell) {
             [array addObject:cell];
@@ -248,19 +316,79 @@ typedef vector<float>   DZCellHeightVector;
     return array;
 }
 
+- (void) removeRowAt:(NSInteger)row withAnimation:(BOOL)animation
+{
+    NSRange displayRange  =[self displayRange];
+    CGRect anOtherCellFrame = [self _rectForCellAtRow:row];
+    [self reduceContentSize];
+    NSRange xinDisplayRange = [self displayRange];
+    
+    if (NSLocationInRange(row, displayRange)) {
+        [self beginLayoutCells];
+
+        DZTableViewCell* anOtherCell = _visibleCellsMap[@(row)];
+        [_visibleCellsMap removeObjectForKey:@(row)];
+        
+        NSArray* afterCells = [self cellsBetween:row+1  end:row  + (displayRange.length -( (row + 1) - displayRange.location)) ];
+        for (DZTableViewCell* each  in afterCells) {
+            [_visibleCellsMap removeObjectForKey:@(each.index)];
+            each.index -= 1;
+            _visibleCellsMap[@(each.index)] = each;
+        }
+        
+        DZTableViewCell* xinCell = nil;
+        if (displayRange.location + displayRange.length == xinDisplayRange.location + xinDisplayRange.length ) {
+            NSInteger row = xinDisplayRange.location + xinDisplayRange.length - 1;
+            xinCell = [self _cellForRow:row];
+            [self addCell:xinCell atRow:row];
+        }
+        
+        void(^animationBlock)(void) = ^(void) {
+            NSLog(@"cell count %d", afterCells.count);
+            for (DZTableViewCell* each  in afterCells) {
+                CGRect rect = [self _rectForCellAtRow:each.index];
+                NSLog(@"*%d*******************", each.index);
+                CGPrintRect(each.frame);
+                CGPrintRect(rect);
+                each.frame = rect;
+            }
+            if (xinCell) {
+                xinCell.frame = [self _rectForCellAtRow:xinCell.index];
+            }
+            anOtherCell.frame = CGRectOffset(anOtherCellFrame, - CGRectGetWidth(anOtherCellFrame), 0);
+        };
+        
+        void(^completeBlock)(void) = ^(void) {
+            [self enqueueTableViewCell:anOtherCell];
+            [self endLayoutCells];
+        };
+        if (animation) {
+            [UIView animateWithDuration:DZAnimationDefualtDuration animations:animationBlock completion:^(BOOL finished) {
+                completeBlock();
+            }];
+        }
+        else
+        {
+            animationBlock();
+            completeBlock();
+        }
+    }
+}
+
 - (void) insertRowAt:(NSSet *)rowsSet withAnimation:(BOOL)animation
 {
     NSNumber* row = [rowsSet anyObject];
     int rowIndex = [row intValue];
     NSRange displayRange  =[self displayRange];
-    DZCellYoffsetMap oldCellHeightMap = DZCellYoffsetMap(_cellYOffsets);
-    DZCellHeightVector oldCellHeightVecotr = DZCellHeightVector(_cellHeights);
+
     [self reduceContentSize];
-    if (NSLocationInRange(rowIndex, displayRange)) {
-        
+    NSRange addDisplayRange = [self displayRange];
+    if (NSLocationInRange(rowIndex, addDisplayRange)) {
+        [self beginLayoutCells];
         NSArray* afterCells = [self cellsBetween:rowIndex end:displayRange.location + displayRange.length - rowIndex];
         for (DZTableViewCell* each  in afterCells) {
             each.index += 1;
+            
             _visibleCellsMap[@(each.index)] = each;
         }
         [_visibleCellsMap removeObjectForKey:@(rowIndex)];
@@ -276,14 +404,19 @@ typedef vector<float>   DZCellHeightVector;
             }
             anOtherCell.frame = anOtherCellFrame;
         };
+        
+        void(^finishBlock)(void) = ^(void) {
+            [self endLayoutCells];
+        };
         if (animation) {
             [UIView animateWithDuration:DZAnimationDefualtDuration animations:animationBlock completion:^(BOOL finished) {
-                
+                finishBlock();
             }];
         }
         else
         {
             animationBlock();
+            finishBlock();
         }
         
     }
