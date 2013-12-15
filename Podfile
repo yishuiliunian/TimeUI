@@ -1,4 +1,4 @@
-platform :ios,      '6.0' 
+platform :ios,      '7.0' 
 pod 'FMDB'
 pod 'CocoaLumberjack'
 pod "PulsingHalo"
@@ -8,3 +8,6 @@ pod 'CTFeedback'
 pod 'TTCounterLabel'
 pod 'NSDate-TKExtensions'
 pod 'TheAmazingAudioEngine'
+pod 'JBChartView', '~> 1.0'
+pod 'TSMessages'
+pod 'MTLocation'

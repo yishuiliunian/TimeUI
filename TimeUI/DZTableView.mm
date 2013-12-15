@@ -341,6 +341,7 @@ typedef vector<float>   DZCellHeightVector;
             NSInteger row = xinDisplayRange.location + xinDisplayRange.length - 1;
             xinCell = [self _cellForRow:row];
             [self addCell:xinCell atRow:row];
+            xinCell.frame = CGRectOffset([self _rectForCellAtRow:row], 0, _cellHeights.at(row));
         }
         
         void(^animationBlock)(void) = ^(void) {

@@ -51,11 +51,29 @@
 #define COCOAPODS_VERSION_MINOR_FMDB_standard 1
 #define COCOAPODS_VERSION_PATCH_FMDB_standard 0
 
+// HexColors
+#define COCOAPODS_POD_AVAILABLE_HexColors
+#define COCOAPODS_VERSION_MAJOR_HexColors 2
+#define COCOAPODS_VERSION_MINOR_HexColors 2
+#define COCOAPODS_VERSION_PATCH_HexColors 1
+
+// JBChartView
+#define COCOAPODS_POD_AVAILABLE_JBChartView
+#define COCOAPODS_VERSION_MAJOR_JBChartView 1
+#define COCOAPODS_VERSION_MINOR_JBChartView 0
+#define COCOAPODS_VERSION_PATCH_JBChartView 0
+
 // KXKiOS7ColorsAndGradients
 #define COCOAPODS_POD_AVAILABLE_KXKiOS7ColorsAndGradients
 #define COCOAPODS_VERSION_MAJOR_KXKiOS7ColorsAndGradients 1
 #define COCOAPODS_VERSION_MINOR_KXKiOS7ColorsAndGradients 0
 #define COCOAPODS_VERSION_PATCH_KXKiOS7ColorsAndGradients 0
+
+// MTLocation
+#define COCOAPODS_POD_AVAILABLE_MTLocation
+#define COCOAPODS_VERSION_MAJOR_MTLocation 0
+#define COCOAPODS_VERSION_MINOR_MTLocation 9
+#define COCOAPODS_VERSION_PATCH_MTLocation 0
 
 // NSDate-TKExtensions
 #define COCOAPODS_POD_AVAILABLE_NSDate_TKExtensions
@@ -74,6 +92,12 @@
 #define COCOAPODS_VERSION_MAJOR_PulsingHalo 0
 #define COCOAPODS_VERSION_MINOR_PulsingHalo 0
 #define COCOAPODS_VERSION_PATCH_PulsingHalo 1
+
+// TSMessages
+#define COCOAPODS_POD_AVAILABLE_TSMessages
+#define COCOAPODS_VERSION_MAJOR_TSMessages 0
+#define COCOAPODS_VERSION_MINOR_TSMessages 9
+#define COCOAPODS_VERSION_PATCH_TSMessages 4
 
 // TTCounterLabel
 #define COCOAPODS_POD_AVAILABLE_TTCounterLabel

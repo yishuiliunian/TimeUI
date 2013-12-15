@@ -11,6 +11,7 @@
 #import "DZTimeType.h"
 #import "DZInputCellView.h"
 #import "DZTypeCell.h"
+#import "DZMessageContainerView.h"
 @interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate>
 {
     NSMutableArray* _typesArray;
@@ -98,7 +99,6 @@
 
 - (void) dzInputCellViewUserCancel:(DZInputCellView *)inputView
 {
-    
 }
 
 - (void) dzTableView:(DZTableView *)tableView deleteCellAtRow:(NSInteger)row
@@ -107,12 +107,11 @@
     [_timeTypes removeObjectAtIndex:row];
     [self.tableView removeRowAt:row withAnimation:YES];
     NSLog(@"delete row at %d %d", row,     [DZActiveTimeDataBase delteTimeType:type]);
-
 }
 
 - (void) dzTableView:(DZTableView *)tableView editCellDataAtRow:(NSInteger)row
 {
-    NSLog(@"edit row at %d", row);
+    [DZMessageShareCenter showErrorMessage:@"a"];
 }
 
 @end

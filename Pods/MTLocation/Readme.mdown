@@ -1,0 +1,50 @@
+Read Me
+=====================
+
+![Currently Idle](http://img.skitch.com/20110122-j2e722trxp9gexuyjh1rqwuxs2.png "Currently Idle") ![Currently searching for a location](http://img.skitch.com/20110122-e9r8qcmrr4px6d3mijtkhjcwtg.png "Currently searching for a location") ![Currently receiving location updates](http://img.skitch.com/20110122-jdpwfa3x52m21gip8ekkj3fsrc.png "Currently receiving location updates") ![Currently receiving heading updates](http://img.skitch.com/20110122-1bhcj3gdjkeyktcxtsg2nuqcu6.png "Currently receiving heading updates")
+
+Description
+-----------------
+
+These classes aim to mimic some of the functions of the built-in Google Maps App on iOS for you.
+Currently the library contains a simple Location Manager-Singleton that sends out notifications when CLLocationManager-Delegate-Methods are called and a UIBarButtonItem/UIButton that acts as a Locate-Me Button that behaves similar to the one in the Google Maps App.
+The switch from one mode to another is animated, just like in the Google Maps App.
+
+It can also be customized to support Heading-Updates or not, by setting property headingEnabled.
+
+Installation
+------------------
+
+Just copy over all .h and .m - Files to your project, as well as the images included. You may exchange the images with your own, but make sure to adopt frames and sizes in the code, if your images have a different size than the one provided (only if there are any visual quirks).
+
+
+Usage
+------------------
+
+If you have problems getting the map-rotation to work, please refer to the following thread on StackOverflow:
+[Rotating MapView](http://stackoverflow.com/questions/6262463/rotating-mapview-according-to-compass "Rotating MapView")
+
+Update: MTLocation now provides the category-method [MKMapView sizeToFitTrackingModeFollowWithHeading] to automatically size to MapView.
+
+You can use MTLocateMeBarButtonItem like this:
+
+	 // Configure Location Manager
+	 [MTLocationManager sharedInstance].locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	 [MTLocationManager sharedInstance].locationManager.distanceFilter = kCLDistanceFilterNone;
+	 [MTLocationManager sharedInstance].locationManager.headingFilter = 5; // 5 Degrees
+
+	 // Create MapView
+	 self.mapView = [[[MKMapView alloc] initWithFrame:CGRectZero] autorelease];
+	 [self.view addSubview:self.mapView];
+
+     // create locate-me item, automatically prepare mapView
+	 self.locateMeItem = [UIBarButtonItem userTrackingBarButtonItemForMapView:self.mapView];
+ 	 // add target-action
+	 [self.locateMeItem addTarget:self action:@selector(myCustomSelector:) forControlEvents:UIControlEventTouchUpInside];
+	 // disable heading
+	 self.locateMeItem.headingEnabled = NO;
+	 
+	 // create array with ToolbarItems
+	 NSArray *toolbarItems = [NSArray arrayWithObject:self.locateMeItem];
+	 // set toolbar items
+	 [self.toolbar setItems:toolbarItems animated:NO];
