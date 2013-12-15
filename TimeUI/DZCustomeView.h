@@ -16,7 +16,7 @@ typedef void (^DZCustomViewAnimation)(void);
 @property (nonatomic, strong, readonly) UIView* contentContainerView;
 @property (nonatomic, strong, readonly) UIView* contentBackgroudView;
 @property (nonatomic, strong, readonly) UIImageView* backgroudView;
-
+@property (nonatomic, assign, readonly) BOOL isVisible;
 - (void) showWithAnimation:(BOOL)aimation
                      start:(DZCustomViewAnimation)startAni
             animationBlock:(DZCustomViewAnimation)animationBlock

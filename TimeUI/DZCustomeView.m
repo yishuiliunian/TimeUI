@@ -9,7 +9,7 @@
 #import "DZCustomeView.h"
 
 @implementation DZCustomeView
-
+@synthesize isVisible = _isVisible;
 
 - (void) setContentView:(UIView *)contentView
 {
@@ -63,6 +63,8 @@
         [_contentContainerView addSubview:_contentBackgroudView];
     
         [_contentBackgroudView addTapTarget:self selector:@selector(handleSingleTap:)];
+        
+        _isVisible = NO;
     }
     return self;
 }
@@ -85,6 +87,7 @@
     if (startAni) {
         startAni();
     }
+    _isVisible = YES;
     DZCustomViewAnimation animationing = ^{
         if (animationBlock) {
             animationBlock();
@@ -112,6 +115,7 @@
 
 - (void) hideWithAnimation:(BOOL)aimation start:(DZCustomViewAnimation)startAni animationBlock:(DZCustomViewAnimation)animationBlock complete:(DZAnimationCompletion)completion
 {
+    _isVisible = NO;
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     if (startAni) {
         startAni();

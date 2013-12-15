@@ -8,6 +8,24 @@
 
 #import "DZMessageContainerView.h"
 #import "DZImageCache.h"
+
+static NSDate* date = nil;
+
+NSDate* lastDate()
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        date = [NSDate date];
+    });
+    return date;
+}
+
+void showLastDate()
+{
+    NSLog(@"time is %f", [lastDate() timeIntervalSinceNow]);
+    date = [NSDate date];
+    
+}
 @interface DZMessageContainerView ()
 {
     NSMutableArray* _messagesQueue;
@@ -63,6 +81,10 @@
 
 - (void) showNextMessage
 {
+    if (!self.isVisible || self.superview == nil) {
+        return;
+    }
+    showLastDate();
     if (_messagesQueue.count == 0) {
         [self hideWithAnimation:YES];
     }
@@ -75,6 +97,10 @@
 }
 - (void) showMessageInContainerView:(DZMessage*)message withAnimaiton:(BOOL)animation
 {
+    if (!self.isVisible || self.superview == nil) {
+        [_messageView.layer removeAllAnimations];
+        return;
+    }
     void(^startAnimation)(void) = ^(void) {
         _messageView.frame = CGRectMake(0, - 50, CGRectGetWidth(self.superview.frame), 50);
         _messageView.textLabel.text = message.text;
@@ -96,7 +122,9 @@
     startAnimation();
     if (animation) {
         [UIView animateWithDuration:DZAnimationDefualtDuration animations:animationBlock completion:^(BOOL finished) {
-            completeBlock();
+            if (finished) {
+                completeBlock();
+            }
         }];
     }
     else
@@ -107,7 +135,8 @@
 }
 - (void) showMessage:(DZMessage*)message withAnimation:(BOOL)animation
 {
-    if (!self.superview) {
+    if (!self.isVisible) {
+        showLastDate();
         _messageView.backgroundColor = [UIColor orangeColor];
         [self showWithAnimation:animation start:^{
             _messageView.frame = CGRectMake(0, - 50, CGRectGetWidth(self.superview.frame), 50);
@@ -131,6 +160,8 @@
 
 - (void) hideWithAnimation:(BOOL)aimation
 {
+    [_messagesQueue removeAllObjects];
+    [_messageView.layer removeAllAnimations];
     [self hideWithAnimation:aimation start:^{
         
     } animationBlock:^{
@@ -167,13 +198,5 @@
     [self showText:text withType:DZMessageTypeInfo];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
