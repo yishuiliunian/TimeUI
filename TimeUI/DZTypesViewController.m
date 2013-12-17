@@ -12,7 +12,10 @@
 #import "DZInputCellView.h"
 #import "DZTypeCell.h"
 #import "DZMessageContainerView.h"
-@interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate>
+#import "DZNotificationCenter.h"
+#import "DZTestInterface.h"
+
+@interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZTestInterface>
 {
     NSMutableArray* _typesArray;
     NSMutableArray* _timeTypes;
@@ -36,6 +39,8 @@
     [super viewDidLoad];
     _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
     [self.tableView reloadData];
+    
+    [[DZNotificationCenter defaultCenter] addObserver:self forKey:@"a"];
    
 }
 
@@ -112,6 +117,9 @@
 - (void) dzTableView:(DZTableView *)tableView editCellDataAtRow:(NSInteger)row
 {
     [DZMessageShareCenter showErrorMessage:@"a"];
+    [[DZNotificationCenter defaultCenter] postMessage:@"a" userInfo:@{}];
+    [[DZNotificationCenter defaultCenter] removeObserver:self forMessage:@"a"];
 }
+
 
 @end

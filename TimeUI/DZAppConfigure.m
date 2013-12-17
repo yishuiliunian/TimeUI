@@ -16,8 +16,24 @@
 #import "DZTime.h"
 #import "DZTimeType.h"
 #import "DZTimeTrickManger.h"
+#import "DZNotificationCenter.h"
+#import "DZTestInterface.h"
+#import "DZTokenManager.h"
 
+//
 @implementation DZAppConfigure
+
++ (void) initNotifications
+{
+    [[DZNotificationCenter defaultCenter] addDecodeNotificationBlock:^(id observer, NSDictionary *userInfo) {
+        if ([observer conformsToProtocol:@protocol(DZTestInterface)]) {
+            if ([observer respondsToSelector:@selector(didGetMessage)]) {
+                SendSelectorToObjectInMainThreadWithoutParams(@selector(didGetMessage), observer);
+            }
+        }
+    } forMessage:@"a"];
+}
+
 + (BOOL) initApp
 {
     [DDLog addLogger:[DDASLLogger sharedInstance]];
@@ -32,6 +48,12 @@
         [type setValuesForKeysWithDictionary:dic];
         [DZActiveTimeDataBase updateTimeType:type];
     }
+    
+    //
+    [DZAppConfigure initNotifications];
+    
+
+    
     return YES;
 }
 @end

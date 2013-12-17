@@ -26,6 +26,8 @@
     dispatch_once(&onceToken, ^{
         account = [[DZAccount alloc] init];
         account.identifiy = @"aa";
+        account.email = @"yishuiliunian@gmail.com";
+        account.password = @"123456";
     });
     return account;
 }

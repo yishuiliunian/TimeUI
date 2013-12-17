@@ -10,8 +10,14 @@
 
 #define DZShareSingleFactory [DZSingletonFactory shareFactory]
 
-extern id  DZSingleForClass(Class class);
-
+#ifdef __cplusplus
+extern "C" {
+#endif
+    id  DZSingleForClass(Class a);
+#ifdef __cplusplus
+}
+#endif
+    
 @interface DZSingletonFactory : NSObject
 
 + (DZSingletonFactory*) shareFactory;

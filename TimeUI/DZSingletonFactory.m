@@ -84,7 +84,7 @@
 
 @end
 
-id  DZSingleForClass(Class class)
+id  DZSingleForClass(Class a)
 {
-    return [DZShareSingleFactory shareInstanceFor:class];
+    return [DZShareSingleFactory shareInstanceFor:a];
 }

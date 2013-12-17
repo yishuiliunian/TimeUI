@@ -14,10 +14,13 @@
 #import "DZChartViewController.h"
 #import "DZTypesViewController.h"
 #import "DZTableViewController.h"
+#import "DZNetworkManager.h"
 
+@interface DZAppDelegate () <DZRegisterAccountDelegate>
+
+@end
 
 @implementation DZAppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,6 +44,8 @@
 //    self.window.rootViewController = [DZTableViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [DZRegisterAccountOperation runRegiserOperatioWithDelegate:self userEmail:@"aass2ddss1w@1.com" password:@"1"];
     return YES;
 }
 
