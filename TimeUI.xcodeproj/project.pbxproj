@@ -41,6 +41,7 @@
 		6526C8DA1859883B00A53B79 /* DZTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6526C8D91859883B00A53B79 /* DZTableViewController.m */; };
 		6526C8DE1859893300A53B79 /* DZDevices.m in Sources */ = {isa = PBXBuildFile; fileRef = 6526C8DD1859893300A53B79 /* DZDevices.m */; };
 		6526C8E31859BFDF00A53B79 /* DZPullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6526C8E21859BFDF00A53B79 /* DZPullDownView.m */; };
+		6530681F186092D3008AEC6D /* DZSyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6530681E186092D3008AEC6D /* DZSyncOperation.m */; };
 		6533198B186022AA0004795B /* NSOperationQueue+DZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6533198A186022AA0004795B /* NSOperationQueue+DZ.m */; };
 		6533198E1860231B0004795B /* DZRegisterAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6533198D1860231B0004795B /* DZRegisterAccountOperation.m */; };
 		654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E5A231856DDEF00DED026 /* DZGeometryTools.m */; };
@@ -169,6 +170,8 @@
 		6526C8E11859BFDF00A53B79 /* DZPullDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPullDownView.h; sourceTree = "<group>"; };
 		6526C8E21859BFDF00A53B79 /* DZPullDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPullDownView.m; sourceTree = "<group>"; };
 		6526C8E5185A201100A53B79 /* DZPullDownDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPullDownDelegate.h; sourceTree = "<group>"; };
+		6530681D186092D3008AEC6D /* DZSyncOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSyncOperation.h; sourceTree = "<group>"; };
+		6530681E186092D3008AEC6D /* DZSyncOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSyncOperation.m; sourceTree = "<group>"; };
 		65331989186022AA0004795B /* NSOperationQueue+DZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+DZ.h"; sourceTree = "<group>"; };
 		6533198A186022AA0004795B /* NSOperationQueue+DZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+DZ.m"; sourceTree = "<group>"; };
 		6533198C1860231B0004795B /* DZRegisterAccountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRegisterAccountOperation.h; sourceTree = "<group>"; };
@@ -681,6 +684,8 @@
 				6533198A186022AA0004795B /* NSOperationQueue+DZ.m */,
 				6533198C1860231B0004795B /* DZRegisterAccountOperation.h */,
 				6533198D1860231B0004795B /* DZRegisterAccountOperation.m */,
+				6530681D186092D3008AEC6D /* DZSyncOperation.h */,
+				6530681E186092D3008AEC6D /* DZSyncOperation.m */,
 			);
 			name = network;
 			sourceTree = "<group>";
@@ -956,6 +961,7 @@
 				65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */,
 				6526C8E31859BFDF00A53B79 /* DZPullDownView.m in Sources */,
 				65238F071857357B00FE5D89 /* DZGlobals.m in Sources */,
+				6530681F186092D3008AEC6D /* DZSyncOperation.m in Sources */,
 				65238F0D185736E000FE5D89 /* DZDBManager.m in Sources */,
 				65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */,
 				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,

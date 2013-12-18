@@ -10,6 +10,7 @@
 #import "DZSingletonFactory.h"
 #import "DZNetworkDefines.h"
 #import "DZDevices.h"
+#import "NSError+dz.h"
 
 @implementation DZRouter
 
@@ -69,16 +70,16 @@
 {
     return [self requstWithHttpMethod:HttpMethodPost
                                 token:nil
-                         serverMethod:DZServerMethodRegiserUser
+                         serverMethod:serverMethod
                             bodyDatas:bodyDatas error:error];
 }
 
-
-- (id) sendAccountMethod:(NSString*)serverMethod
-               bodyDatas:(NSDictionary*)bodyDatas
-                   error:(NSError* __autoreleasing *)error
+- (id) sendServerMethod:(NSString*)serverMethod
+                  token:(NSString*)token
+              bodyDatas:(NSDictionary*)bodyDatas
+                  error:(NSError* __autoreleasing *)error
 {
-    NSURLRequest* request = [DZDefaultRouter accountRequstWithMethod:DZServerMethodUserLogin bodyDatas:bodyDatas error:error];
+    NSURLRequest* request = [self requstWithHttpMethod:HttpMethodPost token:token serverMethod:serverMethod bodyDatas:bodyDatas error:error];
     if (*error) {
         return nil;
     }
@@ -87,9 +88,28 @@
         return nil;
     }
     id serverObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:error];
+    NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     if (*error) {
         return nil;
     }
+    if ([serverObject isKindOfClass:[NSDictionary class]]) {
+        NSDictionary* dic = (NSDictionary*)serverObject;
+        NSNumber* code = dic[@"errorcode"];
+        if (code) {
+            NSString* errorMessage = dic[@"errormessage"];
+            if (error != NULL) {
+                *error = [NSError dzErrorWithCode:code.intValue message:errorMessage];
+            }
+            return nil;
+        }
+    }
     return serverObject;
+    
+}
+- (id) sendAccountMethod:(NSString*)serverMethod
+               bodyDatas:(NSDictionary*)bodyDatas
+                   error:(NSError* __autoreleasing *)error
+{
+    return [self sendServerMethod:serverMethod token:nil bodyDatas:bodyDatas error:error];
 }
 @end

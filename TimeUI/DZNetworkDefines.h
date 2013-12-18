@@ -25,9 +25,12 @@ static NSString* const DZServerCommonKeyToken          = @"token";
 static NSString* const DZServerCommonKeyDeviceIdentify = @"devicekey";
 
 /**
- *  注册
+ *  服务器方法
  */
 static NSString* const DZServerMethodRegiserUser       = @"user.register";
 static NSString* const DZServerMethodUserLogin         = @"user.login";
+static NSString* const DZServerMethodTokenUpdate       = @"token.update";
+static NSString* const DZServerMethodUpdateTime        = @"time.update";
+
 
 #endif

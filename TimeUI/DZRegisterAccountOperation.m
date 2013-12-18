@@ -43,9 +43,22 @@
         NSDictionary* infos = @{@"email":_email , @"password":_password};
         NSError* error = nil;
         id result = [DZDefaultRouter sendAccountMethod:DZServerMethodRegiserUser bodyDatas:infos error:&error];
-
-        NSLog(@"%@",result);
-        
+        if (error) {
+            if ([_delegate respondsToSelector:@selector(registerAccountOperation:failedWithError:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_delegate registerAccountOperation:self failedWithError:error];
+                });
+            }
+        }
+        else
+        {
+            if ([_delegate respondsToSelector:@selector(registerAccountOperation:successWithUserInfo:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_delegate registerAccountOperation:self successWithUserInfo:result];
+                });
+            }
+        }
     }
 }
+
 @end

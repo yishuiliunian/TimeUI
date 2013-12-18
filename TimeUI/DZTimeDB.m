@@ -48,10 +48,10 @@ static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
                                                                                kDZ_T_Time_C_Date_End,
                                                                                kDZ_T_Time_C_Detail,
                                                                                kDZ_T_Time_C_Type] whereArray:@[kDZ_T_Time_C_Guid]];
-        return [_dataBase executeUpdate:updateSql withArgumentsInArray:@[[time.begin ISO8601String],
-                                                                         [time.end ISO8601String],
+        return [_dataBase executeUpdate:updateSql withArgumentsInArray:@[[time.dateBegin ISO8601String],
+                                                                         [time.dateEnd ISO8601String],
                                                                          time.detail,
-                                                                         time.typeId,
+                                                                         time.typeGuid,
                                                                          time.guid]];
     } else
     {
@@ -60,10 +60,10 @@ static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
                                                                              kDZ_T_Time_C_Detail,
                                                                              kDZ_T_Time_C_Type,
                                                                              kDZ_T_Time_C_Guid]];
-        return [_dataBase executeUpdate:insertSQL withArgumentsInArray:@[[time.begin ISO8601String],
-                                                                         [time.end ISO8601String],
+        return [_dataBase executeUpdate:insertSQL withArgumentsInArray:@[[time.dateBegin ISO8601String],
+                                                                         [time.dateEnd ISO8601String],
                                                                          time.detail,
-                                                                         time.typeId,
+                                                                         time.typeGuid,
                                                                          time.guid]];
     }
 }
@@ -74,11 +74,11 @@ static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
     NSMutableArray* times = [NSMutableArray new];
     while ([result next]) {
         DZTime* time = [DZTime new];
-        time.begin = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_Time_C_Date_Begin]];
-        time.end  = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_Time_C_Date_End]];
+        time.dateBegin = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_Time_C_Date_Begin]];
+        time.dateEnd  = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_Time_C_Date_End]];
         time.detail = [result stringForColumn:kDZ_T_Time_C_Detail];
         time.guid = [result stringForColumn:kDZ_T_Time_C_Guid];
-        time.typeId = [result stringForColumn:kDZ_T_Time_C_Type];
+        time.typeGuid = [result stringForColumn:kDZ_T_Time_C_Type];
         [times addObject:time];
     }
     [result close];

@@ -26,4 +26,8 @@
 - (id) sendAccountMethod:(NSString*)serverMethod
                bodyDatas:(NSDictionary*)bodyDatas
                    error:(NSError* __autoreleasing *)error;
+- (id) sendServerMethod:(NSString*)serverMethod
+                  token:(NSString*)token
+              bodyDatas:(NSDictionary*)bodyDatas
+                  error:(NSError* __autoreleasing *)error;
 @end

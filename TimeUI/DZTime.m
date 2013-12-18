@@ -8,31 +8,40 @@
 
 #import "DZTime.h"
 #import <NSDate-TKExtensions.h>
+#import "DZDevices.h"
 @implementation DZTime
+- (NSString*) deviceGuid
+{
+    return DZDevicesIdentify();
+}
 
+- (NSString*) userGuid
+{
+    return @"aa";
+}
 -(NSString*) description
 {
-    return [NSString stringWithFormat:@" %@ %@ %@ %@ %@", self.begin, self.end, self.detail, self.typeId, self.guid];
+    return [NSString stringWithFormat:@" %@ %@ %@ %@ %@", self.dateBegin, self.dateEnd, self.detail, self.typeGuid, self.guid];
 }
 
 - (NSDictionary*) parseDayCost
 {
     NSMutableDictionary* dic = [NSMutableDictionary new];
-    NSInteger week =  [self.begin TKRealWeekday];
-    if ([self.begin daysAreTheSame:self.end]) {
-        dic[@(week)] = @([self.end timeIntervalSinceDate:self.begin]);
+    NSInteger week =  [self.dateBegin TKRealWeekday];
+    if ([self.dateBegin daysAreTheSame:self.dateEnd]) {
+        dic[@(week)] = @([self.dateEnd timeIntervalSinceDate:self.dateBegin]);
     }
     else
     {
-         NSInteger days = [self.begin TKDaysBetweenDate:self.end];
+         NSInteger days = [self.dateBegin TKDaysBetweenDate:self.dateEnd];
         for (int i = 0 ; i < days; i ++) {
             if (i == 0) {
-                NSDate* endDate = [self.begin TKDateByMovingToEndOfDay];
-                dic[@(week)] = @([endDate timeIntervalSinceDate:self.begin]);
+                NSDate* endDate = [self.dateBegin TKDateByMovingToEndOfDay];
+                dic[@(week)] = @([endDate timeIntervalSinceDate:self.dateBegin]);
             }else if (i == days - 1)
             {
-                NSDate* bedingDate = [self.end TKDateByMovingToBeginningOfDay];
-                dic[@(week + days - 1)] = @([self.end timeIntervalSinceDate:bedingDate]);
+                NSDate* bedingDate = [self.dateEnd TKDateByMovingToBeginningOfDay];
+                dic[@(week + days - 1)] = @([self.dateEnd timeIntervalSinceDate:bedingDate]);
             }
             else
             {
@@ -41,5 +50,33 @@
         }
     }
     return dic;
+}
+
+- (NSDictionary*) toJsonObject {
+    NSMutableDictionary* json = [NSMutableDictionary new];
+    if (self.dateBegin) {
+        [json setObject:[self.dateBegin TKISO8601String] forKey:DZTimeKeyBegin];
+    }
+    if (self.dateEnd) {
+        [json setObject:[self.dateEnd TKISO8601String] forKey:DZTimeKeyEnd];
+    }
+    if (self.typeGuid) {
+        [json setObject:self.typeGuid forKey:DZTimeKeyTypeGuid];
+    }
+    if (self.detail) {
+        [json setObject:self.detail forKey:DZTimeKeyDetail];
+    }
+    
+    if (self.guid) {
+        [json setObject:self.guid forKey:DZTimeKeyGuid];
+    }
+    if (self.userGuid) {
+        [json setObject:self.userGuid forKey:DZTimeKeyUserGuid];
+    }
+    
+    if (self.deviceGuid) {
+        [json setObject:self.deviceGuid forKey:DZTimeKeyDeviceGuid];
+    }
+    return json;
 }
 @end

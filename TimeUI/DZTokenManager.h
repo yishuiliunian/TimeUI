@@ -14,8 +14,6 @@ typedef void(^DZAuthorizationResponse)(NSString*token , NSError* error);
 + (DZTokenManager*) shareManager;
 
 - (void) appleToken:(NSString*)userEmail password:(NSString*)password response:(DZAuthorizationResponse)response;
-
 - (void) appleActiveToken:(DZAuthorizationResponse)response;
-
 
 @end
