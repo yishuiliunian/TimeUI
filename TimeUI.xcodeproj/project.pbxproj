@@ -17,6 +17,8 @@
 		6514652318629581005060CB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514652218629581005060CB /* CoreTelephony.framework */; };
 		651465251862960F005060CB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651465241862960F005060CB /* Security.framework */; };
 		651465271862963E005060CB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651465261862963E005060CB /* SystemConfiguration.framework */; };
+		6514652B18629F82005060CB /* DZSyncActionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514652A18629F82005060CB /* DZSyncActionItemView.m */; };
+		651465301862B3BD005060CB /* DZContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514652F1862B3BD005060CB /* DZContextManager.m */; };
 		65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EEB1856E86700FE5D89 /* DZAppConfigure.m */; };
 		65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */; };
 		65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF618572F1D00FE5D89 /* NSString+WizString.mm */; };
@@ -128,6 +130,10 @@
 		6514652218629581005060CB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		651465241862960F005060CB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		651465261862963E005060CB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6514652918629F82005060CB /* DZSyncActionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSyncActionItemView.h; sourceTree = "<group>"; };
+		6514652A18629F82005060CB /* DZSyncActionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSyncActionItemView.m; sourceTree = "<group>"; };
+		6514652E1862B3BD005060CB /* DZContextManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZContextManager.h; sourceTree = "<group>"; };
+		6514652F1862B3BD005060CB /* DZContextManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZContextManager.m; sourceTree = "<group>"; };
 		65238EEA1856E86700FE5D89 /* DZAppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAppConfigure.h; sourceTree = "<group>"; };
 		65238EEB1856E86700FE5D89 /* DZAppConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAppConfigure.m; sourceTree = "<group>"; };
 		65238EF218572ED900FE5D89 /* FMDatabase+WizDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+WizDb.h"; sourceTree = "<group>"; };
@@ -372,6 +378,34 @@
 			name = pulldown;
 			sourceTree = "<group>";
 		};
+		6514652818629F54005060CB /* componet */ = {
+			isa = PBXGroup;
+			children = (
+				65768614185DF2FB006D7C0F /* notification */,
+			);
+			name = componet;
+			sourceTree = "<group>";
+		};
+		6514652C1862A095005060CB /* controls */ = {
+			isa = PBXGroup;
+			children = (
+				65C6BAA5185962F000984D25 /* Controls */,
+				657C74A5185AFA43008728EB /* Animation */,
+				657685DE185C9B55006D7C0F /* massages */,
+				6535A029186204E400173E0E /* shake motion */,
+			);
+			name = controls;
+			sourceTree = "<group>";
+		};
+		6514652D1862B3A8005060CB /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				6514652E1862B3BD005060CB /* DZContextManager.h */,
+				6514652F1862B3BD005060CB /* DZContextManager.m */,
+			);
+			name = Context;
+			sourceTree = "<group>";
+		};
 		65238EF118572ECE00FE5D89 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +600,8 @@
 			children = (
 				6535A0341862076400173E0E /* DZGlobalActionView.h */,
 				6535A0351862076400173E0E /* DZGlobalActionView.m */,
+				6514652918629F82005060CB /* DZSyncActionItemView.h */,
+				6514652A18629F82005060CB /* DZSyncActionItemView.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -809,16 +845,14 @@
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				6535A029186204E400173E0E /* shake motion */,
+				6514652D1862B3A8005060CB /* Context */,
+				6514652C1862A095005060CB /* controls */,
+				6514652818629F54005060CB /* componet */,
 				65EE100A185F30F900FA0882 /* errors */,
 				65EE1009185F279400FA0882 /* others */,
-				65768614185DF2FB006D7C0F /* notification */,
 				65768608185DDF28006D7C0F /* restful framework */,
 				657685EF185D5EAE006D7C0F /* memorycache */,
-				657685DE185C9B55006D7C0F /* massages */,
-				657C74A5185AFA43008728EB /* Animation */,
 				6526C8DB1859891C00A53B79 /* Devices */,
-				65C6BAA5185962F000984D25 /* Controls */,
 				657A56111858D77100521B01 /* Audio */,
 				65238F3B185764CD00FE5D89 /* UserData */,
 				65238F161857392700FE5D89 /* Account */,
@@ -1084,6 +1118,7 @@
 				659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */,
 				65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */,
 				65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */,
+				651465301862B3BD005060CB /* DZContextManager.m in Sources */,
 				6535A0321862054400173E0E /* DZShakeRecognizedWindow.m in Sources */,
 				65238F21185748A400FE5D89 /* DZTime.m in Sources */,
 				657A56141858D78F00521B01 /* DZAudioManager.m in Sources */,
@@ -1093,6 +1128,7 @@
 				654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */,
 				6526C8DA1859883B00A53B79 /* DZTableViewController.m in Sources */,
 				6535A0361862076400173E0E /* DZGlobalActionView.m in Sources */,
+				6514652B18629F82005060CB /* DZSyncActionItemView.m in Sources */,
 				65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */,
 				65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */,
 				65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */,

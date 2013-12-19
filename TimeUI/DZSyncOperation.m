@@ -11,6 +11,7 @@
 #import "DZRouter.h"
 #import "DZTime.h"
 #import "NSOperationQueue+DZ.h"
+#import "DZContextManager.h"
 @interface DZSyncOperation ()
 {
     NSString* _token;
@@ -30,28 +31,42 @@
 - (void) main
 {
     @autoreleasepool {
+        if (bDZSyncContextIsSyncing) {
+            return;
+        }
+        DZSyncContextSet(DZSyncContextSyncAppleToken);
         [[DZTokenManager shareManager] appleToken:_account.email
                                          password:_account.password
                                          response:^(NSString *token, NSError *error)
          {
              if (token) {
                  _token = token;
-                 [self updateTimes];
+                 NSError* err = nil;
+                 [self updateTimes:&err];
+                 if (err) {
+                     DZSyncContextSet(DZSyncContextSyncError);
+                 }
              }
-            
+             else
+             {
+                 DZSyncContextSet(DZSyncContextSyncError);
+             }
         }];
     }
 }
 
-- (void) updateTimes
+- (BOOL) updateTimes:(NSError* __autoreleasing*)error
 {
+    DZSyncContextSet(DZSyncContextSyncUploadTime);
     NSArray* allTimes = [DZActiveTimeDataBase allTimes];
     for (DZTime* time  in allTimes) {
         NSDictionary* dic = [time toJsonObject];
-        NSError* error = nil;
-        id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateTime token:_token bodyDatas:dic error:&error];
-        NSLog(@"%@ \n %@", error, sobj);
+        __unused id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateTime token:_token bodyDatas:dic error:error];
+        if (error) {
+            return NO;
+        }
     }
+    return YES;
 }
 
 @end

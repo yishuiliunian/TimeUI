@@ -22,10 +22,11 @@
 #import "DZSingletonFactory.h"
 #import "DZShakeRecognizedWindow.h"
 #import "MTA.h"
+#import "DZContextManager.h"
 //
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
-@interface DZAppConfigure () <DZNotificationInitDelegaete>
+@interface DZAppConfigure () <DZNotificationInitDelegaete, DZSyncContextChangedInterface>
 
 @end
 
@@ -34,6 +35,11 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 + (DZAppConfigure*) shareConfiure
 {
     return DZSingleForClass([DZAppConfigure class]);
+}
+
+- (void) syncContextChangedFrom:(DZSyncContext)origin toContext:(DZSyncContext)aim
+{
+    
 }
 
 - (DZDecodeNotificationBlock) decodeNotification:(NSString *)message forCenter:(DZNotificationCenter *)center
@@ -54,11 +60,29 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
             }
         };
     }
+    else if ([message isEqualToString:kDZSyncContextChangedMessage])
+    {
+        return ^(id observer, NSDictionary *userInfo)
+        {
+            DZSyncContext o = (DZSyncContext)[userInfo[@"old"] intValue];
+            DZSyncContext n = (DZSyncContext)[userInfo[@"new"] intValue];
+            if ([observer respondsToSelector:@selector(syncContextChangedFrom:toContext:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer syncContextChangedFrom:o toContext:n];
+                });
+            }
+        };
+    }
     return nil;
 }
 
 + (void) initNotifications
 {
+    
+#warning test
+    
+    [[DZNotificationCenter defaultCenter] addObserver:[DZAppConfigure shareConfiure] forKey:kDZSyncContextChangedMessage];
+    //
     [DZNotificationCenter defaultCenter].delegate = [DZAppConfigure shareConfiure];
 }
 

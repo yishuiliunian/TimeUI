@@ -7,7 +7,7 @@
 //
 
 #import "DZGlobalActionView.h"
-
+#import "DZSyncActionItemView.h"
 @implementation DZGlobalActionView
 
 - (id)initWithFrame:(CGRect)frame
@@ -22,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-        DZActionItemView* item1 = [[DZActionItemView alloc] init];
+        DZSyncActionItemView* item1 = [[DZSyncActionItemView alloc] init];
         item1.height = 40;
         item1.backgroundColor = [UIColor redColor];
         
