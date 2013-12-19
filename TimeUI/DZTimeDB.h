@@ -9,5 +9,5 @@
 #import "WizDataBase.h"
 #import "DZTimeDBInterface.h"
 @interface DZTimeDB : WizDataBase <DZTimeDBInterface>
-
+@property (nonatomic, strong) NSString* userGuid;
 @end

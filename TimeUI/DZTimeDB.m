@@ -79,6 +79,7 @@ static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
         time.detail = [result stringForColumn:kDZ_T_Time_C_Detail];
         time.guid = [result stringForColumn:kDZ_T_Time_C_Guid];
         time.typeGuid = [result stringForColumn:kDZ_T_Time_C_Type];
+        time.userGuid = self.userGuid;
         [times addObject:time];
     }
     [result close];

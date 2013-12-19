@@ -24,6 +24,7 @@
 {
     NSString* dbPath = DZActiveAccount.timeDatabasePath;
     DZTimeDB* temp = [[DZTimeDB alloc] initWithPath:dbPath modelName:@"DZTimeTrick"];
+    temp.userGuid = DZActiveAccount.identifiy;
     return temp;
 }
 @end

@@ -54,6 +54,7 @@ extern NSString* (^BoolTOString)(BOOL);
 
 - (NSString*) parentPath;
 - (NSString*) getAtString;
+- (NSString *) MD5Hash;
 - (NSString*) exceptAtString;
 + (NSString*) stringMSFromTimeInterval:(NSTimeInterval) ftime;
 + (NSString*) stringHMSFromTimeInterval:(NSTimeInterval) ftime;

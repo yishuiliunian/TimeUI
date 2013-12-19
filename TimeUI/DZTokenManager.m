@@ -57,6 +57,8 @@
     if ([serverObject isKindOfClass:[NSDictionary class]]) {
         NSDictionary* userInfo = (NSDictionary*)serverObject;
         NSString* token = userInfo[@"token"];
+        NSString* userGuid = userInfo[@"userGuid"];
+        DZActiveAccount.identifiy = userGuid;
         if (token)  {
             _tokensMap[userEmail] = token;
             return token;

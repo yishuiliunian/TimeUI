@@ -12,7 +12,11 @@
 #import "DZAnimationState.h"
 
 #import "DZTimeTrickManger.h"
-@interface DZDragViewController ()
+#import "DZNotificationCenter.h"
+#import "DZShakeRecognizedWindow.h"
+#import "DZGlobalActionView.h"
+
+@interface DZDragViewController () <DZShareInterface>
 {
     float _dragBottomViewYoffSet;
     float _dragTopViewYoffSet;
@@ -45,7 +49,7 @@
     [vc didMoveToParentViewController:nil];
 }
 
-- (void) setTopViewController:(UIViewController *)topViewController
+- (void) setTopViewController:(DZTypesViewController *)topViewController
 {
     if (_topViewController) {
         [self removeDragChildViewController:_topViewController];
@@ -57,7 +61,7 @@
     [_topViewController.view addShadow];
 }
 
-- (void) setBottomViewController:(UIViewController *)bottomViewController
+- (void) setBottomViewController:(DZChartViewController *)bottomViewController
 {
     if (_bottomViewController) {
         [self removeDragChildViewController:_bottomViewController];
@@ -170,10 +174,16 @@
     }
     
 }
+
+- (void) didGetShareMessage
+{
+    DZGlobalActionView* actionView = [[DZGlobalActionView alloc] init];
+    [actionView showWithAnimation:YES];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [[DZNotificationCenter defaultCenter] addObserver:self forKey:DZShareNotificationMessage];
 	// Do any additional setup after loading the view.
 }
 - (void) viewWillAppear:(BOOL)animated

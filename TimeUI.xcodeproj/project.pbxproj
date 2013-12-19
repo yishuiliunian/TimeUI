@@ -11,6 +11,12 @@
 		65020B2B185B0D3200D1ECBA /* DZTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2A185B0D3200D1ECBA /* DZTypeCell.m */; };
 		65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2F185B42D100D1ECBA /* DZCellActionsView.m */; };
 		65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B36185B433800D1ECBA /* DZCellActionItem.m */; };
+		6514651D18629563005060CB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514651C18629563005060CB /* libz.dylib */; };
+		6514651F1862956B005060CB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514651E1862956B005060CB /* libsqlite3.dylib */; };
+		6514652118629572005060CB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514652018629572005060CB /* AdSupport.framework */; };
+		6514652318629581005060CB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514652218629581005060CB /* CoreTelephony.framework */; };
+		651465251862960F005060CB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651465241862960F005060CB /* Security.framework */; };
+		651465271862963E005060CB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651465261862963E005060CB /* SystemConfiguration.framework */; };
 		65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EEB1856E86700FE5D89 /* DZAppConfigure.m */; };
 		65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */; };
 		65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF618572F1D00FE5D89 /* NSString+WizString.mm */; };
@@ -44,6 +50,13 @@
 		6530681F186092D3008AEC6D /* DZSyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6530681E186092D3008AEC6D /* DZSyncOperation.m */; };
 		6533198B186022AA0004795B /* NSOperationQueue+DZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6533198A186022AA0004795B /* NSOperationQueue+DZ.m */; };
 		6533198E1860231B0004795B /* DZRegisterAccountOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6533198D1860231B0004795B /* DZRegisterAccountOperation.m */; };
+		6535A0221861E78500173E0E /* DZActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0211861E78500173E0E /* DZActionView.m */; };
+		6535A0251861E7DA00173E0E /* DZActionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0241861E7DA00173E0E /* DZActionItemView.m */; };
+		6535A0281861E81200173E0E /* DZActionContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0271861E81200173E0E /* DZActionContentView.m */; };
+		6535A0321862054400173E0E /* DZShakeRecognizedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0311862054400173E0E /* DZShakeRecognizedWindow.m */; };
+		6535A0361862076400173E0E /* DZGlobalActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0351862076400173E0E /* DZGlobalActionView.m */; };
+		6535A03D186294FD00173E0E /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6535A039186294FD00173E0E /* libmtasdk.a */; };
+		6535A03E186294FD00173E0E /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6535A03C186294FD00173E0E /* ReleaseNotes.txt */; };
 		654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E5A231856DDEF00DED026 /* DZGeometryTools.m */; };
 		656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AB18324B2D001F7B7C /* Foundation.framework */; };
 		656F68AE18324B2D001F7B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AD18324B2D001F7B7C /* CoreGraphics.framework */; };
@@ -109,6 +122,12 @@
 		65020B2F185B42D100D1ECBA /* DZCellActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionsView.m; sourceTree = "<group>"; };
 		65020B35185B433800D1ECBA /* DZCellActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCellActionItem.h; sourceTree = "<group>"; };
 		65020B36185B433800D1ECBA /* DZCellActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionItem.m; sourceTree = "<group>"; };
+		6514651C18629563005060CB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6514651E1862956B005060CB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		6514652018629572005060CB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		6514652218629581005060CB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		651465241862960F005060CB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		651465261862963E005060CB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		65238EEA1856E86700FE5D89 /* DZAppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAppConfigure.h; sourceTree = "<group>"; };
 		65238EEB1856E86700FE5D89 /* DZAppConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAppConfigure.m; sourceTree = "<group>"; };
 		65238EF218572ED900FE5D89 /* FMDatabase+WizDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+WizDb.h"; sourceTree = "<group>"; };
@@ -176,6 +195,20 @@
 		6533198A186022AA0004795B /* NSOperationQueue+DZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+DZ.m"; sourceTree = "<group>"; };
 		6533198C1860231B0004795B /* DZRegisterAccountOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRegisterAccountOperation.h; sourceTree = "<group>"; };
 		6533198D1860231B0004795B /* DZRegisterAccountOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZRegisterAccountOperation.m; sourceTree = "<group>"; };
+		6535A0201861E78500173E0E /* DZActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZActionView.h; sourceTree = "<group>"; };
+		6535A0211861E78500173E0E /* DZActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZActionView.m; sourceTree = "<group>"; };
+		6535A0231861E7DA00173E0E /* DZActionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZActionItemView.h; sourceTree = "<group>"; };
+		6535A0241861E7DA00173E0E /* DZActionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZActionItemView.m; sourceTree = "<group>"; };
+		6535A0261861E81200173E0E /* DZActionContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZActionContentView.h; sourceTree = "<group>"; };
+		6535A0271861E81200173E0E /* DZActionContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZActionContentView.m; sourceTree = "<group>"; };
+		6535A0301862054400173E0E /* DZShakeRecognizedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZShakeRecognizedWindow.h; sourceTree = "<group>"; };
+		6535A0311862054400173E0E /* DZShakeRecognizedWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZShakeRecognizedWindow.m; sourceTree = "<group>"; };
+		6535A0341862076400173E0E /* DZGlobalActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGlobalActionView.h; sourceTree = "<group>"; };
+		6535A0351862076400173E0E /* DZGlobalActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZGlobalActionView.m; sourceTree = "<group>"; };
+		6535A039186294FD00173E0E /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
+		6535A03A186294FD00173E0E /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
+		6535A03B186294FD00173E0E /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
+		6535A03C186294FD00173E0E /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseNotes.txt; sourceTree = "<group>"; };
 		654E5A221856DDEF00DED026 /* DZGeometryTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGeometryTools.h; sourceTree = "<group>"; };
 		654E5A231856DDEF00DED026 /* DZGeometryTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZGeometryTools.m; sourceTree = "<group>"; };
 		656F68A818324B2D001F7B7C /* TimeUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,7 +296,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651465271862963E005060CB /* SystemConfiguration.framework in Frameworks */,
+				651465251862960F005060CB /* Security.framework in Frameworks */,
+				6514652318629581005060CB /* CoreTelephony.framework in Frameworks */,
+				6514652118629572005060CB /* AdSupport.framework in Frameworks */,
+				6514651F1862956B005060CB /* libsqlite3.dylib in Frameworks */,
+				6514651D18629563005060CB /* libz.dylib in Frameworks */,
 				656F68AE18324B2D001F7B7C /* CoreGraphics.framework in Frameworks */,
+				6535A03D186294FD00173E0E /* libmtasdk.a in Frameworks */,
 				656F68B018324B2D001F7B7C /* UIKit.framework in Frameworks */,
 				656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */,
 				38A8D4EEDC6D4F34B3F3559A /* libPods.a in Frameworks */,
@@ -499,6 +539,48 @@
 			name = Devices;
 			sourceTree = "<group>";
 		};
+		6535A01F1861E73B00173E0E /* action view */ = {
+			isa = PBXGroup;
+			children = (
+				6535A0201861E78500173E0E /* DZActionView.h */,
+				6535A0211861E78500173E0E /* DZActionView.m */,
+				6535A0231861E7DA00173E0E /* DZActionItemView.h */,
+				6535A0241861E7DA00173E0E /* DZActionItemView.m */,
+				6535A0261861E81200173E0E /* DZActionContentView.h */,
+				6535A0271861E81200173E0E /* DZActionContentView.m */,
+			);
+			name = "action view";
+			sourceTree = "<group>";
+		};
+		6535A029186204E400173E0E /* shake motion */ = {
+			isa = PBXGroup;
+			children = (
+				6535A0301862054400173E0E /* DZShakeRecognizedWindow.h */,
+				6535A0311862054400173E0E /* DZShakeRecognizedWindow.m */,
+			);
+			name = "shake motion";
+			sourceTree = "<group>";
+		};
+		6535A0331862074D00173E0E /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				6535A0341862076400173E0E /* DZGlobalActionView.h */,
+				6535A0351862076400173E0E /* DZGlobalActionView.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		6535A038186294FD00173E0E /* mta */ = {
+			isa = PBXGroup;
+			children = (
+				6535A039186294FD00173E0E /* libmtasdk.a */,
+				6535A03A186294FD00173E0E /* MTA.h */,
+				6535A03B186294FD00173E0E /* MTAConfig.h */,
+				6535A03C186294FD00173E0E /* ReleaseNotes.txt */,
+			);
+			path = mta;
+			sourceTree = "<group>";
+		};
 		654E5A211856DDAF00DED026 /* UITools */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +620,12 @@
 		656F68AA18324B2D001F7B7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				651465261862963E005060CB /* SystemConfiguration.framework */,
+				651465241862960F005060CB /* Security.framework */,
+				6514652218629581005060CB /* CoreTelephony.framework */,
+				6514652018629572005060CB /* AdSupport.framework */,
+				6514651E1862956B005060CB /* libsqlite3.dylib */,
+				6514651C18629563005060CB /* libz.dylib */,
 				656F68AB18324B2D001F7B7C /* Foundation.framework */,
 				656F68AD18324B2D001F7B7C /* CoreGraphics.framework */,
 				656F68AF18324B2D001F7B7C /* UIKit.framework */,
@@ -550,6 +638,7 @@
 		656F68B118324B2D001F7B7C /* TimeUI */ = {
 			isa = PBXGroup;
 			children = (
+				6535A0331862074D00173E0E /* Controls */,
 				65238F541858423500FE5D89 /* MZLoading */,
 				65238F4D1858367600FE5D89 /* PNPart */,
 				65238F371857643800FE5D89 /* Managers */,
@@ -557,7 +646,6 @@
 				65238F1E1857489100FE5D89 /* Models */,
 				65C47CBA1855E0F600796395 /* ViewControllers */,
 				65C47CB81855E0C500796395 /* Commons */,
-				656F68DA18324B38001F7B7C /* DragViewController */,
 				656F68BA18324B2D001F7B7C /* DZAppDelegate.h */,
 				656F68BB18324B2D001F7B7C /* DZAppDelegate.m */,
 				65238EEA1856E86700FE5D89 /* DZAppConfigure.h */,
@@ -721,6 +809,7 @@
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				6535A029186204E400173E0E /* shake motion */,
 				65EE100A185F30F900FA0882 /* errors */,
 				65EE1009185F279400FA0882 /* others */,
 				65768614185DF2FB006D7C0F /* notification */,
@@ -748,6 +837,7 @@
 		65C47CBA1855E0F600796395 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				656F68DA18324B38001F7B7C /* DragViewController */,
 				65EA7636185B69EE00EBF03E /* types */,
 				65238F4518577B1000FE5D89 /* Charts */,
 				65238F44185779D400FE5D89 /* animation */,
@@ -761,6 +851,7 @@
 		65C6BAA5185962F000984D25 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				6535A01F1861E73B00173E0E /* action view */,
 				657685F6185D6234006D7C0F /* messages */,
 				657685E2185C9ED4006D7C0F /* customeView */,
 				65C6BAA6185962F700984D25 /* tableView */,
@@ -790,6 +881,7 @@
 		65EE1009185F279400FA0882 /* others */ = {
 			isa = PBXGroup;
 			children = (
+				6535A038186294FD00173E0E /* mta */,
 				65238EF818572F5500FE5D89 /* Pinyin */,
 			);
 			name = others;
@@ -882,6 +974,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6535A03E186294FD00173E0E /* ReleaseNotes.txt in Resources */,
 				657A56191858DDDA00521B01 /* test.m4a in Resources */,
 				657685FF185D624B006D7C0F /* icon-error@2x.png in Resources */,
 				65768600185D624B006D7C0F /* icon-info.png in Resources */,
@@ -978,10 +1071,12 @@
 				6533198B186022AA0004795B /* NSOperationQueue+DZ.m in Sources */,
 				65238F311857584300FE5D89 /* DZTimeType.m in Sources */,
 				657685EE185D5827006D7C0F /* DZMessage.m in Sources */,
+				6535A0281861E81200173E0E /* DZActionContentView.m in Sources */,
 				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
 				65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */,
 				65238F2518574A1700FE5D89 /* NSString+database.m in Sources */,
 				657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */,
+				6535A0221861E78500173E0E /* DZActionView.m in Sources */,
 				65EF8F01185DFB9000160A71 /* DZSendSelector.m in Sources */,
 				6526C8DE1859893300A53B79 /* DZDevices.m in Sources */,
 				65C6BAA91859636D00984D25 /* DZTableView.mm in Sources */,
@@ -989,12 +1084,15 @@
 				659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */,
 				65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */,
 				65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */,
+				6535A0321862054400173E0E /* DZShakeRecognizedWindow.m in Sources */,
 				65238F21185748A400FE5D89 /* DZTime.m in Sources */,
 				657A56141858D78F00521B01 /* DZAudioManager.m in Sources */,
 				65238F191857393500FE5D89 /* DZAccountManager.m in Sources */,
 				657685EB185CB055006D7C0F /* DZMessageView.m in Sources */,
+				6535A0251861E7DA00173E0E /* DZActionItemView.m in Sources */,
 				654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */,
 				6526C8DA1859883B00A53B79 /* DZTableViewController.m in Sources */,
+				6535A0361862076400173E0E /* DZGlobalActionView.m in Sources */,
 				65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */,
 				65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */,
 				65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */,
@@ -1129,6 +1227,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeUI/TimeUI-Prefix.pch";
 				INFOPLIST_FILE = "TimeUI/TimeUI-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/mta,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1143,6 +1245,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeUI/TimeUI-Prefix.pch";
 				INFOPLIST_FILE = "TimeUI/TimeUI-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/mta,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

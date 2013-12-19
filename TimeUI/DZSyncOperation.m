@@ -45,10 +45,10 @@
 
 - (void) updateTimes
 {
-    NSError* error = nil;
     NSArray* allTimes = [DZActiveTimeDataBase allTimes];
     for (DZTime* time  in allTimes) {
         NSDictionary* dic = [time toJsonObject];
+        NSError* error = nil;
         id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateTime token:_token bodyDatas:dic error:&error];
         NSLog(@"%@ \n %@", error, sobj);
     }

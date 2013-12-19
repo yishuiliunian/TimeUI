@@ -14,6 +14,7 @@ extern "C" {
     float DeviceSystemMajorVersion();
     NSString*  netDeviceMacAddress();
     NSString* DZDevicesIdentify();
+    NSDictionary* DZDevicesInfos();
 #ifdef __cplusplus
 }
 #endif

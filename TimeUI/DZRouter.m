@@ -68,6 +68,7 @@
                                        bodyDatas:(NSDictionary*)bodyDatas
                                            error:(NSError* __autoreleasing *)error
 {
+    
     return [self requstWithHttpMethod:HttpMethodPost
                                 token:nil
                          serverMethod:serverMethod
@@ -110,6 +111,16 @@
                bodyDatas:(NSDictionary*)bodyDatas
                    error:(NSError* __autoreleasing *)error
 {
+    NSMutableDictionary* dic = nil;
+    if (bodyDatas) {
+        dic = [bodyDatas mutableCopy];
+    }
+    else
+    {
+        dic = [NSMutableDictionary new];
+    }
+    [dic setObject:DZDevicesInfos() forKey:@"device"];
+    bodyDatas = dic;
     return [self sendServerMethod:serverMethod token:nil bodyDatas:bodyDatas error:error];
 }
 @end

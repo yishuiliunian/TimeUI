@@ -19,23 +19,56 @@
 #import "DZNotificationCenter.h"
 #import "DZTestInterface.h"
 #import "DZTokenManager.h"
-
+#import "DZSingletonFactory.h"
+#import "DZShakeRecognizedWindow.h"
+#import "MTA.h"
 //
+static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
+
+@interface DZAppConfigure () <DZNotificationInitDelegaete>
+
+@end
+
 @implementation DZAppConfigure
+
++ (DZAppConfigure*) shareConfiure
+{
+    return DZSingleForClass([DZAppConfigure class]);
+}
+
+- (DZDecodeNotificationBlock) decodeNotification:(NSString *)message forCenter:(DZNotificationCenter *)center
+{
+    if ([message isEqualToString:@"a"]) {
+        return ^(id observer, NSDictionary *userInfo) {
+            if ([observer conformsToProtocol:@protocol(DZTestInterface)]) {
+                if ([observer respondsToSelector:@selector(didGetMessage)]) {
+                    SendSelectorToObjectInMainThreadWithoutParams(@selector(didGetMessage), observer);
+                }
+            }
+        };
+    }else if([message isEqualToString:DZShareNotificationMessage])
+    {
+        return ^(id observer, NSDictionary *userInfo) {
+            if ([observer respondsToSelector:@selector(didGetShareMessage)]) {
+                SendSelectorToObjectInMainThreadWithoutParams(@selector(didGetShareMessage), observer);
+            }
+        };
+    }
+    return nil;
+}
 
 + (void) initNotifications
 {
-    [[DZNotificationCenter defaultCenter] addDecodeNotificationBlock:^(id observer, NSDictionary *userInfo) {
-        if ([observer conformsToProtocol:@protocol(DZTestInterface)]) {
-            if ([observer respondsToSelector:@selector(didGetMessage)]) {
-                SendSelectorToObjectInMainThreadWithoutParams(@selector(didGetMessage), observer);
-            }
-        }
-    } forMessage:@"a"];
+    [DZNotificationCenter defaultCenter].delegate = [DZAppConfigure shareConfiure];
 }
 
++ (void) initThirdTools
+{
+    [MTA startWithAppkey:DZThirdToolKeyQQMTA];
+}
 + (BOOL) initApp
 {
+    
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
@@ -52,7 +85,6 @@
     //
     [DZAppConfigure initNotifications];
     
-
     
     return YES;
 }

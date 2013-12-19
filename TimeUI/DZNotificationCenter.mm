@@ -107,7 +107,21 @@ typedef map<NSString*, DZPointerSet> DZObserverMap;
     for (DZPointerSet::iterator itor = set->begin(); itor != set->end(); itor++) {
         __strong id observer = (__bridge id)*itor;
         DZDecodeNotificationBlock block = _decodeBlocksMap[message];
-        block(observer, userInfo);
+        if (block) {
+            block(observer, userInfo);
+        }
+        else
+        {
+            if ([_delegate respondsToSelector:@selector(decodeNotification:forCenter:)]) {
+                block = [_delegate decodeNotification:message forCenter:self];
+                if (block) {
+                    _decodeBlocksMap[message] = block;
+                    block(observer, userInfo);
+                    continue;
+                }
+            }
+            NSCAssert(NO, @"no decode block for %@", message);
+        }
     }
 }
 

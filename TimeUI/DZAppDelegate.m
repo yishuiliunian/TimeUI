@@ -18,6 +18,7 @@
 #import "DZTokenManager.h"
 #import "DZAccountManager.h"
 #import "DZSyncOperation.h"
+#import "DZShakeRecognizedWindow.h"
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 
 @end
@@ -27,7 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [DZAppConfigure initApp];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[DZShakeRecognizedWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     DZDragViewController* dragVC = [[DZDragViewController alloc] init];
     
@@ -46,6 +47,8 @@
 //    self.window.rootViewController = [DZTableViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+//    [DZRegisterAccountOperation runRegiserOperatioWithDelegate:self userEmail:@"asdfddasddddfaddddsf@adf.c" password:@"aa"];
     
     [DZSyncOperation syncAccount:DZActiveAccount];
     return YES;

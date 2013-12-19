@@ -11,6 +11,8 @@
 #include <sys/sysctl.h>
 #include <net/if.h>
 #include <net/if_dl.h>
+#import "NSString+WizString.h"
+#import  <UIDeviceHardware.h>
 
 float DeviceSystemMajorVersion() {
     
@@ -87,10 +89,26 @@ NSString* DZDevicesIdentify()
     static NSString* identify = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        identify = netDeviceMacAddress();
+        identify =  [netDeviceMacAddress() MD5Hash];
     });
     return identify;
 }
+
+
+NSDictionary* DZDevicesInfos()
+{
+    static NSMutableDictionary* infos = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        infos = [NSMutableDictionary new];
+        [infos setObject:DZDevicesIdentify() forKey:@"guid"];
+        [infos setObject:[UIDevice currentDevice].name forKey:@"name"];
+        [infos setObject:@"ios" forKey:@"type"];
+        [infos setObject:[UIDeviceHardware platformString] forKey:@"platform"];
+    });
+    return infos;
+}
+
 @implementation DZDevices
 
 @end

@@ -15,10 +15,6 @@
     return DZDevicesIdentify();
 }
 
-- (NSString*) userGuid
-{
-    return @"aa";
-}
 -(NSString*) description
 {
     return [NSString stringWithFormat:@" %@ %@ %@ %@ %@", self.dateBegin, self.dateEnd, self.detail, self.typeGuid, self.guid];
@@ -63,7 +59,7 @@
     if (self.typeGuid) {
         [json setObject:self.typeGuid forKey:DZTimeKeyTypeGuid];
     }
-    if (self.detail) {
+    if (self.detail && ![self.detail isEqualToString:@""]) {
         [json setObject:self.detail forKey:DZTimeKeyDetail];
     }
     
