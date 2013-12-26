@@ -23,5 +23,9 @@
 - (NSArray*) allTimeTypes;
 
 - (BOOL) delteTimeType:(DZTimeType*)type;
-
+//
+- (BOOL) setTimeVersion:(int64_t)version;
+- (int64_t) timeVersion;
+- (BOOL) setTimeTypeVersion:(int64_t)version;
+- (int64_t) timeTypeVersion;
 @end

@@ -25,6 +25,24 @@ static NSString* const kDZ_T_Type_C_Identifiy = @"IDENTIFIY";
 static NSString* const kDZ_T_Type_C_Nmae = @"NAME";
 static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
 
+
+
+//
+static NSString* const kDZTableMeta = @"DZMETA";
+static NSString* const kDZ_T_Meta_C_NAME = @"META_NAME";
+static NSString* const kDZ_T_Meta_C_KEY = @"META_KEY";
+static NSString* const kDZ_T_Meta_C_VALUE = @"META_VALUE";
+//
+
+
+/**
+ *  同步的version存储的key定义
+ */
+
+static NSString* const kDZSyncVersion = @"sync_version";
+static NSString* const kDZSyncTimeVersion = @"time";
+static NSString* const kDZSyncTimeTypeVersion = @"time.type";
+
 @implementation DZTimeDB
 
 - (BOOL) isExistAtTable:(NSString*)tName primayKey:(NSString*)key value:(id)value
@@ -176,6 +194,65 @@ static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
 {
     NSString* sql = [NSString selecteSql:kDZTableType whereArray:Nil decorate:nil];
     return [self timeTypeArrayFromSQL:sql];
+}
+
+//
+- (NSString*) metaValueByName:(NSString*)name key:(NSString*)key
+{
+    NSString* sql = [NSString selecteSql:kDZTableMeta whereArray:@[kDZ_T_Meta_C_NAME, kDZ_T_Meta_C_KEY] decorate:nil];
+    FMResultSet* re = [_dataBase executeQuery:sql withArgumentsInArray:@[name, key]];
+    BOOL exist = [re next];
+    NSString* value = nil;
+    if (exist) {
+        value = [re stringForColumn:kDZ_T_Meta_C_VALUE];
+    }
+    [re close];
+    return value;
+}
+
+- (BOOL) updateValueByName:(NSString*)name key:(NSString*)key value:(NSString*)value
+{
+    if ([self metaValueByName:name key:key]) {
+        NSString* updateSql = [NSString updateSql:kDZTableMeta setFields:@[kDZ_T_Meta_C_VALUE] whereArray:@[kDZ_T_Meta_C_NAME, kDZ_T_Meta_C_KEY]];
+        return [_dataBase executeUpdate:updateSql, value, name, key];
+    } else {
+        NSString* insertSql = [NSString insertSql:kDZTableMeta columns:@[kDZ_T_Meta_C_VALUE,kDZ_T_Meta_C_NAME,kDZ_T_Meta_C_KEY]];
+         return [_dataBase executeUpdate:insertSql, value, name, key];
+    }
+}
+
+- (BOOL) setSyncVersion:(NSString*)key version:(int64_t)version
+{
+    return [self updateValueByName:kDZSyncVersion key:key value:[@(version) stringValue]];
+}
+
+- (int64_t) getSyncVersion:(NSString*)key
+{
+    NSString* value = [self metaValueByName:kDZSyncVersion key:key];
+    if (!value) {
+        return -1;
+    }
+    return [value longLongValue];
+}
+
+- (BOOL) setTimeVersion:(int64_t)version
+{
+    return [self setSyncVersion:kDZSyncTimeVersion version:version];
+}
+
+- (int64_t) timeVersion
+{
+    return [self getSyncVersion:kDZSyncTimeVersion];
+}
+
+- (BOOL) setTimeTypeVersion:(int64_t)version
+{
+    return [self setSyncVersion:kDZSyncTimeTypeVersion version:version];
+}
+
+- (int64_t) timeTypeVersion
+{
+    return [self getSyncVersion:kDZSyncTimeTypeVersion];
 }
 
 @end

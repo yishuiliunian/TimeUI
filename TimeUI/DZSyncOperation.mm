@@ -12,6 +12,11 @@
 #import "DZTime.h"
 #import "NSOperationQueue+DZ.h"
 #import "DZContextManager.h"
+typedef struct {
+    int64_t time;
+    int64_t timeType;
+}DZServerVersions;
+
 @interface DZSyncOperation ()
 {
     NSString* _token;
@@ -43,6 +48,11 @@
              if (token) {
                  _token = token;
                  NSError* err = nil;
+                 DZServerVersions versions;
+                 if ([self getAllVersions:versions error:&err]) {
+                     
+                 }
+                 
                  [self updateTimes:&err];
                  if (err) {
                      DZDefaultContextManager.lastSyncError = err;
@@ -66,9 +76,23 @@
     for (DZTime* time  in allTimes) {
         NSDictionary* dic = [time toJsonObject];
         __unused id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateTime token:_token bodyDatas:dic error:error];
-        if (error) {
+        if (*error) {
             return NO;
         }
+    }
+    return YES;
+}
+
+- (BOOL) getAllVersions:( DZServerVersions &  )version error:(NSError* __autoreleasing*)error
+{
+    id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodVersionsGetAll token:_token bodyDatas:@{} error:error];
+    if (*error) {
+        return NO;
+    }
+    if ([sobj isKindOfClass:[NSDictionary class]]) {
+        NSDictionary* dic = (NSDictionary*)sobj;
+        version.time = [dic[@"times"] longLongValue];
+        version.timeType = [dic[@"types"] longLongValue];
     }
     return YES;
 }

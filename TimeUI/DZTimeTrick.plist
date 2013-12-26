@@ -14,8 +14,23 @@
 		<string>varchar(1000)</string>
 		<key>TYPE</key>
 		<string>varchar(200)</string>
+		<key>LOCAL_CHANGED</key>
+		<string>int</string>
+		<key>DEVICE_GUID</key>
+		<string>char(40)</string>
+		<key>USER_GUID</key>
+		<string>char(40)</string>
 		<key>PRIMARAY_KEY</key>
 		<string>GUID</string>
+	</dict>
+	<key>DZMETA</key>
+	<dict>
+		<key>META_NAME</key>
+		<string>varchar(200)</string>
+		<key>META_KEY</key>
+		<string>varchar(200)</string>
+		<key>META_VALUE</key>
+		<string>varchar(200)</string>
 	</dict>
 	<key>DZTYPE</key>
 	<dict>
@@ -24,6 +39,14 @@
 		<key>NAME</key>
 		<string>varchar(200)</string>
 		<key>DETAIL</key>
+		<string>varchar(1000)</string>
+		<key>FINISHED</key>
+		<string>int</string>
+		<key>LOCALCHANGED</key>
+		<string>int</string>
+		<key>USER_GUID</key>
+		<string>char(40)</string>
+		<key>OTHER_INFOS</key>
 		<string>varchar(1000)</string>
 		<key>PRIMARAY_KEY</key>
 		<string>IDENTIFIY</string>

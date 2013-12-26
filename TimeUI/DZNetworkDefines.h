@@ -31,6 +31,6 @@ static NSString* const DZServerMethodRegiserUser       = @"user.register";
 static NSString* const DZServerMethodUserLogin         = @"user.login";
 static NSString* const DZServerMethodTokenUpdate       = @"token.update";
 static NSString* const DZServerMethodUpdateTime        = @"time.update";
-
+static NSString* const DZServerMethodVersionsGetAll = @"version.get_all";
 
 #endif
