@@ -62,8 +62,6 @@
 		6535A0281861E81200173E0E /* DZActionContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0271861E81200173E0E /* DZActionContentView.m */; };
 		6535A0321862054400173E0E /* DZShakeRecognizedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0311862054400173E0E /* DZShakeRecognizedWindow.m */; };
 		6535A0361862076400173E0E /* DZGlobalActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0351862076400173E0E /* DZGlobalActionView.m */; };
-		6535A03D186294FD00173E0E /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6535A039186294FD00173E0E /* libmtasdk.a */; };
-		6535A03E186294FD00173E0E /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6535A03C186294FD00173E0E /* ReleaseNotes.txt */; };
 		654629271864115000E7C072 /* DZCommandThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 654629261864115000E7C072 /* DZCommandThread.m */; };
 		654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E5A231856DDEF00DED026 /* DZGeometryTools.m */; };
 		656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AB18324B2D001F7B7C /* Foundation.framework */; };
@@ -109,6 +107,8 @@
 		65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4E06E1859664E005316E8 /* DZTableViewCell.m */; };
 		65EE100D185F312100FA0882 /* NSError+dz.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EE100C185F312100FA0882 /* NSError+dz.m */; };
 		65EF8F01185DFB9000160A71 /* DZSendSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EF8F00185DFB9000160A71 /* DZSendSelector.m */; };
+		65F0AAC6186CA284001C6302 /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F0AAC2186CA284001C6302 /* libmtasdk.a */; };
+		65F0AAC7186CA284001C6302 /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 65F0AAC5186CA284001C6302 /* ReleaseNotes.txt */; };
 		65F28FAF18641DE3009403D1 /* DZAnalysisModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F28FAE18641DE3009403D1 /* DZAnalysisModels.m */; };
 		65F28FB318657A4C009403D1 /* DZResourcesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F28FB218657A4C009403D1 /* DZResourcesManager.m */; };
 		65F28FD218658899009403D1 /* basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F28FD018658899009403D1 /* basketball.png */; };
@@ -230,10 +230,6 @@
 		6535A0311862054400173E0E /* DZShakeRecognizedWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZShakeRecognizedWindow.m; sourceTree = "<group>"; };
 		6535A0341862076400173E0E /* DZGlobalActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGlobalActionView.h; sourceTree = "<group>"; };
 		6535A0351862076400173E0E /* DZGlobalActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZGlobalActionView.m; sourceTree = "<group>"; };
-		6535A039186294FD00173E0E /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
-		6535A03A186294FD00173E0E /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
-		6535A03B186294FD00173E0E /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
-		6535A03C186294FD00173E0E /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseNotes.txt; sourceTree = "<group>"; };
 		654629251864115000E7C072 /* DZCommandThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCommandThread.h; sourceTree = "<group>"; };
 		654629261864115000E7C072 /* DZCommandThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCommandThread.m; sourceTree = "<group>"; };
 		654E5A221856DDEF00DED026 /* DZGeometryTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGeometryTools.h; sourceTree = "<group>"; };
@@ -315,6 +311,10 @@
 		65EF8EFF185DFB9000160A71 /* DZSendSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSendSelector.h; sourceTree = "<group>"; };
 		65EF8F00185DFB9000160A71 /* DZSendSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSendSelector.m; sourceTree = "<group>"; };
 		65EF8F02185E010900160A71 /* DZTestInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZTestInterface.h; sourceTree = "<group>"; };
+		65F0AAC2186CA284001C6302 /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
+		65F0AAC3186CA284001C6302 /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
+		65F0AAC4186CA284001C6302 /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
+		65F0AAC5186CA284001C6302 /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseNotes.txt; sourceTree = "<group>"; };
 		65F28FAD18641DE3009403D1 /* DZAnalysisModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAnalysisModels.h; sourceTree = "<group>"; };
 		65F28FAE18641DE3009403D1 /* DZAnalysisModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAnalysisModels.m; sourceTree = "<group>"; };
 		65F28FB118657A4C009403D1 /* DZResourcesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZResourcesManager.h; sourceTree = "<group>"; };
@@ -330,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6514653A1863EF1A005060CB /* GLKit.framework in Frameworks */,
+				65F0AAC6186CA284001C6302 /* libmtasdk.a in Frameworks */,
 				651465271862963E005060CB /* SystemConfiguration.framework in Frameworks */,
 				651465251862960F005060CB /* Security.framework in Frameworks */,
 				6514652318629581005060CB /* CoreTelephony.framework in Frameworks */,
@@ -337,7 +338,6 @@
 				6514651F1862956B005060CB /* libsqlite3.dylib in Frameworks */,
 				6514651D18629563005060CB /* libz.dylib in Frameworks */,
 				656F68AE18324B2D001F7B7C /* CoreGraphics.framework in Frameworks */,
-				6535A03D186294FD00173E0E /* libmtasdk.a in Frameworks */,
 				656F68B018324B2D001F7B7C /* UIKit.framework in Frameworks */,
 				656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */,
 				38A8D4EEDC6D4F34B3F3559A /* libPods.a in Frameworks */,
@@ -679,17 +679,6 @@
 			name = Controls;
 			sourceTree = "<group>";
 		};
-		6535A038186294FD00173E0E /* mta */ = {
-			isa = PBXGroup;
-			children = (
-				6535A039186294FD00173E0E /* libmtasdk.a */,
-				6535A03A186294FD00173E0E /* MTA.h */,
-				6535A03B186294FD00173E0E /* MTAConfig.h */,
-				6535A03C186294FD00173E0E /* ReleaseNotes.txt */,
-			);
-			path = mta;
-			sourceTree = "<group>";
-		};
 		654E5A211856DDAF00DED026 /* UITools */ = {
 			isa = PBXGroup;
 			children = (
@@ -975,7 +964,7 @@
 		65EE1009185F279400FA0882 /* others */ = {
 			isa = PBXGroup;
 			children = (
-				6535A038186294FD00173E0E /* mta */,
+				65F0AAC1186CA284001C6302 /* mta */,
 				65238EF818572F5500FE5D89 /* Pinyin */,
 			);
 			name = others;
@@ -988,6 +977,17 @@
 				65EE100C185F312100FA0882 /* NSError+dz.m */,
 			);
 			name = errors;
+			sourceTree = "<group>";
+		};
+		65F0AAC1186CA284001C6302 /* mta */ = {
+			isa = PBXGroup;
+			children = (
+				65F0AAC2186CA284001C6302 /* libmtasdk.a */,
+				65F0AAC3186CA284001C6302 /* MTA.h */,
+				65F0AAC4186CA284001C6302 /* MTAConfig.h */,
+				65F0AAC5186CA284001C6302 /* ReleaseNotes.txt */,
+			);
+			path = mta;
 			sourceTree = "<group>";
 		};
 		65F28FB018657A38009403D1 /* ResourcesManager */ = {
@@ -1080,9 +1080,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6535A03E186294FD00173E0E /* ReleaseNotes.txt in Resources */,
 				65F28FD318658899009403D1 /* basketball@2x.png in Resources */,
 				657A56191858DDDA00521B01 /* test.m4a in Resources */,
+				65F0AAC7186CA284001C6302 /* ReleaseNotes.txt in Resources */,
 				657685FF185D624B006D7C0F /* icon-error@2x.png in Resources */,
 				65768600185D624B006D7C0F /* icon-info.png in Resources */,
 				65F28FD218658899009403D1 /* basketball.png in Resources */,
@@ -1348,8 +1348,8 @@
 				GCC_PREFIX_HEADER = "TimeUI/TimeUI-Prefix.pch";
 				INFOPLIST_FILE = "TimeUI/TimeUI-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/TimeUI/mta/**",
 					"$(inherited)",
-					/Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/mta,
 				);
 				OTHER_CFLAGS = "-DDZDEBUG=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1371,8 +1371,8 @@
 				GCC_PREFIX_HEADER = "TimeUI/TimeUI-Prefix.pch";
 				INFOPLIST_FILE = "TimeUI/TimeUI-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/TimeUI/mta/**",
 					"$(inherited)",
-					/Users/stonedong/Documents/MyProjects/TimeUI/TimeUI/mta,
 				);
 				OTHER_CFLAGS = "-DDZDEBUG=0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
