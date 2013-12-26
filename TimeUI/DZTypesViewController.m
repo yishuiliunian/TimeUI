@@ -14,7 +14,8 @@
 #import "DZMessageContainerView.h"
 #import "DZNotificationCenter.h"
 #import "DZTestInterface.h"
-
+#import "DZAnalysisManager.h"
+#import "DZImageCache.h"
 @interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZTestInterface>
 {
     NSMutableArray* _typesArray;
@@ -38,6 +39,9 @@
 {
     [super viewDidLoad];
     _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
+    for (DZTimeType* type  in _timeTypes) {
+        [[DZAnalysisManager shareManager] triggleAnaylysisWeekWithType:type];
+    }
     [self.tableView reloadData];
     
     [[DZNotificationCenter defaultCenter] addObserver:self forKey:@"a"];
@@ -46,7 +50,7 @@
 
 - (CGFloat) dzTableView:(DZTableView *)tableView cellHeightAtRow:(NSInteger)row
 {
-    return 80;
+    return DZTypeCellHeight;
 }
 - (NSInteger) numberOfRowsInDZTableView:(DZTableView *)tableView
 {
@@ -61,7 +65,10 @@
         cell = [[DZTypeCell alloc] initWithIdentifiy:cellIdentifiy];
     }
     DZTimeType* type = [_timeTypes objectAtIndex:row];
-    cell.textLabel.text = type.name;
+    cell.nameLabel.text = type.name;
+    cell.countLabel.text = [@(2) stringValue];
+    cell.costLabel.text = @"asdfasd";
+    cell.typeImageView.image = DZCachedImageByName(@"basketball");
     cell.backgroundColor = [UIColor lightGrayColor];
     return cell;
 }
@@ -116,9 +123,7 @@
 
 - (void) dzTableView:(DZTableView *)tableView editCellDataAtRow:(NSInteger)row
 {
-    [DZMessageShareCenter showErrorMessage:@"a"];
-    [[DZNotificationCenter defaultCenter] postMessage:@"a" userInfo:@{}];
-    [[DZNotificationCenter defaultCenter] removeObserver:self forMessage:@"a"];
+    [DZShareAnalysisManager triggleCommand:@""];
 }
 
 

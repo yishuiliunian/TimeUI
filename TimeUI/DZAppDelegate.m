@@ -48,9 +48,21 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+//    DZAccount* account = DZActiveAccount;
+//    [DZRegisterAccountOperation runRegiserOperatioWithDelegate:self userEmail:account.email password:account.password];
+    
     return YES;
 }
 
+- (void) registerAccountOperation:(DZRegisterAccountOperation *)op failedWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+
+- (void) registerAccountOperation:(DZRegisterAccountOperation *)op successWithUserInfo:(NSDictionary *)userInfo
+{
+    NSLog(@"register success");
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -23,6 +23,8 @@
 #import "DZShakeRecognizedWindow.h"
 #import "MTA.h"
 #import "DZContextManager.h"
+#import "DZThemeManager.h"
+#import <TestFlight.h>
 //
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
@@ -89,6 +91,7 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 + (void) initThirdTools
 {
     [MTA startWithAppkey:DZThirdToolKeyQQMTA];
+    [TestFlight takeOff:@"2ff1689d-fcae-4f55-85e4-f5fe95832705"];
 }
 + (BOOL) initApp
 {
@@ -105,11 +108,10 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
         [type setValuesForKeysWithDictionary:dic];
         [DZActiveTimeDataBase updateTimeType:type];
     }
-    
     //
     [DZAppConfigure initNotifications];
-    
-    
+    [self initThirdTools];
+    [DZThemeManager shareManager];
     return YES;
 }
 @end

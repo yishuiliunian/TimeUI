@@ -36,5 +36,7 @@ typedef enum {
 
 @interface DZContextManager : NSObject
 @property (nonatomic, assign) DZSyncContext currentSyncContext;
+@property (nonatomic, strong) NSError* lastSyncError;
+@property (nonatomic, strong) NSDate* lastSyncDate;
 + (DZContextManager*) shareManager;
 @end

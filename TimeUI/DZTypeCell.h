@@ -8,6 +8,11 @@
 
 #import "DZTableViewCell.h"
 
+#define DZTypeCellHeight 90
+
 @interface DZTypeCell : DZTableViewCell
-@property (nonatomic, strong) UILabel* textLabel;
+@property (nonatomic, strong, readonly) UIImageView * typeImageView;
+@property (nonatomic, strong, readonly) UILabel     * costLabel;
+@property (nonatomic, strong,readonly ) UILabel     * nameLabel;
+@property (nonatomic, strong, readonly) UILabel     * countLabel;
 @end

@@ -12,6 +12,11 @@
 #import "DZDevices.h"
 #import "NSError+dz.h"
 
+#if DZDEBUG == 1
+NSString* DZDefautlServerUrl = @"http://127.0.0.1:9091/json";
+#else
+NSString* DZDefautlServerUrl = @"http://www.catchitime.com:9091/json";
+#endif
 @implementation DZRouter
 
 + (DZRouter*) defaultRouter
@@ -25,7 +30,7 @@
     if (!self) {
         return nil;
     }
-    _baseURL = [NSURL URLWithString:@"http://127.0.0.1:9091/json"];
+    _baseURL = [NSURL URLWithString:DZDefautlServerUrl];
     return self;
 }
 

@@ -9,12 +9,13 @@
 #import "DZContextManager.h"
 #import "DZSingletonFactory.h"
 #import "DZNotificationCenter.h"
+#import "DZUserDataManager.h"
 @interface DZContextManager ()
 
 @end
 
 @implementation DZContextManager
-
+@synthesize lastSyncDate = _lastSyncDate;
 + (DZContextManager*) shareManager
 {
     return DZSingleForClass([DZContextManager class]);
@@ -27,6 +28,27 @@
         NSDictionary* userInfo = @{@"old":@(old), @"new":@(_currentSyncContext)};
         [[DZNotificationCenter defaultCenter] postMessage:kDZSyncContextChangedMessage userInfo:userInfo];
     }
+}
+
+- (void) setLastSyncDate:(NSDate *)lastSyncDate
+{
+    if (_lastSyncDate != lastSyncDate) {
+        [[DZUserDataManager shareManager] setActiveUserData:lastSyncDate forKey:@"lastSyncDate"];
+        _lastSyncDate = lastSyncDate;
+    }
+}
+
+- (NSDate*) lastSyncDate
+{
+    if (!_lastSyncDate) {
+        NSDate* date = [[DZUserDataManager shareManager] activeUserDataForKey:@"lastSyncDate"];
+        if (!date) {
+            date = [NSDate date];
+            [self setLastSyncDate:date];
+            return date;
+        }
+    }
+    return _lastSyncDate;
 }
 
 @end

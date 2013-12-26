@@ -1,9 +1,9 @@
 PODS:
-  - CocoaLumberjack (1.6.5.1):
+  - CocoaLumberjack (1.7.0):
     - CocoaLumberjack/Core
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.6.5.1)
-  - CocoaLumberjack/Extensions (1.6.5.1):
+  - CocoaLumberjack/Core (1.7.0)
+  - CocoaLumberjack/Extensions (1.7.0):
     - CocoaLumberjack/Core
   - CTFeedback (1.0.4)
   - FMDB (2.1):
@@ -18,6 +18,7 @@ PODS:
   - NSDate-TKExtensions (0.4)
   - PNChart (0.2.2)
   - PulsingHalo (0.0.1)
+  - TestFlightSDK (2.1.3-noadid-beta)
   - TheAmazingAudioEngine (1.2)
   - TSMessages (0.9.4):
     - HexColors
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - NSDate-TKExtensions
   - PNChart (from `git://github.com/yishuiliunian/PNChart.git`)
   - PulsingHalo
+  - TestFlightSDK
   - TheAmazingAudioEngine
   - TSMessages
   - TTCounterLabel
@@ -46,7 +48,7 @@ EXTERNAL SOURCES:
     :git: git://github.com/yishuiliunian/PNChart.git
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
+  CocoaLumberjack: be87113f649942f020a37c061c58009b6ee5ff68
   CTFeedback: 2694741ba0c753d6f222ee120424807fed9f5c9f
   FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
@@ -56,6 +58,7 @@ SPEC CHECKSUMS:
   NSDate-TKExtensions: a8600d99a8ee39ffa442c81e94ba1781c96c32d1
   PNChart: 55161d5bf01a4a8e5593e5c45b34af70eae7ed83
   PulsingHalo: 6c5b7e18ca5c6c1319d5e2fd277f123ed74a1435
+  TestFlightSDK: 8f8941d0dd990508e127480b06cc6c36379c1b49
   TheAmazingAudioEngine: e544f61ab180d6e83c9478cc47355420f61d7281
   TSMessages: 5ab92604b02e49a755d2cc2baf114d2248a90977
   TTCounterLabel: c5067a72c7110647a170c0b3e03a899324004ca3

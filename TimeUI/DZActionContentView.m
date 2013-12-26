@@ -7,14 +7,33 @@
 //
 
 #import "DZActionContentView.h"
+#import <CTFeedbackViewController.h>
+@interface DZActionContentView ()
+{
+    
+}
+@end
 
 @implementation DZActionContentView
 @synthesize height=_height;
+
+
+- (void) handleTapGestruceRecoginzer:(UITapGestureRecognizer*)tgrz
+{
+    if(tgrz.state == UIGestureRecognizerStateRecognized)
+    {
+        CTFeedbackViewController* vc = [[CTFeedbackViewController alloc] init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:vc]  animated:YES completion:^{
+            
+        }];
+    }
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self addTapTarget:self selector:@selector(handleTapGestruceRecoginzer:)];
         _height = 0;
     }
     return self;

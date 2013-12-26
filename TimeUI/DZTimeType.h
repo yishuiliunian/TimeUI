@@ -16,5 +16,7 @@ static NSString* const kDZKeyDetail = @"detail";
 @property (nonatomic, strong) NSString* identifiy;
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* detail;
-
+@property (nonatomic, strong) NSDate* createDate;
+@property (nonatomic, strong) NSString* imageAvatarGuid;
+@property (nonatomic, strong, readonly) UIImage* imageAvatar;
 @end

@@ -34,6 +34,7 @@
         if (bDZSyncContextIsSyncing) {
             return;
         }
+        DZDefaultContextManager.lastSyncError = nil;
         DZSyncContextSet(DZSyncContextSyncAppleToken);
         [[DZTokenManager shareManager] appleToken:_account.email
                                          password:_account.password
@@ -44,11 +45,14 @@
                  NSError* err = nil;
                  [self updateTimes:&err];
                  if (err) {
+                     DZDefaultContextManager.lastSyncError = err;
                      DZSyncContextSet(DZSyncContextSyncError);
                  }
+                 DZSyncContextSet(DZSyncContextNomal);
              }
              else
              {
+                 DZDefaultContextManager.lastSyncError = error;
                  DZSyncContextSet(DZSyncContextSyncError);
              }
         }];

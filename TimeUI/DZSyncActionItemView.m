@@ -11,6 +11,7 @@
 #import "DZSyncOperation.h"
 #import "DZAccountManager.h"
 #import "DZNotificationCenter.h"
+#import <NSDate-TKExtensions.h>
 @interface DZSyncActionItemView () <DZSyncContextChangedInterface>
 {
     UIButton* _actionButton;
@@ -35,6 +36,8 @@
         _messageLabel = [UILabel new];
         [self addSubview:_messageLabel];
         
+        _messageLabel.text = [DZDefaultContextManager.lastSyncDate localDescription];
+        
         [[DZNotificationCenter defaultCenter] addObserver:self forKey:kDZSyncContextChangedMessage];
     }
     return self;
@@ -43,6 +46,16 @@
 - (void) syncContextChangedFrom:(DZSyncContext)origin toContext:(DZSyncContext)aim
 {
     [self setNeedsLayout];
+    switch (aim) {
+        case DZSyncContextSyncError:
+        {
+            NSError* error  = DZDefaultContextManager.lastSyncError;
+            _messageLabel.text = error.localizedDescription;
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void) configureButtonWithSyncing:(BOOL)isSyncing
