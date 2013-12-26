@@ -92,7 +92,6 @@
         } else {
             response(token, error);
         }
-
     });
 }
 
