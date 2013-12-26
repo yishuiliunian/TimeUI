@@ -1,5 +1,6 @@
 language: objective-c
 xcode_workplace: TimeUI.xcworkspace
 xcode_scheme: TimeUI
+xcode_project: TimeUI.xcodeproj
 
 before_install: gem install cocoapods
