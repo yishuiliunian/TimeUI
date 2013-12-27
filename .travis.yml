@@ -25,6 +25,7 @@ after_script:
 - security delete-keychain ios-build.keychain
 - rm -f ~/Library/MobileDevice/Provisioning\ Profiles/$PROFILE_NAME.mobileprovision
 after_success:
+- ls $OUTPUTDIR
 - if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
 - echo "This is a pull request. No deployment will be done."
 - exit 0
