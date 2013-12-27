@@ -1,12 +1,12 @@
 #!/bin/sh
-if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
-  echo "This is a pull request. No deployment will be done."
-  exit 0
-fi
-if [[ "$TRAVIS_BRANCH" != "master" ]]; then
-  echo "Testing on a branch other than master. No deployment will be done."
-  exit 0
-fi
+# if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
+#   echo "This is a pull request. No deployment will be done."
+#   exit 0
+# fi
+# if [[ "$TRAVIS_BRANCH" != "master" ]]; then
+#   echo "Testing on a branch other than master. No deployment will be done."
+#   exit 0
+# fi
 
 # Thanks @djacobs https://gist.github.com/djacobs/2411095
 # Thanks @johanneswuerbach https://gist.github.com/johanneswuerbach/5559514
@@ -14,6 +14,9 @@ fi
 PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
 OUTPUTDIR="$PWD/build/Release-iphoneos"
 
+TESTFLIGHT_TEAM_TOKEN="5bfb46cb74291758452c20108e140b4e_NjY0MzAyMDEyLTAyLTI5IDA0OjIwOjI3LjkzNDUxOQ"
+TESTFLIGHT_API_TOKEN="09f46113ef9ed406c650bfd01f446ee6_MzM1MjQ0MjAxMi0wMi0yOCAwNDoxOTo0NC41MTY4MTg"
+APP_NAME="TimeUI"
 echo "***************************"
 echo "*        Signing          *"
 echo "***************************"

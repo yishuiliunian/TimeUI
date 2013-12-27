@@ -2,19 +2,65 @@ language: objective-c
 cache: bundler
 before_install: gem install cocoapods
 before_script:
+- openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/certs/dist.p12.enc -d
+  -a -out scripts/certs/dist.p12
+- openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/certs/dist.cer.enc -d
+  -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/profile/catchtime.mobileprovision.enc
+  -d -a -out scripts/profile/catchtime.mobileprovision -d -a -out scripts/profile/catchtime.mobileprovision
+- security create-keychain -p travis ios-build.keychain
+- security import ./scripts/certs/apple.cer -k ~/Library/Keychains/ios-build.keychain
+  -T /usr/bin/codesign
+- security import ./scripts/certs/dist.cer -k ~/Library/Keychains/ios-build.keychain
+  -T /usr/bin/codesign
+- security import ./scripts/certs/dist.p12 -k ~/Library/Keychains/ios-build.keychain
+  -P $CER_ENCRYPT_PASSWORD -T /usr/bin/codesign
+- mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+- cp ./scripts/profile/$PROFILE_NAME.mobileprovision ~/Library/MobileDevice/Provisioning\
+  Profiles/
 - ./scripts/update-bundle.sh
-script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk iphonesimulator -configuration
-  Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk iphonesimulator -configuration  Release
+  OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_script:
+- security delete-keychain ios-build.keychain
+- rm -f ~/Library/MobileDevice/Provisioning\ Profiles/$PROFILE_NAME.mobileprovision
 after_success:
-- ./scripts/sign-and-upload.sh
+- if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
+- echo "This is a pull request. No deployment will be done."
+- exit 0
+- fi
+- if [[ "$TRAVIS_BRANCH" != "master" ]]; then
+- echo "Testing on a branch other than master. No deployment will be done."
+- exit 0
+- fi
+- PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
+- OUTPUTDIR="$PWD/build/Release-iphoneos"
+- echo "***************************"
+- echo "*        Signing          *"
+- echo "***************************"
+- xcrun -log -sdk iphoneos PackageApplication "$OUTPUTDIR/$APP_NAME.app" -o "$OUTPUTDIR/$APP_NAME.ipa"
+  -sign "$DEVELOPER_NAME" -embed "$PROVISIONING_PROFILE"
+- zip -r -9 "$OUTPUTDIR/$APP_NAME.app.dSYM.zip" "$OUTPUTDIR/$APP_NAME.app.dSYM"
+- RELEASE_DATE=`date '+%Y-%m-%d %H:%M:%S'`
+- RELEASE_NOTES="Build--- $TRAVIS_BUILD_NUMBER\nUploaded--- $RELEASE_DATE"
+- if [ ! -z "$TESTFLIGHT_TEAM_TOKEN" ] && [ ! -z "$TESTFLIGHT_API_TOKEN" ]; then
+- echo ""
+- echo "***************************"
+- echo "* Uploading to Testflight *"
+- echo "***************************"
+- curl http://testflightapp.com/api/builds.json \
+- -F file="@$OUTPUTDIR/$APP_NAME.ipa" \
+- -F dsym="@$OUTPUTDIR/$APP_NAME.app.dSYM.zip" \
+- -F api_token="$TESTFLIGHT_API_TOKEN" \
+- -F team_token="$TESTFLIGHT_TEAM_TOKEN" \
+- -F distribution_lists='Internal' \
+- -F notes="$RELEASE_NOTES"
+- fi
 env:
   global:
-  - APP_NAME="Catch Time"
-  - 'DEVELOPER_NAME="iPhone Distribution: Zhao Dong"'
+  - APP_NAME="TimeUI"
+  - DEVELOPER_NAME="iPhone Developer: Zhao Dong (FM9P6LZ2YK)"
   - PROFILE_NAME="catchtime"
-  - secure: lVwGa8mSyyJJTC72A83o1g0zFo8919aIhB5UFHHHwY01IhbvJS4Brst7rhWDFaZpgYHrbKPYaZgxAR8vbQUyz+TIFVuYsqJZG0pA4hVHLlYy1P2ElOr4FFXvA7x3Y+axGfZZPAHPW+q4iDMa555PvPUExTspsRIQhO+/AOUWJGs=
-  - secure: Zugh6N1jEMgFLtlUHJkNt4JQ9MPKpkBhakcLFSZ1s8PzTXL6SRtgmunoYeFHtA8nTmxqkHG4yeh86w5GION8putjtF0v2asehQ+NvFXSfiD+5Kh2hMdBugMM/kQB8BGjASou7Jl6iDsCHJ3nbZ+MemUqMmb1y4h5E9dDyJIKNrQ=
-  - secure: GwJ+YS5cRbDotwpHwmXxve64fdX36aXjjEC01C6kpjMbFT6fPsxABTJXwWb07kTkJljoyNuGypptpysRy2QHJ4GE5FZmP6o70jqCx0XE+3HVai66a/W2JDGe3/GGnLOJOa/iGCQMQut8kdDBY70CRyjIehsDXMOIEp0XjnTCfgo=
-  - secure: TucT5KNh5gUxCxz0AtttKSYeb35Og+f3mhV9QLHluw8boyvbQQSe2SfWAVPo0BnPmzVxpEqzW/NE6nvvX9ZSMFMNH+UbIIZoAlXdtz0gI3ckmLu7kqrxuwuK/Qm/DgSo0DnM9EAvGStRvzkI0pjb9TEb+xwY6IkmtaAn9Ca0+Do=
-  - secure: Bf7Kq8t+3MWOUrXIw7VSTyEZj6/GXGyXpfD4mpjQZQdiNM8sFWqXelkfuWqxDrZk7gHj8BL4TgLrDZGuVWWaE3tok1iXt9inoGhjwp7sXoe2wFq+1+8fk/N7XLiQIMSs0wdqMr/+0gpll2UNuFC+wpQ5gzXxxHx0OT9uVCZMPrE=
+  - secure: W7flkZtK7lRLAfaLaD/F4UDfBPzwe2t2A4wGC1b5OMyGjT4NGDLR/MQIOoJh4EpyyuCdYX87GJRaU0GqyHlVZdvLP4+ojvU7UIAt2d4uiTxOprYM96oCMwIfh/LLOW/raBWPrI6SMGqNlPNgy1ZrvewZRrS6KVGFIoc3+BcDCcI=
+  - secure: Ti35Z8ouzEg9U89J4Q2eKjWjNj1FEacBsYmkugppCmVhfvrOnwU/AH5e2kM9ESsCjpixKQevFxDR5VgUZEX3NGpmhaaid2CxvqDZKlD/e/o2B2R2J7c/yKWWGD8cxoHQfIJRr6L+TU5r0KZoyqd9rPM8ZuxS3nKHWcQ1jhquojg=
+  - secure: OBo6HtkrCycIeVvpciS4nT5wlAjA7+tMcWPXKTpnOvHR4JXa+8YcMViuRnZRC/nZ6329R+82mlV48ICnoMnWAQ9Woy0VKWWj6Zx2VYC9C92IyV5NduUm3etnzXu3BwZRpFtui/SOgIswaVzoHUiFryr2YRSSdSwkj3Dmfrn0/VA=
