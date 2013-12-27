@@ -3,7 +3,7 @@ cache: bundler
 before_install: gem install cocoapods
 before_script:
 - ./scripts/update-bundle.sh
-script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk  iphoneos -configuration
+script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk iphonesimulator -configuration
   Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_script:
 after_success:
