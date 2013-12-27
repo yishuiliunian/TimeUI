@@ -2,6 +2,7 @@ language: objective-c
 cache: bundler
 before_install: gem install cocoapods
 before_script:
+- GIT_MESSAGE=`git log --max-count=2`
 - openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/certs/dist.p12.enc -d
   -a -out scripts/certs/dist.p12
 - openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/certs/dist.cer.enc -d
@@ -41,13 +42,13 @@ after_success:
   -sign "$DEVELOPER_NAME" -embed "$PROVISIONING_PROFILE"
 - zip -r -9 "$OUTPUTDIR/$APP_NAME.app.dSYM.zip" "$OUTPUTDIR/$APP_NAME.app.dSYM"
 - RELEASE_DATE=`date '+%Y-%m-%d %H:%M:%S'`
-- RELEASE_NOTES="Build--- $TRAVIS_BUILD_NUMBER\nUploaded--- $RELEASE_DATE"
+- RELEASE_NOTES="Build--- $TRAVIS_BUILD_NUMBER\n$GIT_MESSAGE \nUploaded--- $RELEASE_DATE"
 - if [ ! -z "$TESTFLIGHT_TEAM_TOKEN" ] && [ ! -z "$TESTFLIGHT_API_TOKEN" ]; then
 - echo ""
 - echo "***************************"
 - echo "* Uploading to Testflight *"
 - echo "***************************"
-- curl http://testflightapp.com/api/builds.json -F file="@$OUTPUTDIR/$APP_NAME.ipa" -F dsym="@$OUTPUTDIR/$APP_NAME.app.dSYM.zip" -F api_token="$TESTFLIGHT_API_TOKEN" -F team_token="$TESTFLIGHT_TEAM_TOKEN"  -F distribution_lists='Internal' -F notify=True -F notes="$RELEASE_NOTES"
+- curl http://testflightapp.com/api/builds.json -F file="@$OUTPUTDIR/$APP_NAME.ipa" -F dsym="@$OUTPUTDIR/$APP_NAME.app.dSYM.zip" -F api_token="$TESTFLIGHT_API_TOKEN" -F team_token="$TESTFLIGHT_TEAM_TOKEN"  -F distribution_lists='time_tester' -F notify=True -F notes="$RELEASE_NOTES"
 - fi
 - security delete-keychain ios-build.keychain
 - rm -f ~/Library/MobileDevice/Provisioning\ Profiles/$PROFILE_NAME.mobileprovision
