@@ -6,8 +6,7 @@ before_script:
   -a -out scripts/certs/dist.p12
 - openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/certs/dist.cer.enc -d
   -a -out scripts/certs/dist.cer
-- openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/profile/catchtime.mobileprovision.enc
-  -d -a -out scripts/profile/catchtime.mobileprovision -d -a -out scripts/profile/catchtime.mobileprovision
+- openssl aes-256-cbc -k "$CER_ENCRYPT_PASSWORD" -in scripts/profile/catchtime.mobileprovision.enc -d -a -out scripts/profile/catchtime.mobileprovision
 - security create-keychain -p travis ios-build.keychain
 - security import ./scripts/certs/apple.cer -k ~/Library/Keychains/ios-build.keychain
   -T /usr/bin/codesign
@@ -55,7 +54,7 @@ after_success:
 env:
   global:
   - APP_NAME="TimeUI"
-  - DEVELOPER_NAME="iPhone Developer: Zhao Dong"
+  - DEVELOPER_NAME="iPhone Developer\: Zhao Dong"
   - PROFILE_NAME="catchtime"
   - secure: W7flkZtK7lRLAfaLaD/F4UDfBPzwe2t2A4wGC1b5OMyGjT4NGDLR/MQIOoJh4EpyyuCdYX87GJRaU0GqyHlVZdvLP4+ojvU7UIAt2d4uiTxOprYM96oCMwIfh/LLOW/raBWPrI6SMGqNlPNgy1ZrvewZRrS6KVGFIoc3+BcDCcI=
   - secure: Ti35Z8ouzEg9U89J4Q2eKjWjNj1FEacBsYmkugppCmVhfvrOnwU/AH5e2kM9ESsCjpixKQevFxDR5VgUZEX3NGpmhaaid2CxvqDZKlD/e/o2B2R2J7c/yKWWGD8cxoHQfIJRr6L+TU5r0KZoyqd9rPM8ZuxS3nKHWcQ1jhquojg=
