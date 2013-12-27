@@ -20,8 +20,6 @@ before_script:
 - ./scripts/update-bundle.sh
 script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk iphonesimulator -configuration  Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_script:
-- security delete-keychain ios-build.keychain
-- rm -f ~/Library/MobileDevice/Provisioning\ Profiles/$PROFILE_NAME.mobileprovision
 after_success:
 - ls  /Users/travis/build/yishuiliunian/TimeUI/build/Release-iphoneos/
 - if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
@@ -34,9 +32,9 @@ after_success:
 - fi
 - PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
 - OUTPUTDIR="$PWD/build/Release-iphoneos"
+- ls $PWD
+- ls $PWD/build
 - ls $OUTPUTDIR
-- ls $OUTPUTDIR/build
-- ls $OUTPUTDIR/build/Release-iphoneos
 - echo "***************************"
 - echo "*        Signing          *"
 - echo "***************************"
@@ -52,6 +50,8 @@ after_success:
 - echo "***************************"
 - curl http://testflightapp.com/api/builds.json file="@$OUTPUTDIR/$APP_NAME.ipa" -F dsym="@$OUTPUTDIR/$APP_NAME.app.dSYM.zip" -F api_token="$TESTFLIGHT_API_TOKEN" -F team_token="$TESTFLIGHT_TEAM_TOKEN"  -F distribution_lists='Internal' -F notes="$RELEASE_NOTES"
 - fi
+- security delete-keychain ios-build.keychain
+- rm -f ~/Library/MobileDevice/Provisioning\ Profiles/$PROFILE_NAME.mobileprovision
 env:
   global:
   - APP_NAME="TimeUI"
