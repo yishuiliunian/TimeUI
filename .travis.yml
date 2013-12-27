@@ -18,7 +18,7 @@ before_script:
 - mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 - cp ./scripts/profile/$PROFILE_NAME.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 - ./scripts/update-bundle.sh
-script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk iphonesimulator -configuration  Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk iphoneos -configuration  Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_script:
 after_success:
 - ls  /Users/travis/build/yishuiliunian/TimeUI/build/Release-iphoneos/
