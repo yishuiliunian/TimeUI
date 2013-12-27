@@ -46,19 +46,16 @@ typedef struct {
                                          response:^(NSString *token, NSError *error)
          {
              if (token) {
-                 _token = token;
                  NSError* err = nil;
-                 DZServerVersions versions;
-                 if ([self getAllVersions:versions error:&err]) {
-                     
-                 }
-                 
-                 [self updateTimes:&err];
-                 if (err) {
+                 _token = token;
+                 if (![self syncAllDatas:&err]) {
                      DZDefaultContextManager.lastSyncError = err;
                      DZSyncContextSet(DZSyncContextSyncError);
                  }
-                 DZSyncContextSet(DZSyncContextNomal);
+                 else
+                 {
+                     DZSyncContextSet(DZSyncContextNomal);
+                 }
              }
              else
              {
@@ -67,6 +64,18 @@ typedef struct {
              }
         }];
     }
+}
+
+- (BOOL) syncAllDatas:(NSError* __autoreleasing*)error
+{
+    DZServerVersions versions;
+    if (![self getAllVersions:versions error:error]) {
+        return NO;
+    }
+    if (![self updateTimes:error]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (BOOL) updateTimes:(NSError* __autoreleasing*)error
