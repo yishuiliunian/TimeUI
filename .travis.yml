@@ -36,6 +36,9 @@ after_success:
 - fi
 - PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
 - OUTPUTDIR="$PWD/build/Release-iphoneos"
+- ls $OUTPUTDIR
+- ls $OUTPUTDIR/build
+- ls $OUTPUTDIR/build/Release-iphoneos
 - echo "***************************"
 - echo "*        Signing          *"
 - echo "***************************"
