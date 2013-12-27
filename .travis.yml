@@ -1,3 +1,21 @@
 language: objective-c
-script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+cache: bundler
 before_install: gem install cocoapods
+before_script:
+- ./scripts/add-key.sh
+- ./scripts/update-bundle.sh
+script: xctool -workspace TimeUI.xcworkspace -scheme TimeUI -sdk  iphoneos -configuration
+  Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+after_script:
+- ./scripts/remove-key.sh
+after_success:
+- ./scripts/sign-and-upload.sh
+env:
+  global:
+  - APP_NAME="Catch Time"
+  - 'DEVELOPER_NAME="iPhone Distribution: Zhao Dong"'
+  - PROFILE_NAME="catchtime"
+  - secure: lVwGa8mSyyJJTC72A83o1g0zFo8919aIhB5UFHHHwY01IhbvJS4Brst7rhWDFaZpgYHrbKPYaZgxAR8vbQUyz+TIFVuYsqJZG0pA4hVHLlYy1P2ElOr4FFXvA7x3Y+axGfZZPAHPW+q4iDMa555PvPUExTspsRIQhO+/AOUWJGs=
+  - secure: Zugh6N1jEMgFLtlUHJkNt4JQ9MPKpkBhakcLFSZ1s8PzTXL6SRtgmunoYeFHtA8nTmxqkHG4yeh86w5GION8putjtF0v2asehQ+NvFXSfiD+5Kh2hMdBugMM/kQB8BGjASou7Jl6iDsCHJ3nbZ+MemUqMmb1y4h5E9dDyJIKNrQ=
+  - secure: GwJ+YS5cRbDotwpHwmXxve64fdX36aXjjEC01C6kpjMbFT6fPsxABTJXwWb07kTkJljoyNuGypptpysRy2QHJ4GE5FZmP6o70jqCx0XE+3HVai66a/W2JDGe3/GGnLOJOa/iGCQMQut8kdDBY70CRyjIehsDXMOIEp0XjnTCfgo=
+  - secure: TucT5KNh5gUxCxz0AtttKSYeb35Og+f3mhV9QLHluw8boyvbQQSe2SfWAVPo0BnPmzVxpEqzW/NE6nvvX9ZSMFMNH+UbIIZoAlXdtz0gI3ckmLu7kqrxuwuK/Qm/DgSo0DnM9EAvGStRvzkI0pjb9TEb+xwY6IkmtaAn9Ca0+Do=
