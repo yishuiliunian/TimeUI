@@ -41,6 +41,7 @@ static NSString* const PRIMARAY_KEY = @"PRIMARAY_KEY";
     }
     
     [dictionary setObject:createTableSql forKey:tableName];
+
     return dictionary;
 }
 

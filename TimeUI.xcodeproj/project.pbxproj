@@ -109,6 +109,7 @@
 		65EF8F01185DFB9000160A71 /* DZSendSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EF8F00185DFB9000160A71 /* DZSendSelector.m */; };
 		65F0AAC6186CA284001C6302 /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F0AAC2186CA284001C6302 /* libmtasdk.a */; };
 		65F0AAC7186CA284001C6302 /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 65F0AAC5186CA284001C6302 /* ReleaseNotes.txt */; };
+		65F0AAEB186DB6F4001C6302 /* DZObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F0AAEA186DB6F4001C6302 /* DZObject.m */; };
 		65F28FAF18641DE3009403D1 /* DZAnalysisModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F28FAE18641DE3009403D1 /* DZAnalysisModels.m */; };
 		65F28FB318657A4C009403D1 /* DZResourcesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F28FB218657A4C009403D1 /* DZResourcesManager.m */; };
 		65F28FD218658899009403D1 /* basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F28FD018658899009403D1 /* basketball.png */; };
@@ -315,6 +316,8 @@
 		65F0AAC3186CA284001C6302 /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
 		65F0AAC4186CA284001C6302 /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
 		65F0AAC5186CA284001C6302 /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseNotes.txt; sourceTree = "<group>"; };
+		65F0AAE9186DB6F4001C6302 /* DZObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZObject.h; sourceTree = "<group>"; };
+		65F0AAEA186DB6F4001C6302 /* DZObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZObject.m; sourceTree = "<group>"; };
 		65F28FAD18641DE3009403D1 /* DZAnalysisModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAnalysisModels.h; sourceTree = "<group>"; };
 		65F28FAE18641DE3009403D1 /* DZAnalysisModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAnalysisModels.m; sourceTree = "<group>"; };
 		65F28FB118657A4C009403D1 /* DZResourcesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZResourcesManager.h; sourceTree = "<group>"; };
@@ -541,6 +544,8 @@
 				65238F20185748A400FE5D89 /* DZTime.m */,
 				65238F2F1857584300FE5D89 /* DZTimeType.h */,
 				65238F301857584300FE5D89 /* DZTimeType.m */,
+				65F0AAE9186DB6F4001C6302 /* DZObject.h */,
+				65F0AAEA186DB6F4001C6302 /* DZObject.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				65238F191857393500FE5D89 /* DZAccountManager.m in Sources */,
 				657685EB185CB055006D7C0F /* DZMessageView.m in Sources */,
 				6535A0251861E7DA00173E0E /* DZActionItemView.m in Sources */,
+				65F0AAEB186DB6F4001C6302 /* DZObject.m in Sources */,
 				654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */,
 				6514654318640AB2005060CB /* DZAnalysisManager.m in Sources */,
 				651465381863EEBE005060CB /* DZThemeManager.m in Sources */,

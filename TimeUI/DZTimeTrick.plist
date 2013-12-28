@@ -34,22 +34,22 @@
 	</dict>
 	<key>DZTYPE</key>
 	<dict>
-		<key>IDENTIFIY</key>
+		<key>GUID</key>
 		<string>varchar(200)</string>
+		<key>CREATE_DATE</key>
+		<string>varchar(20)</string>
 		<key>NAME</key>
 		<string>varchar(200)</string>
 		<key>DETAIL</key>
 		<string>varchar(1000)</string>
 		<key>FINISHED</key>
 		<string>int</string>
-		<key>LOCALCHANGED</key>
+		<key>LOCAL_CHANGED</key>
 		<string>int</string>
-		<key>USER_GUID</key>
-		<string>char(40)</string>
 		<key>OTHER_INFOS</key>
 		<string>varchar(1000)</string>
 		<key>PRIMARAY_KEY</key>
-		<string>IDENTIFIY</string>
+		<string>GUID</string>
 	</dict>
 </dict>
 </plist>

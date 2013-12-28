@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DZObject.h"
+
 
 static NSString* const DZTimeKeyDeviceGuid = @"deviceGuid";
 static NSString* const DZTimeKeyUserGuid   = @"userGuid";
@@ -15,7 +17,10 @@ static NSString* const DZTimeKeyBegin      = @"dateBegin";
 static NSString* const DZTimeKeyEnd        = @"dateEnd";
 static NSString* const DZTimeKeyTypeGuid     = @"typeGuid";
 static NSString* const DZTimeKeyDetail     = @"detail";
-@interface DZTime : NSObject
+
+
+
+@interface DZTime : DZObject
 @property (nonatomic, strong) NSString* deviceGuid;
 @property (nonatomic, strong) NSString* userGuid;
 @property (nonatomic, strong) NSString* guid;
@@ -23,6 +28,7 @@ static NSString* const DZTimeKeyDetail     = @"detail";
 @property (nonatomic, strong) NSDate* dateEnd;
 @property (nonatomic, strong) NSString* typeGuid;
 @property (nonatomic, strong) NSString* detail;
+@property (nonatomic, assign) BOOL localChanged;
 - (NSDictionary*) toJsonObject;
 - (NSDictionary*) parseDayCost;
 @end

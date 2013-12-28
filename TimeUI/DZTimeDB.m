@@ -21,9 +21,13 @@ static NSString* const kDZ_T_Time_C_Guid = @"GUID";
 
 
 static NSString* const kDZTableType = @"DZTYPE";
-static NSString* const kDZ_T_Type_C_Identifiy = @"IDENTIFIY";
+static NSString* const kDZ_T_Type_C_GUID = @"GUID";
 static NSString* const kDZ_T_Type_C_Nmae = @"NAME";
 static NSString* const kDZ_T_Type_C_Detail = @"DETAIL";
+static NSString* const kDZ_T_Type_C_CreateDate = @"CREATE_DATE";
+static NSString* const kDZ_T_Type_C_LocalChanged = @"LOCAL_CHANGED";
+static NSString* const kDZ_T_Type_C_Other_Infos = @"OTHER_INFOS";
+static NSString* const kDZ_T_Type_C_FINISHED = @"FINISHED";
 
 
 
@@ -125,14 +129,14 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 - (NSArray*) timesByType:(DZTimeType *)type
 {
     NSString* sql = [NSString selecteSql:kDZTableTimeName whereArray:@[kDZ_T_Time_C_Type] decorate:Nil];
-    FMResultSet* reset = [_dataBase executeQuery:sql withArgumentsInArray:@[type.identifiy]];
+    FMResultSet* reset = [_dataBase executeQuery:sql withArgumentsInArray:@[type.guid]];
     return [self timeArrayFromFMResult:reset];
 }
 
 - (BOOL) delteTimeType:(DZTimeType *)type
 {
-    NSString* sql = [NSString deleteSql:kDZTableType whereArray:@[kDZ_T_Type_C_Identifiy] decorate:nil];
-    return [_dataBase executeUpdate:sql withArgumentsInArray:@[type.identifiy]];
+    NSString* sql = [NSString deleteSql:kDZTableType whereArray:@[kDZ_T_Type_C_GUID] decorate:nil];
+    return [_dataBase executeUpdate:sql withArgumentsInArray:@[type.guid]];
 }
 
 - (NSArray*) timesInOneWeakByType:(DZTimeType *)type
@@ -140,26 +144,47 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     NSDate* now = [NSDate date];
     NSDate* oneWeak = [now TKDateBySubtractingWeeks:1];
     NSString* sql = [NSString selecteSql:kDZTableTimeName whereArray:@[kDZ_T_Time_C_Type] decorate:[NSString stringWithFormat:@" and %@ > ? and %@ < ?", kDZ_T_Time_C_Date_Begin, kDZ_T_Time_C_Date_End]];
-    FMResultSet* rest = [_dataBase executeQuery:sql withArgumentsInArray:@[type.identifiy, [oneWeak ISO8601String], [now ISO8601String]]];
+    FMResultSet* rest = [_dataBase executeQuery:sql withArgumentsInArray:@[type.guid, [oneWeak ISO8601String], [now ISO8601String]]];
     return [self timeArrayFromFMResult:rest];
 }
 
 - (BOOL) isExistType:(DZTimeType*)type
 {
-    return [self isExistAtTable:kDZTableType primayKey:kDZ_T_Type_C_Identifiy value:type.identifiy];
+    return [self isExistAtTable:kDZTableType primayKey:kDZ_T_Type_C_GUID value:type.guid];
 }
 
 - (BOOL) updateTimeType:(DZTimeType*)type
 {
     if ([self isExistType:type]) {
         NSString* updateSql = [NSString updateSql:kDZTableType setFields:@[kDZ_T_Type_C_Detail,
-                                                                           kDZ_T_Type_C_Nmae] whereArray:@[kDZ_T_Type_C_Identifiy]];
-        return [_dataBase executeUpdate:updateSql withArgumentsInArray:@[type.detail, type.name, type.identifiy]];
+                                                                           kDZ_T_Type_C_Nmae,
+                                                                           kDZ_T_Type_C_CreateDate,
+                                                                           kDZ_T_Type_C_FINISHED,
+                                                                           kDZ_T_Type_C_LocalChanged,
+                                                                           kDZ_T_Type_C_Other_Infos]
+                                       whereArray:@[kDZ_T_Type_C_GUID]];
+        return [_dataBase executeUpdate:updateSql withArgumentsInArray:@[type.detail,
+                                                                         type.name,
+                                                                         [type.createDate TKISO8601String]  ,
+                                                                         @(type.isFinished),
+                                                                         @(type.localChanged),
+                                                                         type.otherInfos,
+                                                                         type.guid]];
     } else {
         NSString* insertSql = [NSString insertSql:kDZTableType columns:@[kDZ_T_Type_C_Detail,
                                                                          kDZ_T_Type_C_Nmae,
-                                                                         kDZ_T_Type_C_Identifiy]];
-        return [_dataBase executeUpdate:insertSql withArgumentsInArray:@[type.detail, type.name, type.identifiy]];
+                                                                         kDZ_T_Type_C_CreateDate,
+                                                                         kDZ_T_Type_C_FINISHED,
+                                                                         kDZ_T_Type_C_LocalChanged,
+                                                                         kDZ_T_Type_C_Other_Infos,
+                                                                         kDZ_T_Type_C_GUID]];
+        return [_dataBase executeUpdate:insertSql withArgumentsInArray:@[type.detail,
+                                                                         type.name,
+                                                                         [type.createDate TKISO8601String]  ,
+                                                                         @(type.isFinished),
+                                                                         @(type.localChanged),
+                                                                         type.otherInfos,
+                                                                         type.guid]];
     }
 }
 
@@ -169,9 +194,14 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     NSMutableArray* types = [NSMutableArray new];
     while ([result next]) {
         DZTimeType* type = [DZTimeType new];
-        type.identifiy = [result stringForColumn:kDZ_T_Type_C_Identifiy];
+        type.guid = [result stringForColumn:kDZ_T_Type_C_GUID];
         type.name = [result stringForColumn:kDZ_T_Type_C_Nmae];
         type.detail = [result stringForColumn:kDZ_T_Type_C_Detail];
+        type.createDate = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_Type_C_CreateDate]];
+        type.isFinished = [result boolForColumn:kDZ_T_Type_C_FINISHED];
+        type.localChanged = [result boolForColumn:kDZ_T_Type_C_LocalChanged];
+        type.otherInfos = [result stringForColumn:kDZ_T_Type_C_Other_Infos];
+        type.userGuid = self.userGuid;
         [types addObject:type];
     }
     [result close];
@@ -182,10 +212,16 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 {
     return [self timeTypeArrayFromFMResult:[_dataBase executeQuery:sql]];
 }
+- (DZTimeType*) timeTypByGUID:(NSString*)guid
+{
+    NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_GUID] decorate:Nil];
+    FMResultSet* re = [_dataBase executeQuery:sql withArgumentsInArray:@[guid]];
+    return [self timeTypeArrayFromFMResult:re].lastObject;
+}
 
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy
 {
-    NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_Identifiy] decorate:Nil];
+    NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_Nmae] decorate:Nil];
     FMResultSet* re = [_dataBase executeQuery:sql withArgumentsInArray:@[identifiy]];
     return [self timeTypeArrayFromFMResult:re].lastObject;
 }

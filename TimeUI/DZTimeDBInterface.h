@@ -20,6 +20,7 @@
 //
 - (BOOL) updateTimeType:(DZTimeType*)type;
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy;
+- (DZTimeType*) timeTypByGUID:(NSString*)guid;
 - (NSArray*) allTimeTypes;
 
 - (BOOL) delteTimeType:(DZTimeType*)type;

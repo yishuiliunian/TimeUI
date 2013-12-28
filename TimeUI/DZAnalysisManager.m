@@ -41,7 +41,7 @@
 {
     @synchronized(_typesWeekModels)
     {
-        [_typesWeekModels setObject:midek forKey:type.identifiy];
+        [_typesWeekModels setObject:midek forKey:type.name];
     }
 }
 

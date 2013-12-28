@@ -104,7 +104,7 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
     NSData* data = [NSData dataWithContentsOfFile:path];
     NSArray* typesInitial = [NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments| NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:Nil];
     for (NSDictionary* dic  in typesInitial) {
-        DZTimeType* type = [DZTimeType new];
+        DZTimeType* type = [[DZTimeType alloc] initGenGUID];
         [type setValuesForKeysWithDictionary:dic];
         [DZActiveTimeDataBase updateTimeType:type];
     }

@@ -50,7 +50,7 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
     time.dateBegin = self.lastTrickDate;
     time.dateEnd = [NSDate date];
     [self setLastTrickDate:time.dateEnd];
-    time.typeGuid = type.identifiy;
+    time.typeGuid = type.guid;
     time.guid = [DZGlobals genGUID];
     [DZActiveTimeDataBase updateTime:time];
 }
@@ -62,21 +62,21 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
 
 - (void) setTimeType:(DZTimeType *)timeType
 {
-    [[DZUserDataManager shareManager] setActiveUserData:timeType.identifiy forKey:kDZCurrentTimeType];
+    [[DZUserDataManager shareManager] setActiveUserData:timeType.guid forKey:kDZCurrentTimeType];
 }
 
 - (DZTimeType*) timeType
 {
     NSString* type = [[DZUserDataManager shareManager] activeUserDataForKey:kDZCurrentTimeType];
     if (type) {
-        return [DZActiveTimeDataBase tiemTypeByIdentifiy:type];
+        return [DZActiveTimeDataBase timeTypByGUID:type];
     }
     else
     {
         NSArray* all = [DZActiveTimeDataBase allTimeTypes];
         if (all.count) {
             DZTimeType* aType = all.firstObject;
-            [[DZUserDataManager shareManager] setActiveUserData:aType.identifiy forKey:kDZCurrentTimeType];
+            [[DZUserDataManager shareManager] setActiveUserData:aType.guid forKey:kDZCurrentTimeType];
             return aType;
         }
     }

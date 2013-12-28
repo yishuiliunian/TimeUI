@@ -7,16 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DZObject.h"
+static NSString* const SJKTypeGuid = @"guid";
+static NSString* const SJKTypeIdentify = @"identify";
+static NSString* const SJKTypeName = @"name";
+static NSString* const SJKTypeDetail = @"detail";
+static NSString* const SJKTypeCrateDate = @"create_date";
+static NSString* const SJKTypeImageAvatarGuid = @"avatar_guid";
+static NSString* const SJKTypeFinished = @"finished";
+static NSString* const SJKTypeUserGuid = @"user_guid";
 
-static NSString* const kDZKeyIdentifiy = @"identifiy";
-static NSString* const kDZKeyName = @"name";
-static NSString* const kDZKeyDetail = @"detail";
 
-@interface DZTimeType : NSObject
-@property (nonatomic, strong) NSString* identifiy;
+@interface DZTimeType : DZObject
+
+@property (nonatomic, strong) NSString* guid;
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* detail;
 @property (nonatomic, strong) NSDate* createDate;
 @property (nonatomic, strong) NSString* imageAvatarGuid;
+@property (nonatomic, assign) BOOL isFinished;
+@property (nonatomic, assign) BOOL localChanged;
+@property (nonatomic, strong) NSString* otherInfos;
+@property (nonatomic, strong) NSString* userGuid;
 @property (nonatomic, strong, readonly) UIImage* imageAvatar;
+- (instancetype) initGenGUID;
 @end
