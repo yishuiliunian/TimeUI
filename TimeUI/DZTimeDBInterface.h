@@ -22,8 +22,12 @@
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy;
 - (DZTimeType*) timeTypByGUID:(NSString*)guid;
 - (NSArray*) allTimeTypes;
+- (NSArray*) allChangedTimes;
+- (BOOL) setTime:(DZTime*)time localchanged:(BOOL)localchanged;
 
 - (BOOL) delteTimeType:(DZTimeType*)type;
+- (NSArray*) allLocalChangedTypes;
+- (BOOL) setTimeType:(DZTimeType*)type localchanged:(BOOL)changed;
 //
 - (BOOL) setTimeVersion:(int64_t)version;
 - (int64_t) timeVersion;

@@ -45,13 +45,12 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
 
 - (void) addTimeLogWithType:(DZTimeType*)type detail:(NSString*)detail
 {
-    DZTime* time = [[DZTime alloc] init];
+    DZTime* time = [[DZTime alloc] initGenGUID];
     time.detail = detail ? detail : @"";
     time.dateBegin = self.lastTrickDate;
     time.dateEnd = [NSDate date];
     [self setLastTrickDate:time.dateEnd];
     time.typeGuid = type.guid;
-    time.guid = [DZGlobals genGUID];
     [DZActiveTimeDataBase updateTime:time];
 }
 

@@ -12,7 +12,12 @@
 static NSString* const kDZDBName = @"time.db";
 
 @implementation DZAccount
-
+- (void) setIdentifiy:(NSString *)identifiy
+{
+    if (_identifiy != identifiy) {
+        _identifiy = identifiy;
+    }
+}
 - (NSString*) documentsPath
 {
     NSString* path = [DZFileUtility userDocumentsPath:self.identifiy];

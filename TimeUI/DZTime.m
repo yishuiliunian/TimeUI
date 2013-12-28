@@ -8,6 +8,7 @@
 
 #import "DZTime.h"
 #import <NSDate-TKExtensions.h>
+#import "NSDate+SSToolkitAdditions.h"
 #import "DZDevices.h"
 @implementation DZTime
 - (NSString*) deviceGuid
@@ -73,6 +74,67 @@
     if (self.deviceGuid) {
         [json setObject:self.deviceGuid forKey:DZTimeKeyDeviceGuid];
     }
+    [json setObject:_detail forKey:DZTimeKeyDetail];
     return json;
+}
+
+- (void) commonInit
+{
+    isMarshalSucceed = YES;
+    _detail = @"";
+}
+- (instancetype) initGenGUID
+{
+    self = [super initGenGUID];
+    if (self) {
+        [self commonInit];
+        _localChanged = YES;
+    }
+    return self;
+}
+
+- (void) setValue:(id)value forKey:(NSString *)key
+{
+    if ([key isEqualToString:DZTimeKeyEnd]) {
+        _dateEnd = [NSDate dateFromISO8601String:value];
+        if (!_dateEnd) {
+            isMarshalSucceed = NO;
+        }
+    }
+    else if ([key isEqualToString:DZTimeKeyBegin])
+    {
+        _dateBegin = [NSDate dateFromISO8601String:value];
+        if (!_dateBegin) {
+            isMarshalSucceed = NO;
+        }
+    }
+    else if ([key isEqualToString:DZTimeKeyDetail])
+    {
+        _detail = value;
+    }
+    else if ([key isEqualToString:DZTimeKeyDeviceGuid])
+    {
+        _deviceGuid = value;
+    }
+    else if ([key isEqualToString:DZTimeKeyTypeGuid])
+    {
+        _typeGuid = value;
+    }
+    else if ([key isEqualToString:DZTimeKeyUserGuid])
+    {
+        _userGuid = value;
+    }
+    else if ([key isEqualToString:DZTimeKeyGuid])
+    {
+        self.guid = value;
+    }
+}
+- (instancetype) init
+{
+    self = [super init];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
 }
 @end

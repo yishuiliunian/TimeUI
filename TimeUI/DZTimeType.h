@@ -19,8 +19,6 @@ static NSString* const SJKTypeUserGuid = @"user_guid";
 
 
 @interface DZTimeType : DZObject
-
-@property (nonatomic, strong) NSString* guid;
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* detail;
 @property (nonatomic, strong) NSDate* createDate;
@@ -30,5 +28,5 @@ static NSString* const SJKTypeUserGuid = @"user_guid";
 @property (nonatomic, strong) NSString* otherInfos;
 @property (nonatomic, strong) NSString* userGuid;
 @property (nonatomic, strong, readonly) UIImage* imageAvatar;
-- (instancetype) initGenGUID;
+
 @end

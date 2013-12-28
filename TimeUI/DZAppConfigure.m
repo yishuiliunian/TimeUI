@@ -25,6 +25,7 @@
 #import "DZContextManager.h"
 #import "DZThemeManager.h"
 #import <TestFlight.h>
+#import "DZUserDataManager.h"
 //
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
@@ -99,15 +100,22 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
-    //initTypes
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"InitTypesData" ofType:@"json"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
-    NSArray* typesInitial = [NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments| NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:Nil];
-    for (NSDictionary* dic  in typesInitial) {
-        DZTimeType* type = [[DZTimeType alloc] initGenGUID];
-        [type setValuesForKeysWithDictionary:dic];
-        [DZActiveTimeDataBase updateTimeType:type];
+    
+    NSString* key = @"init";
+    BOOL inited =  [[[DZUserDataManager shareManager] activeUserDataForKey:key] boolValue];
+    if (!inited) {
+        //initTypes
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"InitTypesData" ofType:@"json"];
+        NSData* data = [NSData dataWithContentsOfFile:path];
+        NSArray* typesInitial = [NSJSONSerialization  JSONObjectWithData:data options:NSJSONReadingAllowFragments| NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:Nil];
+        for (NSDictionary* dic  in typesInitial) {
+            DZTimeType* type = [[DZTimeType alloc] initGenGUID];
+            [type setValuesForKeysWithDictionary:dic];
+            [DZActiveTimeDataBase updateTimeType:type];
+        }
+        [[DZUserDataManager shareManager] setActiveUserData:@(YES) forKey:key];
     }
+
     //
     [DZAppConfigure initNotifications];
     [self initThirdTools];

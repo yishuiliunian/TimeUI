@@ -24,10 +24,10 @@
 }
 - (instancetype) initGenGUID
 {
-    self = [super init];
+    self = [super initGenGUID];
     if (self) {
-        _guid = [DZGlobals genGUID];
         _createDate = [NSDate date];
+        _localChanged = YES;
         [self commonInit];
     }
     return self;

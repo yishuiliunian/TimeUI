@@ -9,6 +9,15 @@
 #import "DZObject.h"
 
 @implementation DZObject
+
+- (instancetype) initGenGUID
+{
+    self = [super init];
+    if (self) {
+        _guid = [DZGlobals genGUID];
+    }
+    return self;
+}
 - (NSDictionary*) toJsonObject
 {
     return @{};

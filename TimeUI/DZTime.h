@@ -10,20 +10,19 @@
 #import "DZObject.h"
 
 
-static NSString* const DZTimeKeyDeviceGuid = @"deviceGuid";
-static NSString* const DZTimeKeyUserGuid   = @"userGuid";
-static NSString* const DZTimeKeyGuid       = @"guid";
-static NSString* const DZTimeKeyBegin      = @"dateBegin";
-static NSString* const DZTimeKeyEnd        = @"dateEnd";
-static NSString* const DZTimeKeyTypeGuid     = @"typeGuid";
-static NSString* const DZTimeKeyDetail     = @"detail";
+static NSString* const DZTimeKeyDeviceGuid = @"DeviceGUID";
+static NSString* const DZTimeKeyUserGuid   = @"UserGUID";
+static NSString* const DZTimeKeyGuid       = @"Guid";
+static NSString* const DZTimeKeyBegin      = @"DateBegin";
+static NSString* const DZTimeKeyEnd        = @"DateEnd";
+static NSString* const DZTimeKeyTypeGuid   = @"TypeGUID";
+static NSString* const DZTimeKeyDetail     = @"Detail";
 
 
 
 @interface DZTime : DZObject
 @property (nonatomic, strong) NSString* deviceGuid;
 @property (nonatomic, strong) NSString* userGuid;
-@property (nonatomic, strong) NSString* guid;
 @property (nonatomic, strong) NSDate* dateBegin;
 @property (nonatomic, strong) NSDate* dateEnd;
 @property (nonatomic, strong) NSString* typeGuid;

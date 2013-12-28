@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface DZObject : NSObject
+{
+    BOOL isMarshalSucceed;
+}
+@property (nonatomic, assign, readonly) BOOL isMarshalSucceed;
+@property (nonatomic, strong) NSString* guid;
+- (instancetype) initGenGUID;
 - (NSDictionary*) toJsonObject;
 @end

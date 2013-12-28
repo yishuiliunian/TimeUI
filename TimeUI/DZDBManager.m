@@ -9,15 +9,11 @@
 #import "DZDBManager.h"
 #import "DZTimeDB.h"
 #import "DZAccountManager.h"
+#import "DZSingletonFactory.h"
 @implementation DZDBManager
 + (DZDBManager*) shareManager
 {
-    static DZDBManager* manager;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[DZDBManager alloc] init];
-    });
-    return manager;
+    return DZSingleForClass([DZDBManager class]);
 }
 
 - (id<DZTimeDBInterface>) timeDBInterface

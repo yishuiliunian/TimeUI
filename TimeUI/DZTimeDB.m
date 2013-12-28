@@ -18,7 +18,8 @@ static NSString* const kDZ_T_Time_C_Date_End = @"DATE_END";
 static NSString* const kDZ_T_Time_C_Detail = @"DETAIL";
 static NSString* const kDZ_T_Time_C_Type = @"TYPE";
 static NSString* const kDZ_T_Time_C_Guid = @"GUID";
-
+static NSString* const kDZ_T_Time_C_DeviceGUID = @"DEVICE_GUID";
+static NSString* const kDZ_T_Time_C_Local_Changed = @"LOCAL_CHANGED";
 
 static NSString* const kDZTableType = @"DZTYPE";
 static NSString* const kDZ_T_Type_C_GUID = @"GUID";
@@ -48,7 +49,7 @@ static NSString* const kDZSyncTimeVersion = @"time";
 static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 
 @implementation DZTimeDB
-
+#pragma mark - Common Tools
 - (BOOL) isExistAtTable:(NSString*)tName primayKey:(NSString*)key value:(id)value
 {
     NSString* sql = [NSString selecteSql:tName whereArray:@[key] decorate:Nil];
@@ -57,6 +58,8 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     [re close];
     return exist;
 }
+
+#pragma mark - Time
 
 - (BOOL) isTimeExist:(DZTime*)time
 {
@@ -69,11 +72,14 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
         NSString* updateSql = [NSString updateSql:kDZTableTimeName setFields:@[kDZ_T_Time_C_Date_Begin,
                                                                                kDZ_T_Time_C_Date_End,
                                                                                kDZ_T_Time_C_Detail,
-                                                                               kDZ_T_Time_C_Type] whereArray:@[kDZ_T_Time_C_Guid]];
+                                                                               kDZ_T_Time_C_Type,
+                                                                               kDZ_T_Time_C_Local_Changed]
+                                       whereArray:@[kDZ_T_Time_C_Guid]];
         return [_dataBase executeUpdate:updateSql withArgumentsInArray:@[[time.dateBegin ISO8601String],
                                                                          [time.dateEnd ISO8601String],
                                                                          time.detail,
                                                                          time.typeGuid,
+                                                                         @(time.localChanged),
                                                                          time.guid]];
     } else
     {
@@ -81,11 +87,13 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
                                                                              kDZ_T_Time_C_Date_End,
                                                                              kDZ_T_Time_C_Detail,
                                                                              kDZ_T_Time_C_Type,
+                                                                             kDZ_T_Time_C_Local_Changed,
                                                                              kDZ_T_Time_C_Guid]];
         return [_dataBase executeUpdate:insertSQL withArgumentsInArray:@[[time.dateBegin ISO8601String],
                                                                          [time.dateEnd ISO8601String],
                                                                          time.detail,
                                                                          time.typeGuid,
+                                                                         @(time.localChanged),
                                                                          time.guid]];
     }
 }
@@ -102,6 +110,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
         time.guid = [result stringForColumn:kDZ_T_Time_C_Guid];
         time.typeGuid = [result stringForColumn:kDZ_T_Time_C_Type];
         time.userGuid = self.userGuid;
+        time.localChanged = [result boolForColumn:kDZ_T_Time_C_Local_Changed];
         [times addObject:time];
     }
     [result close];
@@ -117,6 +126,21 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 {
     NSString* sql = [NSString selecteSql:kDZTableTimeName whereArray:nil decorate:Nil];
     return [self timeArrayFromSQL:sql];
+}
+
+- (NSArray*) allChangedTimes
+{
+    NSString* sql = [NSString selecteSql:kDZTableTimeName whereArray:@[kDZ_T_Time_C_Local_Changed] decorate:nil];
+    return [self timeArrayFromFMResult:[_dataBase executeQuery:sql withArgumentsInArray:@[@(1)]]];
+}
+
+- (BOOL) setTime:(DZTime*)time localchanged:(BOOL)localchanged
+{
+    if (![self isTimeExist:time]) {
+        return NO;
+    }
+    NSString* updateSQL = [NSString updateSql:kDZTableTimeName setFields:@[kDZ_T_Time_C_Local_Changed] whereArray:@[kDZ_T_Time_C_Guid]];
+    return [_dataBase executeUpdate:updateSQL withArgumentsInArray:@[@(localchanged), time.guid]];
 }
 
 - (DZTime*) timeByGuid:(NSString*)guid
@@ -147,7 +171,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     FMResultSet* rest = [_dataBase executeQuery:sql withArgumentsInArray:@[type.guid, [oneWeak ISO8601String], [now ISO8601String]]];
     return [self timeArrayFromFMResult:rest];
 }
-
+#pragma mark - Time Type
 - (BOOL) isExistType:(DZTimeType*)type
 {
     return [self isExistAtTable:kDZTableType primayKey:kDZ_T_Type_C_GUID value:type.guid];
@@ -232,6 +256,18 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     return [self timeTypeArrayFromSQL:sql];
 }
 
+- (NSArray*) allLocalChangedTypes
+{
+    NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_LocalChanged] decorate:nil];
+    return [self timeTypeArrayFromFMResult:[_dataBase executeQuery:sql withArgumentsInArray:@[@(1)]]];
+}
+
+- (BOOL) setTimeType:(DZTimeType*)type localchanged:(BOOL)changed
+{
+    NSString* updateSQL = [NSString updateSql:kDZTableType setFields:@[kDZ_T_Type_C_LocalChanged] whereArray:@[kDZ_T_Type_C_GUID]];
+    return [_dataBase executeUpdate:updateSQL withArgumentsInArray:@[@(changed), type.guid]];
+}
+#pragma mark - Meta
 //
 - (NSString*) metaValueByName:(NSString*)name key:(NSString*)key
 {
@@ -256,6 +292,13 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
          return [_dataBase executeUpdate:insertSql, value, name, key];
     }
 }
+
+
+
+
+#pragma mark -
+
+#pragma mark Versions
 
 - (BOOL) setSyncVersion:(NSString*)key version:(int64_t)version
 {
