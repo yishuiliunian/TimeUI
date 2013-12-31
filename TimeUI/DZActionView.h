@@ -9,8 +9,16 @@
 #import "DZCustomeView.h"
 #import "DZActionContentView.h"
 #import "DZActionItemView.h"
+@class DZActionView;
+@protocol DZActionDelegate <NSObject>
 
-@interface DZActionView : DZCustomeView
+- (BOOL) actionView:(DZActionView*)actionView shouldHideTapAtIndex:(NSInteger)index item:(DZActionItemView*)item;
+
+- (void) actionView:(DZActionView*)actionView didHideWithTapAtIndex:(NSInteger)index item:(DZActionItemView*)item;
+@end
+
+@interface DZActionView : DZCustomeView <DZActionTapInterface>
+@property (nonatomic, weak) id<DZActionDelegate> delegate;
 @property (nonatomic, strong, readonly) DZActionContentView* actionContentView;
 - (instancetype) initWithItems:(NSArray*)items;
 @end

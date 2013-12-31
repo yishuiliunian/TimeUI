@@ -114,6 +114,9 @@ static float const DZDefaultRequestCount = 100;
         int64_t version = localVersion;
         if ([sobj isKindOfClass:[NSDictionary class]]) {
             NSArray* times = sobj[@"times"];
+            if (![times isKindOfClass:[NSDictionary class]]) {
+                break;
+            }
             for (NSDictionary* dic  in times) {
                 version = MAX([dic[@"Version"] longLongValue] , version);
                 DZTime* time = [[DZTime alloc] init];

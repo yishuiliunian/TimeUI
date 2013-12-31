@@ -15,6 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _actionContentView = [[DZActionContentView alloc] init];
+        _actionContentView.tapDelegate = self;
         [self setContentView:_actionContentView];
     }
     return self;
@@ -52,6 +53,28 @@
         self.contentView.frame = CGRectOffset(self.contentView.frame, 0, self.actionContentView.height);
     } complete:^{
         
+    }];
+}
+
+
+- (void) actionContentView:(DZActionContentView *)contentView didTapItem:(DZActionItemView *)item atIndex:(NSInteger)index
+{
+    BOOL willHide = YES;
+    if ([_delegate  respondsToSelector:@selector(actionView:shouldHideTapAtIndex:item:)]) {
+        willHide = [_delegate actionView:self shouldHideTapAtIndex:index item:item];
+    }
+    if (!willHide) {
+        return;
+    }
+    
+    [self hideWithAnimation:YES start:^{
+        
+    } animationBlock:^{
+        self.contentView.frame = CGRectOffset(self.contentView.frame, 0, self.actionContentView.height);
+    } complete:^{
+        if ([_delegate respondsToSelector:@selector(actionView:didHideWithTapAtIndex:item:)]) {
+            [_delegate actionView:self didHideWithTapAtIndex:index item:item];
+        }
     }];
 }
 @end

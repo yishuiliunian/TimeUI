@@ -42,7 +42,6 @@
     [_countLabel reset];
     _countLabel.startValue = 0;
     [_countLabel start];
-    
     [[DZAudioManager  shareManager] playBlum];
 }
 

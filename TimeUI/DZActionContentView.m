@@ -16,16 +16,21 @@
 
 @implementation DZActionContentView
 @synthesize height=_height;
-
+@synthesize tapDelegate = _tapDelegate;
 
 - (void) handleTapGestruceRecoginzer:(UITapGestureRecognizer*)tgrz
 {
+    CGPoint point = [tgrz locationInView:self];
     if(tgrz.state == UIGestureRecognizerStateRecognized)
     {
-        CTFeedbackViewController* vc = [[CTFeedbackViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:vc]  animated:YES completion:^{
-            
-        }];
+        for (int i = 0 ; i < _items.count; i++) {
+            DZActionItemView* item = _items[i];
+            if (CGRectContainsPoint(item.frame, point)) {
+                if ([_tapDelegate respondsToSelector:@selector(actionContentView:didTapItem:atIndex:)]) {
+                    [_tapDelegate actionContentView:self didTapItem:item atIndex:i];
+                }
+            }
+        }
     }
 }
 - (id)initWithFrame:(CGRect)frame

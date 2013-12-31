@@ -100,6 +100,9 @@
 		657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 657C74A2185AF8FE008728EB /* DZInputCellView.m */; };
 		657C74A8185AFE60008728EB /* UIView+AddTaps.m in Sources */ = {isa = PBXBuildFile; fileRef = 657C74A7185AFE60008728EB /* UIView+AddTaps.m */; };
 		659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 659910B71856E3F9003EDCAD /* UIView+Shadow.m */; };
+		65B403E91872E68A00F018FD /* DZHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B403E81872E68A00F018FD /* DZHistoryViewController.m */; };
+		65B403EC1872E72D00F018FD /* DZLabelActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B403EB1872E72D00F018FD /* DZLabelActionItem.m */; };
+		65B403F01872EE3400F018FD /* DZSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B403EF1872EE3400F018FD /* DZSettingsViewController.m */; };
 		65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CB61855E06200796395 /* DZAstirFrameViewController.m */; };
 		65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */; };
 		65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBF1855E5C300796395 /* DZAnimationState.m */; };
@@ -295,6 +298,12 @@
 		659910B51856E346003EDCAD /* DZUITools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZUITools.h; sourceTree = "<group>"; };
 		659910B61856E3F9003EDCAD /* UIView+Shadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shadow.h"; sourceTree = "<group>"; };
 		659910B71856E3F9003EDCAD /* UIView+Shadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shadow.m"; sourceTree = "<group>"; };
+		65B403E71872E68A00F018FD /* DZHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZHistoryViewController.h; sourceTree = "<group>"; };
+		65B403E81872E68A00F018FD /* DZHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZHistoryViewController.m; sourceTree = "<group>"; };
+		65B403EA1872E72D00F018FD /* DZLabelActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLabelActionItem.h; sourceTree = "<group>"; };
+		65B403EB1872E72D00F018FD /* DZLabelActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLabelActionItem.m; sourceTree = "<group>"; };
+		65B403EE1872EE3400F018FD /* DZSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSettingsViewController.h; sourceTree = "<group>"; };
+		65B403EF1872EE3400F018FD /* DZSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSettingsViewController.m; sourceTree = "<group>"; };
 		65C47CB51855E06200796395 /* DZAstirFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAstirFrameViewController.h; sourceTree = "<group>"; };
 		65C47CB61855E06200796395 /* DZAstirFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAstirFrameViewController.m; sourceTree = "<group>"; };
 		65C47CB91855E0D500796395 /* DZKVODefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZKVODefines.h; sourceTree = "<group>"; };
@@ -680,6 +689,8 @@
 				6535A0351862076400173E0E /* DZGlobalActionView.m */,
 				6514652918629F82005060CB /* DZSyncActionItemView.h */,
 				6514652A18629F82005060CB /* DZSyncActionItemView.m */,
+				65B403EA1872E72D00F018FD /* DZLabelActionItem.h */,
+				65B403EB1872E72D00F018FD /* DZLabelActionItem.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -913,6 +924,24 @@
 			name = Animation;
 			sourceTree = "<group>";
 		};
+		65B403E61872E67A00F018FD /* history */ = {
+			isa = PBXGroup;
+			children = (
+				65B403E71872E68A00F018FD /* DZHistoryViewController.h */,
+				65B403E81872E68A00F018FD /* DZHistoryViewController.m */,
+			);
+			name = history;
+			sourceTree = "<group>";
+		};
+		65B403ED1872EE2300F018FD /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				65B403EE1872EE3400F018FD /* DZSettingsViewController.h */,
+				65B403EF1872EE3400F018FD /* DZSettingsViewController.m */,
+			);
+			name = settings;
+			sourceTree = "<group>";
+		};
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,6 +963,8 @@
 		65C47CBA1855E0F600796395 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				65B403ED1872EE2300F018FD /* settings */,
+				65B403E61872E67A00F018FD /* history */,
 				656F68DA18324B38001F7B7C /* DragViewController */,
 				65EA7636185B69EE00EBF03E /* types */,
 				65238F4518577B1000FE5D89 /* Charts */,
@@ -1175,6 +1206,7 @@
 				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,
 				65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */,
 				65238F1D185739C300FE5D89 /* DZAccount.m in Sources */,
+				65B403EC1872E72D00F018FD /* DZLabelActionItem.m in Sources */,
 				65238F2818574FF200FE5D89 /* NSData+SSToolkitAdditions.m in Sources */,
 				657685E8185CA94D006D7C0F /* DZMessageContainerView.m in Sources */,
 				65EE100D185F312100FA0882 /* NSError+dz.m in Sources */,
@@ -1221,11 +1253,13 @@
 				654629271864115000E7C072 /* DZCommandThread.m in Sources */,
 				65768613185DF2A8006D7C0F /* DZTokenManager.m in Sources */,
 				657685F5185D5F96006D7C0F /* DZImageCache.m in Sources */,
+				65B403F01872EE3400F018FD /* DZSettingsViewController.m in Sources */,
 				656F68B818324B2D001F7B7C /* main.m in Sources */,
 				65238F3A1857644B00FE5D89 /* DZTimeTrickManger.m in Sources */,
 				657A56171858D94300521B01 /* DZSingletonFactory.m in Sources */,
 				657685E1185C9B6D006D7C0F /* DZMessageCenter.m in Sources */,
 				65238F501858369000FE5D89 /* DZLineChart.m in Sources */,
+				65B403E91872E68A00F018FD /* DZHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

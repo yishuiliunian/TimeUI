@@ -1,30 +1,27 @@
 //
-//  DZGlobalActionView.m
+//  DZLabelActionItem.m
 //  TimeUI
 //
-//  Created by Stone Dong on 13-12-19.
+//  Created by Stone Dong on 13-12-31.
 //  Copyright (c) 2013年 Stone Dong. All rights reserved.
 //
 
-#import "DZGlobalActionView.h"
-#import "DZSyncActionItemView.h"
 #import "DZLabelActionItem.h"
-@implementation DZGlobalActionView
+
+@implementation DZLabelActionItem
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-
+        _textLabel = [UILabel new];
+        [self addSubview:_textLabel];
     }
     return self;
 }
-- (instancetype) init
+- (void) layoutSubviews
 {
-    self = [super init];
-    if (self) {
-    }
-    return self;
+    _textLabel.frame = self.bounds;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -34,7 +31,5 @@
     // Drawing code
 }
 */
-
-
 
 @end

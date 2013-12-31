@@ -100,8 +100,7 @@
 
 - (void) dzInputCellView:(DZInputCellView *)inputView hideWithText:(NSString *)text
 {
-    DZTimeType* type = [DZTimeType new];
-    type.guid = [DZGlobals genGUID];
+    DZTimeType* type = [[DZTimeType alloc] initGenGUID];
     type.name = text;
     type.detail = text;
     [DZActiveTimeDataBase updateTimeType:type];

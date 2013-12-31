@@ -20,7 +20,6 @@
         _audioController.preferredBufferDuration = 0.005;
         NSError* error = nil;
         [_audioController start:&error];
-        
     }
     return self;
 }
