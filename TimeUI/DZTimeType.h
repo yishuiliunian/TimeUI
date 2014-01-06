@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "DZObject.h"
-static NSString* const SJKTypeGuid = @"guid";
+
+/**
+ *  json key 定义
+ */
+static NSString* const SJKTypeGuid = @"Guid";
 static NSString* const SJKTypeIdentify = @"identify";
 static NSString* const SJKTypeName = @"name";
 static NSString* const SJKTypeDetail = @"detail";
@@ -16,8 +20,11 @@ static NSString* const SJKTypeCrateDate = @"create_date";
 static NSString* const SJKTypeImageAvatarGuid = @"avatar_guid";
 static NSString* const SJKTypeFinished = @"finished";
 static NSString* const SJKTypeUserGuid = @"user_guid";
+static NSString* const SJKTypeOtherInfos = @"other_infos";
 
-
+/**
+ *  时间类型
+ */
 @interface DZTimeType : DZObject
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* detail;

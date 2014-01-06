@@ -12,6 +12,7 @@
 #import "DZTime.h"
 #import "NSOperationQueue+DZ.h"
 #import "DZContextManager.h"
+#import "DZTimeType.h"
 typedef struct {
     int64_t time;
     int64_t timeType;
@@ -83,6 +84,9 @@ static float const DZDefaultRequestCount = 100;
     if (![self updateTimes:error]) {
         return NO;
     }
+    if (![self updateTimeTypes:error]) {
+        return NO;
+    }
     return YES;
 }
 
@@ -139,6 +143,24 @@ static float const DZDefaultRequestCount = 100;
 - (BOOL) updateTimeTypes:(NSError* __autoreleasing*)error
 {
     DZSyncContextSet(DZSyncContextSyncUploadType);
+    
+    NSArray* changedTypes = [DZActiveTimeDataBase allLocalChangedTypes];
+    for (DZTimeType* type  in changedTypes) {
+        NSDictionary* jsonType = [type toJsonObject];
+        id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateType token:_token bodyDatas:jsonType error:error];
+        NSLog(@"%@",sobj);
+        if (*error) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (BOOL) getTimeTypes:(NSError* __autoreleasing*)error
+{
+    DZSyncContextSet(DZSyncContextSyncDownloadType);
+    
+    
     
     return YES;
 }

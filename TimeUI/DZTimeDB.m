@@ -189,7 +189,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
                                        whereArray:@[kDZ_T_Type_C_GUID]];
         return [_dataBase executeUpdate:updateSql withArgumentsInArray:@[type.detail,
                                                                          type.name,
-                                                                         [type.createDate TKISO8601String]  ,
+                                                                         [type.createDate ISO8601String]  ,
                                                                          @(type.isFinished),
                                                                          @(type.localChanged),
                                                                          type.otherInfos,
@@ -204,7 +204,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
                                                                          kDZ_T_Type_C_GUID]];
         return [_dataBase executeUpdate:insertSql withArgumentsInArray:@[type.detail,
                                                                          type.name,
-                                                                         [type.createDate TKISO8601String]  ,
+                                                                         [type.createDate ISO8601String]  ,
                                                                          @(type.isFinished),
                                                                          @(type.localChanged),
                                                                          type.otherInfos,
@@ -217,6 +217,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     
     NSMutableArray* types = [NSMutableArray new];
     while ([result next]) {
+        
         DZTimeType* type = [DZTimeType new];
         type.guid = [result stringForColumn:kDZ_T_Type_C_GUID];
         type.name = [result stringForColumn:kDZ_T_Type_C_Nmae];

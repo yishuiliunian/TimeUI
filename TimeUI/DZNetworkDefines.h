@@ -27,12 +27,14 @@ static NSString* const DZServerCommonKeyDeviceIdentify = @"devicekey";
 /**
  *  服务器方法
  */
-static NSString* const DZServerMethodRegiserUser       = @"user.register";
-static NSString* const DZServerMethodUserLogin         = @"user.login";
-static NSString* const DZServerMethodTokenUpdate       = @"token.update";
-static NSString* const DZServerMethodUpdateTime        = @"time.update";
-static NSString* const DZServerMethodVersionsGetAll    = @"version.get_all";
-static NSString* const DZServerMethodGetTimes          = @"time.get";
-static NSString* const DZServerMethodGetTypes          = @"type.get_all";
+
+static NSString* const DZServerMethodRegiserUser    = @"user.register";
+static NSString* const DZServerMethodUserLogin      = @"user.login";
+static NSString* const DZServerMethodTokenUpdate    = @"token.update";
+static NSString* const DZServerMethodUpdateTime     = @"time.update";
+static NSString* const DZServerMethodVersionsGetAll = @"version.get_all";
+static NSString* const DZServerMethodGetTimes       = @"time.get";
+static NSString* const DZServerMethodUpdateType     = @"type.update";
+static NSString* const DZServerMethodGetTypes       = @"type.get_all";
 
 #endif

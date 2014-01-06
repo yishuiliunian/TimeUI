@@ -9,8 +9,8 @@
 #import "DZTimeType.h"
 
 #import <NSDate-TKExtensions.h>
-
-
+#import "NSDate+SSToolkitAdditions.h"
+#import "DZAccountManager.h"
 @implementation DZTimeType
 
 
@@ -21,6 +21,11 @@
     _imageAvatarGuid = @"";
     _isFinished = NO;
     _localChanged = YES;
+}
+
+- (NSString*) userGuid
+{
+    return DZActiveAccount.identifiy;
 }
 - (instancetype) initGenGUID
 {
@@ -65,6 +70,8 @@
         json[SJKTypeImageAvatarGuid] = self.imageAvatarGuid;
     }
     json[SJKTypeFinished] = @(self.isFinished);
+    json[SJKTypeUserGuid] = self.userGuid;
+    json[SJKTypeOtherInfos] = self.otherInfos;
     return json;
 }
 @end
