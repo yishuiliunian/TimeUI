@@ -8,6 +8,7 @@
 
 #import "DZAccountManager.h"
 #import "DZAccount.h"
+#import "DZUserDataManager.h"
 @implementation DZAccountManager
 + (DZAccountManager*) shareManager
 {
@@ -31,4 +32,20 @@
     });
     return account;
 }
+
+- (void) moveAccountDataFrom:(DZAccount*)origin aim:(DZAccount*)aim
+{
+    id<DZTimeDBInterface> originDb  = [[DZDBManager shareManager] timeDBInterfaceForAccount:origin];
+    id<DZTimeDBInterface> aimDb = [[DZDBManager shareManager] timeDBInterfaceForAccount:aim];
+    NSArray* allTimes = [originDb allTimes];
+    for (DZTime* time  in allTimes) {
+        [aimDb updateTime:time];
+    }
+    NSArray* allTypes = [originDb allTimeTypes];
+    for (DZTimeType* type  in allTypes) {
+        [aimDb updateTimeType:type];
+    }
+    [[DZUserDataManager shareManager] moveSettingsFrom:origin aim:aim];
+}
+
 @end

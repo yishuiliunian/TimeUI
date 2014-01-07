@@ -28,30 +28,50 @@ NSString*(^DZUserDataKey)(NSString*userId, NSString*key) = ^(NSString*userId, NS
     return share;
 }
 
-- (void) setUserData:(id)data forKey:(NSString*)key
+- (NSDictionary*) allUserData:(DZAccount*)account
 {
+    return  [[NSUserDefaults standardUserDefaults] objectForKey:account.identifiy];
+}
+
+- (void) moveSettingsFrom:(DZAccount*)origin aim:(DZAccount*)account
+{
+    NSDictionary* dic = [self allUserData:origin];
+    if (dic) {
+        [[NSUserDefaults standardUserDefaults] setObject:dic  forKey:account.identifiy];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+- (void) setUserData:(id)data forKey:(NSString*)key user:(NSString*)userKey
+{
+    
+    NSMutableDictionary* infos = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:userKey] mutableCopy];
+    if (!infos) {
+        infos = [NSMutableDictionary new];
+    }
     if (data) {
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
+        [infos setObject:data forKey:key];
     }
     else
     {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        [infos removeObjectForKey:key];
     }
+    [[NSUserDefaults standardUserDefaults] setObject:infos forKey:userKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (id) userDataForKey:(NSString*)key
+- (id) userDataForKey:(NSString*)key user:(NSString*)userKey
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    NSDictionary* infos = [[NSUserDefaults standardUserDefaults] dictionaryForKey:userKey];
+    return [infos objectForKey:key];
 }
 
 - (void) setActiveUserData:(id)data forKey:(NSString*)key
 {
-    [self setUserData:data forKey:DZActiveUserDataKey(key)];
+    [self setUserData:data forKey:key user:DZActiveAccount.identifiy];
 }
 
 - (id) activeUserDataForKey:(NSString*)key
 {
-    return [self userDataForKey:DZActiveUserDataKey(key)];
+    return [self userDataForKey:key user:DZActiveAccount.identifiy];
 }
 @end

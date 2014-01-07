@@ -36,7 +36,7 @@ Simply add the following line to your <code>Podfile</code>:
 Your Podfile should look something like:
 
 	platform :ios, '7.0'
-	pod 'JBChartView', '~> 1.0.2'
+	pod 'JBChartView', '~> 1.1.3'
 	
 ### The Old School Way
 
@@ -52,7 +52,7 @@ Both JBChartView implementations have a similiar data source and delgate pattern
 
 #### JBBarChartView
 
-To initialze a <i>JBBarChartView</i>, you only need a few lines of code:
+To initialize a <i>JBBarChartView</i>, you only need a few lines of code:
 
 	JBBarChartView *barChartView = [[JBBarChartView alloc] init];
     barChartView.delegate = self;
@@ -66,16 +66,16 @@ At a minimum, you need to inform the data source how many bars are in the chart:
 		return ...; // number of bars in chart
 	}
 
-Secondly, you nee to inform the delegate the height of each bar (automatically normalized across the entire chart):
+Secondly, you need to inform the delegate the height of each bar (automatically normalized across the entire chart):
     
-    - (NSInteger)barChartView:(JBBarChartView *)barChartView heightForBarViewAtAtIndex:(NSInteger)index
+    - (CGFloat)barChartView:(JBBarChartView *)barChartView heightForBarViewAtAtIndex:(NSInteger)index
     {
 		return ...; // height of bar at index
 	}
     
 #### JBLineChartView
 
-Similiarily, to initialze a JBLineChartView, you only need a few lines of code:
+Similiarily, to initialize a JBLineChartView, you only need a few lines of code:
 
 	JBLineChartView *lineChartView = [[JBLineChartView alloc] init];
     lineChartView.delegate = self;
@@ -89,9 +89,9 @@ At a minimum, you need to inform the data source how many points are in the line
 		return ...; // number of points in chart
 	}
 
-Secondly, you nee to inform the delegate the y-position of each point (automatically normalized across the entire chart):
+Secondly, you need to inform the delegate the y-position of each point (automatically normalized across the entire chart):
     
-	- (NSInteger)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index
+	- (CGFloat)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index
     {
 		return ...; // y-position of poinnt at index (x-axis)
 	}
@@ -116,9 +116,9 @@ Lastly, any JBChartView subclass can be collapsed or expanded programmatically v
 
 #### JBBarChartView
 
-The color of a chart's bar can be customized via the <i>optional</i> protocol:
+By default, a chart's bars will be black and flat. They can be customized by supplying a UIView subclass through the <i>optional</i> protocol:
 
-	- (UIColor *)barColorForBarChartView:(JBBarChartView *)barChartView atIndex:(NSInteger)index
+	- (UIView *)barViewForBarChartView:(JBBarChartView *)barChartView atIndex:(NSInteger)index
 	{
 		return ...; // color of line in chart
 	}

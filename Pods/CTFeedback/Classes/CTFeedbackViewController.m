@@ -68,6 +68,7 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
     if (self) {
         self.topics = topics;
         self.localizedTopics = localizedTopics;
+        self.useHTML = NO;
     }
     return self;
 }
@@ -122,7 +123,17 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
 
 - (void)cancelButtonTapped:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(self.navigationController != nil){
+        if( [self.navigationController viewControllers][0] == self){
+            // Can't pop, just dismiss
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            // Can be popped
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)setTopics:(NSArray *)topics
@@ -301,13 +312,38 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
 - (NSString *)mailBody
 {
     NSString *content = self.contentCellItem.textView.text;
-    NSString *body = [NSString stringWithFormat:@"%@\n\n\nDevice: %@\niOS: %@\nApp: %@\nVersion: %@\nBuild: %@",
-                                                content,
-                                                self.platformString,
-                                                self.systemVersion,
-                                                self.appName,
-                                                self.appVersion,
-                                                self.appBuild];
+    NSString *body;
+    
+    if (self.useHTML) {
+        body = [NSString stringWithFormat:@"<style>td {padding-right: 20px}</style>\
+                <p>%@</p><br />\
+                <table cellspacing=0 cellpadding=0>\
+                <tr><td>Device:</td><td><b>%@</b></td></tr>\
+                <tr><td>iOS:</td><td><b>%@</b></td></tr>\
+                <tr><td>App:</td><td><b>%@</b></td></tr>\
+                <tr><td>Version:</td><td><b>%@</b></td></tr>\
+                <tr><td>Build:</td><td><b>%@</b></td></tr>\
+                </table>",
+                [content stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"],
+                self.platformString,
+                self.systemVersion,
+                self.appName,
+                self.appVersion,
+                self.appBuild];
+    } else {
+        body = [NSString stringWithFormat:@"%@\n\n\nDevice: %@\niOS: %@\nApp: %@\nVersion: %@\nBuild: %@",
+                content,
+                self.platformString,
+                self.systemVersion,
+                self.appName,
+                self.appVersion,
+                self.appBuild];
+    }
+    
+    if (self.additionalDiagnosticContent) {
+        body = [body stringByAppendingString:self.additionalDiagnosticContent];
+    }
+    
     return body;
 }
 
@@ -319,7 +355,7 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
     [controller setCcRecipients:self.ccRecipients];
     [controller setBccRecipients:self.bccRecipients];
     [controller setSubject:self.mailSubject];
-    [controller setMessageBody:self.mailBody isHTML:NO];
+    [controller setMessageBody:self.mailBody isHTML:self.useHTML];
     [self presentViewController:controller animated:YES completion:nil];
 }
 

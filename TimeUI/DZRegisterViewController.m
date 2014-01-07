@@ -8,10 +8,12 @@
 
 #import "DZRegisterViewController.h"
 #import "DZRegisterAccountOperation.h"
-
-@interface DZRegisterViewController ()
+#import "DZMessageCenter.h"
+#import "DZAccount.h"
+@interface DZRegisterViewController () <DZRegisterAccountDelegate>
 {
     BOOL _running;
+
 }
 @end
 
@@ -19,11 +21,26 @@
 - (void) registerAccountOperation:(DZRegisterAccountOperation *)op failedWithError:(NSError *)error
 {
     self.loginBtn.enabled  = YES;
+    [DZMessageShareCenter showErrorMessage:error.localizedDescription];
+    [self setAllControlsEnable:YES];
 }
 
 - (void) registerAccountOperation:(DZRegisterAccountOperation *)op successWithUserInfo:(NSDictionary *)userInfo
 {
     self.loginBtn.enabled  = YES;
+    [DZMessageShareCenter showSuccessMessage:@"注册成功"];
+    [self setAllControlsEnable:YES];
+    NSString* userGuid = userInfo[@"userguid"];
+    DZAccount* account = [[DZAccount alloc] init];
+    account.identifiy = userGuid;
+    account.email = _email;
+    account.password = _password;
+    account.isLogin = YES;
+    [account synchronize];
+    
+    DZAccount* b = [[DZAccount alloc] initWithEmail:_email];
+    
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,18 +53,16 @@
     return self;
 }
 
-- (void) handleLoginAction:(id)sender
+- (void) handleActionWithEmail:(NSString *)email password:(NSString *)password
 {
-    [DZRegisterAccountOperation runRegiserOperatioWithDelegate:self userEmail:self.emailTextField.text password:self.passwordTextField.text];
-    _running = YES;
-    self.loginBtn.enabled = NO;
+    [DZRegisterAccountOperation runRegiserOperatioWithDelegate:self userEmail:email password:password];
+    [self setAllControlsEnable:NO];
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     [self.loginBtn setTitle:@"注册" forState:UIControlStateNormal];
-    [self.loginBtn addTarget:self action:@selector(handleLoginAction:) forControlEvents:UIControlEventTouchUpInside];
     self.title = @"注册";
 }
 

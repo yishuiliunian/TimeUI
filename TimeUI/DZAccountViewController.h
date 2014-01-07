@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface DZAccountViewController : UIViewController <DZAppearanceInterface>
+{
+    NSString* _email;
+    NSString* _password;
+}
 @property (nonatomic, strong, readonly) UITextField* emailTextField;
 @property (nonatomic, strong, readonly) UITextField* passwordTextField;
 @property (nonatomic, strong, readonly) UIButton* loginBtn;
+- (void) setAllControlsEnable:(BOOL)enable;
+- (void) handleActionWithEmail:(NSString*)email password:(NSString*)password;
 @end

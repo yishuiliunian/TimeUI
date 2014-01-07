@@ -10,8 +10,12 @@
 
 @interface DZUserDataManager : NSObject
 + (DZUserDataManager*) shareManager;
-- (void) setUserData:(id)data forKey:(NSString*)key;
-- (id) userDataForKey:(NSString*)key;
+- (void) setUserData:(id)data forKey:(NSString*)key user:(NSString*)identify;
+- (id) userDataForKey:(NSString*)key user:(NSString*)identify;
 - (void) setActiveUserData:(id)data forKey:(NSString*)key;
 - (id) activeUserDataForKey:(NSString*)key;
+
+
+//
+- (void) moveSettingsFrom:(DZAccount*)origin aim:(DZAccount*)account;
 @end

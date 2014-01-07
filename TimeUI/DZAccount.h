@@ -12,6 +12,9 @@
 @property (nonatomic, strong) NSString* identifiy;
 @property (nonatomic, strong) NSString* email;
 @property (nonatomic, strong) NSString* password;
+@property (nonatomic, assign) BOOL isLogin;
 @property (nonatomic, strong, readonly) NSString* documentsPath;
 @property (nonatomic, strong, readonly) NSString* timeDatabasePath;
+- (instancetype) initWithEmail:(NSString*)email;
+- (void) synchronize;
 @end

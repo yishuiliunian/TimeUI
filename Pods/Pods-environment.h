@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_CTFeedback
 #define COCOAPODS_VERSION_MAJOR_CTFeedback 1
 #define COCOAPODS_VERSION_MINOR_CTFeedback 0
-#define COCOAPODS_VERSION_PATCH_CTFeedback 4
+#define COCOAPODS_VERSION_PATCH_CTFeedback 6
 
 // CocoaLumberjack
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
@@ -57,8 +57,8 @@
 // JBChartView
 #define COCOAPODS_POD_AVAILABLE_JBChartView
 #define COCOAPODS_VERSION_MAJOR_JBChartView 1
-#define COCOAPODS_VERSION_MINOR_JBChartView 0
-#define COCOAPODS_VERSION_PATCH_JBChartView 2
+#define COCOAPODS_VERSION_MINOR_JBChartView 1
+#define COCOAPODS_VERSION_PATCH_JBChartView 3
 
 // KXKiOS7ColorsAndGradients
 #define COCOAPODS_POD_AVAILABLE_KXKiOS7ColorsAndGradients
@@ -90,6 +90,12 @@
 #define COCOAPODS_VERSION_MINOR_PulsingHalo 0
 #define COCOAPODS_VERSION_PATCH_PulsingHalo 1
 
+// SSKeychain
+#define COCOAPODS_POD_AVAILABLE_SSKeychain
+#define COCOAPODS_VERSION_MAJOR_SSKeychain 1
+#define COCOAPODS_VERSION_MINOR_SSKeychain 2
+#define COCOAPODS_VERSION_PATCH_SSKeychain 1
+
 // TSMessages
 #define COCOAPODS_POD_AVAILABLE_TSMessages
 #define COCOAPODS_VERSION_MAJOR_TSMessages 0
@@ -111,8 +117,8 @@
 // TestFlightSDK
 #define COCOAPODS_POD_AVAILABLE_TestFlightSDK
 #define COCOAPODS_VERSION_MAJOR_TestFlightSDK 2
-#define COCOAPODS_VERSION_MINOR_TestFlightSDK 1
-#define COCOAPODS_VERSION_PATCH_TestFlightSDK 3
+#define COCOAPODS_VERSION_MINOR_TestFlightSDK 2
+#define COCOAPODS_VERSION_PATCH_TestFlightSDK 0
 
 // TheAmazingAudioEngine
 #define COCOAPODS_POD_AVAILABLE_TheAmazingAudioEngine

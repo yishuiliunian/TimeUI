@@ -78,6 +78,9 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
 
 - (void)reloadData
 {
+    // reset cached max height
+    self.cachedMaxHeight = kJBBarChartViewUndefinedMaxHeight;
+
     /*
      * The data collection holds all position information:
      * constructed via datasource and delegate functions
@@ -93,7 +96,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
         NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
         for (NSInteger index=0; index<dataCount; index++)
         {
-            [dataDictionary setObject:[NSNumber numberWithInt:(int)[self.delegate barChartView:self heightForBarViewAtAtIndex:index]] forKey:[NSNumber numberWithInt:(int)index]];
+            [dataDictionary setObject:[NSNumber numberWithFloat:[self.delegate barChartView:self heightForBarViewAtAtIndex:index]] forKey:[NSNumber numberWithInt:(int)index]];
         }
         self.chartDataDictionary = [NSDictionary dictionaryWithDictionary:dataDictionary];
 	};
@@ -129,23 +132,18 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
         NSMutableArray *mutableBarViews = [NSMutableArray array];
         for (NSNumber *key in [[self.chartDataDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)])
         {
-            UIView *barView = [[UIView alloc] init];
-            if ([self.dataSource respondsToSelector:@selector(barColorForBarChartView:atIndex:)])
+            UIView *barView = nil; // since all bars are visible at once, no need to cache this view
+            if ([self.dataSource respondsToSelector:@selector(barViewForBarChartView:atIndex:)])
             {
-                barView.backgroundColor = [self.dataSource barColorForBarChartView:self atIndex:index];
+                barView = [self.dataSource barViewForBarChartView:self atIndex:index];
             }
             else
             {
+                barView = [[UIView alloc] init];
                 barView.backgroundColor = kJBBarChartViewDefaultBarColor;
-            }
+            }            
             CGFloat height = [self normalizedHeightForRawHeight:[self.chartDataDictionary objectForKey:key]];
-            barView.frame = CGRectMake(xOffset, self.bounds.size.height - height - self.footerView.frame.size.height + self.headerPadding, [self barWidth], height + kJBBarChartViewPopOffset - self.headerPadding);
-            
-            barView.layer.shadowColor = [UIColor blackColor].CGColor;
-            barView.layer.shadowOffset = CGSizeMake(0, 0);
-            barView.layer.shadowOpacity = 0.4;
-            barView.layer.shadowRadius = 1.0;
-            
+            barView.frame = CGRectMake(xOffset, self.bounds.size.height - height - self.footerView.frame.size.height + self.headerPadding, [self barWidth], height + kJBBarChartViewPopOffset - self.headerPadding);                        
             [mutableBarViews addObject:barView];
 			
             // Add new bar
@@ -222,7 +220,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
         return 0;
     }
     
-    return ceil(((value - minHeight) / (maxHeight - minHeight)) * [self availableHeight]);
+    return ((value - minHeight) / (maxHeight - minHeight)) * [self availableHeight];
 }
 
 - (CGFloat)maxHeight

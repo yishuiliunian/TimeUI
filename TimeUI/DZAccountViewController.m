@@ -12,6 +12,8 @@
 {
     UIImageView* _passwordImageView ;
     UIImageView* _emailImageView;
+    
+    UIActivityIndicatorView* _activityIndicatorView;
 }
 @end
 
@@ -40,7 +42,33 @@
     return self;
 }
 
+- (void) handleActionWithEmail:(NSString*)email password:(NSString*)password
+{
+    
+}
 
+- (IBAction)handleAccountAction:(id)sender
+{
+    _password = _passwordTextField.text;
+    _email = _emailTextField.text;
+    [self handleActionWithEmail:_email password:_password];
+}
+
+- (void) setAllControlsEnable:(BOOL)enable
+{
+    _emailTextField.enabled = enable;
+    _passwordTextField.enabled = enable;
+    _loginBtn.enabled = enable;
+    if (enable) {
+        [_activityIndicatorView startAnimating];
+        [_emailTextField becomeFirstResponder];
+    }
+    else
+    {
+        [_activityIndicatorView stopAnimating];
+    }
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,9 +92,14 @@
     _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:_loginBtn];
     
-    
+    [_loginBtn addTarget:self action:@selector(handleAccountAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
     self.navigationItem.leftBarButtonItem = item;
+    
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIBarButtonItem* syncItem = [[UIBarButtonItem alloc] initWithCustomView:_activityIndicatorView];
+    self.navigationItem.rightBarButtonItem = syncItem;
 	// Do any additional setup after loading the view.
 }
 - (void ) dismiss

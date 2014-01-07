@@ -75,7 +75,7 @@ static UIColor *kJBLineChartViewDefaultLineColor = nil;
 @property (nonatomic, assign) BOOL selectionViewVisible;
 
 // View quick accessors
-- (CGFloat)normalizedHeightForRawHeight:(NSInteger)rawHeight;
+- (CGFloat)normalizedHeightForRawHeight:(CGFloat)rawHeight;
 - (CGFloat)availableHeight;
 - (CGFloat)maxHeight;
 - (CGFloat)minHeight;
@@ -117,6 +117,9 @@ static UIColor *kJBLineChartViewDefaultLineColor = nil;
 
 - (void)reloadData
 {
+    // reset cached max height
+    self.cachedMaxHeight = kJBLineChartViewUndefinedMaxHeight;
+
     /*
      * Subview rectangle calculations
      */
@@ -138,11 +141,10 @@ static UIColor *kJBLineChartViewDefaultLineColor = nil;
         for (NSInteger index=0; index<[self dataCount]; index++)
         {
             JBLineChartPoint *chartPoint = [[JBLineChartPoint alloc] init];
-            NSInteger rawHeight = [self.delegate lineChartView:self heightForIndex:index];
+            CGFloat rawHeight = [self.delegate lineChartView:self heightForIndex:index];
             CGFloat normalizedHeight = [self normalizedHeightForRawHeight:rawHeight];
             yOffset = mainViewRect.size.height - normalizedHeight;
 
-            //yOffset = mainViewRect.size.height - yOffset;
             chartPoint.position = CGPointMake(xOffset, yOffset);
             
             [mutableChartData addObject:chartPoint];
@@ -203,7 +205,7 @@ static UIColor *kJBLineChartViewDefaultLineColor = nil;
 
 #pragma mark - View Quick Accessors
 
-- (CGFloat)normalizedHeightForRawHeight:(NSInteger)rawHeight
+- (CGFloat)normalizedHeightForRawHeight:(CGFloat)rawHeight
 {
     CGFloat minHeight = [self minHeight];
     CGFloat maxHeight = [self maxHeight];
@@ -213,7 +215,7 @@ static UIColor *kJBLineChartViewDefaultLineColor = nil;
         return 0;
     }
     
-    return ceil(((rawHeight - minHeight) / (maxHeight - minHeight)) * [self availableHeight]);
+    return ((rawHeight - minHeight) / (maxHeight - minHeight)) * [self availableHeight];
 }
 
 - (CGFloat)availableHeight
@@ -223,16 +225,20 @@ static UIColor *kJBLineChartViewDefaultLineColor = nil;
 
 - (CGFloat)maxHeight
 {
-    NSAssert([self.delegate respondsToSelector:@selector(lineChartView:heightForIndex:)], @"JBLineChartView // delegate must implement - (NSInteger)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index");
-    NSInteger maxHeight = 0;
-    for (NSInteger index=0; index<[self dataCount]; index++)
+    if (self.cachedMaxHeight == kJBLineChartViewUndefinedMaxHeight)
     {
-        if (([self.delegate lineChartView:self heightForIndex:index]) > maxHeight)
+        NSAssert([self.delegate respondsToSelector:@selector(lineChartView:heightForIndex:)], @"JBLineChartView // delegate must implement - (NSInteger)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index");
+        CGFloat maxHeight = 0;
+        for (NSInteger index=0; index<[self dataCount]; index++)
         {
-            maxHeight = [self.delegate lineChartView:self heightForIndex:index];
+            if (([self.delegate lineChartView:self heightForIndex:index]) > maxHeight)
+            {
+                maxHeight = [self.delegate lineChartView:self heightForIndex:index];
+            }
         }
+        self.cachedMaxHeight = maxHeight;
     }
-    return maxHeight;
+    return self.cachedMaxHeight;
 }
 
 - (CGFloat)minHeight
