@@ -14,13 +14,13 @@
  */
 static NSString* const SJKTypeGuid = @"Guid";
 static NSString* const SJKTypeIdentify = @"identify";
-static NSString* const SJKTypeName = @"name";
-static NSString* const SJKTypeDetail = @"detail";
-static NSString* const SJKTypeCrateDate = @"create_date";
-static NSString* const SJKTypeImageAvatarGuid = @"avatar_guid";
-static NSString* const SJKTypeFinished = @"finished";
-static NSString* const SJKTypeUserGuid = @"user_guid";
-static NSString* const SJKTypeOtherInfos = @"other_infos";
+static NSString* const SJKTypeName = @"Name";
+static NSString* const SJKTypeDetail = @"Detail";
+static NSString* const SJKTypeCrateDate = @"CreateDate";
+static NSString* const SJKTypeImageAvatarGuid = @"AvatarGuid";
+static NSString* const SJKTypeFinished = @"Finished";
+static NSString* const SJKTypeUserGuid = @"UserGuid";
+static NSString* const SJKTypeOtherInfos = @"OtherInfos";
 
 /**
  *  时间类型

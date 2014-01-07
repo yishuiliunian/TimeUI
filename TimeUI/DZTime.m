@@ -10,6 +10,7 @@
 #import <NSDate-TKExtensions.h>
 #import "NSDate+SSToolkitAdditions.h"
 #import "DZDevices.h"
+#import "NSError+dz.h"
 @implementation DZTime
 - (NSString*) deviceGuid
 {
@@ -128,6 +129,50 @@
     {
         self.guid = value;
     }
+}
+
+
+- (BOOL) decodeFromJSONObject:(NSDictionary *)dic error:(NSError *__autoreleasing *)error
+{
+    self.guid =  dic[SJKTimeKeyGuid];
+    if (!self.guid) {
+        if (error != NULL) {
+            *error = [NSError dzParseErrorWithKey:@"GUID"];
+        }
+        return NO;
+    }
+    
+    self.detail = dic[SJKTimeKeyDetail];
+    if (!self.detail) {
+        self.detail = @"";
+    }
+    self.deviceGuid = dic[SJKTimeKeyDeviceGuid];
+    if (!self.deviceGuid) {
+        self.deviceGuid = DZDevicesIdentify();
+    }
+    self.dateBegin = [NSDate dateFromISO8601String:dic[SJKTimeKeyBegin]];
+    if (!self.dateBegin) {
+        if (error != NULL) {
+            *error = [NSError dzParseErrorWithKey:@"Date Begin"];
+        }
+        return NO;
+    }
+    self.dateEnd = [NSDate dateFromISO8601String:dic[SJKTimeKeyEnd]];
+    if (!self.dateEnd) {
+        if (error != NULL) {
+            *error = [NSError dzParseErrorWithKey:@"Date End"];
+        }
+        return NO;
+    }
+    self.typeGuid = dic[SJKTimeKeyTypeGuid];
+    if (!self.typeGuid) {
+        if (error != NULL) {
+            *error = [NSError dzParseErrorWithKey:@"Type GUID"];
+        }
+        return NO;
+    }
+    _localChanged = NO;
+    return YES;
 }
 - (instancetype) init
 {

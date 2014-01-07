@@ -16,4 +16,5 @@
 @property (nonatomic, strong) NSString* guid;
 - (instancetype) initGenGUID;
 - (NSDictionary*) toJsonObject;
+- (BOOL) decodeFromJSONObject:(NSDictionary*)dic  error:(NSError**)error;
 @end

@@ -13,6 +13,10 @@
 #import "NSOperationQueue+DZ.h"
 #import "DZContextManager.h"
 #import "DZTimeType.h"
+#import "NSError+dz.h"
+typedef NSError*(^DZUpdateDBObjectBlock)(NSDictionary* jsonDic);
+
+
 typedef struct {
     int64_t time;
     int64_t timeType;
@@ -26,12 +30,22 @@ static float const DZDefaultRequestCount = 100;
 @interface DZSyncOperation ()
 {
     NSString* _token;
-    DZServerVersions _serverVersions;
+    NSMutableDictionary* _serverVersions;
+    id<DZTimeDBInterface> _database;
 }
 @end
 
 @implementation DZSyncOperation
 
+- (instancetype) init
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    _serverVersions = [NSMutableDictionary new];
+    return self;
+}
 
 + (void) syncAccount:(DZAccount *)account
 {
@@ -43,11 +57,13 @@ static float const DZDefaultRequestCount = 100;
 - (void) main
 {
     @autoreleasepool {
+        NSCAssert(_account != Nil, @"account is nil");
         if (bDZSyncContextIsSyncing) {
             return;
         }
         DZDefaultContextManager.lastSyncError = nil;
         DZSyncContextSet(DZSyncContextSyncAppleToken);
+        _database = [[DZDBManager shareManager] timeDBInterfaceForAccount:_account];
         [[DZTokenManager shareManager] appleToken:_account.email
                                          password:_account.password
                                          response:^(NSString *token, NSError *error)
@@ -84,6 +100,9 @@ static float const DZDefaultRequestCount = 100;
     if (![self updateTimes:error]) {
         return NO;
     }
+    if (![self getTimeTypes:error]) {
+        return NO;
+    }
     if (![self updateTimeTypes:error]) {
         return NO;
     }
@@ -93,14 +112,49 @@ static float const DZDefaultRequestCount = 100;
 - (BOOL) updateTimes:(NSError* __autoreleasing*)error
 {
     DZSyncContextSet(DZSyncContextSyncUploadTime);
-    NSArray* allTimes = [DZActiveTimeDataBase allChangedTimes];
+    NSArray* allTimes = [_database allChangedTimes];
     for (DZTime* time  in allTimes) {
         NSDictionary* dic = [time toJsonObject];
         __unused id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateTime token:_token bodyDatas:dic error:error];
         if (*error) {
             return NO;
         }
-        [DZActiveTimeDataBase setTime:time localchanged:NO];
+        [_database setTime:time localchanged:NO];
+    }
+    return YES;
+}
+
+- (BOOL) getEditedServerObject:(NSString*)methodKey updateBlock:(DZUpdateDBObjectBlock)block error:(NSError* __autoreleasing*)error
+{
+    int64_t localVersion = [_database getSyncVersion:methodKey];
+    int64_t serverVersion = [_serverVersions[methodKey] longLongValue];
+    for (;  localVersion < serverVersion; ) {
+        NSDictionary* infos = @{REST_Param_K_Time_Get_Start_Version:@(localVersion), REST_Param_K_Time_Get_Requst_Count:@(localVersion + DZDefaultRequestCount)};
+        id sobj = [DZDefaultRouter sendServerMethod:methodKey token:_token bodyDatas:infos error:error];
+        if (*error) {
+            return NO;
+        }
+        int64_t version = localVersion;
+        if ([sobj isKindOfClass:[NSDictionary class]]) {
+            NSArray* times = sobj[@"objects"];
+            if (![times isKindOfClass:[NSArray class]]) {
+                if (error != NULL) {
+                    *error = [NSError dzErrorWithCode:-99 message:@"解析数据数组出错"];
+                }
+                return NO;
+            }
+            for (NSDictionary* dic  in times) {
+                if (block) {
+                    *error  = block(dic);
+                    if (*error) {
+                        continue;
+                    }
+                }
+                version = MAX([dic[@"Version"] longLongValue] , version);
+            }
+        }
+        localVersion = version;
+        [_database setSyncVersion:methodKey version:localVersion];
     }
     return YES;
 }
@@ -108,34 +162,19 @@ static float const DZDefaultRequestCount = 100;
 - (BOOL) getTimes:(NSError* __autoreleasing*)error
 {
     DZSyncContextSet(DZSyncContextSyncDownloadTime);
-    int64_t localVersion = [DZActiveTimeDataBase timeVersion];
-    for (; localVersion < _serverVersions.time; ) {
-        NSDictionary* infos = @{REST_Param_K_Time_Get_Start_Version:@(localVersion), REST_Param_K_Time_Get_Requst_Count:@(localVersion + DZDefaultRequestCount)};
-        id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodGetTimes token:_token bodyDatas:infos error:error];
-        if (*error) {
-            break;
+    if (![self getEditedServerObject:DZServerMethodGetTimes updateBlock:^NSError*(NSDictionary *jsonDic) {
+        DZTime* time = [[DZTime alloc] init];
+        NSError* error = nil ;
+        if(![time decodeFromJSONObject:jsonDic error:&error])
+        {
+            return error;
         }
-        int64_t version = localVersion;
-        if ([sobj isKindOfClass:[NSDictionary class]]) {
-            NSArray* times = sobj[@"times"];
-            if (![times isKindOfClass:[NSDictionary class]]) {
-                break;
-            }
-            for (NSDictionary* dic  in times) {
-                version = MAX([dic[@"Version"] longLongValue] , version);
-                DZTime* time = [[DZTime alloc] init];
-                [time setValuesForKeysWithDictionary:dic];
-                if (!time.isMarshalSucceed) {
-                    continue;
-                }
-                [DZActiveTimeDataBase updateTime:time];
-                NSLog(@"%@",time);
-            }
+        if (![_database updateTime:time]) {
+            return _database.lastError;
         }
-        localVersion = version;
-    }
-    [DZActiveTimeDataBase setTimeVersion:localVersion];
-    if (*error) {
+        return nil;
+    } error:error])
+    {
         return NO;
     }
     return YES;
@@ -144,7 +183,7 @@ static float const DZDefaultRequestCount = 100;
 {
     DZSyncContextSet(DZSyncContextSyncUploadType);
     
-    NSArray* changedTypes = [DZActiveTimeDataBase allLocalChangedTypes];
+    NSArray* changedTypes = [_database allLocalChangedTypes];
     for (DZTimeType* type  in changedTypes) {
         NSDictionary* jsonType = [type toJsonObject];
         id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateType token:_token bodyDatas:jsonType error:error];
@@ -159,8 +198,20 @@ static float const DZDefaultRequestCount = 100;
 - (BOOL) getTimeTypes:(NSError* __autoreleasing*)error
 {
     DZSyncContextSet(DZSyncContextSyncDownloadType);
-    
-    
+     if (![self getEditedServerObject:DZServerMethodGetTypes updateBlock:^NSError*(NSDictionary *jsonDic) {
+        DZTimeType* type = [DZTimeType new];
+        NSError* error   = nil;
+        if (![type decodeFromJSONObject:jsonDic error:&error]) {
+            return error;
+        }
+        if (![_database updateTimeType:type]) {
+            return _database.lastError;
+        }
+        return nil;
+    } error:error])
+     {
+         return NO;
+     }
     
     return YES;
 }
@@ -173,8 +224,8 @@ static float const DZDefaultRequestCount = 100;
     }
     if ([sobj isKindOfClass:[NSDictionary class]]) {
         NSDictionary* dic = (NSDictionary*)sobj;
-        _serverVersions.time = [dic[@"times"] longLongValue];
-        _serverVersions.timeType = [dic[@"types"] longLongValue];
+        _serverVersions[DZServerMethodGetTimes] = @([dic[@"times"] longLongValue]);
+        _serverVersions[DZServerMethodGetTypes] = @([dic[@"types"] longLongValue]);
     }
     return YES;
 }

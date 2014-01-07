@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CSS</key>
+	<dict>
+		<key>DZLoginViewController</key>
+		<dict>
+			<key>img_btn_login</key>
+			<string>btn_green_login</string>
+			<key>img_email</key>
+			<string>icon_email</string>
+			<key>img_password</key>
+			<string>icon_password</string>
+			<key>img_textfield_backgroud</key>
+			<string>bg_textfiled_login</string>
+		</dict>
+		<key>DZRegisterViewController</key>
+		<dict>
+			<key>img_btn_login</key>
+			<string>btn_green_login</string>
+			<key>img_email</key>
+			<string>icon_email</string>
+			<key>img_password</key>
+			<string>icon_password</string>
+			<key>img_textfield_backgroud</key>
+			<string>bg_textfiled_login</string>
+		</dict>
+		<key>DZDragViewController</key>
+		<dict>
+			<key>img_icon_email</key>
+			<string>icon_email</string>
+		</dict>
+	</dict>
+	<key>Variables</key>
+	<string></string>
+</dict>
+</plist>

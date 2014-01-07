@@ -19,6 +19,8 @@
 #import "DZLabelActionItem.h"
 #import "DZHistoryViewController.h"
 #import "DZSettingsViewController.h"
+#import "DZLoginViewController.h"
+#import "DZRegisterViewController.h"
 
 @interface DZDragViewController () <DZShareInterface, DZActionDelegate>
 {
@@ -199,8 +201,17 @@
     DZLabelActionItem* cancelItem = [[DZLabelActionItem alloc] init];
     cancelItem.textLabel.text = @"取消";
     cancelItem.height = 70;
+    
+    DZLabelActionItem* loginItem = [[DZLabelActionItem alloc] init];
+    loginItem.textLabel.text = @"登陆";
+    loginItem.height = 70;
+    
+    DZLabelActionItem* registerItem = [[DZLabelActionItem alloc] init];
+    registerItem.textLabel.text = @"注册";
+    registerItem.height = 70;
+    
     cancelItem.textLabel.textAlignment = NSTextAlignmentRight;
-    [actionView.actionContentView setItems:@[syncItem, historyItem, settingItem, cancelItem]];
+    [actionView.actionContentView setItems:@[syncItem, historyItem, settingItem, loginItem , registerItem,cancelItem]];
     [actionView showWithAnimation:YES];
 }
 
@@ -225,6 +236,19 @@
         [self presentViewController:navigationVC animated:YES completion:^{
             
         }];
+    } else if (index == 3) {
+        UINavigationController* navVC = [[UINavigationController alloc] initWithRootViewController:[DZLoginViewController new]];
+        __unused id a = navVC.view;
+        [self presentViewController:navVC animated:YES completion:^{
+            
+        }];
+    } else if (index == 4)
+    {
+        UINavigationController* navVC = [[UINavigationController alloc] initWithRootViewController:[DZRegisterViewController new]];
+        __unused id a = navVC.view;
+        [self presentViewController:navVC animated:YES completion:^{
+            
+        }];
     }
 }
 - (void)viewDidLoad
@@ -236,7 +260,13 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    DZThemeLoadCSS;
     [self setDragState:DZDragViewStateCenter withAnimation:NO];
+    
+}
+
+- (void) loadViewCSS:(id)cssValue forKey:(NSString *)key
+{
     
 }
 - (void)didReceiveMemoryWarning

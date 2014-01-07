@@ -11,6 +11,8 @@
 #import <NSDate-TKExtensions.h>
 #import "NSDate+SSToolkitAdditions.h"
 #import "DZAccountManager.h"
+#import "NSError+dz.h"
+#import "NSDictionary+DecodeJSON.h"
 @implementation DZTimeType
 
 
@@ -57,6 +59,7 @@
     }
 }
 
+
 - (NSDictionary*) toJsonObject
 {
     NSMutableDictionary* json = [NSMutableDictionary new];
@@ -73,5 +76,39 @@
     json[SJKTypeUserGuid] = self.userGuid;
     json[SJKTypeOtherInfos] = self.otherInfos;
     return json;
+}
+
+- (BOOL) decodeFromJSONObject:(NSError *__autoreleasing *)error
+{
+    return NO;
+}
+
+- (BOOL) decodeFromJSONObject:(NSDictionary *)dic error:(NSError *__autoreleasing *)error
+{
+    self.guid =  dic[SJKTypeGuid];
+    if (!self.guid) {
+        if (error != NULL) {
+            *error = [NSError dzParseErrorWithKey:@"GUID"];
+        }
+        return NO;
+    }
+    self.createDate =  [dic decodeDateWithKey:SJKTypeCrateDate error:error];
+    if (*error) {
+        return NO;
+    }
+    self.isFinished = [dic decodeBOOLWithKey:SJKTypeFinished error:error];
+    self.name = [dic decodeStringWithKey:SJKTypeName error:error];
+    if (*error) {
+        return NO;
+    }
+    self.otherInfos = [dic decodeStringWithKey:SJKTypeOtherInfos error:error];
+    if (*error) {
+        self.otherInfos = @"";
+    }
+    self.detail = [dic decodeStringWithKey:SJKTypeDetail error:error];
+    if (*error) {
+        self.detail = @"";
+    }
+    return YES;
 }
 @end

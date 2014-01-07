@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class DZTime;
 @class DZTimeType;
+
 @protocol DZTimeDBInterface <NSObject>
+@property (nonatomic, strong, readonly) NSError* lastError;
 - (BOOL) updateTime:(DZTime *)time;
 - (DZTime*) timeByGuid:(NSString*)guid;
 - (NSArray*) allTimes;
@@ -29,6 +32,8 @@
 - (NSArray*) allLocalChangedTypes;
 - (BOOL) setTimeType:(DZTimeType*)type localchanged:(BOOL)changed;
 //
+- (BOOL) setSyncVersion:(NSString*)key version:(int64_t)version;
+- (int64_t) getSyncVersion:(NSString*)key;
 - (BOOL) setTimeVersion:(int64_t)version;
 - (int64_t) timeVersion;
 - (BOOL) setTimeTypeVersion:(int64_t)version;

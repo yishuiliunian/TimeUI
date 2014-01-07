@@ -13,4 +13,9 @@
 {
     return [NSError errorWithDomain:@"com.dzpqzb.catchtime" code:code userInfo:@{NSLocalizedDescriptionKey: (message ? message : @"unknow")}];
 }
+
++ (NSError*) dzParseErrorWithKey:(NSString *)key
+{
+    return [NSError dzErrorWithCode:DZParserErrorCodePE message:[NSString stringWithFormat:@"parser key %@ error!", key]];
+}
 @end

@@ -18,6 +18,14 @@ static NSString* const DZTimeKeyEnd        = @"DateEnd";
 static NSString* const DZTimeKeyTypeGuid   = @"TypeGUID";
 static NSString* const DZTimeKeyDetail     = @"Detail";
 
+static NSString* const SJKTimeKeyDeviceGuid = @"DeviceGUID";
+static NSString* const SJKTimeKeyUserGuid   = @"UserGUID";
+static NSString* const SJKTimeKeyGuid       = @"Guid";
+static NSString* const SJKTimeKeyBegin      = @"DateBegin";
+static NSString* const SJKTimeKeyEnd        = @"DateEnd";
+static NSString* const SJKTimeKeyTypeGuid   = @"TypeGUID";
+static NSString* const SJKTimeKeyDetail     = @"Detail";
+
 
 
 @interface DZTime : DZObject

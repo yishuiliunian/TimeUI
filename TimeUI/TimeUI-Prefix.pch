@@ -17,4 +17,5 @@
     #import "DZUITools.h"
     #import "DZDBManager.h"
     #import "DZMessageCenter.h"
+    #import "DZThemeManager.h"
 #endif

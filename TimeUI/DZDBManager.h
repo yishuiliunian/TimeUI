@@ -11,8 +11,11 @@
 
 #define DZActiveTimeDataBase [[DZDBManager shareManager] timeDBInterface]
 
+@class DZAccount;
+
 @interface DZDBManager : NSObject
 + (DZDBManager*) shareManager;
 
 - (id<DZTimeDBInterface>) timeDBInterface;
+- (id<DZTimeDBInterface>) timeDBInterfaceForAccount:(DZAccount*)account;
 @end

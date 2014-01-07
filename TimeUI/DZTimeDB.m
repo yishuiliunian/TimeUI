@@ -49,6 +49,11 @@ static NSString* const kDZSyncTimeVersion = @"time";
 static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 
 @implementation DZTimeDB
+@dynamic lastError;
+- (NSError*) lastError
+{
+    return _dataBase.lastError;
+}
 #pragma mark - Common Tools
 - (BOOL) isExistAtTable:(NSString*)tName primayKey:(NSString*)key value:(id)value
 {

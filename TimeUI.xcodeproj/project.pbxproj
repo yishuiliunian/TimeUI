@@ -64,6 +64,8 @@
 		6535A0361862076400173E0E /* DZGlobalActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6535A0351862076400173E0E /* DZGlobalActionView.m */; };
 		654629271864115000E7C072 /* DZCommandThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 654629261864115000E7C072 /* DZCommandThread.m */; };
 		654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 654E5A231856DDEF00DED026 /* DZGeometryTools.m */; };
+		655EE807187AE5ED004F1116 /* DZAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655EE806187AE5ED004F1116 /* DZAccountViewController.m */; };
+		655EE80A187AE98D004F1116 /* DZRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655EE809187AE98D004F1116 /* DZRegisterViewController.m */; };
 		656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AB18324B2D001F7B7C /* Foundation.framework */; };
 		656F68AE18324B2D001F7B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AD18324B2D001F7B7C /* CoreGraphics.framework */; };
 		656F68B018324B2D001F7B7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AF18324B2D001F7B7C /* UIKit.framework */; };
@@ -107,6 +109,17 @@
 		65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */; };
 		65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBF1855E5C300796395 /* DZAnimationState.m */; };
 		65C6BAA91859636D00984D25 /* DZTableView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65C6BAA81859636D00984D25 /* DZTableView.mm */; };
+		65CE6CEB187AAD8B00DACA12 /* NSDictionary+DecodeJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CE6CEA187AAD8B00DACA12 /* NSDictionary+DecodeJSON.m */; };
+		65CE6D31187AC72C00DACA12 /* bg_textfiled_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D2F187AC72C00DACA12 /* bg_textfiled_login.png */; };
+		65CE6D32187AC72C00DACA12 /* bg_textfiled_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D30187AC72C00DACA12 /* bg_textfiled_login@2x.png */; };
+		65CE6D39187AC82B00DACA12 /* btn_green_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D33187AC82B00DACA12 /* btn_green_login.png */; };
+		65CE6D3A187AC82B00DACA12 /* btn_green_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D34187AC82B00DACA12 /* btn_green_login@2x.png */; };
+		65CE6D3B187AC82B00DACA12 /* icon_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D35187AC82B00DACA12 /* icon_email.png */; };
+		65CE6D3C187AC82B00DACA12 /* icon_email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D36187AC82B00DACA12 /* icon_email@2x.png */; };
+		65CE6D3D187AC82B00DACA12 /* icon_password.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D37187AC82B00DACA12 /* icon_password.png */; };
+		65CE6D3E187AC82B00DACA12 /* icon_password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D38187AC82B00DACA12 /* icon_password@2x.png */; };
+		65CE6D42187AC8E000DACA12 /* DZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CE6D41187AC8E000DACA12 /* DZLoginViewController.m */; };
+		65CE6D44187ACA4E00DACA12 /* ThemeResources.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D43187ACA4E00DACA12 /* ThemeResources.plist */; };
 		65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4E06E1859664E005316E8 /* DZTableViewCell.m */; };
 		65EE100D185F312100FA0882 /* NSError+dz.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EE100C185F312100FA0882 /* NSError+dz.m */; };
 		65EF8F01185DFB9000160A71 /* DZSendSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EF8F00185DFB9000160A71 /* DZSendSelector.m */; };
@@ -238,6 +251,11 @@
 		654629261864115000E7C072 /* DZCommandThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCommandThread.m; sourceTree = "<group>"; };
 		654E5A221856DDEF00DED026 /* DZGeometryTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZGeometryTools.h; sourceTree = "<group>"; };
 		654E5A231856DDEF00DED026 /* DZGeometryTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZGeometryTools.m; sourceTree = "<group>"; };
+		655EE804187AD742004F1116 /* DZAppearanceInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZAppearanceInterface.h; sourceTree = "<group>"; };
+		655EE805187AE5ED004F1116 /* DZAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAccountViewController.h; sourceTree = "<group>"; };
+		655EE806187AE5ED004F1116 /* DZAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAccountViewController.m; sourceTree = "<group>"; };
+		655EE808187AE98D004F1116 /* DZRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRegisterViewController.h; sourceTree = "<group>"; };
+		655EE809187AE98D004F1116 /* DZRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZRegisterViewController.m; sourceTree = "<group>"; };
 		656F68A818324B2D001F7B7C /* TimeUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656F68AB18324B2D001F7B7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		656F68AD18324B2D001F7B7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -314,6 +332,19 @@
 		65C6BAA71859636D00984D25 /* DZTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableView.h; sourceTree = "<group>"; };
 		65C6BAA81859636D00984D25 /* DZTableView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DZTableView.mm; sourceTree = "<group>"; };
 		65C6BAAA1859639200984D25 /* DZTableViewSourceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZTableViewSourceDelegate.h; sourceTree = "<group>"; };
+		65CE6CE9187AAD8B00DACA12 /* NSDictionary+DecodeJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DecodeJSON.h"; sourceTree = "<group>"; };
+		65CE6CEA187AAD8B00DACA12 /* NSDictionary+DecodeJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+DecodeJSON.m"; sourceTree = "<group>"; };
+		65CE6D2F187AC72C00DACA12 /* bg_textfiled_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_textfiled_login.png; sourceTree = "<group>"; };
+		65CE6D30187AC72C00DACA12 /* bg_textfiled_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_textfiled_login@2x.png"; sourceTree = "<group>"; };
+		65CE6D33187AC82B00DACA12 /* btn_green_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_green_login.png; sourceTree = "<group>"; };
+		65CE6D34187AC82B00DACA12 /* btn_green_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_green_login@2x.png"; sourceTree = "<group>"; };
+		65CE6D35187AC82B00DACA12 /* icon_email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_email.png; sourceTree = "<group>"; };
+		65CE6D36187AC82B00DACA12 /* icon_email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_email@2x.png"; sourceTree = "<group>"; };
+		65CE6D37187AC82B00DACA12 /* icon_password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_password.png; sourceTree = "<group>"; };
+		65CE6D38187AC82B00DACA12 /* icon_password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_password@2x.png"; sourceTree = "<group>"; };
+		65CE6D40187AC8E000DACA12 /* DZLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLoginViewController.h; sourceTree = "<group>"; };
+		65CE6D41187AC8E000DACA12 /* DZLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLoginViewController.m; sourceTree = "<group>"; };
+		65CE6D43187ACA4E00DACA12 /* ThemeResources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ThemeResources.plist; sourceTree = "<group>"; };
 		65E4E06D1859664E005316E8 /* DZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewCell.h; sourceTree = "<group>"; };
 		65E4E06E1859664E005316E8 /* DZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewCell.m; sourceTree = "<group>"; };
 		65EE100B185F312100FA0882 /* NSError+dz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+dz.h"; sourceTree = "<group>"; };
@@ -463,6 +494,8 @@
 			children = (
 				651465361863EEBE005060CB /* DZThemeManager.h */,
 				651465371863EEBE005060CB /* DZThemeManager.m */,
+				65CE6D43187ACA4E00DACA12 /* ThemeResources.plist */,
+				655EE804187AD742004F1116 /* DZAppearanceInterface.h */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -581,6 +614,7 @@
 		65238F3218575E4D00FE5D89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65CE6D2E187AC70900DACA12 /* Images */,
 				65238F3518575FBB00FE5D89 /* InitTypesData.json */,
 			);
 			name = Resources;
@@ -945,6 +979,7 @@
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				65CE6CEC187AB74300DACA12 /* Share */,
 				651465351863EEB1005060CB /* Theme */,
 				6514652D1862B3A8005060CB /* Context */,
 				6514652C1862A095005060CB /* controls */,
@@ -956,6 +991,8 @@
 				65238EFC185731C100FE5D89 /* DZTimeTrick.plist */,
 				657A56151858D94300521B01 /* DZSingletonFactory.h */,
 				657A56161858D94300521B01 /* DZSingletonFactory.m */,
+				65CE6CE9187AAD8B00DACA12 /* NSDictionary+DecodeJSON.h */,
+				65CE6CEA187AAD8B00DACA12 /* NSDictionary+DecodeJSON.m */,
 			);
 			name = Commons;
 			sourceTree = "<group>";
@@ -963,6 +1000,7 @@
 		65C47CBA1855E0F600796395 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				65CE6D3F187AC8CA00DACA12 /* accounts vc */,
 				65B403ED1872EE2300F018FD /* settings */,
 				65B403E61872E67A00F018FD /* history */,
 				656F68DA18324B38001F7B7C /* DragViewController */,
@@ -984,6 +1022,41 @@
 				65020B32185B42ED00D1ECBA /* cells */,
 			);
 			name = tableView;
+			sourceTree = "<group>";
+		};
+		65CE6CEC187AB74300DACA12 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Share;
+			sourceTree = "<group>";
+		};
+		65CE6D2E187AC70900DACA12 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				65CE6D33187AC82B00DACA12 /* btn_green_login.png */,
+				65CE6D34187AC82B00DACA12 /* btn_green_login@2x.png */,
+				65CE6D35187AC82B00DACA12 /* icon_email.png */,
+				65CE6D36187AC82B00DACA12 /* icon_email@2x.png */,
+				65CE6D37187AC82B00DACA12 /* icon_password.png */,
+				65CE6D38187AC82B00DACA12 /* icon_password@2x.png */,
+				65CE6D2F187AC72C00DACA12 /* bg_textfiled_login.png */,
+				65CE6D30187AC72C00DACA12 /* bg_textfiled_login@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		65CE6D3F187AC8CA00DACA12 /* accounts vc */ = {
+			isa = PBXGroup;
+			children = (
+				65CE6D40187AC8E000DACA12 /* DZLoginViewController.h */,
+				65CE6D41187AC8E000DACA12 /* DZLoginViewController.m */,
+				655EE805187AE5ED004F1116 /* DZAccountViewController.h */,
+				655EE806187AE5ED004F1116 /* DZAccountViewController.m */,
+				655EE808187AE98D004F1116 /* DZRegisterViewController.h */,
+				655EE809187AE98D004F1116 /* DZRegisterViewController.m */,
+			);
+			name = "accounts vc";
 			sourceTree = "<group>";
 		};
 		65EA7636185B69EE00EBF03E /* types */ = {
@@ -1116,6 +1189,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65CE6D31187AC72C00DACA12 /* bg_textfiled_login.png in Resources */,
+				65CE6D3A187AC82B00DACA12 /* btn_green_login@2x.png in Resources */,
+				65CE6D39187AC82B00DACA12 /* btn_green_login.png in Resources */,
 				65F28FD318658899009403D1 /* basketball@2x.png in Resources */,
 				657A56191858DDDA00521B01 /* test.m4a in Resources */,
 				65F0AAC7186CA284001C6302 /* ReleaseNotes.txt in Resources */,
@@ -1125,11 +1201,17 @@
 				65768601185D624B006D7C0F /* icon-info@2x.png in Resources */,
 				65768602185D624B006D7C0F /* icon-success.png in Resources */,
 				65768603185D624B006D7C0F /* icon-success@2x.png in Resources */,
+				65CE6D3B187AC82B00DACA12 /* icon_email.png in Resources */,
 				656F68B618324B2D001F7B7C /* InfoPlist.strings in Resources */,
+				65CE6D3E187AC82B00DACA12 /* icon_password@2x.png in Resources */,
+				65CE6D44187ACA4E00DACA12 /* ThemeResources.plist in Resources */,
 				65238F3618575FBB00FE5D89 /* InitTypesData.json in Resources */,
+				65CE6D3D187AC82B00DACA12 /* icon_password.png in Resources */,
 				657685FE185D624B006D7C0F /* icon-error.png in Resources */,
 				65238EFD185731C100FE5D89 /* DZTimeTrick.plist in Resources */,
 				656F68BE18324B2D001F7B7C /* Images.xcassets in Resources */,
+				65CE6D3C187AC82B00DACA12 /* icon_email@2x.png in Resources */,
+				65CE6D32187AC72C00DACA12 /* bg_textfiled_login@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1185,9 +1267,11 @@
 				657685E5185C9EE6006D7C0F /* DZCustomeView.m in Sources */,
 				65020B2B185B0D3200D1ECBA /* DZTypeCell.m in Sources */,
 				6514655018640F97005060CB /* DZCommand.m in Sources */,
+				65CE6CEB187AAD8B00DACA12 /* NSDictionary+DecodeJSON.m in Sources */,
 				656F68DD183250E8001F7B7C /* DZDragViewController.m in Sources */,
 				65238F00185734A300FE5D89 /* WizDataBase.m in Sources */,
 				65238F531858423200FE5D89 /* MZLoadingCircle.m in Sources */,
+				655EE80A187AE98D004F1116 /* DZRegisterViewController.m in Sources */,
 				65238F151857383800FE5D89 /* DZFileUtility.m in Sources */,
 				65238F2B1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m in Sources */,
 				65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */,
@@ -1206,6 +1290,7 @@
 				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,
 				65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */,
 				65238F1D185739C300FE5D89 /* DZAccount.m in Sources */,
+				655EE807187AE5ED004F1116 /* DZAccountViewController.m in Sources */,
 				65B403EC1872E72D00F018FD /* DZLabelActionItem.m in Sources */,
 				65238F2818574FF200FE5D89 /* NSData+SSToolkitAdditions.m in Sources */,
 				657685E8185CA94D006D7C0F /* DZMessageContainerView.m in Sources */,
@@ -1213,6 +1298,7 @@
 				65768617185DF335006D7C0F /* DZNotificationCenter.mm in Sources */,
 				65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */,
 				6576860C185DDF5B006D7C0F /* DZRouter.m in Sources */,
+				65CE6D42187AC8E000DACA12 /* DZLoginViewController.m in Sources */,
 				65238F5C185853B100FE5D89 /* DZTypesViewController.m in Sources */,
 				65238F0A1857366E00FE5D89 /* DZTimeDB.m in Sources */,
 				6533198B186022AA0004795B /* NSOperationQueue+DZ.m in Sources */,

@@ -18,9 +18,14 @@
 
 - (id<DZTimeDBInterface>) timeDBInterface
 {
-    NSString* dbPath = DZActiveAccount.timeDatabasePath;
-    DZTimeDB* temp = [[DZTimeDB alloc] initWithPath:dbPath modelName:@"DZTimeTrick"];
-    temp.userGuid = DZActiveAccount.identifiy;
-    return temp;
+    return [self timeDBInterfaceForAccount:DZActiveAccount];
+}
+
+- (id<DZTimeDBInterface>) timeDBInterfaceForAccount:(DZAccount*)account
+{
+    NSString* dbPath = account.timeDatabasePath;
+    DZTimeDB* db = [[DZTimeDB alloc] initWithPath:dbPath modelName:@"DZTimeTrick"];
+    db.userGuid = account.identifiy;
+    return db;
 }
 @end
