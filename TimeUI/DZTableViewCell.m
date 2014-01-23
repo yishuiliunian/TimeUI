@@ -24,12 +24,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        _gradientLayer = [CAGradientLayer layer];
+        [self.layer addSublayer:_gradientLayer];
+        
         UIView* contentV = [UIView new];
-        contentV.backgroundColor = [KXKiOS7Colors yellow];
+        contentV.backgroundColor = [UIColor clearColor];
         [self setContentView:contentV];
         
         UIView* a = [UIView new];
-        a.backgroundColor = [UIColor blueColor];
+        a.backgroundColor = [UIColor whiteColor];
         [self setSelectedBackgroudView:a];
         
         //
@@ -43,6 +47,11 @@
         //
         DZCellActionsView* actionView = [[DZCellActionsView alloc] init];
         [self setActionsView:actionView];
+        
+        INIT_SELF_SUBVIEW(DZSeparationLine, _bottomSeperationLine);
+        INIT_SELF_SUBVIEW(DZSeparationLine, _topSeperationLine);
+        
+
     }
     return self;
 }
@@ -167,6 +176,12 @@
     {
         _selectedBackgroudView.hidden = YES;
     }
+    [self bringSubviewToFront:_topSeperationLine];
+    [self bringSubviewToFront:_bottomSeperationLine];
+    LAYOUT_SUBVIEW_TOP_FILL_WIDTH(_topSeperationLine, 0, 0, 3);
+    LAYOUT_SUBVIEW_BOTTOM_FILL_WIDTH(_bottomSeperationLine, 0, 0, 3);
+    _gradientLayer.frame = self.bounds;
+    [_contentView.layer insertSublayer:_gradientLayer atIndex:0];
 }
 
 - (void) setIsSelected:(BOOL)isSelected
@@ -203,5 +218,12 @@
     // Drawing code
 }
 */
+
+- (void) showGradientStart:(UIColor *)startColor endColor:(UIColor *)end
+{
+    _gradientLayer.colors = @[(id)startColor.CGColor, (id)end.CGColor];
+    _topSeperationLine.lineColor = startColor;
+    _bottomSeperationLine.lineColor = end;
+}
 
 @end

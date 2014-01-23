@@ -79,6 +79,8 @@
 		65624F2E1890BFF400ECD113 /* DZPageScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624F2A1890BFF400ECD113 /* DZPageScrollViewCell.m */; };
 		65624F2F1890BFF400ECD113 /* DZPageScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624F2C1890BFF400ECD113 /* DZPageScrollViewController.m */; };
 		65624F321890C2BD00ECD113 /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624F311890C2BD00ECD113 /* UIDeviceHardware.m */; };
+		65624F3518912F5700ECD113 /* DZSeparationLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624F3418912F5700ECD113 /* DZSeparationLine.m */; };
+		65624F3818913BC500ECD113 /* UIColor+DZColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65624F3718913BC500ECD113 /* UIColor+DZColor.m */; };
 		656F68AC18324B2D001F7B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AB18324B2D001F7B7C /* Foundation.framework */; };
 		656F68AE18324B2D001F7B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AD18324B2D001F7B7C /* CoreGraphics.framework */; };
 		656F68B018324B2D001F7B7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656F68AF18324B2D001F7B7C /* UIKit.framework */; };
@@ -296,6 +298,10 @@
 		65624F2C1890BFF400ECD113 /* DZPageScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPageScrollViewController.m; sourceTree = "<group>"; };
 		65624F301890C2BD00ECD113 /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		65624F311890C2BD00ECD113 /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
+		65624F3318912F5700ECD113 /* DZSeparationLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSeparationLine.h; sourceTree = "<group>"; };
+		65624F3418912F5700ECD113 /* DZSeparationLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSeparationLine.m; sourceTree = "<group>"; };
+		65624F3618913BC500ECD113 /* UIColor+DZColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DZColor.h"; sourceTree = "<group>"; };
+		65624F3718913BC500ECD113 /* UIColor+DZColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DZColor.m"; sourceTree = "<group>"; };
 		656F68A818324B2D001F7B7C /* TimeUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656F68AB18324B2D001F7B7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		656F68AD18324B2D001F7B7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -470,6 +476,8 @@
 				6526C8D71859777100A53B79 /* DZTableViewCell_private.h */,
 				657C74A1185AF8FE008728EB /* DZInputCellView.h */,
 				657C74A2185AF8FE008728EB /* DZInputCellView.m */,
+				65624F3318912F5700ECD113 /* DZSeparationLine.h */,
+				65624F3418912F5700ECD113 /* DZSeparationLine.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -804,6 +812,8 @@
 				657C74A7185AFE60008728EB /* UIView+AddTaps.m */,
 				65EF8EFF185DFB9000160A71 /* DZSendSelector.h */,
 				65EF8F00185DFB9000160A71 /* DZSendSelector.m */,
+				65624F3618913BC500ECD113 /* UIColor+DZColor.h */,
+				65624F3718913BC500ECD113 /* UIColor+DZColor.m */,
 			);
 			name = UITools;
 			sourceTree = "<group>";
@@ -1429,6 +1439,7 @@
 				65D6BD3F188E67B00028F063 /* DZProgramDefines.m in Sources */,
 				65238F2B1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m in Sources */,
 				65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */,
+				65624F3818913BC500ECD113 /* UIColor+DZColor.m in Sources */,
 				65D6BD43188F5BC00028F063 /* DZCommonStrings.m in Sources */,
 				65238F03185734BF00FE5D89 /* WizGlobals.m in Sources */,
 				65768610185DF225006D7C0F /* DZNetworkManager.m in Sources */,
@@ -1505,6 +1516,7 @@
 				65B403F01872EE3400F018FD /* DZSettingsViewController.m in Sources */,
 				656F68B818324B2D001F7B7C /* main.m in Sources */,
 				65238F3A1857644B00FE5D89 /* DZTimeTrickManger.m in Sources */,
+				65624F3518912F5700ECD113 /* DZSeparationLine.m in Sources */,
 				65624F2F1890BFF400ECD113 /* DZPageScrollViewController.m in Sources */,
 				657A56171858D94300521B01 /* DZSingletonFactory.m in Sources */,
 				657685E1185C9B6D006D7C0F /* DZMessageCenter.m in Sources */,

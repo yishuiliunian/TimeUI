@@ -8,7 +8,7 @@
 
 #import "DZTableViewCell.h"
 
-#define DZTypeCellHeight 90
+#define DZTypeCellHeight 44
 
 @interface DZTypeCell : DZTableViewCell
 @property (nonatomic, strong, readonly) UIImageView * typeImageView;

@@ -16,6 +16,7 @@
 #import "DZTestInterface.h"
 #import "DZAnalysisManager.h"
 #import "DZImageCache.h"
+#import <KXKiOSGradients.h>
 @interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZTestInterface>
 {
     NSMutableArray* _typesArray;
@@ -73,8 +74,7 @@
     cell.nameLabel.text = type.name;
     cell.countLabel.text = [@(2) stringValue];
     cell.costLabel.text = @"asdfasd";
-    cell.typeImageView.image = DZCachedImageByName(@"basketball");
-    cell.backgroundColor = [UIColor lightGrayColor];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView

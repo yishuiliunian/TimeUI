@@ -10,8 +10,77 @@
 #import "DZTableViewCell_private.h"
 #import <map>
 #import <vector>
+#import "UIColor+DZColor.h"
 #define kDZTableViewDefaultHeight 44.0f
 
+
+class   CColorModel{
+public:
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    CColorModel operator * (float mul) {
+        CColorModel model;
+        model.red = red*mul;
+        model.alpha = alpha;
+        model.green = green*mul;
+        model.blue = blue*mul;
+        return model;
+    }
+    
+    CColorModel operator + (CColorModel addModel) {
+        CColorModel model;
+        model.red = red + addModel.red;
+        model.green = green + addModel.green;
+        model.blue = blue + addModel.blue;
+        model.alpha = addModel.alpha;
+        return model;
+    }
+};
+
+CColorModel CColorModelFromUIColor(UIColor*color)
+{
+    CColorModel model;
+    if ([color getRed:&model.red green:&model.green blue:&model.blue alpha:&model.alpha]) {
+    }
+    return model;
+}
+
+CColorModel CColorModelOffset(CColorModel model, float offset)
+{
+    CColorModel offModel;
+    offModel.red = model.red + offset;
+    offModel.green = model.green + offset;
+    offModel.blue = model.blue + offset;
+    offModel.alpha = model.alpha;
+    return offModel;
+}
+
+CColorModel CColorModelGetOffSet(CColorModel m1, CColorModel m2)
+{
+    CColorModel m3;
+    m3.green = m2.green - m1.green;
+    m3.red = m2.red - m1.red;
+    m3.blue = m2.blue - m1.blue;
+    m3.alpha = sqrt(pow(m1.alpha, 2)+ pow(m2.alpha, 2));
+    return m3;
+}
+
+UIColor* UIColorFromCColorModelOffSet(CColorModel model, float offset)
+{
+    return [UIColor colorWithRed:model.red + offset green:model.green+offset blue:model.blue+offset alpha:model.alpha];
+}
+
+UIColor* UIColorFromOffSetCColorModel(CColorModel model, CColorModel offset)
+{
+    return [UIColor colorWithRed:model.red + offset.red green:model.green+offset.green blue:model.blue+offset.blue alpha:model.alpha];
+}
+
+UIColor* UIColorFromCColorModel(CColorModel model)
+{
+    return  [UIColor colorWithRed:model.red  green:model.green blue:model.blue alpha:model.alpha];
+}
 using namespace std;
 typedef struct {
     BOOL funcNumberOfRows;
@@ -31,8 +100,12 @@ typedef vector<float>   DZCellHeightVector;
     int64_t     _numberOfCells;
     DZCellHeightVector _cellHeights;
     DZCellYoffsetMap _cellYOffsets;
-    
     BOOL    _isLayoutCells;
+    
+    //gradient
+    CColorModel _beginGradientColor;
+    CColorModel _endGradientColor;
+    CColorModel _preGradientPiceColor;
 }
 
 @end
@@ -70,6 +143,7 @@ typedef vector<float>   DZCellHeightVector;
         _cacheCells = [NSMutableSet new];
         [self addTapTarget:self selector:@selector(handleTapGestrue:)];
         _selectedIndex = NSNotFound;
+        [self setGradientColor:[UIColor blueColor]];
     }
     return self;
 }
@@ -106,6 +180,8 @@ typedef vector<float>   DZCellHeightVector;
     }
 }
 
+
+
 - (NSArray*) visibleCells
 {
     return _visibleCellsMap.allValues;
@@ -131,6 +207,18 @@ typedef vector<float>   DZCellHeightVector;
         each.linkedTableViewCell = cell;
     }
     _visibleCellsMap[@(index)] = cell;
+
+    if (index == _numberOfCells -1) {
+        cell.topSeperationLine.hidden = YES;
+        cell.bottomSeperationLine.hidden = YES;
+        
+    } else {
+        cell.topSeperationLine.hidden = YES;
+        cell.bottomSeperationLine.hidden = NO;
+    }
+    
+    [cell showGradientStart:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*index)
+                   endColor:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(index+1))];
 }
 - (DZTableViewCell*) _cellForRow:(NSInteger)rowIndex
 {
@@ -170,6 +258,7 @@ typedef vector<float>   DZCellHeightVector;
     CGSize size = CGSizeMake(CGRectGetWidth(self.frame), height);
     
     [self setContentSize:size];
+    [self reloadPiceGradientColor];
 }
 - (void) reloadData
 {
@@ -256,6 +345,7 @@ typedef vector<float>   DZCellHeightVector;
     [self addSubview:cell];
     cell.index =  row;
     [self updateVisibleCell:cell withIndex:row];
+
 }
 
 
@@ -283,6 +373,7 @@ typedef vector<float>   DZCellHeightVector;
         _backgroudView.frame = self.bounds;
         [self insertSubview:_backgroudView atIndex:0];
     }
+
 }
 
 - (void) layoutSubviews
@@ -427,6 +518,30 @@ typedef vector<float>   DZCellHeightVector;
     }
 }
 
+- (void) reloadPiceGradientColor
+{
+    Float32 cellsCount = (Float32)_numberOfCells + 1;
+    CColorModel offset = CColorModelGetOffSet(_beginGradientColor, _endGradientColor);
+    _preGradientPiceColor.red = offset.red / cellsCount;
+    _preGradientPiceColor.green = offset.green/ cellsCount;
+    _preGradientPiceColor.blue = offset.blue / cellsCount;
+    _preGradientPiceColor.alpha = offset.alpha;
+}
 
+- (UIColor*) gradientColorForIndex:(NSInteger)index
+{
+    return UIColorFromOffSetCColorModel(_beginGradientColor, _preGradientPiceColor*(index+1));
+}
+
+//gradient color
+- (void) setGradientColor:(UIColor *)gradientColor
+{
+    if (_gradientColor != gradientColor) {
+        _gradientColor = gradientColor;
+        _beginGradientColor = CColorModelFromUIColor(_gradientColor);
+        _endGradientColor = CColorModelOffset(_beginGradientColor, 0.7);
+        [self reloadPiceGradientColor];
+    }
+}
 
 @end

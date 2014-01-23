@@ -34,6 +34,9 @@ float TypeImageLabelWidth = DZTypeCellHeight;
         [_contentView addSubview:_countLabel];
         [_contentView addSubview:_costLabel];
         [_contentView addSubview:_typeImageView];
+        
+        self.backgroundColor = [UIColor clearColor];
+
     }
     return self;
 }
@@ -41,13 +44,14 @@ float TypeImageLabelWidth = DZTypeCellHeight;
 - (void) setIsSelected:(BOOL)isSelected
 {
     [super setIsSelected:isSelected];
-    if (isSelected) {
-        _selectedIndicaterView.backgroundColor = [KXKiOS7Colors darkOrange];
-    }
-    else
-    {
-        _selectedIndicaterView.backgroundColor = [KXKiOS7Colors lightGreen];
-    }
+    
+//    if (isSelected) {
+//        _selectedIndicaterView.backgroundColor = [KXKiOS7Colors darkOrange];
+//    }
+//    else
+//    {
+//        _selectedIndicaterView.backgroundColor = [KXKiOS7Colors lightGreen];
+//    }
 }
 
 - (void) layoutSubviews
