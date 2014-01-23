@@ -31,8 +31,25 @@
 {
     [super viewDidLoad];
     
+    [_typesViewController willMoveToParentViewController:self];
+    [self addChildViewController:_typesViewController];
+    [self.view addSubview:_typesViewController.view];
+    [_typesViewController didMoveToParentViewController:self];
+    
+    [_chartsViewController willMoveToParentViewController:self];
+    [self addChildViewController:_chartsViewController];
+    [self.view addSubview:_chartsViewController.view];
+    [_chartsViewController didMoveToParentViewController:self];
+    
 
 	// Do any additional setup after loading the view.
+}
+
+- (void) viewWillLayoutSubviews
+{
+    _typesViewController.view.frame = CGRectMake(0, 0, CGRectVCWidth, 150);
+    _chartsViewController.view.frame = CGRectMake(0, CGRectGetMaxY(_typesViewController.view.frame), CGRectVCWidth, CGRectVCHeight - CGRectGetHeight(_typesViewController.view.frame));
+
 }
 
 - (void)didReceiveMemoryWarning

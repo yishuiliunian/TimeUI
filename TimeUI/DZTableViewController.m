@@ -64,13 +64,14 @@
     [super viewWillLayoutSubviews];
     _backgroudView.frame = self.view.bounds;
     [self.view insertSubview:_backgroudView atIndex:0];
+    _headerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20);
+    _tableView.frame = CGRectMake(10, CGRectGetMaxY(_headerView.frame), CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame) - CGRectGetMaxY(_headerView.frame));
+     [_tableView reloadData];
 }
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _headerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20);
-    _tableView.frame = CGRectMake(10, CGRectGetMaxY(_headerView.frame) + 40, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame) - CGRectGetMaxY(_headerView.frame));
-    [_tableView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning

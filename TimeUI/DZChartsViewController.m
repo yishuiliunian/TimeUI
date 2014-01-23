@@ -81,7 +81,7 @@
     _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     _pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     
-    
+    _timeControl.backgroundColor = [UIColor whiteColor];
 }
 
 - (void) viewWillLayoutSubviews
@@ -118,6 +118,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.pageScrollView.backgroundColor = [UIColor whiteColor];
     self.pageScrollView.showGestrueIndicatoryView = NO;
     [self loadControls];
     [self loadChartsViewControllers];
@@ -129,7 +130,6 @@
 {
     [super viewDidAppear:animated];
 }
-
 
 
 - (void)didReceiveMemoryWarning
@@ -161,7 +161,7 @@
 }
 - (UIEdgeInsets) edgeInsetsOfTopToolViewInPageScrollView:(DZPageScrollView *)pageScrollView
 {
-    return UIEdgeInsetsMake(20, 0, CGRectGetHeight(self.view.frame) - 150, 0);
+    return UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.view.frame) - 150, 0);
 }
 
 - (UIEdgeInsets) edgeInsetsOfPageCellInPageScrollView:(DZPageScrollView *)pageScrollView

@@ -24,6 +24,7 @@
 #import "DZChartsViewController.h"
 
 #import "DZProgramDefines.h"
+#import "DZMainViewController.h"
 
 
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
@@ -46,13 +47,18 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
 
 //    self.window.rootViewController = dragVC;
     //
+    DZTypesViewController* typesVC = [[DZTypesViewController alloc] init];
     
     DZLineChartViewController* lineChat1 = [[DZLineChartViewController alloc] init];
     DZLineChartViewController* lineChat2 = [[DZLineChartViewController alloc] init];
     DZLineChartViewController* lineChat3 = [[DZLineChartViewController alloc] init];
 
     DZChartsViewController* chartsVC = [[DZChartsViewController alloc] initWithChartControllers:@[lineChat1, lineChat2, lineChat3]];
-    self.window.rootViewController = chartsVC;
+    
+    DZMainViewController* mainViewController = [[DZMainViewController alloc] init];
+    mainViewController.chartsViewController = chartsVC;
+    mainViewController.typesViewController = typesVC;
+    self.window.rootViewController = mainViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
