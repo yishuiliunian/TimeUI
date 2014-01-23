@@ -10,5 +10,7 @@
 #import "DZAstirFrameViewController.h"
 #import "DZTableView.h"
 @interface DZTableViewController : DZAstirFrameViewController <DZTableViewSourceDelegate, DZTableViewActionDelegate>
+@property (nonatomic, strong) UIImageView* headerView;
+@property (nonatomic, strong) UIImageView* backgroudView;
 @property (nonatomic, strong ,readonly) DZTableView* tableView;
 @end

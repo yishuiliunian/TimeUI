@@ -150,13 +150,14 @@
         _dragTopViewYoffSet = 100;
         _middleHeight = 100;
     }
+    
     return self;
 }
 - (void) layoutChildViewControllersWithAnimation:(BOOL)animation
 {
-    [self.view insertSubview:_centerViewController.view belowSubview:_bottomViewController.view];
-    [self.view insertSubview:_centerViewController.view belowSubview:_topViewController.view];
-    [self.view insertSubview:_bottomViewController.view belowSubview:_topViewController.view];
+    [self.view insertSubview:_bottomViewController.view aboveSubview:_topViewController.view];
+    [self.view insertSubview:_centerViewController.view aboveSubview:_bottomViewController.view];
+    [self.view insertSubview:_centerViewController.view aboveSubview:_topViewController.view];
     [self setOffsetsWithBottonViewYoffSet:_dragBottomViewYoffSet];
     void(^animationBlock)(void) = ^(void) {
         _bottomViewController.view.frame = CGRectMake(0,

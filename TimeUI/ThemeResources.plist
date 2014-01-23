@@ -31,8 +31,26 @@
 			<key>img_icon_email</key>
 			<string>icon_email</string>
 		</dict>
+		<key>DZTypesViewController</key>
+		<dict>
+			<key>img_background</key>
+			<string>bg_types</string>
+		</dict>
+		<key>DZChartsViewController</key>
+		<dict>
+			<key>img_time_drag_bg</key>
+			<string>bg_backgroud</string>
+			<key>img_time_drag_item</key>
+			<string>icon_threeline</string>
+			<key>img_control_bg</key>
+			<string>bg_timecontrol</string>
+			<key>font_time_bottom</key>
+			<string>default_19</string>
+			<key>font_type_size</key>
+			<string>12</string>
+			<key>color_time_bottom_color</key>
+			<string>#00cbec</string>
+		</dict>
 	</dict>
-	<key>Variables</key>
-	<string></string>
 </dict>
 </plist>

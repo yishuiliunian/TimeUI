@@ -15,8 +15,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (nil == documentDirectory) {
-            NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            documentDirectory = [paths objectAtIndex:0] ;
+            NSArray* paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            documentDirectory = [paths objectAtIndex:0];
         }
     });
 	return documentDirectory;

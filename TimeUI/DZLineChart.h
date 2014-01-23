@@ -7,7 +7,18 @@
 //
 
 #import "PNLineChart.h"
+#import "DZChartNode.h"
 
-@interface DZLineChart : PNLineChart
-
+@interface DZLineChart : UIView
+@property (nonatomic, strong, readonly) CAShapeLayer* shapeLayer;
+@property (nonatomic, strong, readonly) CAShapeLayer* xAxisLineLayer;
+@property (nonatomic, strong) UIFont* yLabelFont;
+@property (nonatomic, strong) UIFont* xLabelFont;
+@property (nonatomic, strong) UIColor* xLabelColor;
+@property (nonatomic, strong) UIColor* yLabelColor;
+@property (nonatomic, strong) UIColor* lineColor;
+DEFINE_PROPERTY_STRONG(UIColor*, gridColor);
+DEFINE_PROPERTY_STRONG(UIColor*, specialNodeColor);
+@property (nonatomic, assign) float minYInterval;
+@property (nonatomic, strong) NSArray*  values;
 @end

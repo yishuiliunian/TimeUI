@@ -1,15 +1,14 @@
 PODS:
-  - CocoaLumberjack (1.7.0):
-    - CocoaLumberjack/Core
+  - CocoaLumberjack (1.8.0):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.7.0)
-  - CocoaLumberjack/Extensions (1.7.0):
+  - CocoaLumberjack/Core (1.8.0)
+  - CocoaLumberjack/Extensions (1.8.0):
     - CocoaLumberjack/Core
   - CTFeedback (1.0.6)
-  - FMDB (2.1):
+  - FMDB (2.2):
     - FMDB/standard
-  - FMDB/common (2.1)
-  - FMDB/standard (2.1):
+  - FMDB/common (2.2)
+  - FMDB/standard (2.2):
     - FMDB/common
   - HexColors (2.2.1)
   - JBChartView (1.1.3)
@@ -19,14 +18,13 @@ PODS:
   - PNChart (0.2.2)
   - PulsingHalo (0.0.1)
   - SSKeychain (1.2.1)
-  - TestFlightSDK (2.2.0-noadid-beta)
+  - TestFlightSDK (2.2.1-beta)
   - TheAmazingAudioEngine (1.2)
   - TSMessages (0.9.4):
     - HexColors
   - TTCounterLabel (1.0.3):
     - TTTAttributedLabel (~> 1.7.1)
   - TTTAttributedLabel (1.7.5)
-  - UIDeviceIdentifier (0.1)
 
 DEPENDENCIES:
   - CocoaLumberjack
@@ -43,16 +41,15 @@ DEPENDENCIES:
   - TheAmazingAudioEngine
   - TSMessages
   - TTCounterLabel
-  - UIDeviceIdentifier
 
 EXTERNAL SOURCES:
   PNChart:
     :git: git://github.com/yishuiliunian/PNChart.git
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: be87113f649942f020a37c061c58009b6ee5ff68
+  CocoaLumberjack: 6ed94046d2ca7fde03a73b3d01b8cfc56574b314
   CTFeedback: 30ab178c28fbde42a96f2aa4b1a4a83702f9331d
-  FMDB: 3fd5aaf632ca4ed39e3f101e0398504e6d5b0918
+  FMDB: 97472cfacf0d9e445e915704fb43b4b142799c36
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
   JBChartView: 12893527d095c173e38aaac4925b72854a13ed4f
   KXKiOS7ColorsAndGradients: 27cb28a573213b4bc7e9c751956fd6b1b53215f5
@@ -61,11 +58,10 @@ SPEC CHECKSUMS:
   PNChart: 55161d5bf01a4a8e5593e5c45b34af70eae7ed83
   PulsingHalo: 6c5b7e18ca5c6c1319d5e2fd277f123ed74a1435
   SSKeychain: d18926838c2e7cd342e2a49e9f869858e49f035a
-  TestFlightSDK: 64f333f91ab9d11985e6c4c188a71b22cc528097
+  TestFlightSDK: 4249c2f70e621bcfbdebf019073169c8fe36be13
   TheAmazingAudioEngine: e544f61ab180d6e83c9478cc47355420f61d7281
   TSMessages: 5ab92604b02e49a755d2cc2baf114d2248a90977
   TTCounterLabel: c5067a72c7110647a170c0b3e03a899324004ca3
   TTTAttributedLabel: 1eb635d4d844cb7abce4d839faefca2a3409950d
-  UIDeviceIdentifier: 64036321b0f77ff41b4200002f0c138431c00d86
 
 COCOAPODS: 0.28.0

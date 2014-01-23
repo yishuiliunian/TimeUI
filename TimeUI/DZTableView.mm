@@ -279,6 +279,10 @@ typedef vector<float>   DZCellHeightVector;
     [self displayPullDownView];
     [self endLayoutCells];
     
+    if (_backgroudView) {
+        _backgroudView.frame = self.bounds;
+        [self insertSubview:_backgroudView atIndex:0];
+    }
 }
 
 - (void) layoutSubviews

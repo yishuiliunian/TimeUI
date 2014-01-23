@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface DZAstirFrameViewController : UIViewController
+#import "DZAppearanceInterface.h"
+#import "DZViewController.h"
+@interface DZAstirFrameViewController : DZViewController <DZAppearanceInterface>
 {
     float _maxHeight;
     float _minHeight;

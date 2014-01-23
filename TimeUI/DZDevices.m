@@ -12,7 +12,7 @@
 #include <net/if.h>
 #include <net/if_dl.h>
 #import "NSString+WizString.h"
-#import  <UIDeviceHardware.h>
+#import "UIDeviceHardware.h"
 
 float DeviceSystemMajorVersion() {
     

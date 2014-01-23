@@ -15,37 +15,37 @@
 // CocoaLumberjack
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack 1
-#define COCOAPODS_VERSION_MINOR_CocoaLumberjack 7
+#define COCOAPODS_VERSION_MINOR_CocoaLumberjack 8
 #define COCOAPODS_VERSION_PATCH_CocoaLumberjack 0
 
 // CocoaLumberjack/Core
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack_Core
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack_Core 1
-#define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Core 7
+#define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Core 8
 #define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Core 0
 
 // CocoaLumberjack/Extensions
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack_Extensions
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack_Extensions 1
-#define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Extensions 7
+#define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Extensions 8
 #define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Extensions 0
 
 // FMDB
 #define COCOAPODS_POD_AVAILABLE_FMDB
 #define COCOAPODS_VERSION_MAJOR_FMDB 2
-#define COCOAPODS_VERSION_MINOR_FMDB 1
+#define COCOAPODS_VERSION_MINOR_FMDB 2
 #define COCOAPODS_VERSION_PATCH_FMDB 0
 
 // FMDB/common
 #define COCOAPODS_POD_AVAILABLE_FMDB_common
 #define COCOAPODS_VERSION_MAJOR_FMDB_common 2
-#define COCOAPODS_VERSION_MINOR_FMDB_common 1
+#define COCOAPODS_VERSION_MINOR_FMDB_common 2
 #define COCOAPODS_VERSION_PATCH_FMDB_common 0
 
 // FMDB/standard
 #define COCOAPODS_POD_AVAILABLE_FMDB_standard
 #define COCOAPODS_VERSION_MAJOR_FMDB_standard 2
-#define COCOAPODS_VERSION_MINOR_FMDB_standard 1
+#define COCOAPODS_VERSION_MINOR_FMDB_standard 2
 #define COCOAPODS_VERSION_PATCH_FMDB_standard 0
 
 // HexColors
@@ -118,17 +118,11 @@
 #define COCOAPODS_POD_AVAILABLE_TestFlightSDK
 #define COCOAPODS_VERSION_MAJOR_TestFlightSDK 2
 #define COCOAPODS_VERSION_MINOR_TestFlightSDK 2
-#define COCOAPODS_VERSION_PATCH_TestFlightSDK 0
+#define COCOAPODS_VERSION_PATCH_TestFlightSDK 1
 
 // TheAmazingAudioEngine
 #define COCOAPODS_POD_AVAILABLE_TheAmazingAudioEngine
 #define COCOAPODS_VERSION_MAJOR_TheAmazingAudioEngine 1
 #define COCOAPODS_VERSION_MINOR_TheAmazingAudioEngine 2
 #define COCOAPODS_VERSION_PATCH_TheAmazingAudioEngine 0
-
-// UIDeviceIdentifier
-#define COCOAPODS_POD_AVAILABLE_UIDeviceIdentifier
-#define COCOAPODS_VERSION_MAJOR_UIDeviceIdentifier 0
-#define COCOAPODS_VERSION_MINOR_UIDeviceIdentifier 1
-#define COCOAPODS_VERSION_PATCH_UIDeviceIdentifier 0
 

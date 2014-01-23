@@ -10,6 +10,7 @@
 #import "DZKVODefines.h"
 #import "DZAnimationState.h"
 #import "UIView+FrameAnimation.h"
+#import "DZThemeManager.h"
 @interface DZAstirFrameViewController ()
 
 @end
@@ -27,7 +28,11 @@
     }
     return self;
 }
-
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    DZThemeLoadCSS;
+}
 - (void) viewDidLayoutSubviews
 {
     

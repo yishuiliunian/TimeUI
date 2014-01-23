@@ -14,6 +14,7 @@
 #import "DZTableViewActionDelegate.h"
 
 @interface DZTableView : UIScrollView
+@property (nonatomic, strong) UIImageView* backgroudView;
 @property (nonatomic, strong, readonly) NSArray* visibleCells;
 @property (nonatomic, weak) id<DZTableViewActionDelegate> actionDelegate;
 @property (nonatomic, weak) id<DZTableViewSourceDelegate> dataSource;

@@ -49,6 +49,7 @@
     self.boldFont = [UIFont boldSystemFontOfSize:55];
     self.regularFont = [UIFont systemFontOfSize:55];
     self.countDirection = kCountDirectionUp;
+    self.adjustsFontSizeToFitWidth = YES;
     self.value = 0;
     self.startValue = 0;
 }

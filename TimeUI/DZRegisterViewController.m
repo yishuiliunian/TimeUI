@@ -37,10 +37,6 @@
     account.password = _password;
     account.isLogin = YES;
     [account synchronize];
-    
-    DZAccount* b = [[DZAccount alloc] initWithEmail:_email];
-    
-    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

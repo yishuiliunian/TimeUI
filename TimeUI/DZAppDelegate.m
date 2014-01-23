@@ -19,14 +19,24 @@
 #import "DZAccountManager.h"
 #import "DZSyncOperation.h"
 #import "DZShakeRecognizedWindow.h"
-@interface DZAppDelegate () <DZRegisterAccountDelegate>
+//
+#import "DZLineChartViewController.h"
+#import "DZChartsViewController.h"
 
+#import "DZProgramDefines.h"
+
+
+@interface DZAppDelegate () <DZRegisterAccountDelegate>
+DEFINE_PROPERTY_ASSIGN_Float(hello);
+DEFINE_PROPERTY_STRONG_UILabel(label);
 @end
 
 @implementation DZAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    DEFINE_NSString(frame);
     [DZAppConfigure initApp];
     self.window = [[DZShakeRecognizedWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -34,7 +44,6 @@
     
     DZTypesViewController* v1 = [DZTypesViewController new];
     v1.selectDelegate = dragVC;
-    
     DZChartViewController* v2 = [DZChartViewController new];
     
     DZCenterButtonViewController* v3 = [[DZCenterButtonViewController alloc] init];
@@ -42,9 +51,9 @@
     dragVC.topViewController = v1;
     dragVC.bottomViewController = v2;
     dragVC.centerViewController = v3;
-    self.window.rootViewController = dragVC;
+//    self.window.rootViewController = dragVC;
     //
-//    self.window.rootViewController = [DZTableViewController new];
+    self.window.rootViewController = [DZLineChartViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

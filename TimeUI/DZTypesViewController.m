@@ -34,7 +34,12 @@
     }
     return self;
 }
-
+- (void) loadViewCSS:(id)cssValue forKey:(NSString *)key
+{
+    if ([key isEqualToString:@"background"]) {
+        self.backgroudView.image =  cssValue;
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
