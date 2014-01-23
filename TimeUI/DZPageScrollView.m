@@ -158,8 +158,13 @@ struct DZPageScrollViewDelegateReseponse {
 - (void) reloadData
 {
     _delegateResponse.funcNumberOfPages = [_pageDelegate respondsToSelector:@selector(numberOfPagesInPageScrollView:)];
+    NSAssert(_delegateResponse.funcNumberOfPages, @"not impletion the selector numberOfPagesInPageScrollView:");
+    //
     _delegateResponse.funcDidTapCell = [_pageActionDelegate respondsToSelector:@selector(pageScrollView:didTapCellAtIndex:)];
+    //
     _delegateResponse.funcGetPageCell = [_pageDelegate respondsToSelector:@selector(pageScrollView:cellAtIndex:)];
+    NSAssert(_delegateResponse.funcGetPageCell, @"not impletion the selector pageScrollView:cellAtIndex:");
+
     if (_delegateResponse.funcNumberOfPages) {
         _numberOfPages = [_pageDelegate numberOfPagesInPageScrollView:self];
     }

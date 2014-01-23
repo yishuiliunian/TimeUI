@@ -99,7 +99,6 @@
     }
     [_nodeNoteCircles removeAllObjects];
     //init
-    UIBezierPath* gradientPath = [UIBezierPath bezierPath];
     
     //draw y labels
     float max = 0;
@@ -236,7 +235,12 @@
     //
     
     free(nodePoints);
+}
 
+- (void) setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    [self setNeedsDisplay];
 }
 
 // Only override drawRect: if you perform custom drawing.

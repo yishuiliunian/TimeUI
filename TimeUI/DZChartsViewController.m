@@ -16,11 +16,22 @@
 {
     DZTimeControl* _timeControl;
     DZNumberLabel* _numberLabel;
+    UIPageControl* _pageControl;
 }
 @end
 
 @implementation DZChartsViewController
 
+
+- (instancetype) initWithChartControllers:(NSArray *)vcs
+{
+    self = [super init];
+    if (!self) {
+        return self;
+    }
+    [self setChartsViewContoller:vcs];
+    return self;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -60,39 +71,66 @@
 - (void) loadControls
 {
     _timeControl = [DZTimeControl new];
-    [self.view addSubview:_timeControl];
-    
-    _numberLabel = [DZNumberLabel new];
-    [self.view addSubview:_numberLabel];
     _timeControl.bottomLabel.text = NSLocalizedString(@"Click Save", nil);
     _timeControl.bottomLabel.textAlignment = NSTextAlignmentCenter;
     _timeControl.bottomLabel.textColor = [UIColor blueColor];
     _timeControl.typeLabel.textAlignment = NSTextAlignmentRight;
     _timeControl.typeLabel.text = @"睡大觉";
+    
+    _pageControl = [[UIPageControl alloc] init];
+    _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    _pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+    
+    
 }
 
 - (void) viewWillLayoutSubviews
 {
     _timeControl.frame = CGRectMake(0, 20, CGRectVCWidth, 150);
 }
+- (void) loadChartsViewControllers
+{
+    if (_chartsViewContoller) {
+        if ([self isViewLoaded]) {
+            for (UIViewController* vc in _chartsViewContoller) {
+                [vc willMoveToParentViewController:self];
+                [self addChildViewController:vc];
+                [vc didMoveToParentViewController:vc];
+            }
+        }
+    }
+}
+- (void) setChartsViewContoller:(NSArray *)chartsViewContoller
+{
+    if (_chartsViewContoller != chartsViewContoller) {
+        if (_chartsViewContoller) {
+            for (UIViewController* vc in _chartsViewContoller) {
+                [vc willMoveToParentViewController:nil];
+                [vc removeFromParentViewController];
+                [vc didMoveToParentViewController:nil];
+            }
+        }
+        _chartsViewContoller = chartsViewContoller;
+        [self loadChartsViewControllers];
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.pageScrollView.showGestrueIndicatoryView = NO;
     [self loadControls];
-    
+    [self loadChartsViewControllers];
+    [self.pageScrollView reloadData];
 	// Do any additional setup after loading the view.
 }
-- (void) handleSet
-{
-    static int  i = 0;
-    _numberLabel.number = i++ %9;
-}
+
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(handleSet) userInfo:nil  repeats:YES];
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -100,4 +138,69 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSUInteger) numberOfPagesInPageScrollView:(DZPageScrollView *)pageScrollView
+{
+    return _chartsViewContoller.count;
+}
+
+- (DZPageScrollViewCell*) pageScrollView:(DZPageScrollView *)pageScrollView cellAtIndex:(NSUInteger)index
+{
+    static NSString* const cellIdentifiy = @"page_scroll_cell";
+    DZPageScrollViewCell* cell = [pageScrollView dequeueReusableCell];
+    if (!cell) {
+        cell = [[DZPageScrollViewCell alloc] initWithReuseIdentifier:cellIdentifiy];
+    }
+    UIViewController* vc  = _chartsViewContoller[index];
+    [cell setContentView:vc.view];
+    return cell;
+}
+// top controls
+- (UIView*) topToolsViewOfPageScrollView:(DZPageScrollView *)pageScrollView
+{
+    return _timeControl;
+}
+- (UIEdgeInsets) edgeInsetsOfTopToolViewInPageScrollView:(DZPageScrollView *)pageScrollView
+{
+    return UIEdgeInsetsMake(20, 0, CGRectGetHeight(self.view.frame) - 150, 0);
+}
+
+- (UIEdgeInsets) edgeInsetsOfPageCellInPageScrollView:(DZPageScrollView *)pageScrollView
+{
+    return UIEdgeInsetsMake(160, 0, 20, 0);
+}
+//bottom
+- (UIView*) bottomToolsViewOfPageScrollView:(DZPageScrollView *)pageScrollView
+{
+    return _pageControl;
+}
+
+- (UIEdgeInsets) edgeInsetsOfBottomToolViewInPageScrollView:(DZPageScrollView *)pageScrollView
+{
+    return UIEdgeInsetsMake(CGRectVCHeight - 20, 100, 0, 100);
+}
+
+- (void) pageScrollView:(DZPageScrollView *)pageView scrollingAtIndex:(NSInteger)index
+{
+    _pageControl.numberOfPages = _chartsViewContoller.count;
+    _pageControl.currentPage = index;
+}
+//
+//- (void) pageScrollView:(DZPageScrollView *)pageView willDisplayCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
+//{
+//    UIViewController* vc  = _chartsViewContoller[index];
+//    [vc viewWillAppear:YES];
+//}
+//
+//- (void) pageScrollView:(DZPageScrollView *)pageView didDisplayCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
+//{
+//    UIViewController* vc  = _chartsViewContoller[index];
+//    [vc viewDidAppear:YES];
+//}
+//
+//- (void) pageScrollView:(DZPageScrollView *)pageView willDisappearCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
+//{
+//    UIViewController* vc  = _chartsViewContoller[index];
+//    [vc viewWillDisappear:YES];
+//    [vc viewDidDisappear:YES];
+//}
 @end

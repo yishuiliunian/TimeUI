@@ -42,11 +42,14 @@
 
 - (void) setContentView:(UIView *)contentView
 {
-    _contentView = contentView;
-    if (contentView) {
-        [self addSubview:_contentView];
+    if (_contentView != contentView) {
+        [_contentView removeFromSuperview];
+        if (contentView) {
+            [self addSubview:contentView];
+        }
+        _contentView = contentView;
+        [self setNeedsLayout];
     }
-    [self setNeedsLayout];
 }
 
 - (void) layoutSubviews

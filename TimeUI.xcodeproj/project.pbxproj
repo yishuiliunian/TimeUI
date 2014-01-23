@@ -719,7 +719,7 @@
 			name = Charts;
 			sourceTree = "<group>";
 		};
-		65238F4D1858367600FE5D89 /* PNPart */ = {
+		65238F4D1858367600FE5D89 /* LineCharts */ = {
 			isa = PBXGroup;
 			children = (
 				65238F4E1858369000FE5D89 /* DZLineChart.h */,
@@ -729,7 +729,7 @@
 				65D051E9187D79F600923A46 /* DZChartNode.h */,
 				65D051EA187D79F600923A46 /* DZChartNode.m */,
 			);
-			name = PNPart;
+			name = LineCharts;
 			sourceTree = "<group>";
 		};
 		65238F541858423500FE5D89 /* MZLoading */ = {
@@ -899,7 +899,7 @@
 				6514654018640A96005060CB /* Analysis */,
 				6535A0331862074D00173E0E /* Controls */,
 				65238F541858423500FE5D89 /* MZLoading */,
-				65238F4D1858367600FE5D89 /* PNPart */,
+				65238F4D1858367600FE5D89 /* LineCharts */,
 				65238F371857643800FE5D89 /* Managers */,
 				65238F3218575E4D00FE5D89 /* Resources */,
 				65238F1E1857489100FE5D89 /* Models */,

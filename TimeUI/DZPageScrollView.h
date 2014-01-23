@@ -26,10 +26,24 @@
 - (UIEdgeInsets) edgeInsetsOfTopToolViewInPageScrollView:(DZPageScrollView *)pageScrollView;
 //按页滑动正好滑动到某一页时，将会触发该函数
 - (void) pageScrollView:(DZPageScrollView*)pageView didDisplayCell:(DZPageScrollViewCell*)cell atIndex:(NSInteger)index;
-//按页滑动，某一页将要进入屏幕时触发该回调
+
+/**
+ *  按页滑动，某一页将要进入屏幕时触发该回调
+ *
+ *  @param pageView 出发改函数的PageView
+ *  @param cell     将要显示的cell
+ *  @param index    将要显示的cell的位置
+ */
 - (void) pageScrollView:(DZPageScrollView *)pageView willDisplayCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index;
 
-//按页滑动，某一页将要离开屏幕时触发该回调
+
+/**
+ *  按页滑动，某一页将要离开屏幕时触发该回调
+ *
+ * @param pageView 出发改函数的PageView
+ *  @param cell     将要离开的cell
+ *  @param index    将要离开的cell的位置
+ */
 - (void) pageScrollView:(DZPageScrollView *)pageView willDisappearCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index;
 
 - (void) pageScrollView:(DZPageScrollView *)pageView scrollingAtIndex:(NSInteger)index;

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DZViewController.h"
 #import "DZPageScrollView.h"
-@interface DZPageScrollViewController : UIViewController <DZPageScrollViewDelegate, DZPageScrollViewActionDelegate>
+@interface DZPageScrollViewController : DZViewController <DZPageScrollViewDelegate, DZPageScrollViewActionDelegate>
 @property (nonatomic, strong, readonly) DZPageScrollView* pageScrollView;
 //初始化时，将会跳转到的位置
 @property (nonatomic, assign) NSInteger initIndex;
-
 
 @end

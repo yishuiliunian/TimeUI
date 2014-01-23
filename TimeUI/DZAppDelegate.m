@@ -36,24 +36,23 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    DEFINE_NSString(frame);
+    
     [DZAppConfigure initApp];
     self.window = [[DZShakeRecognizedWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    DZDragViewController* dragVC = [[DZDragViewController alloc] init];
     
-    DZTypesViewController* v1 = [DZTypesViewController new];
-    v1.selectDelegate = dragVC;
-    DZChartViewController* v2 = [DZChartViewController new];
     
-    DZCenterButtonViewController* v3 = [[DZCenterButtonViewController alloc] init];
-    
-    dragVC.topViewController = v1;
-    dragVC.bottomViewController = v2;
-    dragVC.centerViewController = v3;
+
+
 //    self.window.rootViewController = dragVC;
     //
-    self.window.rootViewController = [DZLineChartViewController new];
+    
+    DZLineChartViewController* lineChat1 = [[DZLineChartViewController alloc] init];
+    DZLineChartViewController* lineChat2 = [[DZLineChartViewController alloc] init];
+    DZLineChartViewController* lineChat3 = [[DZLineChartViewController alloc] init];
+
+    DZChartsViewController* chartsVC = [[DZChartsViewController alloc] initWithChartControllers:@[lineChat1, lineChat2, lineChat3]];
+    self.window.rootViewController = chartsVC;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

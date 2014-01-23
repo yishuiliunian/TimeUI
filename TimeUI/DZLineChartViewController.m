@@ -44,6 +44,12 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.lineChart setNeedsDisplay];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

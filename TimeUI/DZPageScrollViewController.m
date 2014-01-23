@@ -56,13 +56,13 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (_isFirstAppear) {
-        [_pageScrollView reloadData];
-        if (_initIndex != NSNotFound) {
-            [_pageScrollView scrollToPageAtIndex:_initIndex withAnimation:NO];
-        } 
-        _isFirstAppear = NO;
-    }
+//    if (_isFirstAppear) {
+//        [_pageScrollView reloadData];
+//        if (_initIndex != NSNotFound) {
+//            [_pageScrollView scrollToPageAtIndex:_initIndex withAnimation:NO];
+//        } 
+//        _isFirstAppear = NO;
+//    }
 }
 
 - (void) viewDidAppear:(BOOL)animated
