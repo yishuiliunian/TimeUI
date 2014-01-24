@@ -36,8 +36,8 @@
             CGFloat blue;
             CGFloat alpha;
             if ([_lineColor getRed:&red green:&green blue:&blue alpha:&alpha]) {
-                _topColor = [UIColor colorWithRed:red-0.2 green:green-0.2 blue:blue-0.2 alpha:1.0];
-                _bottomColor = [UIColor colorWithRed:red+0.2 green:green+0.2 blue:blue+0.2 alpha:1.0];
+                _topColor = [UIColor colorWithRed:red-0.1 green:green-0.1 blue:blue-0.1 alpha:1.0];
+                _bottomColor = [UIColor colorWithRed:red+0.2 green:green+0.1 blue:blue+0.1 alpha:1.0];
             }
         }
     }

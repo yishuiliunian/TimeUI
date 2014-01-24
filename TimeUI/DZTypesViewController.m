@@ -17,6 +17,7 @@
 #import "DZAnalysisManager.h"
 #import "DZImageCache.h"
 #import <KXKiOSGradients.h>
+#import "DZSawtoothView.h"
 @interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZTestInterface>
 {
     NSMutableArray* _typesArray;
@@ -39,19 +40,26 @@
 {
     if ([key isEqualToString:@"background"]) {
         self.backgroudView.image =  cssValue;
+    }  else if ([key isEqualToString:@"table_gradient"])
+    {
+        self.tableView.gradientColor = cssValue;
     }
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.showsHorizontalScrollIndicator = NO;
     _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
     for (DZTimeType* type  in _timeTypes) {
         [[DZAnalysisManager shareManager] triggleAnaylysisWeekWithType:type];
     }
+    DZSawtoothView* tooth = [[DZSawtoothView alloc] initWithFrame:CGRectMake(0, 0, 0, 10)];
+    self.tableView.bottomView = tooth;
+    tooth.color = [UIColor lightGrayColor];
     [self.tableView reloadData];
-    
+
     [[DZNotificationCenter defaultCenter] addObserver:self forKey:@"a"];
-   
 }
 
 - (CGFloat) dzTableView:(DZTableView *)tableView cellHeightAtRow:(NSInteger)row
@@ -69,6 +77,8 @@
     DZTypeCell* cell = (DZTypeCell*)[tableView dequeueDZTalbeViewCellForIdentifiy:cellIdentifiy];
     if (!cell) {
         cell = [[DZTypeCell alloc] initWithIdentifiy:cellIdentifiy];
+        cell.nameLabel.textColor = [UIColor whiteColor];
+        cell.nameLabel.font = [UIFont systemFontOfSize:28];
     }
     DZTimeType* type = [_timeTypes objectAtIndex:row];
     cell.nameLabel.text = type.name;

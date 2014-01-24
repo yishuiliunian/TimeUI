@@ -9,7 +9,7 @@
 #import "DZTableViewCell.h"
 #import "DZTableViewCell_private.h"
 #import <KXKiOS7Colors.h>
-
+#import "UIColor+DZColor.h"
 @interface DZTableViewCell () <UIGestureRecognizerDelegate>
 {
     UIPanGestureRecognizer* _panGestureRcognizer;
@@ -221,6 +221,11 @@
 
 - (void) showGradientStart:(UIColor *)startColor endColor:(UIColor *)end
 {
+    CGFloat white;
+    CGFloat alpha;
+    if ([startColor getWhite:&white alpha:&alpha]) {
+        NSLog(@"aa");
+    }
     _gradientLayer.colors = @[(id)startColor.CGColor, (id)end.CGColor];
     _topSeperationLine.lineColor = startColor;
     _bottomSeperationLine.lineColor = end;

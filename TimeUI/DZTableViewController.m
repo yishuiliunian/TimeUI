@@ -55,7 +55,9 @@
     [self.view addSubview:_headerView];
     [self.view addSubview:self.tableView];
     
-    
+    _headerView.backgroundColor = [UIColor darkGrayColor];
+    _headerView.alpha = 0.8;
+    _headerView.layer.cornerRadius = 10;
 
 	// Do any additional setup after loading the view.
 }
@@ -64,8 +66,9 @@
     [super viewWillLayoutSubviews];
     _backgroudView.frame = self.view.bounds;
     [self.view insertSubview:_backgroudView atIndex:0];
-    _headerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 20);
-    _tableView.frame = CGRectMake(10, CGRectGetMaxY(_headerView.frame), CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame) - CGRectGetMaxY(_headerView.frame));
+    _headerView.frame = CGRectMake(5, 20, CGRectGetWidth(self.view.frame)-10, 20);
+    
+    _tableView.frame = CGRectMake(10, CGRectGetMaxY(_headerView.frame)-10, CGRectGetWidth(self.view.frame)-20, CGRectGetHeight(self.view.frame) - CGRectGetMaxY(_headerView.frame));
      [_tableView reloadData];
 }
 - (void) viewWillAppear:(BOOL)animated

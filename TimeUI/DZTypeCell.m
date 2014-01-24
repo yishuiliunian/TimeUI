@@ -8,9 +8,10 @@
 
 #import "DZTypeCell.h"
 #import <KXKiOS7Colors.h>
+#import "DZImageCache.h"
 
-float CountLabelWidth = DZTypeCellHeight;
-float TypeImageLabelWidth = DZTypeCellHeight;
+float CountLabelWidth = DZTypeCellHeight -40;
+float TypeImageLabelWidth = 1;
 
 @interface DZTypeCell()
 {
@@ -23,19 +24,23 @@ float TypeImageLabelWidth = DZTypeCellHeight;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _nameLabel             = [UILabel new];
         _selectedIndicaterView = [UIView new];
-        _countLabel            = [UILabel new];
-        _costLabel             = [UILabel new];
         _typeImageView         = [UIImageView new];
         
         [_contentView addSubview:_selectedIndicaterView];
-        [_contentView addSubview:_nameLabel];
-        [_contentView addSubview:_countLabel];
-        [_contentView addSubview:_costLabel];
         [_contentView addSubview:_typeImageView];
         
+        INIT_SELF_SUBVIEW(UITextField, _countLabel);
+        INIT_SELF_SUBVIEW(UITextField, _nameLabel);
+        INIT_SELF_SUBVIEW(UITextField, _costLabel);
+        
+        _countLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        _countLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        _countLabel.textAlignment = NSTextAlignmentCenter;
+        _nameLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.backgroundColor = [UIColor clearColor];
+        _countLabel.background = DZCachedImageByName(@"number_bg");
+
 
     }
     return self;
@@ -59,12 +64,13 @@ float TypeImageLabelWidth = DZTypeCellHeight;
     [super layoutSubviews];
     _selectedIndicaterView.frame = CGRectMake(0, 0, 10, CGRectGetHeight(self.frame));
     _typeImageView.frame = CGRectMake(CGRectGetMaxX(_selectedIndicaterView.frame), 0, TypeImageLabelWidth, TypeImageLabelWidth);
-    _countLabel.frame = CGRectMake(CGRectGetWidth(self.frame) - CountLabelWidth, 0, CountLabelWidth, CountLabelWidth);
+    
+    _countLabel.frame = CGRectMake(CGRectGetWidth(self.frame) - CountLabelWidth - 5, (CGRectViewHeight - CountLabelWidth)/2, CountLabelWidth, CountLabelWidth);
     _nameLabel.frame = CGRectMake(CGRectGetMaxX(_typeImageView.frame),
                                   0,
                                   CGRectGetMinX(_countLabel.frame) - CGRectGetMaxX(_typeImageView.frame),
-                                  CGRectGetHeight(self.frame) / 2);
-    _costLabel.frame = CGRectOffset(_nameLabel.frame, 0, CGRectGetHeight(self.frame)/2);
+                                  CGRectGetHeight(self.frame));
+//    _costLabel.frame = CGRectOffset(_nameLabel.frame, 0, CGRectGetHeight(self.frame)/2);
 }
 
 /*

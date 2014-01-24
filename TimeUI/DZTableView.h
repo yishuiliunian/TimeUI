@@ -23,7 +23,7 @@ DEFINE_PROPERTY_STRONG(UIColor*, gradientColor);
 @property (nonatomic, assign) NSInteger selectedIndex;
 
 @property (nonatomic, strong) DZPullDownView* topPullDownView;
-
+DEFINE_PROPERTY_STRONG(UIView*, bottomView);
 - (DZTableViewCell*) dequeueDZTalbeViewCellForIdentifiy:(NSString*)identifiy;
 - (void) reloadData;
 - (void) insertRowAt:(NSSet *)rowsSet withAnimation:(BOOL)animation;

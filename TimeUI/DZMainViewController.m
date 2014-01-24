@@ -48,7 +48,7 @@
 
 - (void) viewWillLayoutSubviews
 {
-    _typesViewController.view.frame = CGRectMake(0, 0, CGRectVCWidth, 150);
+    _typesViewController.view.frame = CGRectMake(0, 0, CGRectVCWidth, 230);
     _chartsViewController.view.frame = CGRectMake(0, CGRectGetMaxY(_typesViewController.view.frame), CGRectVCWidth, CGRectVCHeight - CGRectGetHeight(_typesViewController.view.frame));
 
 }

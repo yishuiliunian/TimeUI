@@ -11,6 +11,7 @@
 #import <map>
 #import <vector>
 #import "UIColor+DZColor.h"
+#import "DZSawtoothView.h"
 #define kDZTableViewDefaultHeight 44.0f
 
 
@@ -216,7 +217,6 @@ typedef vector<float>   DZCellHeightVector;
         cell.topSeperationLine.hidden = YES;
         cell.bottomSeperationLine.hidden = NO;
     }
-    
     [cell showGradientStart:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*index)
                    endColor:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(index+1))];
 }
@@ -300,12 +300,22 @@ typedef vector<float>   DZCellHeightVector;
             break;
         }
     }
-    
     return NSMakeRange(beginIndex, endIndex - beginIndex + 1);
 }
 
+- (void) setBottomView:(UIView *)bottomView
+{
+    if (_bottomView != bottomView) {
+        [_bottomView removeFromSuperview];
+        _bottomView = bottomView;
+        [self addSubview:_bottomView];
+    }
+}
 - (CGRect) _rectForCellAtRow:(int)rowIndex
 {
+    if (rowIndex < 0 || rowIndex >= _numberOfCells) {
+        return CGRectZero;
+    }
     float cellYoffSet = _cellYOffsets.at(rowIndex);
     float cellHeight  = _cellHeights.at(rowIndex);
     return CGRectMake(0, cellYoffSet - cellHeight, CGRectGetWidth(self.frame), cellHeight);
@@ -338,6 +348,7 @@ typedef vector<float>   DZCellHeightVector;
         [self addSubview:_topPullDownView];
         _topPullDownView.frame = CGRectMake(0, -_topPullDownView.height, CGRectGetWidth(self.frame), _topPullDownView.height);
     }
+    _topPullDownView.textLabel.backgroundColor = _gradientColor;
 }
 
 - (void) addCell:(DZTableViewCell*)cell atRow:(NSInteger)row
@@ -372,6 +383,15 @@ typedef vector<float>   DZCellHeightVector;
     if (_backgroudView) {
         _backgroudView.frame = self.bounds;
         [self insertSubview:_backgroudView atIndex:0];
+    }
+    if (_bottomView) {
+        CGRect lastRect = [self _rectForCellAtRow:(int)_numberOfCells-1];
+        _bottomView.frame = CGRectMake(lastRect.origin.x, CGRectGetMaxY(lastRect), CGRectViewWidth, CGRectGetHeight(_bottomView.frame));
+        [self bringSubviewToFront:_bottomView];
+        if ([_bottomView isKindOfClass:[DZSawtoothView class]]) {
+            UIColor* color = UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(_numberOfCells));
+            [(DZSawtoothView*)_bottomView setColor:color];
+        }
     }
 
 }
@@ -539,7 +559,7 @@ typedef vector<float>   DZCellHeightVector;
     if (_gradientColor != gradientColor) {
         _gradientColor = gradientColor;
         _beginGradientColor = CColorModelFromUIColor(_gradientColor);
-        _endGradientColor = CColorModelOffset(_beginGradientColor, 0.7);
+        _endGradientColor = CColorModelOffset(_beginGradientColor, 0.3);
         [self reloadPiceGradientColor];
     }
 }
