@@ -45,6 +45,10 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
 
 - (void) addTimeLogWithType:(DZTimeType*)type detail:(NSString*)detail
 {
+    if (!type) {
+        DDLogCError(@"时间类型是空的，坑爹呢！");
+        return;
+    }
     DZTime* time = [[DZTime alloc] initGenGUID];
     time.detail = detail ? detail : @"";
     time.dateBegin = self.lastTrickDate;
@@ -67,17 +71,18 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
 - (DZTimeType*) timeType
 {
     NSString* type = [[DZUserDataManager shareManager] activeUserDataForKey:kDZCurrentTimeType];
+    DZTimeType* timeType = nil;
     if (type) {
-        return [DZActiveTimeDataBase timeTypByGUID:type];
+        timeType = [DZActiveTimeDataBase timeTypByGUID:type];
     }
-    else
-    {
-        NSArray* all = [DZActiveTimeDataBase allTimeTypes];
-        if (all.count) {
-            DZTimeType* aType = all.firstObject;
-            [[DZUserDataManager shareManager] setActiveUserData:aType.guid forKey:kDZCurrentTimeType];
-            return aType;
-        }
+    if (timeType) {
+        return timeType;
+    }
+    NSArray* all = [DZActiveTimeDataBase allTimeTypes];
+    if (all.count) {
+        DZTimeType* aType = all.firstObject;
+        [[DZUserDataManager shareManager] setActiveUserData:aType.guid forKey:kDZCurrentTimeType];
+        return aType;
     }
     return nil;
 }

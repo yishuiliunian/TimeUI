@@ -120,6 +120,14 @@
 		65B403E91872E68A00F018FD /* DZHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B403E81872E68A00F018FD /* DZHistoryViewController.m */; };
 		65B403EC1872E72D00F018FD /* DZLabelActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B403EB1872E72D00F018FD /* DZLabelActionItem.m */; };
 		65B403F01872EE3400F018FD /* DZSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B403EF1872EE3400F018FD /* DZSettingsViewController.m */; };
+		65C38F1A1894DF8B00420CF7 /* DZTimeCountLabel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F191894DF8B00420CF7 /* DZTimeCountLabel.mm */; };
+		65C38F2A1894E69100420CF7 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F1F1894E69100420CF7 /* CAAnimation+Blocks.m */; };
+		65C38F2B1894E69100420CF7 /* COPYRIGHT.txt in Resources */ = {isa = PBXBuildFile; fileRef = 65C38F201894E69100420CF7 /* COPYRIGHT.txt */; };
+		65C38F2C1894E69100420CF7 /* MFLTransformingClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F221894E69100420CF7 /* MFLTransformingClock.m */; };
+		65C38F2D1894E69100420CF7 /* MFLTransformingScoreBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F241894E69100420CF7 /* MFLTransformingScoreBoard.m */; };
+		65C38F2E1894E69100420CF7 /* MFLTransformingDigit+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F271894E69100420CF7 /* MFLTransformingDigit+Animation.m */; };
+		65C38F2F1894E69100420CF7 /* MFLTransformingDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F291894E69100420CF7 /* MFLTransformingDigit.m */; };
+		65C38F321894F56500420CF7 /* CTime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F301894F56500420CF7 /* CTime.mm */; };
 		65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CB61855E06200796395 /* DZAstirFrameViewController.m */; };
 		65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */; };
 		65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBF1855E5C300796395 /* DZAnimationState.m */; };
@@ -372,6 +380,21 @@
 		65B403EB1872E72D00F018FD /* DZLabelActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLabelActionItem.m; sourceTree = "<group>"; };
 		65B403EE1872EE3400F018FD /* DZSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSettingsViewController.h; sourceTree = "<group>"; };
 		65B403EF1872EE3400F018FD /* DZSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSettingsViewController.m; sourceTree = "<group>"; };
+		65C38F181894DF8B00420CF7 /* DZTimeCountLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTimeCountLabel.h; sourceTree = "<group>"; };
+		65C38F191894DF8B00420CF7 /* DZTimeCountLabel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DZTimeCountLabel.mm; sourceTree = "<group>"; };
+		65C38F1E1894E69100420CF7 /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
+		65C38F1F1894E69100420CF7 /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
+		65C38F201894E69100420CF7 /* COPYRIGHT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYRIGHT.txt; sourceTree = "<group>"; };
+		65C38F211894E69100420CF7 /* MFLTransformingClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLTransformingClock.h; sourceTree = "<group>"; };
+		65C38F221894E69100420CF7 /* MFLTransformingClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLTransformingClock.m; sourceTree = "<group>"; };
+		65C38F231894E69100420CF7 /* MFLTransformingScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLTransformingScoreBoard.h; sourceTree = "<group>"; };
+		65C38F241894E69100420CF7 /* MFLTransformingScoreBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLTransformingScoreBoard.m; sourceTree = "<group>"; };
+		65C38F261894E69100420CF7 /* MFLTransformingDigit+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFLTransformingDigit+Animation.h"; sourceTree = "<group>"; };
+		65C38F271894E69100420CF7 /* MFLTransformingDigit+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFLTransformingDigit+Animation.m"; sourceTree = "<group>"; };
+		65C38F281894E69100420CF7 /* MFLTransformingDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLTransformingDigit.h; sourceTree = "<group>"; };
+		65C38F291894E69100420CF7 /* MFLTransformingDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLTransformingDigit.m; sourceTree = "<group>"; };
+		65C38F301894F56500420CF7 /* CTime.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CTime.mm; sourceTree = "<group>"; };
+		65C38F311894F56500420CF7 /* CTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTime.h; sourceTree = "<group>"; };
 		65C47CB51855E06200796395 /* DZAstirFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAstirFrameViewController.h; sourceTree = "<group>"; };
 		65C47CB61855E06200796395 /* DZAstirFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAstirFrameViewController.m; sourceTree = "<group>"; };
 		65C47CB91855E0D500796395 /* DZKVODefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZKVODefines.h; sourceTree = "<group>"; };
@@ -851,6 +874,10 @@
 			children = (
 				655CA673188D373D0051678A /* DZTimeControl.h */,
 				655CA674188D373D0051678A /* DZTimeControl.m */,
+				65C38F181894DF8B00420CF7 /* DZTimeCountLabel.h */,
+				65C38F191894DF8B00420CF7 /* DZTimeCountLabel.mm */,
+				65C38F301894F56500420CF7 /* CTime.mm */,
+				65C38F311894F56500420CF7 /* CTime.h */,
 			);
 			name = ClickControl;
 			sourceTree = "<group>";
@@ -1110,6 +1137,48 @@
 			name = settings;
 			sourceTree = "<group>";
 		};
+		65C38F1B1894E69100420CF7 /* MFLTransformingDigits */ = {
+			isa = PBXGroup;
+			children = (
+				65C38F1C1894E69100420CF7 /* CAAnimation+Blocks */,
+				65C38F211894E69100420CF7 /* MFLTransformingClock.h */,
+				65C38F221894E69100420CF7 /* MFLTransformingClock.m */,
+				65C38F231894E69100420CF7 /* MFLTransformingScoreBoard.h */,
+				65C38F241894E69100420CF7 /* MFLTransformingScoreBoard.m */,
+				65C38F251894E69100420CF7 /* Transforming Digit */,
+			);
+			path = MFLTransformingDigits;
+			sourceTree = "<group>";
+		};
+		65C38F1C1894E69100420CF7 /* CAAnimation+Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				65C38F1D1894E69100420CF7 /* CAAnimationBlocks */,
+				65C38F201894E69100420CF7 /* COPYRIGHT.txt */,
+			);
+			path = "CAAnimation+Blocks";
+			sourceTree = "<group>";
+		};
+		65C38F1D1894E69100420CF7 /* CAAnimationBlocks */ = {
+			isa = PBXGroup;
+			children = (
+				65C38F1E1894E69100420CF7 /* CAAnimation+Blocks.h */,
+				65C38F1F1894E69100420CF7 /* CAAnimation+Blocks.m */,
+			);
+			path = CAAnimationBlocks;
+			sourceTree = "<group>";
+		};
+		65C38F251894E69100420CF7 /* Transforming Digit */ = {
+			isa = PBXGroup;
+			children = (
+				65C38F261894E69100420CF7 /* MFLTransformingDigit+Animation.h */,
+				65C38F271894E69100420CF7 /* MFLTransformingDigit+Animation.m */,
+				65C38F281894E69100420CF7 /* MFLTransformingDigit.h */,
+				65C38F291894E69100420CF7 /* MFLTransformingDigit.m */,
+			);
+			path = "Transforming Digit";
+			sourceTree = "<group>";
+		};
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1242,6 +1311,7 @@
 		65EE1009185F279400FA0882 /* others */ = {
 			isa = PBXGroup;
 			children = (
+				65C38F1B1894E69100420CF7 /* MFLTransformingDigits */,
 				65624F301890C2BD00ECD113 /* UIDeviceHardware.h */,
 				65624F311890C2BD00ECD113 /* UIDeviceHardware.m */,
 				65F0AAC1186CA284001C6302 /* mta */,
@@ -1391,6 +1461,7 @@
 				65CE6D3B187AC82B00DACA12 /* icon_email.png in Resources */,
 				656F68B618324B2D001F7B7C /* InfoPlist.strings in Resources */,
 				65CE6D3E187AC82B00DACA12 /* icon_password@2x.png in Resources */,
+				65C38F2B1894E69100420CF7 /* COPYRIGHT.txt in Resources */,
 				65CE6D44187ACA4E00DACA12 /* ThemeResources.plist in Resources */,
 				65238F3618575FBB00FE5D89 /* InitTypesData.json in Resources */,
 				655CA682188D3E0F0051678A /* icon_threeline.png in Resources */,
@@ -1490,12 +1561,14 @@
 				65238F1D185739C300FE5D89 /* DZAccount.m in Sources */,
 				655CA66E188D2E6F0051678A /* DZViewController.m in Sources */,
 				655EE807187AE5ED004F1116 /* DZAccountViewController.m in Sources */,
+				65C38F1A1894DF8B00420CF7 /* DZTimeCountLabel.mm in Sources */,
 				65B403EC1872E72D00F018FD /* DZLabelActionItem.m in Sources */,
 				65238F2818574FF200FE5D89 /* NSData+SSToolkitAdditions.m in Sources */,
 				657685E8185CA94D006D7C0F /* DZMessageContainerView.m in Sources */,
 				65EE100D185F312100FA0882 /* NSError+dz.m in Sources */,
 				65768617185DF335006D7C0F /* DZNotificationCenter.mm in Sources */,
 				65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */,
+				65C38F2A1894E69100420CF7 /* CAAnimation+Blocks.m in Sources */,
 				6576860C185DDF5B006D7C0F /* DZRouter.m in Sources */,
 				65CE6D42187AC8E000DACA12 /* DZLoginViewController.m in Sources */,
 				65238F5C185853B100FE5D89 /* DZTypesViewController.m in Sources */,
@@ -1503,10 +1576,12 @@
 				6533198B186022AA0004795B /* NSOperationQueue+DZ.m in Sources */,
 				65238F311857584300FE5D89 /* DZTimeType.m in Sources */,
 				657685EE185D5827006D7C0F /* DZMessage.m in Sources */,
+				65C38F2C1894E69100420CF7 /* MFLTransformingClock.m in Sources */,
 				6535A0281861E81200173E0E /* DZActionContentView.m in Sources */,
 				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
 				65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */,
 				65238F2518574A1700FE5D89 /* NSString+database.m in Sources */,
+				65C38F2D1894E69100420CF7 /* MFLTransformingScoreBoard.m in Sources */,
 				655CA675188D373D0051678A /* DZTimeControl.m in Sources */,
 				657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */,
 				65F28FAF18641DE3009403D1 /* DZAnalysisModels.m in Sources */,
@@ -1515,12 +1590,14 @@
 				6526C8DE1859893300A53B79 /* DZDevices.m in Sources */,
 				65F28FB318657A4C009403D1 /* DZResourcesManager.m in Sources */,
 				65C6BAA91859636D00984D25 /* DZTableView.mm in Sources */,
+				65C38F321894F56500420CF7 /* CTime.mm in Sources */,
 				656F68BC18324B2D001F7B7C /* DZAppDelegate.m in Sources */,
 				659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */,
 				65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */,
 				65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */,
 				651465301862B3BD005060CB /* DZContextManager.m in Sources */,
 				6535A0321862054400173E0E /* DZShakeRecognizedWindow.m in Sources */,
+				65C38F2E1894E69100420CF7 /* MFLTransformingDigit+Animation.m in Sources */,
 				65238F21185748A400FE5D89 /* DZTime.m in Sources */,
 				657A56141858D78F00521B01 /* DZAudioManager.m in Sources */,
 				65238F191857393500FE5D89 /* DZAccountManager.m in Sources */,
@@ -1540,6 +1617,7 @@
 				65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */,
 				65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */,
 				65238F2E185753C100FE5D89 /* NSBundle+SSToolkitAdditions.m in Sources */,
+				65C38F2F1894E69100420CF7 /* MFLTransformingDigit.m in Sources */,
 				654629271864115000E7C072 /* DZCommandThread.m in Sources */,
 				65768613185DF2A8006D7C0F /* DZTokenManager.m in Sources */,
 				657685F5185D5F96006D7C0F /* DZImageCache.m in Sources */,

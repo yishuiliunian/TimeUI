@@ -17,4 +17,5 @@
 - (void) triggleCommand:(NSString*)command;
 - (DZAnalysisWeekModel*) weekModelForType:(DZTimeType*)type;
 - (void) triggleAnaylysisWeekWithType:(DZTimeType*)type;
+- (void) addWeekModel:(DZAnalysisWeekModel*)midek withType:(DZTimeType*)type;
 @end

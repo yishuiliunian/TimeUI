@@ -38,7 +38,7 @@
 }
 - (NSArray*) parseOnweakTimeData:(NSArray*)array
 {
-    float a[7] = {0,0,0,0,0,0,0};
+    float a[8] = {0,0,0,0,0,0,0,0};
     for (DZTime* time  in array) {
         NSDictionary* costs = [time parseDayCost];
         NSArray* keys = costs.allKeys;

@@ -106,7 +106,7 @@
     for (DZChartNode* node  in _values) {
         max = MAX(max, node.value);
     }
-    max = MAX(10, 0);
+    max = MAX(10, max);
     int64_t count            = _values.count;
     float yInterval          = max/count;
 
@@ -187,10 +187,10 @@
 
     for (int i = 0 ; i < _values.count; i++) {
         DZChartNode* node = _values[i];
-        float y = node.value / (double)max * yAxisHeight;
-        if (y > -0.01 && y < 0.01) {
-            y = axisOriginPoint.y;
-        }
+        float height =  node.value / (double)max * yAxisHeight;
+        
+        float y = axisOriginPoint.y - height;
+ 
         float x = perXLabelWidth* i+ axisOriginPoint.x;
         CGPoint point  = CGPointMake(x, y);
         nodePoints[i] = point;

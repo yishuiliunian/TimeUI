@@ -47,27 +47,7 @@
 
 - (void) triggleAnaylysisWeekWithType:(DZTimeType*)type
 {
-    DZCommand* c = [[DZCommand alloc] initWithBlock:^{
-        NSArray* times = [DZActiveTimeDataBase timesInOneWeakByType:type];
-        float a[7] = {0,0,0,0,0,0,0};
-        for (DZTime* time  in times) {
-            NSDictionary* costs = [time parseDayCost];
-            NSArray* keys = costs.allKeys;
-            for (NSNumber* each  in keys) {
-                float cost = [costs[each] floatValue];
-                a[[each intValue]] += cost;
-            }
-        }
-        DZAnalysisWeekModel* week = [[DZAnalysisWeekModel alloc] init];
-        week.mondy = a[0];
-        week.tuesday = a[1];
-        week.wednesday = a[2];
-        week.tuesday = a[3];
-        week.friday = a[4];
-        week.thursday = a[5];
-        week.sunday = a[6];
-        [self addWeekModel:week withType:type];
-    }];
+    DZCommand* c = [[DZCommand alloc] initWithBlock:nil];
     [_commandQueue addCommand:c];
 }
 

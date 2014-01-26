@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TTCounterLabel.h>
+#import "DZTimeCountLabel.h"
 @interface DZTimeControl : UIView
 DEFINE_PROPERTY_ASSIGN_Float(dragBackgroudHeight);
 DEFINE_PROPERTY_STRONG_UIImageView(dragBackgroundImageView);
@@ -15,5 +15,5 @@ DEFINE_PROPERTY_STRONG_UIImageView(dragItemImageView);
 DEFINE_PROPERTY_STRONG_UILabel(typeLabel);
 DEFINE_PROPERTY_STRONG_UILabel(bottomLabel);
 DEFINE_PROPERTY_STRONG_UIImageView(labelsBackgroundImageView);
-@property (nonatomic, strong, readonly) TTCounterLabel* counterLabel;
+@property (nonatomic, strong, readonly) DZTimeCountLabel* counterLabel;
 @end

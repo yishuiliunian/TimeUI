@@ -9,25 +9,40 @@
 #import "DZTimeControl.h"
 #import "DZUITools.h"
 #import "DZGeometryTools.h"
-
+#import "DZTimeTrickManger.h"
 
 static float const kDefaultDragItemHeight = 25;
 
-@implementation DZTimeControl
+@interface DZTimeControl ()
+{
+    UITapGestureRecognizer* _tapGerg;
+}
+@end
 
+@implementation DZTimeControl
+- (void) handleTapGestrueRecg:(UITapGestureRecognizer*)recg
+{
+    if (recg.state == UIGestureRecognizerStateRecognized) {
+        [[DZTimeTrickManger shareManager] addTimeWithDetail:@"asdfasd"];
+    }
+}
 - (void) commonInit
 {
     INIT_SELF_SUBVIEW_UIImageView(_dragBackgroundImageView);
     INIT_SUBVIEW_UIImageView(_dragBackgroundImageView, _dragItemImageView);
     INIT_SELF_SUBVIEW_UIImageView(_labelsBackgroundImageView);
-    _counterLabel = [[TTCounterLabel alloc] init];
+    _counterLabel = [[DZTimeCountLabel alloc] init];
     [_labelsBackgroundImageView addSubview:_counterLabel];
     INIT_SUBVIEW_UILabel(_labelsBackgroundImageView, _typeLabel);
     _typeLabel.adjustsFontSizeToFitWidth = YES;
     _typeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     INIT_SUBVIEW_UILabel(_labelsBackgroundImageView, _bottomLabel);
-    _counterLabel.startValue = 1000;
     [_counterLabel start];
+    
+    _tapGerg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestrueRecg:)];
+    [self addGestureRecognizer:_tapGerg];
+    _tapGerg.numberOfTapsRequired = 1;
+    _tapGerg.numberOfTouchesRequired = 1;
 }
 
 - (id)initWithFrame:(CGRect)frame
