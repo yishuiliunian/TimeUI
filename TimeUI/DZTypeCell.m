@@ -30,9 +30,9 @@ float TypeImageLabelWidth = 1;
         [_contentView addSubview:_selectedIndicaterView];
         [_contentView addSubview:_typeImageView];
         
-        INIT_SELF_SUBVIEW(UITextField, _countLabel);
-        INIT_SELF_SUBVIEW(UITextField, _nameLabel);
-        INIT_SELF_SUBVIEW(UITextField, _costLabel);
+        INIT_SUBVIEW(_contentView, UITextField, _countLabel);
+        INIT_SUBVIEW(_contentView, UITextField, _nameLabel);
+        INIT_SUBVIEW(_contentView, UITextField, _costLabel);
         
         _countLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         _countLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -40,7 +40,12 @@ float TypeImageLabelWidth = 1;
         _nameLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.backgroundColor = [UIColor clearColor];
         _countLabel.background = DZCachedImageByName(@"number_bg");
-
+        _costLabel.textAlignment = NSTextAlignmentRight;
+        _countLabel.enabled = NO;
+        _nameLabel.enabled = NO;
+        _costLabel.enabled = NO;
+        _nameLabel.textColor = [UIColor whiteColor];
+        _costLabel.textColor = [UIColor whiteColor];
 
     }
     return self;
@@ -66,9 +71,10 @@ float TypeImageLabelWidth = 1;
     _typeImageView.frame = CGRectMake(CGRectGetMaxX(_selectedIndicaterView.frame), 0, TypeImageLabelWidth, TypeImageLabelWidth);
     
     _countLabel.frame = CGRectMake(CGRectGetWidth(self.frame) - CountLabelWidth - 5, (CGRectViewHeight - CountLabelWidth)/2, CountLabelWidth, CountLabelWidth);
+    _costLabel.frame = CGRectMake(CGRectGetMinX(_countLabel.frame) - 80, 0, 80, CGRectViewHeight);
     _nameLabel.frame = CGRectMake(CGRectGetMaxX(_typeImageView.frame),
                                   0,
-                                  CGRectGetMinX(_countLabel.frame) - CGRectGetMaxX(_typeImageView.frame),
+                                  CGRectGetMinX(_costLabel.frame) - CGRectGetMaxX(_typeImageView.frame),
                                   CGRectGetHeight(self.frame));
 //    _costLabel.frame = CGRectOffset(_nameLabel.frame, 0, CGRectGetHeight(self.frame)/2);
 }

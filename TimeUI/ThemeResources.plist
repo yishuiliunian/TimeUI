@@ -53,6 +53,11 @@
 			<key>color_time_bottom_color</key>
 			<string>#00cbec</string>
 		</dict>
+		<key>DZLineChartViewController</key>
+		<dict>
+			<key>color_chart_line</key>
+			<string>#57c7f7</string>
+		</dict>
 	</dict>
 </dict>
 </plist>

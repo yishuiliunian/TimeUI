@@ -22,13 +22,13 @@
 - (void) commonInit
 {
     _animationTime = 2;
+    //
     _xLabelFont           = [UIFont systemFontOfSize:12];
     _xLabelColor          = [UIColor blackColor];
+    //
     _yLabelFont           = [UIFont systemFontOfSize:12];
-    _minYInterval         = 12;
-
+    _minYInterval         = 30;
     _yLabelColor          = [UIColor blackColor];
-
 
     _shapeLayer           = [CAShapeLayer layer];
     _shapeLayer.lineCap   = kCALineCapRound;
@@ -53,6 +53,7 @@
     _lineColor = [UIColor blueColor];
     _gridColor = [UIColor lightGrayColor];
     _specialNodeColor = [UIColor orangeColor];
+    
 }
 
 
@@ -105,7 +106,7 @@
     for (DZChartNode* node  in _values) {
         max = MAX(max, node.value);
     }
-    
+    max = MAX(10, 0);
     int64_t count            = _values.count;
     float yInterval          = max/count;
 
@@ -115,7 +116,7 @@
     float yLabelsWidth       = 20;
     float yAxisHeight        = CGRectGetHeight(self.frame) - yAxisBottomOffSet - yAxisTopOffSet;
     float yHInterval         = yAxisHeight/count;
-    float xLabelsOffsetYAxis = 20;
+    float xLabelsOffsetYAxis = 5;
     float xAxisOffSetRight   = 10;
 
     ////
@@ -140,22 +141,25 @@
 
     for (int i = 0 ; i < count + 1; i++) {
         NSString* ytext = [@((int)floor(i*yInterval)) stringValue];
-        CGRect rect = CGRectMake(yLabelsXOffset, CGRectGetHeight(self.frame) - ( yAxisBottomOffSet + yHInterval * i + _minYInterval), yLabelsWidth, _minYInterval);
-        [[UIColor redColor] setFill];
-        [[UIColor redColor] setStroke];
-        CGPoint currentYaxisPoint = CGPointMake(CGRectGetMaxX(rect) + xLabelsOffsetYAxis, CGRectGetMinY(rect) + CGRectGetHeight(rect) /2);
+        
+        CGRect rect = CGRectMake(yLabelsXOffset, CGRectGetHeight(self.frame) - ( yAxisBottomOffSet + yHInterval * (i +1)), yLabelsWidth, yHInterval);
+        
+        CGFloat textHeight = [ytext sizeWithFont:_yLabelFont constrainedToSize:CGSizeMake(1000, 1000)].height;
+        CGRect yTextRect  = CGRectMake(CGRectGetMinX(rect), CGRectGetMaxY(rect) - textHeight/2, yLabelsWidth, textHeight);
+        CGPoint currentYaxisPoint = CGPointMake(CGRectGetMaxX(rect) + xLabelsOffsetYAxis, CGRectGetMaxY(rect));
         if (i == 0) {
             axisOriginPoint = currentYaxisPoint;
         } else if (i == count) {
             yAxisMaxPoint = currentYaxisPoint;
         }
-        [ytext drawInRect:rect  withAttributes:nil];
+        [_yLabelColor setFill];
+        [_yLabelColor setStroke];
+        [ytext drawInRect:yTextRect  withAttributes:nil];
         UIBezierPath* path = [UIBezierPath bezierPath];
         CGPoint beginPoint = currentYaxisPoint;
         [path moveToPoint:beginPoint];
         [path addLineToPoint:CGPointMake(beginPoint.x + xContextWidth - perXLabelWidth, beginPoint.y )];
         [gridLines addObject:path];
-        
     }
     float chartContentHeight = ABS(yAxisMaxPoint.y - axisOriginPoint.y);
 
@@ -164,7 +168,7 @@
     UIBezierPath* xAxisLine = [UIBezierPath bezierPath];
     [xAxisLine moveToPoint:axisOriginPoint];
     [xAxisLine addLineToPoint:CGPointMake(axisOriginPoint.x+xContextWidth - perXLabelWidth, axisOriginPoint.y)];
-    _xAxisLineLayer.strokeColor = [UIColor redColor].CGColor;
+    _xAxisLineLayer.strokeColor = _gridColor.CGColor;
     _xAxisLineLayer.path = xAxisLine.CGPath;
     [_xAxisLineLayer addAnimation:[self strokeAnimation] forKey:@"strokeEnd"];
     _xAxisLineLayer.strokeEnd = 1.0;
@@ -184,16 +188,32 @@
     for (int i = 0 ; i < _values.count; i++) {
         DZChartNode* node = _values[i];
         float y = node.value / (double)max * yAxisHeight;
+        if (y > -0.01 && y < 0.01) {
+            y = axisOriginPoint.y;
+        }
         float x = perXLabelWidth* i+ axisOriginPoint.x;
         CGPoint point  = CGPointMake(x, y);
         nodePoints[i] = point;
         [_processLine addLineToPoint:point];
         [_processLine moveToPoint:point];
         
+        CGPoint xaixsPoint = CGPointMake(x, axisOriginPoint.y);
         UIBezierPath* imagePath = [UIBezierPath bezierPath];
-        [imagePath moveToPoint:CGPointMake(x, axisOriginPoint.y)];
+        [imagePath moveToPoint:xaixsPoint];
         [imagePath addLineToPoint:CGPointMake(x, axisOriginPoint.y - chartContentHeight)];
         [gridLines addObject:imagePath];
+        
+        //draw xaixs label
+        
+        CGSize xLabelSize = [node.key sizeWithFont:_xLabelFont constrainedToSize:CGSizeMake(100, 100)];
+        
+        CGRect xLabelRect = CGRectExpandPoint(xaixsPoint, xLabelSize);
+        xLabelRect.origin.y = xaixsPoint.y + 5;
+        
+        [_xLabelColor setFill];
+        [_xLabelColor setStroke];
+        [node.key drawInRect:xLabelRect withFont:_xLabelFont];
+        
     }
     _shapeLayer.path = _processLine.CGPath;
     _shapeLayer.strokeColor = _lineColor.CGColor;
@@ -236,7 +256,13 @@
     
     free(nodePoints);
 }
-
+- (void) setLineColor:(UIColor *)lineColor
+{
+    if (_lineColor != lineColor) {
+        _lineColor = lineColor;
+        [self setNeedsDisplay];
+    }
+}
 - (void) setFrame:(CGRect)frame
 {
     [super setFrame:frame];

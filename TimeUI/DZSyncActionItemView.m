@@ -12,14 +12,19 @@
 #import "DZAccountManager.h"
 #import "DZNotificationCenter.h"
 #import <NSDate-TKExtensions.h>
+
+#import "DZNoAccountContentView.h"
+#import "DZHasAccountContentView.h"
+
+
+
+
 @interface DZSyncActionItemView () <DZSyncContextChangedInterface>
-{
-    UIButton* _actionButton;
-    UILabel* _messageLabel;
-}
+DEFINE_PROPERTY_STRONG(UIView*, contentView);
 @end
 
 @implementation DZSyncActionItemView
+
 
 - (void) dealloc
 {
@@ -30,70 +35,48 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _actionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self addSubview:_actionButton];
-        
-        _messageLabel = [UILabel new];
-        [self addSubview:_messageLabel];
-        
-        _messageLabel.text = [DZDefaultContextManager.lastSyncDate localDescription];
-        
-        [[DZNotificationCenter defaultCenter] addObserver:self forKey:kDZSyncContextChangedMessage];
+        if(NO)
+        {
+            [self setContentView:[DZHasAccountContentView new] animation:NO];
+        }
+        else
+        {
+            [self setContentView:[DZNoAccountContentView new] animation:NO];
+        }
     }
     return self;
 }
 
-- (void) syncContextChangedFrom:(DZSyncContext)origin toContext:(DZSyncContext)aim
+
+- (void) setContentView:(UIView *)contentView animation:(BOOL)animation
 {
-    [self setNeedsLayout];
-    switch (aim) {
-        case DZSyncContextSyncError:
-        {
-            NSError* error  = DZDefaultContextManager.lastSyncError;
-            _messageLabel.text = error.localizedDescription;
-            break;
+    if (_contentView != contentView) {
+        if (contentView) {
+            UIView* old = _contentView;
+            contentView.frame = CGRectOffset(self.bounds, CGRectViewWidth, 0);
+            [self addSubview:contentView];
+            void(^aimationBlock)(void) = ^(void) {
+                _contentView.frame = CGRectMake(-CGRectGetWidth(self.frame), 0, CGRectViewWidth, CGRectViewHeight);
+                contentView.frame = self.bounds;
+            };
+            if (animation) {
+                [UIView animateWithDuration:0.25 animations:aimationBlock completion:^(BOOL finished) {
+                    [old removeFromSuperview];
+                }];
+            }
+            else
+            {
+                aimationBlock();
+                [old removeFromSuperview];
+            }
+            _contentView = contentView;
         }
-        default:
-            break;
     }
 }
-
-- (void) configureButtonWithSyncing:(BOOL)isSyncing
-{
-    [_actionButton removeTarget:self action:@selector(startSync) forControlEvents:UIControlEventTouchUpInside];
-    [_actionButton removeTarget:self action:@selector(stopSync) forControlEvents:UIControlEventTouchUpInside];
-    if (!isSyncing) {
-        [_actionButton setTitle:@"同步" forState:UIControlStateNormal];
-        [_actionButton addTarget:self action:@selector(startSync) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else
-    {
-        [_actionButton setTitle:@"停止" forState:UIControlStateNormal];
-        [_actionButton addTarget:self action:@selector(stopSync) forControlEvents:UIControlEventTouchUpInside];
-    }
-}
-
-- (void) startSync
-{
-    [self configureButtonWithSyncing:YES];
-    [DZSyncOperation syncAccount:DZActiveAccount];
-}
-
-- (void) stopSync
-{
-    [self configureButtonWithSyncing:NO];
-}
-
-
 
 - (void) layoutSubviews
 {
-    BOOL isSyncing = bDZSyncContextIsSyncing;
-    [self configureButtonWithSyncing:isSyncing];
-    _actionButton.frame = CGRectMake(10, 0, 40, CGRectGetHeight(self.frame));
-    if (!isSyncing) {
-        _messageLabel.frame = CGRectMake(50, 0, CGRectGetWidth(self.frame)-60, CGRectGetHeight(self.frame));
-    }
+    _contentView.frame = self.bounds;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

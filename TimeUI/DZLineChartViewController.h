@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DZLineChart.h"
-@interface DZLineChartViewController : UIViewController
+#import "DZViewController.h"
+@interface DZLineChartViewController : DZViewController
 @property (nonatomic, strong) DZLineChart* lineChart;
 @end

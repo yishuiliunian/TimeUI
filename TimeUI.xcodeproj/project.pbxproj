@@ -152,6 +152,8 @@
 		65F28FD218658899009403D1 /* basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F28FD018658899009403D1 /* basketball.png */; };
 		65F28FD318658899009403D1 /* basketball@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F28FD118658899009403D1 /* basketball@2x.png */; };
 		65FB8E1018923F4B006F8D8A /* number_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FB8E0F18923F4B006F8D8A /* number_bg.png */; };
+		65FB8E6718926305006F8D8A /* DZNoAccountContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FB8E6618926305006F8D8A /* DZNoAccountContentView.m */; };
+		65FB8E6A1892631D006F8D8A /* DZHasAccountContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FB8E691892631D006F8D8A /* DZHasAccountContentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -425,6 +427,10 @@
 		65F28FD018658899009403D1 /* basketball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = basketball.png; sourceTree = "<group>"; };
 		65F28FD118658899009403D1 /* basketball@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basketball@2x.png"; sourceTree = "<group>"; };
 		65FB8E0F18923F4B006F8D8A /* number_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number_bg.png; sourceTree = "<group>"; };
+		65FB8E6518926305006F8D8A /* DZNoAccountContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNoAccountContentView.h; sourceTree = "<group>"; };
+		65FB8E6618926305006F8D8A /* DZNoAccountContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZNoAccountContentView.m; sourceTree = "<group>"; };
+		65FB8E681892631D006F8D8A /* DZHasAccountContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZHasAccountContentView.h; sourceTree = "<group>"; };
+		65FB8E691892631D006F8D8A /* DZHasAccountContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZHasAccountContentView.m; sourceTree = "<group>"; };
 		AAB0C93DA505486994ECA5C1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -790,6 +796,7 @@
 		6535A0331862074D00173E0E /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				65FB8E64189262E5006F8D8A /* SyncAction */,
 				6535A0341862076400173E0E /* DZGlobalActionView.h */,
 				6535A0351862076400173E0E /* DZGlobalActionView.m */,
 				6514652918629F82005060CB /* DZSyncActionItemView.h */,
@@ -1272,6 +1279,17 @@
 			name = ResourcesManager;
 			sourceTree = "<group>";
 		};
+		65FB8E64189262E5006F8D8A /* SyncAction */ = {
+			isa = PBXGroup;
+			children = (
+				65FB8E6518926305006F8D8A /* DZNoAccountContentView.h */,
+				65FB8E6618926305006F8D8A /* DZNoAccountContentView.m */,
+				65FB8E681892631D006F8D8A /* DZHasAccountContentView.h */,
+				65FB8E691892631D006F8D8A /* DZHasAccountContentView.m */,
+			);
+			name = SyncAction;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1466,6 +1484,8 @@
 				65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */,
 				65D051EB187D79F600923A46 /* DZChartNode.m in Sources */,
 				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,
+				65FB8E6A1892631D006F8D8A /* DZHasAccountContentView.m in Sources */,
+				65FB8E6718926305006F8D8A /* DZNoAccountContentView.m in Sources */,
 				65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */,
 				65238F1D185739C300FE5D89 /* DZAccount.m in Sources */,
 				655CA66E188D2E6F0051678A /* DZViewController.m in Sources */,

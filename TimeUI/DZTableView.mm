@@ -12,6 +12,7 @@
 #import <vector>
 #import "UIColor+DZColor.h"
 #import "DZSawtoothView.h"
+#import <HexColor.h>
 #define kDZTableViewDefaultHeight 44.0f
 
 
@@ -107,6 +108,9 @@ typedef vector<float>   DZCellHeightVector;
     CColorModel _beginGradientColor;
     CColorModel _endGradientColor;
     CColorModel _preGradientPiceColor;
+    
+    //
+    NSDictionary* _cellColorsDic;
 }
 
 @end
@@ -135,6 +139,16 @@ typedef vector<float>   DZCellHeightVector;
     }
 }
 
+- (void) commonInit
+{
+    _cellColorsDic = @{@(0): [UIColor colorWithHexString:@"#4859ad"],
+                       @(1): [UIColor colorWithHexString:@"#bd64d3"],
+                        @(2): [UIColor colorWithHexString:@"#2ea9df"],
+                        @(3): [UIColor colorWithHexString:@"76c61e"],
+                        @(4): [UIColor colorWithHexString:@"ffc000"],
+                       @(5): [UIColor colorWithHexString:@"#ffb19b"]};
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -145,6 +159,8 @@ typedef vector<float>   DZCellHeightVector;
         [self addTapTarget:self selector:@selector(handleTapGestrue:)];
         _selectedIndex = NSNotFound;
         [self setGradientColor:[UIColor blueColor]];
+        //
+        [self commonInit];
     }
     return self;
 }
@@ -215,10 +231,13 @@ typedef vector<float>   DZCellHeightVector;
         
     } else {
         cell.topSeperationLine.hidden = YES;
-        cell.bottomSeperationLine.hidden = NO;
+        cell.bottomSeperationLine.hidden = YES;
     }
-    [cell showGradientStart:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*index)
-                   endColor:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(index+1))];
+    UIColor* color = _cellColorsDic[@(index % _cellColorsDic.count)];
+    cell.contentView.backgroundColor = color;
+//    cell.bottomSeperationLine.lineColor = color;
+//    [cell showGradientStart:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*index)
+//                   endColor:UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(index+1))];
 }
 - (DZTableViewCell*) _cellForRow:(NSInteger)rowIndex
 {
@@ -255,6 +274,7 @@ typedef vector<float>   DZCellHeightVector;
     if (height < CGRectGetHeight(self.frame)) {
         height = CGRectGetHeight(self.frame) + 2;
     }
+    height += 10;
     CGSize size = CGSizeMake(CGRectGetWidth(self.frame), height);
     
     [self setContentSize:size];
@@ -389,7 +409,9 @@ typedef vector<float>   DZCellHeightVector;
         _bottomView.frame = CGRectMake(lastRect.origin.x, CGRectGetMaxY(lastRect), CGRectViewWidth, CGRectGetHeight(_bottomView.frame));
         [self bringSubviewToFront:_bottomView];
         if ([_bottomView isKindOfClass:[DZSawtoothView class]]) {
-            UIColor* color = UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(_numberOfCells));
+            
+//            UIColor* color = UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(_numberOfCells));
+            UIColor* color = _cellColorsDic[@((_numberOfCells -1)%_cellColorsDic.count)];
             [(DZSawtoothView*)_bottomView setColor:color];
         }
     }
