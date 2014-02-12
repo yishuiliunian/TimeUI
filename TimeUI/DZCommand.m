@@ -19,4 +19,11 @@
     }
     return self;
 }
+
++ (DZCommand*) commondWithIdentify:(NSString *)identify Block:(DZCommandBlock)block
+{
+    DZCommand* c = [[DZCommand alloc] initWithBlock:block];
+    c.identify = identify;
+    return c;
+}
 @end

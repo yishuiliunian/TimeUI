@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DZAppearanceInterface.h"
+
 @interface DZViewController : UIViewController <DZAppearanceInterface>
 
 @end

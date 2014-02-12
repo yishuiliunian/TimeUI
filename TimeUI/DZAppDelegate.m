@@ -25,7 +25,7 @@
 
 #import "DZProgramDefines.h"
 #import "DZMainViewController.h"
-
+#import "DZAnalysisManager.h"
 
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
@@ -67,6 +67,7 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     
     return YES;
 }
+
 
 - (void) registerAccountOperation:(DZRegisterAccountOperation *)op failedWithError:(NSError *)error
 {

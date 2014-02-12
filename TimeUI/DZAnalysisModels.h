@@ -10,7 +10,7 @@
 
 @interface DZAnalysisWeekModel : NSObject
 @property (nonatomic, assign) float sunday;
-@property (nonatomic, assign) float mondy;
+@property (nonatomic, assign) float monday;
 @property (nonatomic, assign) float tuesday;
 @property (nonatomic, assign) float wednesday;
 @property (nonatomic, assign) float thursday;

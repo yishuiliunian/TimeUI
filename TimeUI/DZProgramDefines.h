@@ -14,6 +14,8 @@
  */
 #define DEFINE_NSString(str)  static NSString* const kDZ##str = @""#str;
 
+#define DEFINE_NOTIFICATION_MESSAGE(str) static NSString* const kDZNotification_##str = @""#str;
+
 #define DEFINE_PROPERTY(mnmKind, type , name) @property (nonatomic, mnmKind)  type  name
 #define DEFINE_PROPERTY_ASSIGN(type, name) DEFINE_PROPERTY(assign, type, name)
 #define DEFINE_PROPERTY_ASSIGN_Float(name) DEFINE_PROPERTY_ASSIGN(float, name)

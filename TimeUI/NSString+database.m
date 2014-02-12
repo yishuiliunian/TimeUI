@@ -78,11 +78,29 @@
     sql = [sql appendingInBracketsString:@"?" repeatCount:[array count]];
     return sql;
 }
-
++ (NSString*) selecteSql:(NSArray*)fields tableName:(NSString *)tableName whereArray:(NSArray *)whereFields decorate:(NSString *)decorate
+{
+    NSMutableString* fieldsStr = [NSMutableString stringWithString:@" "];
+    if (fields.count) {
+        for (int i = 0 ; i< fields.count; i++) {
+            [fieldsStr appendString:fields[i]];
+            if (i != fields.count - 1) {
+                [fieldsStr appendString:@","];
+            }
+        }
+    } else {
+        [fieldsStr appendString:@" *"];
+    }
+    [fieldsStr appendString:@"  "];
+    
+    NSString* sql = [NSString stringWithFormat:@"select %@ from %@ ", fieldsStr, tableName];
+    return [sql appendingWhereFileds:whereFields decorate:decorate];
+}
 + (NSString*) selecteSql:(NSString*)tableName whereArray:(NSArray*)whereFields decorate:(NSString*)decorate
 {
-    NSString* sql = [NSString stringWithFormat:@"select * from %@ ", tableName];
-    return [sql appendingWhereFileds:whereFields decorate:decorate];
+//    NSString* sql = [NSString stringWithFormat:@"select * from %@ ", tableName];
+//    return [sql appendingWhereFileds:whereFields decorate:decorate];
+    return [NSString selecteSql:@[] tableName:tableName whereArray:whereFields decorate:decorate];
 }
 + (NSString*) deleteSql:(NSString*)tableName whereArray:(NSArray*)whereFields decorate:(NSString*)decorate
 {

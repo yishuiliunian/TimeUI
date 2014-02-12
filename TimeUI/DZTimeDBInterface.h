@@ -38,4 +38,11 @@
 - (int64_t) timeVersion;
 - (BOOL) setTimeTypeVersion:(int64_t)version;
 - (int64_t) timeTypeVersion;
+
+//
+- (NSDictionary*) parseAllTypeCount;
+- (int) numberOfTimeOfTypeGUID:(NSString*)guid;
+
+//
+- (NSTimeInterval) timeCostWithTypeGUID:(NSString*)guid;
 @end

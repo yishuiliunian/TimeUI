@@ -10,10 +10,12 @@
 #import "DZUITools.h"
 #import "DZGeometryTools.h"
 #import "DZTimeTrickManger.h"
-
+#import "DZSelecteTypeInterface.h"
+#import "DZNotificationCenter.h"
+#import "DZTimeType.h"
 static float const kDefaultDragItemHeight = 25;
 
-@interface DZTimeControl ()
+@interface DZTimeControl () <DZSelecteTypeInterface>
 {
     UITapGestureRecognizer* _tapGerg;
 }
@@ -23,8 +25,20 @@ static float const kDefaultDragItemHeight = 25;
 - (void) handleTapGestrueRecg:(UITapGestureRecognizer*)recg
 {
     if (recg.state == UIGestureRecognizerStateRecognized) {
-        [[DZTimeTrickManger shareManager] addTimeWithDetail:@"asdfasd"];
+        [[DZTimeTrickManger shareManager] addTimeWithDetail:@"nothind"];
+        _counterLabel.beginTimeOffset = ABS([[DZTimeTrickManger shareManager].lastTrickDate timeIntervalSinceNow]);
+        [_counterLabel start];
     }
+}
+
+- (void) dealloc
+{
+    [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_selectedType];
+}
+
+- (void) didSelectedTimeType:(DZTimeType *)timetype
+{
+    _typeLabel.text = timetype.name;
 }
 - (void) commonInit
 {
@@ -37,12 +51,18 @@ static float const kDefaultDragItemHeight = 25;
     _typeLabel.adjustsFontSizeToFitWidth = YES;
     _typeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     INIT_SUBVIEW_UILabel(_labelsBackgroundImageView, _bottomLabel);
+    
+    _counterLabel.beginTimeOffset = ABS([[DZTimeTrickManger shareManager].lastTrickDate timeIntervalSinceNow]);
     [_counterLabel start];
     
     _tapGerg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestrueRecg:)];
     [self addGestureRecognizer:_tapGerg];
     _tapGerg.numberOfTapsRequired = 1;
     _tapGerg.numberOfTouchesRequired = 1;
+    
+    
+    
+    [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_selectedType];
 }
 
 - (id)initWithFrame:(CGRect)frame

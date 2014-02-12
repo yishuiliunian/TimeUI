@@ -18,4 +18,11 @@
 - (DZAnalysisWeekModel*) weekModelForType:(DZTimeType*)type;
 - (void) triggleAnaylysisWeekWithType:(DZTimeType*)type;
 - (void) addWeekModel:(DZAnalysisWeekModel*)midek withType:(DZTimeType*)type;
+
+//
+- (void) triggleAnaylysisTimeCount;
+- (int) numberOfTimeForType:(DZTimeType*)type;
+
+//
+- (NSTimeInterval) timeCostOfType:(DZTimeType*)type;
 @end

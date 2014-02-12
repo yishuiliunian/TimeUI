@@ -128,6 +128,8 @@
 		65C38F2E1894E69100420CF7 /* MFLTransformingDigit+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F271894E69100420CF7 /* MFLTransformingDigit+Animation.m */; };
 		65C38F2F1894E69100420CF7 /* MFLTransformingDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F291894E69100420CF7 /* MFLTransformingDigit.m */; };
 		65C38F321894F56500420CF7 /* CTime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F301894F56500420CF7 /* CTime.mm */; };
+		65C38F6318950A2000420CF7 /* DZSettingSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F6218950A2000420CF7 /* DZSettingSectionModel.m */; };
+		65C38F6618950B0300420CF7 /* DZSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C38F6518950B0300420CF7 /* DZSettingModel.m */; };
 		65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CB61855E06200796395 /* DZAstirFrameViewController.m */; };
 		65C47CBD1855E52100796395 /* UIView+FrameAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBC1855E52100796395 /* UIView+FrameAnimation.m */; };
 		65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C47CBF1855E5C300796395 /* DZAnimationState.m */; };
@@ -395,6 +397,10 @@
 		65C38F291894E69100420CF7 /* MFLTransformingDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLTransformingDigit.m; sourceTree = "<group>"; };
 		65C38F301894F56500420CF7 /* CTime.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CTime.mm; sourceTree = "<group>"; };
 		65C38F311894F56500420CF7 /* CTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTime.h; sourceTree = "<group>"; };
+		65C38F6118950A2000420CF7 /* DZSettingSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSettingSectionModel.h; sourceTree = "<group>"; };
+		65C38F6218950A2000420CF7 /* DZSettingSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSettingSectionModel.m; sourceTree = "<group>"; };
+		65C38F6418950B0300420CF7 /* DZSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSettingModel.h; sourceTree = "<group>"; };
+		65C38F6518950B0300420CF7 /* DZSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSettingModel.m; sourceTree = "<group>"; };
 		65C47CB51855E06200796395 /* DZAstirFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAstirFrameViewController.h; sourceTree = "<group>"; };
 		65C47CB61855E06200796395 /* DZAstirFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAstirFrameViewController.m; sourceTree = "<group>"; };
 		65C47CB91855E0D500796395 /* DZKVODefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZKVODefines.h; sourceTree = "<group>"; };
@@ -432,6 +438,8 @@
 		65E4E06E1859664E005316E8 /* DZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewCell.m; sourceTree = "<group>"; };
 		65E65EFA1892139B00AFA60E /* DZSawtoothView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSawtoothView.h; sourceTree = "<group>"; };
 		65E65EFB1892139B00AFA60E /* DZSawtoothView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSawtoothView.m; sourceTree = "<group>"; };
+		65EB0BE918AA39DB00D2E2F3 /* DZSelecteTypeInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZSelecteTypeInterface.h; sourceTree = "<group>"; };
+		65EB0BEA18AA4A0B00D2E2F3 /* DZAnalysisNotificationInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZAnalysisNotificationInterface.h; sourceTree = "<group>"; };
 		65EE100B185F312100FA0882 /* NSError+dz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+dz.h"; sourceTree = "<group>"; };
 		65EE100C185F312100FA0882 /* NSError+dz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+dz.m"; sourceTree = "<group>"; };
 		65EF8EFF185DFB9000160A71 /* DZSendSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSendSelector.h; sourceTree = "<group>"; };
@@ -603,6 +611,7 @@
 				6514654218640AB2005060CB /* DZAnalysisManager.m */,
 				65F28FAD18641DE3009403D1 /* DZAnalysisModels.h */,
 				65F28FAE18641DE3009403D1 /* DZAnalysisModels.m */,
+				65EB0BEA18AA4A0B00D2E2F3 /* DZAnalysisNotificationInterface.h */,
 			);
 			name = Analysis;
 			sourceTree = "<group>";
@@ -1131,6 +1140,7 @@
 		65B403ED1872EE2300F018FD /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				65C38F60189509BA00420CF7 /* base */,
 				65B403EE1872EE3400F018FD /* DZSettingsViewController.h */,
 				65B403EF1872EE3400F018FD /* DZSettingsViewController.m */,
 			);
@@ -1177,6 +1187,17 @@
 				65C38F291894E69100420CF7 /* MFLTransformingDigit.m */,
 			);
 			path = "Transforming Digit";
+			sourceTree = "<group>";
+		};
+		65C38F60189509BA00420CF7 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				65C38F6418950B0300420CF7 /* DZSettingModel.h */,
+				65C38F6518950B0300420CF7 /* DZSettingModel.m */,
+				65C38F6118950A2000420CF7 /* DZSettingSectionModel.h */,
+				65C38F6218950A2000420CF7 /* DZSettingSectionModel.m */,
+			);
+			name = base;
 			sourceTree = "<group>";
 		};
 		65C47CB81855E0C500796395 /* Commons */ = {
@@ -1304,6 +1325,7 @@
 				65020B29185B0D3200D1ECBA /* DZTypeCell.h */,
 				65020B2A185B0D3200D1ECBA /* DZTypeCell.m */,
 				65FB8E0F18923F4B006F8D8A /* number_bg.png */,
+				65EB0BE918AA39DB00D2E2F3 /* DZSelecteTypeInterface.h */,
 			);
 			name = types;
 			sourceTree = "<group>";
@@ -1609,10 +1631,12 @@
 				65D051E8187D791300923A46 /* DZLineChartViewController.m in Sources */,
 				6514654318640AB2005060CB /* DZAnalysisManager.m in Sources */,
 				65624F2D1890BFF400ECD113 /* DZPageScrollView.m in Sources */,
+				65C38F6318950A2000420CF7 /* DZSettingSectionModel.m in Sources */,
 				651465381863EEBE005060CB /* DZThemeManager.m in Sources */,
 				6526C8DA1859883B00A53B79 /* DZTableViewController.m in Sources */,
 				6535A0361862076400173E0E /* DZGlobalActionView.m in Sources */,
 				65D6BD2C188D57390028F063 /* DZNumberLabel.m in Sources */,
+				65C38F6618950B0300420CF7 /* DZSettingModel.m in Sources */,
 				6514652B18629F82005060CB /* DZSyncActionItemView.m in Sources */,
 				65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */,
 				65238EFB18572F5500FE5D89 /* pinyin.cpp in Sources */,

@@ -9,17 +9,30 @@
 #import "DZTypeCell.h"
 #import <KXKiOS7Colors.h>
 #import "DZImageCache.h"
-
+#import "DZAnalysisNotificationInterface.h"
+#import "DZTimeType.h"
 float CountLabelWidth = DZTypeCellHeight -40;
 float TypeImageLabelWidth = 1;
 
-@interface DZTypeCell()
+@interface DZTypeCell() <DZAnalysisCountNI>
 {
     UIView* _selectedIndicaterView;
 }
 @end
 @implementation DZTypeCell
 
+
+- (void) parasedCount:(int)cout forKey:(NSString *)key
+{
+    if ([key isEqualToString:_type.guid]) {
+        _countLabel.text = [@(cout) stringValue];
+    }
+}
+
+- (void) dealloc
+{
+    [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_parase_count];
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -46,6 +59,8 @@ float TypeImageLabelWidth = 1;
         _costLabel.enabled = NO;
         _nameLabel.textColor = [UIColor whiteColor];
         _costLabel.textColor = [UIColor whiteColor];
+        
+        [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_parase_count];
 
     }
     return self;

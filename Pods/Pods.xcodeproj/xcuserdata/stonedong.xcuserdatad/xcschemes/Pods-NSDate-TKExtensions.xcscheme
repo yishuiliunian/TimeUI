@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "206DE7C3D866413196246017"
+               BlueprintIdentifier = "9B86BBC02FBC4D8889A5F0A3"
                BuildableName = "libPods-NSDate-TKExtensions.a"
                BlueprintName = "Pods-NSDate-TKExtensions"
                ReferencedContainer = "container:Pods.xcodeproj">

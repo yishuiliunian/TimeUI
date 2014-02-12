@@ -10,25 +10,40 @@
 #import "DZDBManager.h"
 #import "DZTime.h"
 #import <NSDate-TKExtensions.h>
-@interface DZLineChartViewController ()
+#import "DZNotificationCenter.h"
+#import "DZSelecteTypeInterface.h"
+@interface DZLineChartViewController () <DZSelecteTypeInterface>
 
 @end
 
 @implementation DZLineChartViewController
 
+- (void) dealloc
+{
+    [[DZNotificationCenter defaultCenter] removeObserver:self forMessage:kDZNotification_selectedType];
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        [[DZNotificationCenter defaultCenter] addObserver:self forKey:kDZNotification_selectedType];
     }
     return self;
+}
+
+- (void) didSelectedTimeType:(DZTimeType *)timetype
+{
+    [self showAnalisyOfType:timetype];
 }
 - (void) loadView
 {
     _lineChart = [[DZLineChart alloc] initWithFrame:CGRectLoadViewFrame];
     self.view = _lineChart;
 }
+
+
 
 - (void) loadViewCSS:(id)cssValue forKey:(NSString *)key
 {
@@ -71,14 +86,19 @@
     
     return nodes;
 }
-- (void)viewDidLoad
+
+- (void) showAnalisyOfType:(DZTimeType*)type
 {
-    [super viewDidLoad];
-    DZTimeType* type = [DZActiveTimeDataBase allTimeTypes].firstObject;
     NSArray* array =  [DZActiveTimeDataBase timesInOneWeakByType:type];
     NSArray* nodes = [self parseOnweakTimeData:array];
     _lineChart.values = nodes;
     [_lineChart setNeedsDisplay];
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    DZTimeType* type = [DZActiveTimeDataBase allTimeTypes].firstObject;
+    [self showAnalisyOfType:type];
 	// Do any additional setup after loading the view.
 }
 

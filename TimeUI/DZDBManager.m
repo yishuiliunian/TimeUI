@@ -10,6 +10,7 @@
 #import "DZTimeDB.h"
 #import "DZAccountManager.h"
 #import "DZSingletonFactory.h"
+
 @implementation DZDBManager
 + (DZDBManager*) shareManager
 {

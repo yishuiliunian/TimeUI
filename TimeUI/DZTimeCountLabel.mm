@@ -51,7 +51,7 @@
     CFTimeInterval current = CFAbsoluteTimeGetCurrent();
     double space = current - _startTime + _beginTimeOffset;
     
-    CTime time = CTime(space+3600);
+    CTime time = CTime(space);
     std::vector<int> disVector;
     time.getHMSDisplay(disVector);
     std::vector<int>::iterator itor = disVector.begin();

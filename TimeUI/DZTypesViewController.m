@@ -18,6 +18,8 @@
 #import "DZImageCache.h"
 #import <KXKiOSGradients.h>
 #import "DZSawtoothView.h"
+#import "DZSelecteTypeInterface.h"
+#import "DZTimeTrickManger.h"
 @interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZTestInterface>
 {
     NSMutableArray* _typesArray;
@@ -48,6 +50,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[DZAnalysisManager shareManager] triggleAnaylysisTimeCount];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
     _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
@@ -82,9 +86,10 @@
     }
     DZTimeType* type = [_timeTypes objectAtIndex:row];
     cell.nameLabel.text = type.name;
-    cell.countLabel.text = [@(2) stringValue];
-    cell.costLabel.text = @"asdfasd";
+    cell.countLabel.text = [@([DZShareAnalysisManager numberOfTimeForType:type]) stringValue];
+    cell.costLabel.text = [@([DZShareAnalysisManager timeCostOfType:type]) stringValue];
     cell.backgroundColor = [UIColor clearColor];
+    cell.type = type;
     return cell;
 }
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
@@ -104,13 +109,14 @@
     
 }
 
-
 - (void) dzTableView:(DZTableView *)tableView didTapAtRow:(NSInteger)row
 {
     DZTimeType* type = [_timeTypes objectAtIndex:row];
     if ([_selectDelegate respondsToSelector:@selector(typesViewController:didSelect:)]) {
         [_selectDelegate typesViewController:self didSelect:type];
     }
+    [DZTimeTrickManger shareManager].timeType = type;
+    [[DZNotificationCenter defaultCenter] postMessage:kDZNotification_selectedType userInfo:@{@"type": type}];
 }
 
 - (void) dzInputCellView:(DZInputCellView *)inputView hideWithText:(NSString *)text
@@ -125,6 +131,7 @@
 
 - (void) dzInputCellViewUserCancel:(DZInputCellView *)inputView
 {
+    
 }
 
 - (void) dzTableView:(DZTableView *)tableView deleteCellAtRow:(NSInteger)row

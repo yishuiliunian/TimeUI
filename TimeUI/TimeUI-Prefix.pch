@@ -19,4 +19,5 @@
     #import "DZMessageCenter.h"
     #import "DZThemeManager.h"
     #import "DZProgramDefines.h"
+#import "DZNotificationCenter.h"
 #endif

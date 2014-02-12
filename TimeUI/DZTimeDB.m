@@ -12,6 +12,7 @@
 #import "DZTime.h"
 #import "DZTimeType.h"
 #import <NSDate-TKExtensions.h>
+#import "DZAnalysisManager.h"
 static NSString* const kDZTableTimeName = @"DZTIME";
 static NSString* const kDZ_T_Time_C_Date_Begin = @"DATE_BEGIN";
 static NSString* const kDZ_T_Time_C_Date_End = @"DATE_END";
@@ -73,6 +74,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 
 - (BOOL) updateTime:(DZTime *)time
 {
+    BOOL ret;
     if ([self isTimeExist:time]) {
         NSString* updateSql = [NSString updateSql:kDZTableTimeName setFields:@[kDZ_T_Time_C_Date_Begin,
                                                                                kDZ_T_Time_C_Date_End,
@@ -80,13 +82,14 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
                                                                                kDZ_T_Time_C_Type,
                                                                                kDZ_T_Time_C_Local_Changed]
                                        whereArray:@[kDZ_T_Time_C_Guid]];
-        return [_dataBase executeUpdate:updateSql withArgumentsInArray:@[[time.dateBegin ISO8601String],
+        ret =  [_dataBase executeUpdate:updateSql withArgumentsInArray:@[[time.dateBegin ISO8601String],
                                                                          [time.dateEnd ISO8601String],
                                                                          time.detail,
                                                                          time.typeGuid,
                                                                          @(time.localChanged),
                                                                          time.guid]];
-    } else
+    }
+    else
     {
         NSString* insertSQL = [NSString insertSql:kDZTableTimeName columns:@[kDZ_T_Time_C_Date_Begin,
                                                                              kDZ_T_Time_C_Date_End,
@@ -94,18 +97,18 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
                                                                              kDZ_T_Time_C_Type,
                                                                              kDZ_T_Time_C_Local_Changed,
                                                                              kDZ_T_Time_C_Guid]];
-        return [_dataBase executeUpdate:insertSQL withArgumentsInArray:@[[time.dateBegin ISO8601String],
+        ret = [_dataBase executeUpdate:insertSQL withArgumentsInArray:@[[time.dateBegin ISO8601String],
                                                                          [time.dateEnd ISO8601String],
                                                                          time.detail,
                                                                          time.typeGuid,
                                                                          @(time.localChanged),
                                                                          time.guid]];
     }
+    return  ret;
 }
 
 - (NSArray*) timeArrayFromFMResult:(FMResultSet*)result
 {
-
     NSMutableArray* times = [NSMutableArray new];
     while ([result next]) {
         DZTime* time = [DZTime new];
@@ -340,4 +343,38 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     return [self getSyncVersion:kDZSyncTimeTypeVersion];
 }
 
+- (NSDictionary*) parseAllTypeCount
+{
+    NSString* sql = @"select count(type) , type from DZTIME group by type";
+    FMResultSet* result = [_dataBase executeQuery:sql];
+    NSMutableDictionary* dic = [NSMutableDictionary new];
+    while ([result next]) {
+        NSString* key = [result stringForColumnIndex:1];
+        int count = [result intForColumnIndex:0];
+        dic[key] = @(count);
+    }
+    [result close];
+    return dic;
+}
+
+- (int) numberOfTimeOfTypeGUID:(NSString*)guid
+{
+    NSString* sql = [NSString stringWithFormat:@"select count(*) from %@ where %@=%@",kDZTableTimeName, kDZ_T_Time_C_Type, guid];
+    FMResultSet* result = [_dataBase executeQuery:sql];
+    int count = 0;
+    if ([result next]) {
+        count = [result intForColumnIndex:0];
+    }
+    return count;
+}
+
+- (NSTimeInterval) timeCostWithTypeGUID:(NSString*)guid
+{
+    NSString* sql = [NSString selecteSql:@[kDZ_T_Time_C_Date_Begin, kDZ_T_Time_C_Date_End] tableName:kDZTableTimeName whereArray:@[kDZ_T_Time_C_Type] decorate:nil];
+    FMResultSet* result = [_dataBase executeQuery:sql withArgumentsInArray:@[guid]];
+    while ([result next]) {
+        
+    }
+    return 0;
+}
 @end

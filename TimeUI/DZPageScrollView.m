@@ -219,7 +219,6 @@ struct DZPageScrollViewDelegateReseponse {
 {
     NSArray* subViews = self.subviews;
     CGRect visibleRect = [self _visibleRect];
-    NSLog(@"subViews count %d", [subViews count]);
     for (UIView* eachView  in subViews) {
         if ([eachView isKindOfClass:[DZPageScrollViewCell class]]) {
             DZPageScrollViewCell* cell = (DZPageScrollViewCell*)eachView;

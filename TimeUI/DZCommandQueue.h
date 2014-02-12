@@ -17,4 +17,6 @@
 @property (nonatomic, strong, readonly) NSCondition * conditionLock;
 - (void) addCommand:(DZCommand*)command;
 - (DZCommand*) anyCommand;
+
+- (void) addBlockCommond:(DZCommandBlock)block identify:(NSString*)identify;
 @end

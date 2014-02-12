@@ -15,4 +15,5 @@
 DEFINE_PROPERTY_STRONG(UITextField*, costLabel);
 DEFINE_PROPERTY_STRONG(UITextField*, nameLabel);
 DEFINE_PROPERTY_STRONG(UITextField*, countLabel);
+DEFINE_PROPERTY_STRONG(DZTimeType*, type);
 @end

@@ -8,7 +8,9 @@
 
 #import "DZViewController.h"
 #import "DZPageScrollViewController.h"
+#import "DZTimeControl.h"
 @interface DZChartsViewController : DZPageScrollViewController
+@property (nonatomic, strong, readonly)     DZTimeControl* timeControl;
 @property (nonatomic, strong) NSArray* chartsViewContoller;
 - (instancetype) initWithChartControllers:(NSArray*)vcs;
 @end

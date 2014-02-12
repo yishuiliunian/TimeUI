@@ -13,9 +13,7 @@ typedef void (^DZDecodeNotificationBlock)(id observer, NSDictionary* userInfo);
 
 @class DZNotificationCenter;
 @protocol DZNotificationInitDelegaete <NSObject>
-
 - (DZDecodeNotificationBlock) decodeNotification:(NSString*)message forCenter:(DZNotificationCenter*)center;
-
 @end
 
 @interface DZNotificationCenter : NSObject
@@ -27,3 +25,6 @@ typedef void (^DZDecodeNotificationBlock)(id observer, NSDictionary* userInfo);
 - (void) removeObserver:(NSObject *)observer forMessage:(NSString*)key;
 - (void) postMessage:(NSString*)message userInfo:(NSDictionary*)userInfo;
 @end
+
+
+#define DZDefaultNotificationCenter [DZNotificationCenter defaultCenter]

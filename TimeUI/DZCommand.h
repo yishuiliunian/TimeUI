@@ -14,4 +14,5 @@ typedef void(^DZCommandBlock)(void);
 @property (nonatomic, strong) NSString       * identify;
 @property (nonatomic, strong) DZCommandBlock commandBlock;
 - (instancetype) initWithBlock:(DZCommandBlock)block;
++ (DZCommand*) commondWithIdentify:(NSString*)identify Block:(DZCommandBlock)block;
 @end

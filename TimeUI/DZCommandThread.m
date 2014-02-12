@@ -15,7 +15,9 @@
     @autoreleasepool {
         for(;;)
         {
+            static int i = 0;
             DZCommand* command = [self.commandQueue anyCommand];
+            i ++;
             if (command.commandBlock) {
                 command.commandBlock();
             }

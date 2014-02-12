@@ -43,29 +43,40 @@
 
 - (void) addCommand:(DZCommand *)command
 {
-    [_conditionLock lock];
-    BOOL exist = NO;
-    for (DZCommand* cmd  in _commandQueue) {
-        if ([cmd.identify isEqualToString:command.identify]) {
-            exist = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_conditionLock lock];
+        BOOL exist = NO;
+        for (DZCommand* cmd  in _commandQueue) {
+            if ([cmd.identify isEqualToString:command.identify]) {
+                exist = YES;
+            }
         }
-    }
-    if (!exist) {
-        [_commandQueue addObject:command];
+        if (!exist) {
+            [_commandQueue addObject:command];
+        }
+        [_conditionLock unlock];
         [_conditionLock signal];
-    }
-    [_conditionLock unlock];
+    });
+   
 }
 
 - (DZCommand*) anyCommand
 {
     [_conditionLock lock];
-    [_conditionLock wait];
+    if (![_commandQueue count]) {
+        [_conditionLock wait];
+    }
     DZCommand* command = [_commandQueue anyObject];
     if (command) {
         [_commandQueue removeObject:command];
     }
     [_conditionLock unlock];
     return command;
+}
+
+- (void) addBlockCommond:(DZCommandBlock)block identify:(NSString *)identify
+{
+    DZCommand* c = [DZCommand commondWithIdentify:identify Block:block];
+    [self addCommand:c];
 }
 @end

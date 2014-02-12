@@ -26,6 +26,8 @@
 #import "DZThemeManager.h"
 #import <TestFlight.h>
 #import "DZUserDataManager.h"
+#import "DZSelecteTypeInterface.h"
+#import "DZAnalysisNotificationInterface.h"
 //
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
@@ -72,6 +74,27 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
             if ([observer respondsToSelector:@selector(syncContextChangedFrom:toContext:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [observer syncContextChangedFrom:o toContext:n];
+                });
+            }
+        };
+    } else if ([message isEqualToString:kDZNotification_selectedType]) {
+        return ^(id observer, NSDictionary *userInfo)
+        {
+            DZTimeType* type = userInfo[@"type"];
+            if ([observer respondsToSelector:@selector(didSelectedTimeType:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer didSelectedTimeType:type];
+                });
+            }
+        };
+    } else if ([message isEqualToString:kDZNotification_parase_count]) {
+        return ^(id observer, NSDictionary *userInfo)
+        {
+            int count = [userInfo[@"count"] intValue];
+            NSString* key = userInfo[@"key"];
+            if ([observer respondsToSelector:@selector(parasedCount:forKey:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer parasedCount:count forKey:key];
                 });
             }
         };

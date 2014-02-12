@@ -11,6 +11,7 @@ PODS:
   - FMDB/standard (2.2):
     - FMDB/common
   - HexColors (2.2.1)
+  - InAppSettingsKit (2.0)
   - JBChartView (1.1.3)
   - KXKiOS7ColorsAndGradients (1.0.0)
   - MTLocation (0.9)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - CocoaLumberjack
   - CTFeedback
   - FMDB
+  - InAppSettingsKit
   - JBChartView (~> 1.0)
   - KXKiOS7ColorsAndGradients (~> 1.0.0)
   - MTLocation
@@ -51,6 +53,7 @@ SPEC CHECKSUMS:
   CTFeedback: 30ab178c28fbde42a96f2aa4b1a4a83702f9331d
   FMDB: 97472cfacf0d9e445e915704fb43b4b142799c36
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
+  InAppSettingsKit: 2b85ba925a81634860461c21274f54b130c84614
   JBChartView: 12893527d095c173e38aaac4925b72854a13ed4f
   KXKiOS7ColorsAndGradients: 27cb28a573213b4bc7e9c751956fd6b1b53215f5
   MTLocation: e1f55b30e3b19fa9a0512f1f76c9cd2a1b95d2fb

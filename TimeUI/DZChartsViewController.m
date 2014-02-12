@@ -14,8 +14,6 @@
 
 @interface DZChartsViewController ()
 {
-    DZTimeControl* _timeControl;
-    DZNumberLabel* _numberLabel;
     UIPageControl* _pageControl;
 }
 @end

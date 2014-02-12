@@ -13,4 +13,5 @@
 + (NSString*) selecteSql:(NSString*)tableName whereArray:(NSArray*)whereFields decorate:(NSString*)decorate;
 + (NSString*) updateSql:(NSString*)tableName setFields:(NSArray*)setFields whereArray:(NSArray*)whereFields;
 + (NSString*) insertSql:(NSString*) tableName columns:(NSArray*)array;
++ (NSString*) selecteSql:(NSArray*)fields tableName:(NSString *)tableName whereArray:(NSArray *)whereFields decorate:(NSString *)decorate;
 @end

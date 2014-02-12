@@ -18,8 +18,11 @@
 #import "DZSettingsViewController.h"
 #import "DZLoginViewController.h"
 #import "DZRegisterViewController.h"
-@interface DZMainViewController () <DZShareInterface,DZActionDelegate>
+@interface DZMainViewController () <DZShareInterface,DZActionDelegate, UIGestureRecognizerDelegate>
 
+{
+    UIPanGestureRecognizer* _panGestureRecognizer;
+}
 @end
 
 @implementation DZMainViewController
@@ -55,12 +58,38 @@
     [self.view addSubview:_chartsViewController.view];
     [_chartsViewController didMoveToParentViewController:self];
     
-
+    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipGestrueRecg:)];
+    [_chartsViewController.timeControl.dragBackgroundImageView addGestureRecognizer:_panGestureRecognizer];
+    _chartsViewController.timeControl.dragBackgroundImageView.userInteractionEnabled = YES;
+    _panGestureRecognizer.minimumNumberOfTouches = 1;
+    _panGestureRecognizer.maximumNumberOfTouches = 1;
+    
+    _panGestureRecognizer.delegate = self;
 	// Do any additional setup after loading the view.
 }
 
+- (void) handleSwipGestrueRecg:(UISwipeGestureRecognizer*)swipRcg
+{
+    
+    CGPoint point = [swipRcg locationInView:self.view];
+    if (swipRcg.state == UIGestureRecognizerStateChanged) {
+        CGRect rect = CGRectZero;
+        rect.origin = CGPointMake(0, point.y);
+        rect.size.width = CGRectGetViewControllerWidth;
+        rect.size.height = CGRectGetViewControllerHeight - point.y;
+        _chartsViewController.view.frame = rect;
+    }
+}
+
+
 - (void) viewWillLayoutSubviews
 {
+
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     _typesViewController.view.frame = CGRectMake(0, 0, CGRectVCWidth, 230);
     _chartsViewController.view.frame = CGRectMake(0, CGRectGetMaxY(_typesViewController.view.frame), CGRectVCWidth, CGRectVCHeight - CGRectGetHeight(_typesViewController.view.frame));
 
