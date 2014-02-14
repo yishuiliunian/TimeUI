@@ -16,6 +16,12 @@
 
 //
 DEFINE_NOTIFICATION_MESSAGE(parase_count);
-@protocol DZAnalysisCountNI<NSObject>
+@protocol DZAnalysisCountNI <NSObject>
 - (void) parasedCount:(int ) cout forKey:(NSString*)key;
+@end
+
+//
+DEFINE_NOTIFICATION_MESSAGE(time_cost);
+@protocol DZAnalysisTimeCostNI <NSObject>
+- (void) parasedTimeCost:(NSTimeInterval)cost forTypeGUID:(NSString*)guid;
 @end

@@ -11,10 +11,11 @@
 #import "DZImageCache.h"
 #import "DZAnalysisNotificationInterface.h"
 #import "DZTimeType.h"
+#import "NSString+WizString.h"
 float CountLabelWidth = DZTypeCellHeight -40;
 float TypeImageLabelWidth = 1;
 
-@interface DZTypeCell() <DZAnalysisCountNI>
+@interface DZTypeCell() <DZAnalysisCountNI, DZAnalysisTimeCostNI>
 {
     UIView* _selectedIndicaterView;
 }
@@ -28,11 +29,18 @@ float TypeImageLabelWidth = 1;
         _countLabel.text = [@(cout) stringValue];
     }
 }
-
+- (void) parasedTimeCost:(NSTimeInterval)cost forTypeGUID:(NSString *)guid
+{
+    if ([guid isEqualToString:self.type.guid]) {
+        _costLabel.text = [NSString readableTimeStringWithInterval:cost];
+    }
+}
 - (void) dealloc
 {
     [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_parase_count];
+    [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_time_cost];
 }
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -61,6 +69,7 @@ float TypeImageLabelWidth = 1;
         _costLabel.textColor = [UIColor whiteColor];
         
         [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_parase_count];
+        [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_time_cost];
 
     }
     return self;

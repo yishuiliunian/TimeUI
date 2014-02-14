@@ -27,6 +27,10 @@
 #import "DZMainViewController.h"
 #import "DZAnalysisManager.h"
 
+//
+
+#import "DZEditTimeSegemntViewController.h"
+
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
 DEFINE_PROPERTY_STRONG_UILabel(label);
@@ -58,7 +62,8 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     DZMainViewController* mainViewController = [[DZMainViewController alloc] init];
     mainViewController.chartsViewController = chartsVC;
     mainViewController.typesViewController = typesVC;
-    self.window.rootViewController = mainViewController;
+//    self.window.rootViewController = mainViewController;
+    self.window.rootViewController = [DZEditTimeSegemntViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

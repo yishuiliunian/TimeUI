@@ -20,6 +20,7 @@
 #import "DZSawtoothView.h"
 #import "DZSelecteTypeInterface.h"
 #import "DZTimeTrickManger.h"
+#import "NSString+WizString.h"
 @interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZTestInterface>
 {
     NSMutableArray* _typesArray;
@@ -87,7 +88,7 @@
     DZTimeType* type = [_timeTypes objectAtIndex:row];
     cell.nameLabel.text = type.name;
     cell.countLabel.text = [@([DZShareAnalysisManager numberOfTimeForType:type]) stringValue];
-    cell.costLabel.text = [@([DZShareAnalysisManager timeCostOfType:type]) stringValue];
+    cell.costLabel.text = [NSString readableTimeStringWithInterval:[DZShareAnalysisManager timeCostOfType:type]];
     cell.backgroundColor = [UIColor clearColor];
     cell.type = type;
     return cell;
@@ -106,7 +107,6 @@
             
         }];
     }
-    
 }
 
 - (void) dzTableView:(DZTableView *)tableView didTapAtRow:(NSInteger)row

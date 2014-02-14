@@ -359,7 +359,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 
 - (int) numberOfTimeOfTypeGUID:(NSString*)guid
 {
-    NSString* sql = [NSString stringWithFormat:@"select count(*) from %@ where %@=%@",kDZTableTimeName, kDZ_T_Time_C_Type, guid];
+    NSString* sql = [NSString stringWithFormat:@"select count(*) from %@ where %@='%@'",kDZTableTimeName, kDZ_T_Time_C_Type, guid];
     FMResultSet* result = [_dataBase executeQuery:sql];
     int count = 0;
     if ([result next]) {
@@ -372,9 +372,14 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 {
     NSString* sql = [NSString selecteSql:@[kDZ_T_Time_C_Date_Begin, kDZ_T_Time_C_Date_End] tableName:kDZTableTimeName whereArray:@[kDZ_T_Time_C_Type] decorate:nil];
     FMResultSet* result = [_dataBase executeQuery:sql withArgumentsInArray:@[guid]];
+    double cost = 0.0f;
     while ([result next]) {
-        
+        NSDate* begin = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_Time_C_Date_Begin]];
+        NSDate* end = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_Time_C_Date_End]];
+        if (begin && end) {
+            cost += ABS([begin timeIntervalSinceDate:end]);
+        }
     }
-    return 0;
+    return cost;
 }
 @end

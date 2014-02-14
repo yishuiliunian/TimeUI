@@ -15,5 +15,5 @@
 #import "DZDevices.h"
 #import "DZAnimationDefines.h"
 #import "UIView+AddTaps.h"
-
+#import "DZDirection.h"
 #endif

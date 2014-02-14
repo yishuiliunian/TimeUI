@@ -11,6 +11,10 @@
 		65020B2B185B0D3200D1ECBA /* DZTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2A185B0D3200D1ECBA /* DZTypeCell.m */; };
 		65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2F185B42D100D1ECBA /* DZCellActionsView.m */; };
 		65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B36185B433800D1ECBA /* DZCellActionItem.m */; };
+		650E156718AC6675007DDF47 /* DZDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156618AC6675007DDF47 /* DZDirection.m */; };
+		650E156B18ADB5F4007DDF47 /* DZEditTimeSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156A18ADB5F4007DDF47 /* DZEditTimeSegmentView.m */; };
+		650E156E18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156D18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m */; };
+		650E157118ADC399007DDF47 /* DZEditTimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E157018ADC399007DDF47 /* DZEditTimeLine.m */; };
 		6514651D18629563005060CB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514651C18629563005060CB /* libz.dylib */; };
 		6514651F1862956B005060CB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514651E1862956B005060CB /* libsqlite3.dylib */; };
 		6514652118629572005060CB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514652018629572005060CB /* AdSupport.framework */; };
@@ -185,6 +189,14 @@
 		65020B2F185B42D100D1ECBA /* DZCellActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionsView.m; sourceTree = "<group>"; };
 		65020B35185B433800D1ECBA /* DZCellActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCellActionItem.h; sourceTree = "<group>"; };
 		65020B36185B433800D1ECBA /* DZCellActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionItem.m; sourceTree = "<group>"; };
+		650E156518AC6675007DDF47 /* DZDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDirection.h; sourceTree = "<group>"; };
+		650E156618AC6675007DDF47 /* DZDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZDirection.m; sourceTree = "<group>"; };
+		650E156918ADB5F4007DDF47 /* DZEditTimeSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZEditTimeSegmentView.h; sourceTree = "<group>"; };
+		650E156A18ADB5F4007DDF47 /* DZEditTimeSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZEditTimeSegmentView.m; sourceTree = "<group>"; };
+		650E156C18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZEditTimeSegemntViewController.h; sourceTree = "<group>"; };
+		650E156D18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZEditTimeSegemntViewController.m; sourceTree = "<group>"; };
+		650E156F18ADC399007DDF47 /* DZEditTimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZEditTimeLine.h; sourceTree = "<group>"; };
+		650E157018ADC399007DDF47 /* DZEditTimeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZEditTimeLine.m; sourceTree = "<group>"; };
 		6514651C18629563005060CB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6514651E1862956B005060CB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6514652018629572005060CB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -549,6 +561,19 @@
 			name = pulldown;
 			sourceTree = "<group>";
 		};
+		650E156818ADB5D4007DDF47 /* editTime */ = {
+			isa = PBXGroup;
+			children = (
+				650E156918ADB5F4007DDF47 /* DZEditTimeSegmentView.h */,
+				650E156A18ADB5F4007DDF47 /* DZEditTimeSegmentView.m */,
+				650E156C18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.h */,
+				650E156D18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m */,
+				650E156F18ADC399007DDF47 /* DZEditTimeLine.h */,
+				650E157018ADC399007DDF47 /* DZEditTimeLine.m */,
+			);
+			name = editTime;
+			sourceTree = "<group>";
+		};
 		6514652818629F54005060CB /* componet */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,6 +885,8 @@
 				65EF8F00185DFB9000160A71 /* DZSendSelector.m */,
 				65624F3618913BC500ECD113 /* UIColor+DZColor.h */,
 				65624F3718913BC500ECD113 /* UIColor+DZColor.m */,
+				650E156518AC6675007DDF47 /* DZDirection.h */,
+				650E156618AC6675007DDF47 /* DZDirection.m */,
 			);
 			name = UITools;
 			sourceTree = "<group>";
@@ -1225,6 +1252,7 @@
 		65C47CBA1855E0F600796395 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				650E156818ADB5D4007DDF47 /* editTime */,
 				655CA66B188D2E420051678A /* mainVC */,
 				65CE6D3F187AC8CA00DACA12 /* accounts vc */,
 				65B403ED1872EE2300F018FD /* settings */,
@@ -1579,6 +1607,7 @@
 				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,
 				65FB8E6A1892631D006F8D8A /* DZHasAccountContentView.m in Sources */,
 				65FB8E6718926305006F8D8A /* DZNoAccountContentView.m in Sources */,
+				650E156B18ADB5F4007DDF47 /* DZEditTimeSegmentView.m in Sources */,
 				65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */,
 				65238F1D185739C300FE5D89 /* DZAccount.m in Sources */,
 				655CA66E188D2E6F0051678A /* DZViewController.m in Sources */,
@@ -1592,6 +1621,7 @@
 				65C47CC01855E5C300796395 /* DZAnimationState.m in Sources */,
 				65C38F2A1894E69100420CF7 /* CAAnimation+Blocks.m in Sources */,
 				6576860C185DDF5B006D7C0F /* DZRouter.m in Sources */,
+				650E156E18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m in Sources */,
 				65CE6D42187AC8E000DACA12 /* DZLoginViewController.m in Sources */,
 				65238F5C185853B100FE5D89 /* DZTypesViewController.m in Sources */,
 				65238F0A1857366E00FE5D89 /* DZTimeDB.m in Sources */,
@@ -1623,10 +1653,12 @@
 				65238F21185748A400FE5D89 /* DZTime.m in Sources */,
 				657A56141858D78F00521B01 /* DZAudioManager.m in Sources */,
 				65238F191857393500FE5D89 /* DZAccountManager.m in Sources */,
+				650E156718AC6675007DDF47 /* DZDirection.m in Sources */,
 				655CA67C188D3D7F0051678A /* DZChartsViewController.m in Sources */,
 				657685EB185CB055006D7C0F /* DZMessageView.m in Sources */,
 				6535A0251861E7DA00173E0E /* DZActionItemView.m in Sources */,
 				65F0AAEB186DB6F4001C6302 /* DZObject.m in Sources */,
+				650E157118ADC399007DDF47 /* DZEditTimeLine.m in Sources */,
 				654E5A241856DDEF00DED026 /* DZGeometryTools.m in Sources */,
 				65D051E8187D791300923A46 /* DZLineChartViewController.m in Sources */,
 				6514654318640AB2005060CB /* DZAnalysisManager.m in Sources */,

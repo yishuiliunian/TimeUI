@@ -22,7 +22,9 @@
 //
 - (void) triggleAnaylysisTimeCount;
 - (int) numberOfTimeForType:(DZTimeType*)type;
+- (void) triggleAnaylysisTimeCountWithType:(DZTimeType*)type;
 
 //
 - (NSTimeInterval) timeCostOfType:(DZTimeType*)type;
+- (void) triggleAnaylysisTimeCostWithType:(DZTimeType*)type;
 @end

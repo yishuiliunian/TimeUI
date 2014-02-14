@@ -130,10 +130,11 @@ NSString* commondIdentify(NSString* guid , NSString* type)
 
 - (void) triggleAnaylysisTimeCountWithType:(DZTimeType*)type
 {
+    NSString* guid = type.guid;
     DZCommand* c = [DZCommand commondWithIdentify:type.guid Block:^{
-        int count = [DZActiveTimeDataBase numberOfTimeOfTypeGUID:type.guid];
-        NSDictionary* userInfo = @{@"count":@(count), @"key":type.guid};
-        [_timeCountMap setObject:@(count) forKey:type.guid];
+        int count = [DZActiveTimeDataBase numberOfTimeOfTypeGUID:guid];
+        NSDictionary* userInfo = @{@"count":@(count), @"key":guid};
+        [_timeCountMap setObject:@(count) forKey:guid];
         [DZDefaultNotificationCenter postMessage:kDZNotification_parase_count userInfo:userInfo];
     }];
     [_commandQueue addCommand:c];
@@ -145,8 +146,8 @@ NSString* commondIdentify(NSString* guid , NSString* type)
     if (!cost) {
         NSTimeInterval time = [DZActiveTimeDataBase timeCostWithTypeGUID:type.guid];
         _timeCostMap[type.guid] = @(time);
-        
         [self triggleAnaylysisTimeCostWithType:type];
+        cost = @(time);
     }
     return [cost floatValue];
 }
@@ -156,7 +157,7 @@ NSString* commondIdentify(NSString* guid , NSString* type)
     DZCommand* c = [DZCommand commondWithIdentify:commondIdentify(type.guid, @"timecost") Block:^{
         NSTimeInterval time = [DZActiveTimeDataBase timeCostWithTypeGUID:type.guid];
         _timeCostMap[type.guid] = @(time);
-        NSLog(@"time %f",time);
+        [DZDefaultNotificationCenter postMessage:kDZNotification_time_cost userInfo:@{@"cost":@(time), @"guid":type.guid}];
     }];
     [_commandQueue addCommand:c];
 }

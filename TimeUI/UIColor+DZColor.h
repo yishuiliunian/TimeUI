@@ -10,4 +10,5 @@
 
 @interface UIColor (DZColor)
 - (UIColor*) colorWithOffset:(float)offset;
++ (NSDictionary*) typeCellColors;
 @end

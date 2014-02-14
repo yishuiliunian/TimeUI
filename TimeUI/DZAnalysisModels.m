@@ -10,8 +10,6 @@
 
 @implementation DZAnalysisWeekModel
 
-
-
 @end
 /**
  *  

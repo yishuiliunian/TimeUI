@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "DZDevices.h"
 
+//角度转化
+#define DEGREE_TO_ANGLE(x) (x / 180.0f * M_PI)
+#define ANGLE_TO_DEGREE(x) (x * 180.0f / M_PI)
+
+//
+
 #define CGRectViewWidth (CGRectGetWidth(self.bounds))
 #define CGRectViewHeight CGRectGetHeight(self.bounds)
 

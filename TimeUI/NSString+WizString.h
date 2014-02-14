@@ -62,4 +62,6 @@ extern NSString* (^BoolTOString)(BOOL);
 
 - (NSString*) folderFormat;
 - (NSString*) deleteLastPathComponent;
+
++ (NSString*) readableTimeStringWithInterval:(NSTimeInterval) ftime;
 @end

@@ -98,6 +98,18 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
                 });
             }
         };
+    } else if ([message isEqualToString:kDZNotification_time_cost])
+    {
+        return ^(id observer, NSDictionary *userInfo)
+        {
+            NSString* guid = userInfo[@"guid"];
+            NSTimeInterval cost  = [userInfo[@"cost"] doubleValue];
+            if ([observer respondsToSelector:@selector(parasedTimeCost:forTypeGUID:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer parasedTimeCost:cost forTypeGUID:guid];
+                });
+            }
+        };
     }
     return nil;
 }

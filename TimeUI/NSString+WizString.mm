@@ -758,6 +758,27 @@ NSRange (^indexOfHtmlTag)(NSString*, NSString*, BOOL) = ^(NSString* string,NSStr
     return [NSString stringWithFormat:@"%002d:%002d:%002d:%002d",d,h,m,s];
 }
 
++ (NSString*) readableTimeStringWithInterval:(NSTimeInterval)ftime
+{
+    NSInteger totalTime = ceil(ftime);
+    NSInteger s = totalTime % 60;
+    NSInteger m = totalTime / 60 % 60;
+    NSInteger h = totalTime / 60 / 60 % 24;
+    NSInteger d = totalTime / 60 /60 / 24;
+    if (d > 0) {
+        return [NSString stringWithFormat:@"%d天多", d];
+    } else {
+        if (h > 0) {
+            return [NSString stringWithFormat:@"%d:%d",h, m];
+        } else if (s > 0)
+        {
+            return [NSString stringWithFormat:@"%d\"%d'",m,s];
+        } else {
+            return [NSString stringWithFormat:@"%d'",s];
+        }
+    }
+}
+
 - (NSString *) MD5Hash {
     
     CC_MD5_CTX md5;

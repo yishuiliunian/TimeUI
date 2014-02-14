@@ -18,10 +18,16 @@
 #import "DZSettingsViewController.h"
 #import "DZLoginViewController.h"
 #import "DZRegisterViewController.h"
+
+#define DZMainStateMiddleOffset (CGRectGetViewControllerHeight/2)
+
+#define DZMainStateTopOffSet 20
+
 @interface DZMainViewController () <DZShareInterface,DZActionDelegate, UIGestureRecognizerDelegate>
 
 {
     UIPanGestureRecognizer* _panGestureRecognizer;
+    CGPoint _lastPoint;
 }
 @end
 
@@ -40,6 +46,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _state = DZMainViewStateMidlle;
     }
     return self;
 }
@@ -58,7 +65,7 @@
     [self.view addSubview:_chartsViewController.view];
     [_chartsViewController didMoveToParentViewController:self];
     
-    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipGestrueRecg:)];
+    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestrueRecg:)];
     [_chartsViewController.timeControl.dragBackgroundImageView addGestureRecognizer:_panGestureRecognizer];
     _chartsViewController.timeControl.dragBackgroundImageView.userInteractionEnabled = YES;
     _panGestureRecognizer.minimumNumberOfTouches = 1;
@@ -68,19 +75,76 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void) handleSwipGestrueRecg:(UISwipeGestureRecognizer*)swipRcg
+
+- (CGRect) stateRecognizerArea:(DZMainViewState)state direction:(DZDirection)direction
 {
-    
+    float perfectLine = CGRectGetViewControllerHeight / 2 * 0.618;
+    float resideLine = CGRectGetViewControllerHeight / 2 - perfectLine;
+    if (direction == DZDirectionDown) {
+        if (state == DZMainViewStateTop) {
+            return CGRectMake(0, -100, CGRectGetViewControllerWidth, resideLine);
+        } else {
+            return CGRectMake(0, resideLine, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight);
+        }
+    } else if (direction == DZDirectionUp)
+    {
+        if (state == DZMainViewStateTop) {
+            return CGRectMake(0, -100, CGRectGetViewControllerWidth, perfectLine);
+        } else {
+            return CGRectMake(0, perfectLine, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight);
+        }
+    }
+    return CGRectZero;
+}
+- (void) handlePanGestrueRecg:(UIPanGestureRecognizer*)swipRcg
+{
     CGPoint point = [swipRcg locationInView:self.view];
-    if (swipRcg.state == UIGestureRecognizerStateChanged) {
-        CGRect rect = CGRectZero;
-        rect.origin = CGPointMake(0, point.y);
-        rect.size.width = CGRectGetViewControllerWidth;
-        rect.size.height = CGRectGetViewControllerHeight - point.y;
-        _chartsViewController.view.frame = rect;
+    static DZDirection direction;
+    if (swipRcg.state == UIGestureRecognizerStateBegan) {
+        _lastPoint = point;
+    }
+    else if (swipRcg.state == UIGestureRecognizerStateChanged) {
+        
+        if(ABS(_lastPoint.y - point.y) > 7)
+        {
+            direction = DZDirectionVerticalityWithPoints(_lastPoint, point);
+            _lastPoint = point;
+        }
+        [self layoutChildViewControllerOffSet:point.y Animation:YES];
+    } else if (swipRcg.state == UIGestureRecognizerStateEnded) {
+
+        if (direction == DZDirectionUp) {
+            [self setState:DZMainViewStateTop animation:YES];
+        } else
+        {
+            [self setState:DZMainViewStateMidlle animation:YES];
+
+        }
+        if (CGRectContainsPoint([self stateRecognizerArea:DZMainViewStateTop direction:direction], point)) {
+        } else {
+            
+        }
     }
 }
-
+- (void) setState:(DZMainViewState)state animation:(BOOL)animation
+{
+    _state = state;
+    float offset = DZMainStateMiddleOffset;
+    if (state == DZMainViewStateTop) {
+        offset = DZMainStateTopOffSet;
+    }
+    [self layoutChildViewControllerOffSet:offset Animation:animation];
+}
+- (void) layoutChildViewControllerOffSet:(float)offset Animation:(BOOL)animation
+{
+    CGRect rect = CGRectZero;
+    rect.origin = CGPointMake(0, offset);
+    rect.size.width = CGRectGetViewControllerWidth;
+    rect.size.height = CGRectGetViewControllerHeight - offset;
+    _chartsViewController.view.frame = rect;
+    
+    _typesViewController.view.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight - offset);
+}
 
 - (void) viewWillLayoutSubviews
 {

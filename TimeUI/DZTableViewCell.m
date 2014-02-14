@@ -33,7 +33,7 @@
         [self setContentView:contentV];
         
         UIView* a = [UIView new];
-        a.backgroundColor = [UIColor whiteColor];
+        a.backgroundColor = [UIColor lightGrayColor];
         [self setSelectedBackgroudView:a];
         
         //
