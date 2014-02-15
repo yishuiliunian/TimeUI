@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-
+#import "DZEditTimeSegmentDelegate.h"
 
 @interface DZEditTimeSegmentView : UIView
+DEFINE_PROPERTY_WEAK(id<DZEditTimeSegmentDelegate>, delegate);
 - (instancetype) initWithTime:(DZTime*)time;
+- (void) addDivisionLine:(float)rote withType:(DZTimeType*)type;
+
+- (NSArray*) getAllEditedTimes;
 @end

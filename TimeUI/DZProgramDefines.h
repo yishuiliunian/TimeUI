@@ -42,6 +42,26 @@
 #define INIT_SELF_SUBVIEW_UILabel(name) INIT_SUBVIEW_UILabel(self, name)
 
 
+#define DEFINE_PROPERTY_WEAK(type, name) DEFINE_PROPERTY(weak, type, name)
+
+/**
+ *  初始化一个点击的手势
+ *
+ *  @param name   点击手势的名称
+ *  @param view   要添加手势的视图的名称
+ *  @param taps   需要的点击次数
+ *  @param touchs 需要的手指数量
+ *
+ */
+#define INIT_GESTRUE_TAP_IN_VIEW(name, view, taps, touchs)  name=[[UITapGestureRecognizer alloc] init];\
+name.numberOfTapsRequired = 1;\
+name.numberOfTouchesRequired = 1;\
+[view addGestureRecognizer:name];
+
+/**
+ *  在当前视图上初始化一个点击手势
+ */
+#define INIT_GESTRUE_TAP_IN_SELF(name, taps, touchs) INIT_GESTRUE_TAP_IN_VIEW(name, self, taps, touchs)
 
 @interface DZProgramDefines : NSObject
 

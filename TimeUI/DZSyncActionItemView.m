@@ -28,7 +28,7 @@ DEFINE_PROPERTY_STRONG(UIView*, contentView);
 
 - (void) dealloc
 {
-    [[DZNotificationCenter defaultCenter] removeObserver:self];
+//    [[DZNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (id)initWithFrame:(CGRect)frame

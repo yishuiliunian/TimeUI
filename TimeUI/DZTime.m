@@ -13,6 +13,22 @@
 #import "NSError+dz.h"
 #import "DZTimeType.h"
 @implementation DZTime
+
+
+- (instancetype) initWithType:(DZTimeType *)type begin:(NSDate *)begin end:(NSDate *)end detal:(NSString *)detail
+{
+    self = [super initGenGUID];
+    if (!self) {
+        return self;
+    }
+    //
+    _typeGuid = type.guid;
+    _localChanged = YES;
+    _dateBegin = begin;
+    _dateEnd = end;
+    _detail = detail ? detail : @"";
+    return self;
+}
 - (NSString*) deviceGuid
 {
     return DZDevicesIdentify();

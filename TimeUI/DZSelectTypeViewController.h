@@ -7,7 +7,13 @@
 //
 
 #import "DZTypesViewController.h"
+@class DZSelectTypeViewController;
+@protocol DZSelectTypeViewControllerDelegate <NSObject>
+
+- (void) selectTypeViewController:(DZSelectTypeViewController*)vc didSelectedType:(DZTimeType*)type;
+
+@end
 
 @interface DZSelectTypeViewController : DZTypesViewController
-
+DEFINE_PROPERTY_WEAK(id<DZSelectTypeViewControllerDelegate>, typeSelectDelegate);
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class DZEditTimeSegmentView;
+@class DZTimeType;
 @protocol DZEditTimeSegmentDelegate <NSObject>
-
+- (void) editTimeSegmentView:(DZEditTimeSegmentView*)timeView willAddLinewithRote:(float)rote;
 @end

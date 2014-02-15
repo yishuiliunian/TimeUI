@@ -34,5 +34,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void) dzTableView:(DZTableView *)tableView didTapAtRow:(NSInteger)row
+{
+    DZTimeType* type = [_timeTypes objectAtIndex:row];
 
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([_typeSelectDelegate respondsToSelector:@selector(selectTypeViewController:didSelectedType:)]) {
+            [_typeSelectDelegate selectTypeViewController:self didSelectedType:type];
+        }
+    }];
+}
 @end

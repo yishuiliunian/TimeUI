@@ -35,6 +35,8 @@
     NSTimeInterval _totalTimeInterval;
     //
     DZTime* _editingTime;
+    //
+    NSMutableDictionary* _timeTypesCache;
 }
 @end
 
@@ -58,6 +60,7 @@
     [self addGestureRecognizer:_longPressRecg];
     //
     _timesDataArray = [NSMutableArray new];
+    _timeTypesCache = [NSMutableDictionary new];
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -91,8 +94,9 @@
     CGPoint point = [dtrecg locationInView:self];
     float rote = point.y / CGRectViewHeight;
     if (dtrecg.state == UIGestureRecognizerStateRecognized) {
-        DZTimeType* type = [DZActiveTimeDataBase timeTypByGUID:_editingTime.typeGuid];
-        [self addDivisionLine:rote withType:type];
+        if ([_delegate respondsToSelector:@selector(editTimeSegmentView:willAddLinewithRote:)] ) {
+            [_delegate editTimeSegmentView:self willAddLinewithRote:rote];
+        }
     }
 }
 
@@ -147,6 +151,9 @@
     _linesInfoDic[@(rote)] = line;
     [self setNeedsLayout];
     [self setNeedsDisplay];
+    if (type) {
+        _timeTypesCache[@(rote)] = type;
+    }
 }
 
 - (void) changeLineView:(DZEditTimeLine*)line toRatio:(float)toRatio
@@ -154,9 +161,13 @@
     if (_linesInfoDic[@(toRatio)]) {
         return;
     }
-    
     [_linesInfoDic removeObjectForKey:@(line.ratio)];
     [_linesInfoDic setObject:line forKey:@(toRatio)];
+    DZTimeType* type = _timeTypesCache[@(line.ratio)];
+    [_timeTypesCache removeObjectForKey:@(line.ratio)];
+    if (type) {
+        [_timeTypesCache setObject:type forKey:@(toRatio)];
+    }
     line.ratio = toRatio;
     [self setNeedsLayout];
     [self setNeedsDisplay];
@@ -311,5 +322,26 @@
 }
 
 
-
+//
+- (NSArray*) getAllEditedTimes
+{
+    NSMutableArray* allTimes = [NSMutableArray new];
+    //
+    NSArray* allInfos = _linesInfoDic.allKeys;
+    allInfos = [allInfos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
+    for (int i = 1; i < allInfos.count - 1; i++) {
+        float preRato = [allInfos[i-1] floatValue];
+        float ratio = [allInfos[i] floatValue];
+        NSDate* dateBegin = [_dateBegin dateByAddingTimeInterval:_totalTimeInterval*(preRato - 0.05)];
+        NSDate* dateEnd = [_dateBegin dateByAddingTimeInterval:_totalTimeInterval*(ratio - 0.05)];
+        
+        DZTimeType* type = _timeTypesCache[allInfos[i]];
+        
+        DZTime* time =[[DZTime alloc] initWithType:type begin:dateBegin end:dateEnd detal:nil];
+        [allTimes addObject:time];
+    }
+    return allTimes;
+}
 @end
