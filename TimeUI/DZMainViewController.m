@@ -23,7 +23,7 @@
 
 #define DZMainStateTopOffSet 20
 
-@interface DZMainViewController () <DZShareInterface,DZActionDelegate, UIGestureRecognizerDelegate>
+@interface DZMainViewController () <DZShareInterface,DZActionDelegate, UIGestureRecognizerDelegate, DZActionChangeAccountDelegate>
 
 {
     UIPanGestureRecognizer* _panGestureRecognizer;
@@ -178,6 +178,7 @@
     actionView.delegate = self;
     DZSyncActionItemView* syncItem = [[DZSyncActionItemView alloc] init];
     syncItem.height = 40;
+    syncItem.accountDelegate = self;
     syncItem.backgroundColor = [UIColor redColor];
     
     
@@ -222,5 +223,25 @@
     }
 }
 
+- (void) syncActionItemViewLoginAccount:(DZSyncActionItemView *)itemView
+{
+    DZActionView* actionView = itemView.dzActionView;
+    [actionView hideWithAnimation:YES];
+    
+    DZLoginViewController * loginVC = [[DZLoginViewController alloc] init];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginVC] animated:YES completion:^{
+        
+    }];
+}
+
+- (void) syncActionItemViewRigsterAccount:(DZSyncActionItemView *)itemView
+{
+    DZActionView* actionView = itemView.dzActionView;
+    [actionView hideWithAnimation:YES];
+    DZRegisterViewController* registerVC = [[DZRegisterViewController alloc] init];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:registerVC] animated:YES completion:^{
+        
+    }];
+}
 
 @end

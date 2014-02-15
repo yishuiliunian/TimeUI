@@ -7,7 +7,13 @@
 //
 
 #import "DZActionItemView.h"
+@class DZSyncActionItemView;
+@protocol DZActionChangeAccountDelegate
+- (void) syncActionItemViewRigsterAccount:(DZSyncActionItemView*)itemView;
+- (void) syncActionItemViewLoginAccount:(DZSyncActionItemView*)itemView;
+
+@end
 
 @interface DZSyncActionItemView : DZActionItemView
-
+@property (nonatomic, weak) NSObject<DZActionChangeAccountDelegate>* accountDelegate;
 @end

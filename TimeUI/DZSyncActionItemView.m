@@ -30,7 +30,19 @@ DEFINE_PROPERTY_STRONG(UIView*, contentView);
 {
 //    [[DZNotificationCenter defaultCenter] removeObserver:self];
 }
+- (void) registerAccount:(id)sender
+{
+    if ([_accountDelegate respondsToSelector:@selector(syncActionItemViewRigsterAccount:)]) {
+        [_accountDelegate syncActionItemViewRigsterAccount:self];
+    }
+}
 
+- (void) loginAccount:(id)sender
+{
+    if ([_accountDelegate respondsToSelector:@selector(syncActionItemViewLoginAccount:)]) {
+        [_accountDelegate syncActionItemViewLoginAccount:self];
+    }
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -41,7 +53,11 @@ DEFINE_PROPERTY_STRONG(UIView*, contentView);
         }
         else
         {
-            [self setContentView:[DZNoAccountContentView new] animation:NO];
+            DZNoAccountContentView* noAccountView = [DZNoAccountContentView new];
+            
+            [noAccountView.registerButton addTarget:self action:@selector(registerAccount:) forControlEvents:UIControlEventTouchUpInside];
+            [noAccountView.loginButton addTarget:self action:@selector(loginAccount:) forControlEvents:UIControlEventTouchUpInside];
+            [self setContentView:noAccountView animation:NO];
         }
     }
     return self;

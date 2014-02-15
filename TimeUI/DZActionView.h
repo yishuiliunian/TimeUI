@@ -9,6 +9,8 @@
 #import "DZCustomeView.h"
 #import "DZActionContentView.h"
 #import "DZActionItemView.h"
+
+
 @class DZActionView;
 @protocol DZActionDelegate <NSObject>
 
@@ -21,4 +23,11 @@
 @property (nonatomic, weak) id<DZActionDelegate> delegate;
 @property (nonatomic, strong, readonly) DZActionContentView* actionContentView;
 - (instancetype) initWithItems:(NSArray*)items;
+@end
+
+
+
+
+@interface UIView (DZAction)
+@property (nonatomic, strong, readonly) DZActionView* dzActionView;
 @end

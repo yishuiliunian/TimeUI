@@ -15,7 +15,7 @@
 #if DZDEBUG == 0
 NSString* DZDefautlServerUrl = @"http://192.168.1.101:9091/json";
 #else
-NSString* DZDefautlServerUrl = @"http://192.168.1.102:9091/json";
+NSString* DZDefautlServerUrl = @"http://www.catchitime.com:9091/json";
 #endif
 @implementation DZRouter
 

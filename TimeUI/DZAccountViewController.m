@@ -72,6 +72,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     _emailTextField                 = [[UITextField alloc] init];
     _passwordTextField              = [[UITextField alloc] init];
     

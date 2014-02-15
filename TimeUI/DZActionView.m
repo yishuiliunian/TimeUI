@@ -78,3 +78,21 @@
     }];
 }
 @end
+
+
+@implementation UIView (DZAction)
+
+- (DZActionView*) dzActionView
+{
+    if ([self isKindOfClass:[DZActionView class]]) {
+        return (DZActionView*)self;
+    } else if(self.superview)
+    {
+        return [self.superview dzActionView];
+    } else
+    {
+        return nil;
+    }
+}
+
+@end
