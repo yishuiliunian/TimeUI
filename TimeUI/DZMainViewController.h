@@ -7,7 +7,7 @@
 //
 
 #import "DZViewController.h"
-#import "DZTypesViewController.h"
+#import "DZCheckTypeViewController.h"
 #import "DZChartsViewController.h"
 
 typedef enum {
@@ -16,7 +16,7 @@ typedef enum {
 }DZMainViewState;
 
 @interface DZMainViewController : DZViewController
-@property (nonatomic, strong) DZTypesViewController* typesViewController;
+@property (nonatomic, strong) DZCheckTypeViewController* typesViewController;
 @property (nonatomic, strong) DZChartsViewController* chartsViewController;
 @property (nonatomic, assign) DZMainViewState state;
 @property (nonatomic, strong, readonly) DZAccount* account;

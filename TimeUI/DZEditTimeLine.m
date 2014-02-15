@@ -7,11 +7,15 @@
 //
 
 #import "DZEditTimeLine.h"
-
+#import <SKBounceAnimation.h>
 @interface DZEditTimeLine ()
 {
+    UILongPressGestureRecognizer* _longPressRecg;
+    id _longPressTarget;
+    SEL _longPressAction;
 }
 DEFINE_PROPERTY_STRONG_UILabel(typeTextLabel);
+DEFINE_PROPERTY_STRONG_NSString(timeString);
 @end
 
 @implementation DZEditTimeLine
@@ -21,9 +25,24 @@ DEFINE_PROPERTY_STRONG_UILabel(typeTextLabel);
     _lineColor = [UIColor orangeColor];
     _timeColor = [UIColor blackColor];
     _timeFont = [UIFont systemFontOfSize:16];
-    _timeString = @"asdfasd";
     INIT_SELF_SUBVIEW_UILabel(_typeTextLabel);
+    
+
 }
+- (void) setRatio:(float)ratio
+{
+    _ratio = ratio;
+    NSString* timeStr = nil;
+    if ([_delegate respondsToSelector:@selector(editTimeLine:timeStringWithRote:)]) {
+        timeStr = [_delegate editTimeLine:self timeStringWithRote:_ratio];
+    } else {
+        timeStr = @"sss";
+    }
+    _timeString = timeStr;
+    [self setNeedsDisplay];
+    [self setNeedsLayout];
+}
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -69,13 +88,28 @@ DEFINE_PROPERTY_STRONG_UILabel(typeTextLabel);
         [path fill];
     }
 }
-
+- (void) setTypeString:(NSString *)typeString
+{
+    if (_typeString != typeString) {
+        SKBounceAnimation* animation = [SKBounceAnimation animationWithKeyPath:@"position.y"];
+        
+        CGRect rect = _typeTextLabel.layer.frame;
+        animation.fromValue = @(-5);
+        animation.toValue = @(0);
+        animation.numberOfBounces = 3;
+        animation.duration = 0.5;
+        animation.shouldOvershoot = YES;
+        animation.removedOnCompletion = YES;
+        animation.fillMode = kCAFillModeForwards;
+        [_typeTextLabel.layer addAnimation:animation forKey:@"bounce"];
+        _typeTextLabel.text = typeString;
+    }
+}
 
 - (void) layoutSubviews
 {
-    _typeTextLabel.text = @"吃饭";
     float centerY =  (CGRectViewHeight - 2)/2 + 0.5;
-    _typeTextLabel.frame = CGRectMake(0, centerY, 80, 20);
+    _typeTextLabel.frame = CGRectMake(0, centerY - 20, 80, 20);
 }
 
 /*

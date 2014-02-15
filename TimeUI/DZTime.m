@@ -11,6 +11,7 @@
 #import "NSDate+SSToolkitAdditions.h"
 #import "DZDevices.h"
 #import "NSError+dz.h"
+#import "DZTimeType.h"
 @implementation DZTime
 - (NSString*) deviceGuid
 {
@@ -181,5 +182,11 @@
         [self commonInit];
     }
     return self;
+}
+
+- (NSString*) typeName
+{
+    DZTimeType* type = [DZActiveTimeDataBase tiemTypeByIdentifiy:self.typeGuid];
+    return [type  name];
 }
 @end

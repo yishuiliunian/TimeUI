@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class DZEditTimeLine;
+@protocol DZEditTimeLineDelegate <NSObject>
+
+- (void) editTimeLine:(DZEditTimeLine*)line didHanldeLongPress:(UILongPressGestureRecognizer*)recg;
+- (NSString*) editTimeLine:(DZEditTimeLine*)line timeStringWithRote:(float)rote;
+@end
+
 @interface DZEditTimeLine : UIView
-DEFINE_PROPERTY_STRONG_NSString(timeString);
+@property (nonatomic, weak) id<DZEditTimeLineDelegate> delegate;
+DEFINE_PROPERTY_ASSIGN_Float(ratio);
 DEFINE_PROPERTY_STRONG_NSString(typeString);
 DEFINE_PROPERTY_STRONG(UIFont*, timeFont);
 DEFINE_PROPERTY_STRONG(UIColor*, lineColor);

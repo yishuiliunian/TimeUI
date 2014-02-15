@@ -12,7 +12,7 @@
 #import "DZAppConfigure.h"
 #import "DZCenterButtonViewController.h"
 #import "DZChartViewController.h"
-#import "DZTypesViewController.h"
+#import "DZCheckTypeViewController.h"
 #import "DZTableViewController.h"
 #import "DZNetworkManager.h"
 #import "DZTokenManager.h"
@@ -51,7 +51,7 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
 
 //    self.window.rootViewController = dragVC;
     //
-    DZTypesViewController* typesVC = [[DZTypesViewController alloc] init];
+    DZCheckTypeViewController* typesVC = [[DZCheckTypeViewController alloc] init];
     
     DZLineChartViewController* lineChat1 = [[DZLineChartViewController alloc] init];
     DZLineChartViewController* lineChat2 = [[DZLineChartViewController alloc] init];
@@ -62,8 +62,8 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     DZMainViewController* mainViewController = [[DZMainViewController alloc] init];
     mainViewController.chartsViewController = chartsVC;
     mainViewController.typesViewController = typesVC;
-//    self.window.rootViewController = mainViewController;
-    self.window.rootViewController = [DZEditTimeSegemntViewController new];
+    self.window.rootViewController = mainViewController;
+//    self.window.rootViewController = [DZEditTimeSegemntViewController new];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

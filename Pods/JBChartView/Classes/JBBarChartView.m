@@ -9,11 +9,11 @@
 #import "JBBarChartView.h"
 
 // Numerics
-CGFloat const kJBBarChartViewBarBasePaddingMutliplier = 50.0f;
-CGFloat const kJBBarChartViewUndefinedMaxHeight = -1.0f;
-CGFloat const kJBBarChartViewStateAnimationDuration = 0.05f;
-CGFloat const kJBBarChartViewPopOffset = 10.0f; // used to offset bars for 'pop' animations
-NSInteger const kJBBarChartViewUndefinedBarIndex = -1;
+CGFloat static const kJBBarChartViewBarBasePaddingMutliplier = 50.0f;
+CGFloat static const kJBBarChartViewUndefinedMaxHeight = -1.0f;
+CGFloat static const kJBBarChartViewStateAnimationDuration = 0.05f;
+CGFloat static const kJBBarChartViewPopOffset = 10.0f; // used to offset bars for 'pop' animations
+NSInteger static const kJBBarChartViewUndefinedBarIndex = -1;
 
 // Colors (JBChartView)
 static UIColor *kJBBarChartViewDefaultBarColor = nil;
@@ -33,10 +33,12 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
 - (CGFloat)maxHeight;
 - (CGFloat)minHeight;
 - (CGFloat)barWidth;
+- (CGFloat)popOffset;
 
 // Touch helpers
 - (NSInteger)barViewIndexForPoint:(CGPoint)point;
 - (UIView *)barViewForForPoint:(CGPoint)point;
+- (void)touchesEndedOrCancelledWithTouches:(NSSet *)touches;
 
 // Setters
 - (void)setSelectionViewVisible:(BOOL)selectionViewVisible animated:(BOOL)animated;
@@ -60,7 +62,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.clipsToBounds = YES;
+        self.clipsToBounds = NO;
         _showsSelection = YES;
         _cachedMaxHeight = kJBBarChartViewUndefinedMaxHeight;
     }
@@ -80,7 +82,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
 {
     // reset cached max height
     self.cachedMaxHeight = kJBBarChartViewUndefinedMaxHeight;
-
+    
     /*
      * The data collection holds all position information:
      * constructed via datasource and delegate functions
@@ -115,7 +117,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
             self.barPadding = (1/(float)totalBars) * kJBBarChartViewBarBasePaddingMutliplier;
         }
     };
-
+    
     /*
      * Creates a new bar graph view using the previously calculated data model
      */
@@ -141,9 +143,10 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
             {
                 barView = [[UIView alloc] init];
                 barView.backgroundColor = kJBBarChartViewDefaultBarColor;
-            }            
+            }
             CGFloat height = [self normalizedHeightForRawHeight:[self.chartDataDictionary objectForKey:key]];
-            barView.frame = CGRectMake(xOffset, self.bounds.size.height - height - self.footerView.frame.size.height + self.headerPadding, [self barWidth], height + kJBBarChartViewPopOffset - self.headerPadding);                        
+            CGFloat extensionHeight = height > 0.0 ? kJBBarChartViewPopOffset : 0.0;
+            barView.frame = CGRectMake(xOffset, self.bounds.size.height - height - self.footerView.frame.size.height + self.headerPadding, [self barWidth], height + extensionHeight - self.headerPadding);
             [mutableBarViews addObject:barView];
 			
             // Add new bar
@@ -174,7 +177,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
             self.selectionView = nil;
         }
         
-        self.selectionView = [[JBChartSelectionView alloc] initWithFrame:CGRectMake(0, 0, [self barWidth], self.bounds.size.height)];
+        self.selectionView = [[JBChartSelectionView alloc] initWithFrame:CGRectMake(0, 0, [self barWidth], self.bounds.size.height - self.footerView.frame.size.height)];
         self.selectionView.alpha = 0.0;
         if ([self.dataSource respondsToSelector:@selector(selectionBarColorForBarChartView:)])
         {
@@ -197,7 +200,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
     createBars();
     createSelectionView();
     
-    // Position header and footer    
+    // Position header and footer
     self.headerView.frame = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.headerView.frame.size.height);
     self.footerView.frame = CGRectMake(self.bounds.origin.x, self.bounds.size.height - self.footerView.frame.size.height, self.bounds.size.width, self.footerView.frame.size.height);
 }
@@ -251,6 +254,11 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
     return 0;
 }
 
+- (CGFloat)popOffset
+{
+    return self.bounds.size.height - self.footerView.frame.size.height;
+}
+
 #pragma mark - Setters
 
 - (void)setState:(JBChartViewState)state animated:(BOOL)animated callback:(void (^)())callback
@@ -261,9 +269,9 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
     
     if (animated)
     {
-        CGFloat popOffset = self.bounds.size.height - self.footerView.frame.size.height;
+        CGFloat popOffset = [self popOffset];
         
-        NSInteger index = 0;
+        NSUInteger index = 0;
         for (UIView *barView in self.barViews)
         {
             [UIView animateWithDuration:kJBBarChartViewStateAnimationDuration delay:(kJBBarChartViewStateAnimationDuration * 0.5) * index options:UIViewAnimationOptionBeginFromCurrentState animations:^{
@@ -278,7 +286,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
                     {
                         barView.frame = CGRectMake(barView.frame.origin.x, self.bounds.size.height, barView.frame.size.width, barView.frame.size.height);
                     }
-                } completion:^(BOOL finished) {
+                } completion:^(BOOL lastBarFinished) {
                     if (index == [self.barViews count] - 1)
                     {
                         if (callbackCopy)
@@ -349,6 +357,23 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
     return barView;
 }
 
+- (void)touchesEndedOrCancelledWithTouches:(NSSet *)touches
+{
+    if (!self.showsSelection || self.state == JBChartViewStateCollapsed)
+    {
+        return;
+    }
+    [self setSelectionViewVisible:NO animated:YES];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self];
+    NSInteger index = [self barViewIndexForPoint:touchPoint];
+    if ([self.delegate respondsToSelector:@selector(barChartView:didUnselectBarAtIndex:)])
+    {
+        [self.delegate barChartView:self didUnselectBarAtIndex:index];
+    }
+}
+
 #pragma mark - Setters
 
 - (void)setSelectionViewVisible:(BOOL)selectionViewVisible animated:(BOOL)animated
@@ -358,7 +383,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
     if (animated)
     {
         [UIView animateWithDuration:kJBChartViewDefaultAnimationDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.selectionView.alpha = _selectionViewVisible ? 1.0 : 0.0;
+            self.selectionView.alpha = self.selectionViewVisible ? 1.0 : 0.0;
         } completion:nil];
     }
     else
@@ -428,19 +453,12 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!self.showsSelection || self.state == JBChartViewStateCollapsed)
-    {
-        return;
-    }
-    [self setSelectionViewVisible:NO animated:YES];
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint touchPoint = [touch locationInView:self];
-    NSInteger index = [self barViewIndexForPoint:touchPoint];
-    if ([self.delegate respondsToSelector:@selector(barChartView:didUnselectBarAtIndex:)])
-    {
-        [self.delegate barChartView:self didUnselectBarAtIndex:index];
-    }
+    [self touchesEndedOrCancelledWithTouches:touches];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesEndedOrCancelledWithTouches:touches];
 }
 
 @end

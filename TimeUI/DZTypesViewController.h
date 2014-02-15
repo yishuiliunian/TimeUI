@@ -8,6 +8,7 @@
 
 #import "DZAstirFrameViewController.h"
 #import "DZTableViewController.h"
+#import "DZInputCellView.h"
 @class DZTypesViewController;
 @protocol DZSelectTypeDelegate <NSObject>
 
@@ -15,6 +16,11 @@
 
 @end
 
-@interface DZTypesViewController : DZTableViewController
+@interface DZTypesViewController : DZTableViewController<UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate>
+{
+    NSMutableArray* _typesArray;
+    NSMutableArray* _timeTypes;
+    
+}
 @property (nonatomic, weak) id<DZSelectTypeDelegate> selectDelegate;
 @end

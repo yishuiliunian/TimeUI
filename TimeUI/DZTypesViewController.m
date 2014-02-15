@@ -9,7 +9,6 @@
 #import "DZTypesViewController.h"
 #import "DZDBManager.h"
 #import "DZTimeType.h"
-#import "DZInputCellView.h"
 #import "DZTypeCell.h"
 #import "DZMessageContainerView.h"
 #import "DZNotificationCenter.h"
@@ -21,12 +20,7 @@
 #import "DZSelecteTypeInterface.h"
 #import "DZTimeTrickManger.h"
 #import "NSString+WizString.h"
-@interface DZTypesViewController () <UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZTestInterface>
-{
-    NSMutableArray* _typesArray;
-    NSMutableArray* _timeTypes;
-
-}
+@interface DZTypesViewController () 
 @end
 
 @implementation DZTypesViewController
@@ -109,15 +103,6 @@
     }
 }
 
-- (void) dzTableView:(DZTableView *)tableView didTapAtRow:(NSInteger)row
-{
-    DZTimeType* type = [_timeTypes objectAtIndex:row];
-    if ([_selectDelegate respondsToSelector:@selector(typesViewController:didSelect:)]) {
-        [_selectDelegate typesViewController:self didSelect:type];
-    }
-    [DZTimeTrickManger shareManager].timeType = type;
-    [[DZNotificationCenter defaultCenter] postMessage:kDZNotification_selectedType userInfo:@{@"type": type}];
-}
 
 - (void) dzInputCellView:(DZInputCellView *)inputView hideWithText:(NSString *)text
 {

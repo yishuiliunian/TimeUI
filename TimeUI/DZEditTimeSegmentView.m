@@ -9,59 +9,56 @@
 #import "DZEditTimeSegmentView.h"
 #import "UIColor+DZColor.h"
 #import "DZEditTimeLine.h"
+#import "NSString+WizString.h"
+#import <NSDate-TKExtensions.h>
+//
+#import "DZTime.h"
+#import "DZTimeType.h"
 
-@interface DZEditTimeSegmentView()
+@interface DZEditTimeSegmentView() <DZEditTimeLineDelegate, UIGestureRecognizerDelegate>
 {
-    NSMutableArray* _divisionLinesInfo;
-    NSMutableArray* _lineViews;
+    
+    NSMutableDictionary* _linesInfoDic;
+    
     NSMutableDictionary* _colorsCache;
     
     UITapGestureRecognizer* _doubleTapGesture;
+    DZEditTimeLine* _selectedLineView;
+    
+    UILongPressGestureRecognizer* _longPressRecg;
+    
+    NSMutableArray*  _timesDataArray;
+    
+    NSDate* _dateBegin;
+    NSDate* _dateEnd;
+    
+    NSTimeInterval _totalTimeInterval;
+    //
+    DZTime* _editingTime;
 }
 @end
 
 @implementation DZEditTimeSegmentView
 
-
-- (void) handleDoubleTapGestrueRecg:(UITapGestureRecognizer*)dtrecg
-{
-    CGPoint point = [dtrecg locationInView:self];
-    float rote = point.y / CGRectViewHeight;
-    if (dtrecg.state == UIGestureRecognizerStateRecognized) {
-        [self addDivisionLine:rote];
-    }
-    
-}
 - (void) commonInit
 {
-    _divisionLinesInfo = [NSMutableArray new];
-    _lineViews         = [NSMutableArray new];
+    self.backgroundColor = [UIColor clearColor];
+    _linesInfoDic = [NSMutableDictionary new];
     _colorsCache       = [NSMutableDictionary new];
-    [self addDivisionLine:0.05f];
-    [self addDivisionLine:0.95f];
-    [self addDivisionLine:1.0f];
-    
+
     
     _doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGestrueRecg:)];
     _doubleTapGesture.numberOfTapsRequired = 2;
     _doubleTapGesture.numberOfTouchesRequired = 1;
     [self addGestureRecognizer:_doubleTapGesture];
-}
-
-- (void) addDivisionLine:(float)rote
-{
-    [_divisionLinesInfo addObject:@(rote)];
-    [_divisionLinesInfo sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [obj1 compare:obj2];
-    }];
-    DZEditTimeLine* line = [[DZEditTimeLine alloc] init];
-    [self addSubview:line];
-    [_lineViews addObject:line];
+    //
     
-    [self setNeedsLayout];
-    [self setNeedsDisplay];
+    _longPressRecg = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestureRecgnizer:)];
+    _longPressRecg.delegate = self;
+    [self addGestureRecognizer:_longPressRecg];
+    //
+    _timesDataArray = [NSMutableArray new];
 }
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -71,17 +68,135 @@
     }
     return self;
 }
+
+- (instancetype) initWithTime:(DZTime *)time
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    _dateBegin = time.dateBegin;
+    _dateEnd = time.dateEnd;
+    _totalTimeInterval = ABS([_dateEnd timeIntervalSinceDate:_dateBegin])/0.9;
+    _editingTime = time;
+    DZTimeType* type = [DZActiveTimeDataBase timeTypByGUID:time.typeGuid];
+    [self addDivisionLine:0.05f withType:nil];
+    [self addDivisionLine:0.95f withType:type];
+    [self addDivisionLine:1.0f withType:nil];
+    [_linesInfoDic[@(1.0f)] setHidden:YES];
+    return self;
+}
+- (void) handleDoubleTapGestrueRecg:(UITapGestureRecognizer*)dtrecg
+{
+    CGPoint point = [dtrecg locationInView:self];
+    float rote = point.y / CGRectViewHeight;
+    if (dtrecg.state == UIGestureRecognizerStateRecognized) {
+        DZTimeType* type = [DZActiveTimeDataBase timeTypByGUID:_editingTime.typeGuid];
+        [self addDivisionLine:rote withType:type];
+    }
+}
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+- (void) handleLongPressGestureRecgnizer:(UILongPressGestureRecognizer*)lpRecg
+{
+    if (lpRecg.state == UIGestureRecognizerStateBegan) {
+        CGPoint point = [lpRecg locationInView:self];
+        for (DZEditTimeLine* line  in _linesInfoDic.allValues) {
+            if (CGRectContainsPoint(line.frame, point)) {
+                [self editTimeLine:line didHanldeLongPress:nil];
+                return;
+            }
+        }
+    } else if(lpRecg.state == UIGestureRecognizerStateChanged)
+    {
+        CGPoint point = [lpRecg locationInView:self];
+        
+        if (_selectedLineView) {
+            CGRect frame = _selectedLineView.frame;
+            frame.origin.y = point.y - CGRectGetHeight(frame)/2;
+            _selectedLineView.frame = frame;
+            float rote = point.y / CGRectViewHeight;
+            [self changeLineView:_selectedLineView toRatio:rote];
+        }
+    } else if(lpRecg.state == UIGestureRecognizerStateEnded)
+    {
+        if (_selectedLineView) {
+            _selectedLineView.backgroundColor = [UIColor clearColor];
+            _selectedLineView = nil;
+            [self setNeedsLayout];
+            [self setNeedsDisplay];
+            for (DZEditTimeLine* line  in _linesInfoDic.allValues) {
+                line.alpha = 1.0;
+            }
+        }
+    }
+}
+
+
+
+- (void) addDivisionLine:(float)rote withType:(DZTimeType*)type
+{
+    DZEditTimeLine* line = [[DZEditTimeLine alloc] init];
+    line.delegate = self;
+    [self addSubview:line];
+    line.ratio = rote;
+    line.typeString = type.name;
+    _linesInfoDic[@(rote)] = line;
+    [self setNeedsLayout];
+    [self setNeedsDisplay];
+}
+
+- (void) changeLineView:(DZEditTimeLine*)line toRatio:(float)toRatio
+{
+    if (_linesInfoDic[@(toRatio)]) {
+        return;
+    }
+    
+    [_linesInfoDic removeObjectForKey:@(line.ratio)];
+    [_linesInfoDic setObject:line forKey:@(toRatio)];
+    line.ratio = toRatio;
+    [self setNeedsLayout];
+    [self setNeedsDisplay];
+}
+- (void) editTimeLine:(DZEditTimeLine *)line didHanldeLongPress:(UILongPressGestureRecognizer *)recg
+{
+    NSArray* allLines = _linesInfoDic.allValues;
+    _selectedLineView = line;
+    
+    for (DZEditTimeLine* each  in allLines) {
+        if ([each isEqual:line]) {
+            each.backgroundColor = [UIColor orangeColor];
+        } else
+        {
+            each.alpha = 0.4;
+        }
+    }
+}
+- (NSString*) editTimeLine:(DZEditTimeLine *)line timeStringWithRote:(float)rote
+{
+    NSDate* date = [_dateBegin dateByAddingTimeInterval:_totalTimeInterval*(rote - 0.05)];
+    return [date TKHourAndMinutes];
+}
+
 - (UIColor*) randomCellColorForRote:(float)rote
 {
     UIColor* color = [_colorsCache objectForKey:@(rote)];
     if (!color) {
+        
+        NSArray* allInfos = _linesInfoDic.allKeys;
+        allInfos = [allInfos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [obj1 compare:obj2];
+        }];
         NSDictionary* dic = [UIColor typeCellColors];
-        NSInteger index = [_divisionLinesInfo indexOfObject:@(rote)];
+        NSInteger index = [allInfos indexOfObject:@(rote)];
         if (index == 0) {
             color = dic[@(rand()%dic.count)];
-        } else if (index > 0 && index < (int)_divisionLinesInfo.count -1) {
-            float upRote = [_divisionLinesInfo[index -1] floatValue];
-            float downRote = [_divisionLinesInfo[index + 1] floatValue];
+        } else if (index > 0 && index < (int)allInfos.count -1) {
+            float upRote = [allInfos[index -1] floatValue];
+            float downRote = [allInfos[index + 1] floatValue];
             UIColor* upIndexColor = _colorsCache[@(upRote)];
             UIColor* downIndexColor = _colorsCache[@(downRote)];
             for (; ; ) {
@@ -93,7 +208,7 @@
         }
         else
         {
-            float upRote = [_divisionLinesInfo[index -1] floatValue];
+            float upRote = [allInfos[index -1] floatValue];
             UIColor* upIndexColor = [self randomCellColorForRote:upRote];
             for (; ; ) {
                 color = dic[@(rand()%dic.count)];
@@ -107,43 +222,67 @@
     return color;
 }
 
-- (NSArray*) rectsValues
+- (NSDictionary*) rectsValues
 {
+    
+    NSMutableDictionary* rectRatioDic = [NSMutableDictionary new];
+    //
     NSMutableArray* rectsValue = [NSMutableArray new];
     float centerComWidth      = 40;
     float centerComMinX       = CGRectViewWidth /2 - centerComWidth / 2 ;
     //
-    int count = _divisionLinesInfo.count;
+    NSArray* allInfos = _linesInfoDic.allKeys;
+    allInfos = [allInfos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
+    int count = allInfos.count;
     //
     for (int index =  0; index < count; index ++) {
-        float rote = [_divisionLinesInfo[index] floatValue];
+        float rote = [allInfos[index] floatValue];
         float height = CGRectViewHeight * rote;
         if (index == 0) {
             CGRect rect = CGRectMake(centerComMinX, 0, centerComWidth, height);
             [rectsValue addObject:[NSValue valueWithCGRect:rect]];
+            rectRatioDic[allInfos[index]] = [NSValue valueWithCGRect:rect];
+
         } else
         {
             CGRect lastRect = [rectsValue[index-1] CGRectValue];
             height -= CGRectGetMaxY(lastRect);
             CGRect rect = CGRectMake(centerComMinX, CGRectGetMaxY(lastRect), centerComWidth, height);
             [rectsValue addObject:[NSValue valueWithCGRect:rect]];
+            
+            rectRatioDic[allInfos[index]] = [NSValue valueWithCGRect:rect];
+
         }
     }
-    return rectsValue;
+    return rectRatioDic;
 }
 
 - (void) drawRect:(CGRect)rect
 {
     //drawRects
-    NSArray* rects = [self rectsValues];
+    
+    NSArray* allInfos = _linesInfoDic.allKeys;
+    allInfos = [allInfos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
+    NSDictionary* rects = [self rectsValues];
     for (int i = 0; i < rects.count; i++) {
-        UIBezierPath* bezierPath = [UIBezierPath bezierPathWithRect:[rects[i] CGRectValue]];
-        float rote = [_divisionLinesInfo[i] floatValue];
-        if (i == 0 || i == rects.count -1) {
-            [[UIColor grayColor] setFill];
-        } else {
-            [[self randomCellColorForRote:rote] setFill];
+        UIBezierPath* bezierPath = [UIBezierPath bezierPathWithRect:[rects[allInfos[i]] CGRectValue]];
+        float rote = [allInfos[i] floatValue];
+        if (_selectedLineView && [allInfos[i] compare:@(_selectedLineView.ratio)] == 0) {
+            [[UIColor orangeColor] setFill];
         }
+        else
+        {
+            if (i == 0 || i == rects.count -1) {
+                [[UIColor grayColor] setFill];
+            } else {
+                [[self randomCellColorForRote:rote] setFill];
+            }
+        }
+
         [bezierPath fill];
     }
     
@@ -151,12 +290,26 @@
 
 - (void) layoutSubviews
 {
-    NSArray* rects = [self rectsValues];
-    for (int i = 0; i < rects.count; i ++) {
-        DZEditTimeLine* line = _lineViews[i];
-        CGRect rect = [rects[i] CGRectValue];
+    
+    NSArray* allInfos = _linesInfoDic.allKeys;
+    allInfos = [allInfos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
+    
+    NSDictionary* rects = [self rectsValues];
+    for (NSNumber* each  in allInfos) {
+        DZEditTimeLine* line = _linesInfoDic[each];
+        CGRect rect = [rects[each] CGRectValue];
+        if (_selectedLineView) {
+            if ([_selectedLineView isEqual:line]) {
+                continue;
+            }
+        }
         line.frame = CGRectMake(0, CGRectGetMaxY(rect) - 10, CGRectViewWidth, 20);
     }
+
 }
+
+
 
 @end

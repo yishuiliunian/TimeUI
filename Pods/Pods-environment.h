@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_CTFeedback
 #define COCOAPODS_VERSION_MAJOR_CTFeedback 1
 #define COCOAPODS_VERSION_MINOR_CTFeedback 0
-#define COCOAPODS_VERSION_PATCH_CTFeedback 6
+#define COCOAPODS_VERSION_PATCH_CTFeedback 9
 
 // CocoaLumberjack
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
@@ -64,7 +64,7 @@
 #define COCOAPODS_POD_AVAILABLE_JBChartView
 #define COCOAPODS_VERSION_MAJOR_JBChartView 1
 #define COCOAPODS_VERSION_MINOR_JBChartView 1
-#define COCOAPODS_VERSION_PATCH_JBChartView 3
+#define COCOAPODS_VERSION_PATCH_JBChartView 5
 
 // KXKiOS7ColorsAndGradients
 #define COCOAPODS_POD_AVAILABLE_KXKiOS7ColorsAndGradients
@@ -95,6 +95,12 @@
 #define COCOAPODS_VERSION_MAJOR_PulsingHalo 0
 #define COCOAPODS_VERSION_MINOR_PulsingHalo 0
 #define COCOAPODS_VERSION_PATCH_PulsingHalo 1
+
+// SKBounceAnimation
+#define COCOAPODS_POD_AVAILABLE_SKBounceAnimation
+#define COCOAPODS_VERSION_MAJOR_SKBounceAnimation 1
+#define COCOAPODS_VERSION_MINOR_SKBounceAnimation 0
+#define COCOAPODS_VERSION_PATCH_SKBounceAnimation 4
 
 // SSKeychain
 #define COCOAPODS_POD_AVAILABLE_SSKeychain

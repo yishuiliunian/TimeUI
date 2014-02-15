@@ -15,6 +15,7 @@
 #import "DZAnalysisManager.h"
 #import "DZMessageCenter.h"
 //
+#import "DZEditTimeViewController.h"
 
 static NSString* const kDZLastTrickDate = @"kDZLastTrickDate";
 static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
@@ -57,13 +58,17 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
     time.dateEnd = [NSDate date];
     [self setLastTrickDate:time.dateEnd];
     time.typeGuid = type.guid;
-    [DZActiveTimeDataBase updateTime:time];
-    
-    [DZMessageShareCenter showSuccessMessage:[NSString stringWithFormat:@"成功添加种类为“%@”的时间记录", type.name]];
-    
-    [DZShareAnalysisManager triggleAnaylysisWeekWithType:type];
-    [DZShareAnalysisManager triggleAnaylysisTimeCostWithType:type];
-    [DZShareAnalysisManager triggleAnaylysisTimeCountWithType:type];
+    DZEditTimeViewController* editVC = [[DZEditTimeViewController alloc] initWithInitTime:time];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:editVC animated:YES completion:^{
+        
+    }];
+//    [DZActiveTimeDataBase updateTime:time];
+//    
+//    [DZMessageShareCenter showSuccessMessage:[NSString stringWithFormat:@"成功添加种类为“%@”的时间记录", type.name]];
+//    
+//    [DZShareAnalysisManager triggleAnaylysisWeekWithType:type];
+//    [DZShareAnalysisManager triggleAnaylysisTimeCostWithType:type];
+//    [DZShareAnalysisManager triggleAnaylysisTimeCountWithType:type];
 }
 
 - (float) alreadyCostTime

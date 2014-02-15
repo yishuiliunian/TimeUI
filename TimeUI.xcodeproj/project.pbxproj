@@ -15,6 +15,9 @@
 		650E156B18ADB5F4007DDF47 /* DZEditTimeSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156A18ADB5F4007DDF47 /* DZEditTimeSegmentView.m */; };
 		650E156E18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156D18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m */; };
 		650E157118ADC399007DDF47 /* DZEditTimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E157018ADC399007DDF47 /* DZEditTimeLine.m */; };
+		650E157518AF32C7007DDF47 /* DZEditTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E157418AF32C7007DDF47 /* DZEditTimeViewController.m */; };
+		650E157818AF388F007DDF47 /* DZSelectTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E157718AF388F007DDF47 /* DZSelectTypeViewController.m */; };
+		650E157B18AF38A3007DDF47 /* DZCheckTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E157A18AF38A3007DDF47 /* DZCheckTypeViewController.m */; };
 		6514651D18629563005060CB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514651C18629563005060CB /* libz.dylib */; };
 		6514651F1862956B005060CB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514651E1862956B005060CB /* libsqlite3.dylib */; };
 		6514652118629572005060CB /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6514652018629572005060CB /* AdSupport.framework */; };
@@ -197,6 +200,13 @@
 		650E156D18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZEditTimeSegemntViewController.m; sourceTree = "<group>"; };
 		650E156F18ADC399007DDF47 /* DZEditTimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZEditTimeLine.h; sourceTree = "<group>"; };
 		650E157018ADC399007DDF47 /* DZEditTimeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZEditTimeLine.m; sourceTree = "<group>"; };
+		650E157218AF258B007DDF47 /* DZEditTimeSegmentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZEditTimeSegmentDelegate.h; sourceTree = "<group>"; };
+		650E157318AF32C7007DDF47 /* DZEditTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZEditTimeViewController.h; sourceTree = "<group>"; };
+		650E157418AF32C7007DDF47 /* DZEditTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZEditTimeViewController.m; sourceTree = "<group>"; };
+		650E157618AF388F007DDF47 /* DZSelectTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSelectTypeViewController.h; sourceTree = "<group>"; };
+		650E157718AF388F007DDF47 /* DZSelectTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSelectTypeViewController.m; sourceTree = "<group>"; };
+		650E157918AF38A3007DDF47 /* DZCheckTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCheckTypeViewController.h; sourceTree = "<group>"; };
+		650E157A18AF38A3007DDF47 /* DZCheckTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCheckTypeViewController.m; sourceTree = "<group>"; };
 		6514651C18629563005060CB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6514651E1862956B005060CB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6514652018629572005060CB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -570,6 +580,9 @@
 				650E156D18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m */,
 				650E156F18ADC399007DDF47 /* DZEditTimeLine.h */,
 				650E157018ADC399007DDF47 /* DZEditTimeLine.m */,
+				650E157218AF258B007DDF47 /* DZEditTimeSegmentDelegate.h */,
+				650E157318AF32C7007DDF47 /* DZEditTimeViewController.h */,
+				650E157418AF32C7007DDF47 /* DZEditTimeViewController.m */,
 			);
 			name = editTime;
 			sourceTree = "<group>";
@@ -1354,6 +1367,10 @@
 				65020B2A185B0D3200D1ECBA /* DZTypeCell.m */,
 				65FB8E0F18923F4B006F8D8A /* number_bg.png */,
 				65EB0BE918AA39DB00D2E2F3 /* DZSelecteTypeInterface.h */,
+				650E157618AF388F007DDF47 /* DZSelectTypeViewController.h */,
+				650E157718AF388F007DDF47 /* DZSelectTypeViewController.m */,
+				650E157918AF38A3007DDF47 /* DZCheckTypeViewController.h */,
+				650E157A18AF38A3007DDF47 /* DZCheckTypeViewController.m */,
 			);
 			name = types;
 			sourceTree = "<group>";
@@ -1586,6 +1603,7 @@
 				65238F151857383800FE5D89 /* DZFileUtility.m in Sources */,
 				65D6BD3F188E67B00028F063 /* DZProgramDefines.m in Sources */,
 				65238F2B1857502A00FE5D89 /* NSDate+SSToolkitAdditions.m in Sources */,
+				650E157B18AF38A3007DDF47 /* DZCheckTypeViewController.m in Sources */,
 				65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */,
 				65624F3818913BC500ECD113 /* UIColor+DZColor.m in Sources */,
 				65E65EFC1892139B00AFA60E /* DZSawtoothView.m in Sources */,
@@ -1628,6 +1646,7 @@
 				6533198B186022AA0004795B /* NSOperationQueue+DZ.m in Sources */,
 				65238F311857584300FE5D89 /* DZTimeType.m in Sources */,
 				657685EE185D5827006D7C0F /* DZMessage.m in Sources */,
+				650E157518AF32C7007DDF47 /* DZEditTimeViewController.m in Sources */,
 				65C38F2C1894E69100420CF7 /* MFLTransformingClock.m in Sources */,
 				6535A0281861E81200173E0E /* DZActionContentView.m in Sources */,
 				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
@@ -1665,6 +1684,7 @@
 				65624F2D1890BFF400ECD113 /* DZPageScrollView.m in Sources */,
 				65C38F6318950A2000420CF7 /* DZSettingSectionModel.m in Sources */,
 				651465381863EEBE005060CB /* DZThemeManager.m in Sources */,
+				650E157818AF388F007DDF47 /* DZSelectTypeViewController.m in Sources */,
 				6526C8DA1859883B00A53B79 /* DZTableViewController.m in Sources */,
 				6535A0361862076400173E0E /* DZGlobalActionView.m in Sources */,
 				65D6BD2C188D57390028F063 /* DZNumberLabel.m in Sources */,

@@ -55,7 +55,7 @@
     [vc didMoveToParentViewController:nil];
 }
 
-- (void) setTopViewController:(DZTypesViewController *)topViewController
+- (void) setTopViewController:(DZCheckTypeViewController *)topViewController
 {
     if (_topViewController) {
         [self removeDragChildViewController:_topViewController];
@@ -207,7 +207,7 @@
 }
 
 
-- (void) typesViewController:(DZTypesViewController *)vc didSelect:(DZTimeType *)type
+- (void) typesViewController:(DZCheckTypeViewController *)vc didSelect:(DZTimeType *)type
 {
     [_bottomViewController showLineChartForType:type];
     [[DZTimeTrickManger shareManager] setTimeType:type];

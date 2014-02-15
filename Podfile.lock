@@ -4,7 +4,7 @@ PODS:
   - CocoaLumberjack/Core (1.8.0)
   - CocoaLumberjack/Extensions (1.8.0):
     - CocoaLumberjack/Core
-  - CTFeedback (1.0.6)
+  - CTFeedback (1.0.9)
   - FMDB (2.2):
     - FMDB/standard
   - FMDB/common (2.2)
@@ -12,14 +12,15 @@ PODS:
     - FMDB/common
   - HexColors (2.2.1)
   - InAppSettingsKit (2.0)
-  - JBChartView (1.1.3)
+  - JBChartView (1.1.5)
   - KXKiOS7ColorsAndGradients (1.0.0)
   - MTLocation (0.9)
   - NSDate-TKExtensions (0.4)
   - PNChart (0.2.2)
   - PulsingHalo (0.0.1)
+  - SKBounceAnimation (1.0.04)
   - SSKeychain (1.2.1)
-  - TestFlightSDK (2.2.1-beta)
+  - TestFlightSDK (2.2.1)
   - TheAmazingAudioEngine (1.2)
   - TSMessages (0.9.4):
     - HexColors
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - NSDate-TKExtensions
   - PNChart (from `git://github.com/yishuiliunian/PNChart.git`)
   - PulsingHalo
+  - SKBounceAnimation
   - SSKeychain
   - TestFlightSDK
   - TheAmazingAudioEngine
@@ -50,18 +52,19 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 6ed94046d2ca7fde03a73b3d01b8cfc56574b314
-  CTFeedback: 30ab178c28fbde42a96f2aa4b1a4a83702f9331d
+  CTFeedback: e2864e52d80fea95e403a86515375dd7fe8fefb3
   FMDB: 97472cfacf0d9e445e915704fb43b4b142799c36
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
   InAppSettingsKit: 2b85ba925a81634860461c21274f54b130c84614
-  JBChartView: 12893527d095c173e38aaac4925b72854a13ed4f
+  JBChartView: 8c349166787e239d9e0f2ad50e14bc57eac7b964
   KXKiOS7ColorsAndGradients: 27cb28a573213b4bc7e9c751956fd6b1b53215f5
   MTLocation: e1f55b30e3b19fa9a0512f1f76c9cd2a1b95d2fb
   NSDate-TKExtensions: a8600d99a8ee39ffa442c81e94ba1781c96c32d1
   PNChart: 55161d5bf01a4a8e5593e5c45b34af70eae7ed83
   PulsingHalo: 6c5b7e18ca5c6c1319d5e2fd277f123ed74a1435
+  SKBounceAnimation: 1d53d07c3496c1f61015e9d93bbaefda8391dc0d
   SSKeychain: d18926838c2e7cd342e2a49e9f869858e49f035a
-  TestFlightSDK: 4249c2f70e621bcfbdebf019073169c8fe36be13
+  TestFlightSDK: 030fa8a1bc8aa9ba5c9ae1be05ceaba775368c0c
   TheAmazingAudioEngine: e544f61ab180d6e83c9478cc47355420f61d7281
   TSMessages: 5ab92604b02e49a755d2cc2baf114d2248a90977
   TTCounterLabel: c5067a72c7110647a170c0b3e03a899324004ca3

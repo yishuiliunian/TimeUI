@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DZEditTimeSegmentView : UIView
 
+
+@interface DZEditTimeSegmentView : UIView
+- (instancetype) initWithTime:(DZTime*)time;
 @end

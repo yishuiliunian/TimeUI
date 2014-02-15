@@ -7,7 +7,7 @@
 //
 
 #import "DZEditTimeSegemntViewController.h"
-
+#import "DZTime.h"
 @interface DZEditTimeSegemntViewController ()
 
 @end
@@ -26,7 +26,16 @@
 
 - (void) loadView
 {
-    _editSegmentView = [[DZEditTimeSegmentView alloc] initWithFrame:CGRectLoadViewFrame];
+    NSArray* array =[DZActiveTimeDataBase allTimes];
+    DZTime* time = array.firstObject;
+    float max = 0;
+    for (DZTime* each  in array) {
+        if (ABS([each.dateBegin timeIntervalSinceDate:each.dateEnd]) > max ) {
+            max = ABS([each.dateBegin timeIntervalSinceDate:each.dateEnd]);
+            time = each;
+        }
+    }
+    _editSegmentView = [[DZEditTimeSegmentView alloc] initWithTime:time];
     _editSegmentView.backgroundColor = [UIColor whiteColor];
     self.view = _editSegmentView;
 }

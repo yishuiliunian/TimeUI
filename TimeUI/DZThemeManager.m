@@ -13,6 +13,7 @@
 #import "DZAppearanceInterface.h"
 #import "DZImageCache.h"
 #import <HexColor.h>
+#import <objc/runtime.h>
 
 //定义前缀
 #define DEFINE_CSS_PREFIX(pfix)  static NSString* const kPrefix_##pfix = @""#pfix"_";\
@@ -140,33 +141,45 @@ DEFINE_FONT_NAME(bold);
     return color;
 }
 
+- (void) updateCSSOfObject:(id<DZAppearanceInterface>)object withClass:(Class)cla
+{
+    if ([cla isSubclassOfClass :[UIViewController class]] && class_getSuperclass(cla) != [UIViewController class]) {
+        Class supCla = class_getSuperclass(cla);
+        if (supCla) {
+            [self updateCSSOfObject:object withClass:supCla];
+        }
+    }
+    //
+    NSString* class =  NSStringFromClass(cla);
+    NSDictionary* infos = _cssDictionary[class];
+    
+    if (infos) {
+        NSArray* allKeys = infos.allKeys;
+    #define DECODE_CSS(pfix,exp) NSString* subKey = [key substringFromIndex:lPrefix_##pfix];\
+    NSString* valueStr = infos[key];\
+    id value = [self exp:valueStr];\
+    [object loadViewCSS:value forKey:subKey]
+        
+        for (NSString* key  in allKeys) {
+            if ([key hasPrefix:kPrefix_img]) {
+                DECODE_CSS(img, decodeImageCss);
+            }
+            else if ([key hasPrefix:kPrefix_color])
+            {
+                DECODE_CSS(color, decodeColor);
+            }
+            else if ([key hasPrefix:kPrefix_font])
+            {
+                DECODE_CSS(font, decodeFontCSS);
+            }
+        }
+    }
+}
+
 - (void) updateCSSOfObject:(id<DZAppearanceInterface>) object
 {
     if ([object respondsToSelector:@selector(loadViewCSS:forKey:)]) {
-        NSString* class =  NSStringFromClass([object class]);
-        NSDictionary* infos = _cssDictionary[class];
-        
-        if (infos) {
-            NSArray* allKeys = infos.allKeys;
-            #define DECODE_CSS(pfix,exp) NSString* subKey = [key substringFromIndex:lPrefix_##pfix];\
-            NSString* valueStr = infos[key];\
-            id value = [self exp:valueStr];\
-            [object loadViewCSS:value forKey:subKey]
-
-            for (NSString* key  in allKeys) {
-                if ([key hasPrefix:kPrefix_img]) {
-                    DECODE_CSS(img, decodeImageCss);
-                }
-                else if ([key hasPrefix:kPrefix_color])
-                {
-                    DECODE_CSS(color, decodeColor);
-                }
-                else if ([key hasPrefix:kPrefix_font])
-                {
-                    DECODE_CSS(font, decodeFontCSS);
-                }
-            }
-        }
+        [self updateCSSOfObject:object withClass:[object class]];
     }
 }
 

@@ -6,13 +6,13 @@
 
 "Question" = "Вопрос";
 
-"Request" = "Запрос";
+"Request" = "Предложение";
 
-"Bug Report" = "Отчет об ошибке";
+"Bug Report" = "Сообщить об ошибке";
 
 "Other" = "Другое";
 
-"Device" = "Устройство";
+"Device" = "Аппарат";
 
 "iOS" = "iOS";
 
@@ -34,4 +34,18 @@
 
 "Error" = "Ошибка";
 
-"Mail" = "Почта";
+"Mail" = "Отправить";
+
+"Mail no configuration"="Вы не должны действительную учетную запись электронной почты ";
+
+"Dismiss"="Dismiss";
+
+"Additional Info"="Дополнительная информация ";
+
+"Additional detail"="Выберите вложение обратной связи (изображение)";
+
+"Cancel"="Cancel";
+
+"Camera"="Camera";
+
+"PhotoLibrary"="Выберите из альбома";

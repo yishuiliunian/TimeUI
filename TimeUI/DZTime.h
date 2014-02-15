@@ -36,6 +36,8 @@ static NSString* const SJKTimeKeyDetail     = @"Detail";
 @property (nonatomic, strong) NSString* typeGuid;
 @property (nonatomic, strong) NSString* detail;
 @property (nonatomic, assign) BOOL localChanged;
+
+@property (nonatomic, strong, readonly) NSString* typeName;
 - (NSDictionary*) toJsonObject;
 - (NSDictionary*) parseDayCost;
 @end

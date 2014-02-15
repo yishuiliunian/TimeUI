@@ -254,7 +254,7 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy
 {
-    NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_Nmae] decorate:Nil];
+    NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_GUID] decorate:Nil];
     FMResultSet* re = [_dataBase executeQuery:sql withArgumentsInArray:@[identifiy]];
     return [self timeTypeArrayFromFMResult:re].lastObject;
 }
