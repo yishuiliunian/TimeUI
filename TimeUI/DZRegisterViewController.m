@@ -10,6 +10,7 @@
 #import "DZRegisterAccountOperation.h"
 #import "DZMessageCenter.h"
 #import "DZAccount.h"
+#import "DZAccountManager.h"
 @interface DZRegisterViewController () <DZRegisterAccountDelegate>
 {
     BOOL _running;
@@ -37,6 +38,8 @@
     account.password = _password;
     account.isLogin = YES;
     [account synchronize];
+    
+    [[DZAccountManager shareManager] registerActiveAccount:account];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         

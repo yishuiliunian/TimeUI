@@ -31,19 +31,29 @@
     if (![account isEqual:[DZAccount defaultAccount]] && _activeAccount == [DZAccount defaultAccount]) {
         [self moveAccountDataFrom:_activeAccount aim:account];
     }
+    DZAccount* old = _activeAccount;
     _activeAccount = account;
+    
+    NSDictionary* userInfo = @{@"old":old?old:[NSNull null],
+                               @"new":account ? account : [NSNull null]};
+    if (account.email) {
+        [[DZUserDataManager shareManager] setactiveAccountEmail:account.email];
+    }
+    [DZDefaultNotificationCenter postMessage:kDZNotification_changed_account userInfo:userInfo];
 }
 - (DZAccount*) activeAccount
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString* email = [[DZUserDataManager shareManager] activeAccountGUID];
+        NSString* email = [[DZUserDataManager shareManager] activeAccountEmail];
+        DZAccount* account = nil;
         if (email) {
-            _activeAccount = [[DZAccount alloc] initWithEmail:email];
+            account = [[DZAccount alloc] initWithEmail:email];
         } else
         {
-            _activeAccount = [DZAccount defaultAccount];
+            account = [DZAccount defaultAccount];
         }
+        _activeAccount = account;
     });
     return _activeAccount;
 }

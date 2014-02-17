@@ -20,6 +20,6 @@
 - (void) moveSettingsFrom:(DZAccount*)origin aim:(DZAccount*)account;
 
 //
-- (void) setActiveAccountGUID:(NSString*)guid;
-- (NSString*) activeAccountGUID;
+- (void) setactiveAccountEmail:(NSString*)guid;
+- (NSString*) activeAccountEmail;
 @end

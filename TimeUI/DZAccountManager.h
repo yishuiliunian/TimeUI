@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "DZAccount.h"
+#import "DZMChangedAccountNI.h"
 #define DZActiveAccount [[DZAccountManager shareManager] activeAccount]
 
 @interface DZAccountManager : NSObject
 + (DZAccountManager*) shareManager;
 - (DZAccount*) activeAccount;
+- (void) registerActiveAccount:(DZAccount*)account;
 @end

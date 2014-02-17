@@ -20,6 +20,8 @@
 #import "DZSelecteTypeInterface.h"
 #import "DZTimeTrickManger.h"
 #import "NSString+WizString.h"
+#import "DZFileUtility.h"
+#import "DZAccountManager.h"
 @interface DZTypesViewController () 
 @end
 
@@ -45,20 +47,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [[DZAnalysisManager shareManager] triggleAnaylysisTimeCount];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
-    _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
-    for (DZTimeType* type  in _timeTypes) {
-        [[DZAnalysisManager shareManager] triggleAnaylysisWeekWithType:type];
-    }
     DZSawtoothView* tooth = [[DZSawtoothView alloc] initWithFrame:CGRectMake(0, 0, 0, 10)];
     self.tableView.bottomView = tooth;
     tooth.color = [UIColor lightGrayColor];
-    [self.tableView reloadData];
+    
+    [self reloadAllData];
+}
 
-    [[DZNotificationCenter defaultCenter] addObserver:self forKey:@"a"];
+
+- (void) sortTypes
+{
+    NSString* filePath = [DZActiveAccount.documentsPath stringByAppendingPathComponent:@"sortstypes"];
+    static NSMutableDictionary* typesSortMap = nil;
+    typesSortMap = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    if (!typesSortMap) {
+        typesSortMap = [NSMutableDictionary new];
+    }
+    [_timeTypes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        DZTimeType* t1 = (DZTimeType*)obj1;
+        DZTimeType* t2 = (DZTimeType*)obj2;
+        return [typesSortMap[t1.guid] compare:typesSortMap[t2.guid]];
+    }];
+    for (int i = 0 ; i < _timeTypes.count; i++) {
+        DZTimeType* type = _timeTypes[i];
+        typesSortMap[type.guid] = @(i);
+        [[DZAnalysisManager shareManager] triggleAnaylysisWeekWithType:type];
+    }
+    [typesSortMap writeToFile:filePath atomically:YES];
+}
+
+- (void) reloadAllData
+{
+    _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
+    [self sortTypes];
+    [self.tableView reloadData];
+    [[DZAnalysisManager shareManager] triggleAnaylysisTimeCount];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (CGFloat) dzTableView:(DZTableView *)tableView cellHeightAtRow:(NSInteger)row

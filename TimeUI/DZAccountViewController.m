@@ -50,7 +50,7 @@
 - (IBAction)handleAccountAction:(id)sender
 {
     _password = _passwordTextField.text;
-    _email = _emailTextField.text;
+    _email = [_emailTextField.text lowercaseString];
     [self handleActionWithEmail:_email password:_password];
 }
 

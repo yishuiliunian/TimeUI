@@ -23,4 +23,6 @@
     
 }
 @property (nonatomic, weak) id<DZSelectTypeDelegate> selectDelegate;
+
+- (void) reloadAllData;
 @end

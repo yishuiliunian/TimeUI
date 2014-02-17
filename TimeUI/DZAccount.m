@@ -18,7 +18,6 @@ static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accoun
 @implementation DZAccount
 @synthesize isLogin = _isLogin;
 
-
 + (DZAccount*) defaultAccount
 {
     static DZAccount* account = nil;

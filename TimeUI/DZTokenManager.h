@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^DZAuthorizationResponse)(NSString*token , NSError* error);
+typedef void(^DZAuthorizationResponse)(NSString*token ,NSString* userGuid, NSError* error);
 
 @interface DZTokenManager : NSObject
 + (DZTokenManager*) shareManager;

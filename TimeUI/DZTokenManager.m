@@ -16,6 +16,7 @@
 @interface DZTokenManager ()
 {
     NSMutableDictionary* _tokensMap;
+    NSMutableDictionary* _userGuidMap;
 }
 @end
 
@@ -27,6 +28,7 @@
     self = [super init];
     if (self) {
         _tokensMap = [NSMutableDictionary new];
+        _userGuidMap = [NSMutableDictionary new];
     }
     return self;
 }
@@ -58,7 +60,9 @@
         NSDictionary* userInfo = (NSDictionary*)serverObject;
         NSString* token = userInfo[@"token"];
         NSString* userGuid = userInfo[@"userGuid"];
-        DZActiveAccount.identifiy = userGuid;
+        if (userGuid) {
+            _userGuidMap[userEmail] = userGuid;
+        }
         if (token)  {
             _tokensMap[userEmail] = token;
             return token;
@@ -85,12 +89,13 @@
         {
             token = [self appleForNewToken:userEmail password:password error:&error];
         }
+        NSString* guid = _userGuidMap[userEmail];
         if (isActionFromMain) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                response(token, error);
+                response(token, guid,error);
             });
         } else {
-            response(token, error);
+            response(token,guid, error);
         }
     });
 }

@@ -404,6 +404,7 @@
 		65B403EB1872E72D00F018FD /* DZLabelActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLabelActionItem.m; sourceTree = "<group>"; };
 		65B403EE1872EE3400F018FD /* DZSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSettingsViewController.h; sourceTree = "<group>"; };
 		65B403EF1872EE3400F018FD /* DZSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSettingsViewController.m; sourceTree = "<group>"; };
+		65BBE0B418B1F1E5001C776B /* DZMChangedAccountNI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZMChangedAccountNI.h; sourceTree = "<group>"; };
 		65C38F181894DF8B00420CF7 /* DZTimeCountLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTimeCountLabel.h; sourceTree = "<group>"; };
 		65C38F191894DF8B00420CF7 /* DZTimeCountLabel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DZTimeCountLabel.mm; sourceTree = "<group>"; };
 		65C38F1E1894E69100420CF7 /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
@@ -718,6 +719,7 @@
 				65238F181857393500FE5D89 /* DZAccountManager.m */,
 				65238F1B185739C300FE5D89 /* DZAccount.h */,
 				65238F1C185739C300FE5D89 /* DZAccount.m */,
+				65BBE0B418B1F1E5001C776B /* DZMChangedAccountNI.h */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -1187,6 +1189,18 @@
 			name = settings;
 			sourceTree = "<group>";
 		};
+		65BBE0B518B1F58B001C776B /* base */ = {
+			isa = PBXGroup;
+			children = (
+				65238F5A185853B100FE5D89 /* DZTypesViewController.h */,
+				65238F5B185853B100FE5D89 /* DZTypesViewController.m */,
+				65020B29185B0D3200D1ECBA /* DZTypeCell.h */,
+				65020B2A185B0D3200D1ECBA /* DZTypeCell.m */,
+				65FB8E0F18923F4B006F8D8A /* number_bg.png */,
+			);
+			name = base;
+			sourceTree = "<group>";
+		};
 		65C38F1B1894E69100420CF7 /* MFLTransformingDigits */ = {
 			isa = PBXGroup;
 			children = (
@@ -1361,11 +1375,7 @@
 		65EA7636185B69EE00EBF03E /* types */ = {
 			isa = PBXGroup;
 			children = (
-				65238F5A185853B100FE5D89 /* DZTypesViewController.h */,
-				65238F5B185853B100FE5D89 /* DZTypesViewController.m */,
-				65020B29185B0D3200D1ECBA /* DZTypeCell.h */,
-				65020B2A185B0D3200D1ECBA /* DZTypeCell.m */,
-				65FB8E0F18923F4B006F8D8A /* number_bg.png */,
+				65BBE0B518B1F58B001C776B /* base */,
 				65EB0BE918AA39DB00D2E2F3 /* DZSelecteTypeInterface.h */,
 				650E157618AF388F007DDF47 /* DZSelectTypeViewController.h */,
 				650E157718AF388F007DDF47 /* DZSelectTypeViewController.m */,

@@ -28,6 +28,7 @@
 #import "DZUserDataManager.h"
 #import "DZSelecteTypeInterface.h"
 #import "DZAnalysisNotificationInterface.h"
+#import "DZMChangedAccountNI.h"
 //
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
@@ -108,6 +109,16 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [observer parasedTimeCost:cost forTypeGUID:guid];
                 });
+            }
+        };
+    } else if([message isEqualToString:kDZNotification_changed_account])
+    {
+        return ^(id observer, NSDictionary *userInfo)
+        {
+            DZAccount* old = userInfo[@"old"];
+            DZAccount* other = userInfo[@"new"];
+            if ([observer respondsToSelector:@selector(didChangedAccount:toAccount:)]) {
+                [observer didChangedAccount:old toAccount:other];
             }
         };
     }

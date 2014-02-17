@@ -66,26 +66,26 @@ static float const DZDefaultRequestCount = 100;
         _database = [[DZDBManager shareManager] timeDBInterfaceForAccount:_account];
         [[DZTokenManager shareManager] appleToken:_account.email
                                          password:_account.password
-                                         response:^(NSString *token, NSError *error)
-         {
-             if (token) {
-                 NSError* err = nil;
-                 _token = token;
-                 if (![self syncAllDatas:&err]) {
-                     DZDefaultContextManager.lastSyncError = err;
-                     DZSyncContextSet(DZSyncContextSyncError);
-                 }
-                 else
-                 {
-                     DZSyncContextSet(DZSyncContextNomal);
-                 }
-             }
-             else
-             {
-                 DZDefaultContextManager.lastSyncError = error;
-                 DZSyncContextSet(DZSyncContextSyncError);
-             }
-        }];
+                                         response:^(NSString *token, NSString *userGuid, NSError *error) {
+                                             if (token) {
+                                                 NSError* err = nil;
+                                                 _token = token;
+                                                 if (![self syncAllDatas:&err]) {
+                                                     DZDefaultContextManager.lastSyncError = err;
+                                                     DZSyncContextSet(DZSyncContextSyncError);
+                                                 }
+                                                 else
+                                                 {
+                                                     DZSyncContextSet(DZSyncContextNomal);
+                                                 }
+                                             }
+                                             else
+                                             {
+                                                 DZDefaultContextManager.lastSyncError = error;
+                                                 DZSyncContextSet(DZSyncContextSyncError);
+                                             }
+                                         }
+        ];
     }
 }
 

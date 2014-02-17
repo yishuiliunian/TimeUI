@@ -119,6 +119,27 @@ typedef vector<float>   DZCellHeightVector;
 @synthesize dataSource              = _dataSource;
 @synthesize topPullDownView = _topPullDownView;
 
+- (void) manuSelectedRowAt:(NSInteger)row
+{
+    DZTableViewCell* cell = [self _cellForRow:row];
+    NSArray* cells = _visibleCellsMap.allValues;
+    for (DZTableViewCell* each in cells) {
+        if (each == cell) {
+            if ([_actionDelegate respondsToSelector:@selector(dzTableView:didTapAtRow:)]) {
+                [_actionDelegate dzTableView:self didTapAtRow:each.index];
+            }
+            each.isSelected = YES;
+            _selectedIndex = each.index;
+        }
+        else
+        {
+            each.isSelected = NO;
+        }
+    }
+    [self scrollToRow:row];
+    _selectedIndex = row;
+}
+
 - (void) handleTapGestrue:(UITapGestureRecognizer*)tapGestrue
 {
     CGPoint point = [tapGestrue locationInView:self];
@@ -586,4 +607,9 @@ typedef vector<float>   DZCellHeightVector;
     }
 }
 
+- (void) scrollToRow:(NSInteger)row
+{
+    CGRect rect = [self _rectForCellAtRow:row];
+    [self scrollRectToVisible:rect animated:YES];
+}
 @end

@@ -28,4 +28,6 @@ DEFINE_PROPERTY_STRONG(UIView*, bottomView);
 - (void) reloadData;
 - (void) insertRowAt:(NSSet *)rowsSet withAnimation:(BOOL)animation;
 - (void) removeRowAt:(NSInteger)row withAnimation:(BOOL)animation;
+
+- (void) manuSelectedRowAt:(NSInteger)row;
 @end

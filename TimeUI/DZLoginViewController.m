@@ -10,6 +10,7 @@
 #import "DZThemeManager.h"
 #import "DZRegisterAccountOperation.h"
 #import "DZTokenManager.h"
+#import "DZAccountManager.h"
 
 @interface DZLoginViewController ()
 {
@@ -35,18 +36,25 @@
 
 - (void) handleActionWithEmail:(NSString *)email password:(NSString *)password
 {
-    [[DZTokenManager shareManager] appleToken:email password:password response:^(NSString *token, NSError *error) {
+    [[DZTokenManager shareManager] appleToken:email password:password response:^(NSString *token, NSString *userGuid, NSError *error) {
         if (error) {
             [DZMessageShareCenter showErrorMessage:error.localizedDescription];
         }
         else
         {
+            DZAccount* account = [[DZAccount alloc] init];
+            account.identifiy = userGuid;
+            account.email = _email;
+            account.password = _password;
+            account.isLogin = YES;
+            [account synchronize];
             [DZMessageShareCenter showSuccessMessage:@"登陆成功！"];
+            [[DZAccountManager shareManager] registerActiveAccount:account];
             [self.navigationController dismissViewControllerAnimated:YES completion:^{
                 
             }];
         }
-    }];
+    } ];
     
 }
 - (void) viewDidLoad

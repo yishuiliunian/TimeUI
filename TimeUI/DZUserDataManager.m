@@ -91,12 +91,12 @@ NSString*(^DZUserDataKey)(NSString*userId, NSString*key) = ^(NSString*userId, NS
 }
 
 
-- (void) setActiveAccountGUID:(NSString*)guid
+- (void) setactiveAccountEmail:(NSString*)guid
 {
     [self setInfo:guid forKey:@"active-account"];
 }
 
-- (NSString*) activeAccountGUID
+- (NSString*) activeAccountEmail
 {
     return [self infoForKey:@"active-account"];
 }
