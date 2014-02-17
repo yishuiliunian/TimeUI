@@ -9,8 +9,9 @@
 #import "DZLoginViewController.h"
 #import "DZThemeManager.h"
 #import "DZRegisterAccountOperation.h"
+#import "DZTokenManager.h"
 
-@interface DZLoginViewController () < DZRegisterAccountDelegate>
+@interface DZLoginViewController ()
 {
     BOOL _running;
 }
@@ -18,15 +19,7 @@
 
 @implementation DZLoginViewController
 
-- (void) registerAccountOperation:(DZRegisterAccountOperation *)op failedWithError:(NSError *)error
-{
-    self.loginBtn.enabled  = YES;
-}
 
-- (void) registerAccountOperation:(DZRegisterAccountOperation *)op successWithUserInfo:(NSDictionary *)userInfo
-{
-    self.loginBtn.enabled  = YES;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,18 +31,28 @@
     return self;
 }
 
-- (void) handleLoginAction:(id)sender
-{
-    [DZRegisterAccountOperation runRegiserOperatioWithDelegate:self userEmail:self.emailTextField.text password:self.passwordTextField.text];
-    _running = YES;
-    self.loginBtn.enabled = NO;
-}
 
+
+- (void) handleActionWithEmail:(NSString *)email password:(NSString *)password
+{
+    [[DZTokenManager shareManager] appleToken:email password:password response:^(NSString *token, NSError *error) {
+        if (error) {
+            [DZMessageShareCenter showErrorMessage:error.localizedDescription];
+        }
+        else
+        {
+            [DZMessageShareCenter showSuccessMessage:@"登陆成功！"];
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        }
+    }];
+    
+}
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     [self.loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
-    [self.loginBtn addTarget:self action:@selector(handleLoginAction:) forControlEvents:UIControlEventTouchUpInside];
     self.title = @"登陆";
 }
 @end

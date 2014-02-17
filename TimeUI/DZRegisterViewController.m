@@ -37,6 +37,10 @@
     account.password = _password;
     account.isLogin = YES;
     [account synchronize];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

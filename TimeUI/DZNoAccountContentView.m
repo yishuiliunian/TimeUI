@@ -26,8 +26,8 @@
         INIT_SELF_SUBVIEW(UIButton, _loginButton);
         INIT_SELF_SUBVIEW_UILabel(_textLabel);
         
-        [_registerButton setTitle:@"YES" forState:UIControlStateNormal];
-        [_loginButton setTitle:@"NO" forState:UIControlStateNormal];
+        [_registerButton setTitle:@"NO" forState:UIControlStateNormal];
+        [_loginButton setTitle:@"YES" forState:UIControlStateNormal];
         _textLabel.text = @"您拥有CatchItime账号吗？";
     }
     return self;

@@ -19,7 +19,6 @@ NSString*(^DZUserDataKey)(NSString*userId, NSString*key) = ^(NSString*userId, NS
 @implementation DZUserDataManager
 + (DZUserDataManager*) shareManager
 {
-    
     static DZUserDataManager* share = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -73,5 +72,32 @@ NSString*(^DZUserDataKey)(NSString*userId, NSString*key) = ^(NSString*userId, NS
 - (id) activeUserDataForKey:(NSString*)key
 {
     return [self userDataForKey:key user:DZActiveAccount.identifiy];
+}
+
+
+- (void) setInfo:(id)info forKey:(NSString *)key
+{
+    if (info) {
+        [[NSUserDefaults standardUserDefaults] setObject:info forKey:key];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (id) infoForKey:(NSString *)key
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
+
+- (void) setActiveAccountGUID:(NSString*)guid
+{
+    [self setInfo:guid forKey:@"active-account"];
+}
+
+- (NSString*) activeAccountGUID
+{
+    return [self infoForKey:@"active-account"];
 }
 @end

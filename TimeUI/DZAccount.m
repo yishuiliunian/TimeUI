@@ -17,6 +17,20 @@ static NSString* const kDZCatchITimeService            = @"com.catchitime.accoun
 static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accounts.data";
 @implementation DZAccount
 @synthesize isLogin = _isLogin;
+
+
++ (DZAccount*) defaultAccount
+{
+    static DZAccount* account = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        account = [[DZAccount alloc] init];
+        account.identifiy = @"b58a76b4-a3e5-47dd-0d1f-34bed9f7602f";
+        account.email = @"aasddddss1w@1.com";
+        account.password = @"1";
+    });
+    return account;
+}
 - (void) setIdentifiy:(NSString *)identifiy
 {
     if (_identifiy != identifiy) {

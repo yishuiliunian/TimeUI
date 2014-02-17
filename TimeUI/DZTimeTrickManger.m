@@ -60,8 +60,8 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
     time.typeGuid = type.guid;
     DZEditTimeViewController* editVC = [[DZEditTimeViewController alloc] initWithInitTime:time];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:editVC animated:YES completion:^{
-        
     }];
+    
 //    [DZActiveTimeDataBase updateTime:time];
 //    
 //    [DZMessageShareCenter showSuccessMessage:[NSString stringWithFormat:@"成功添加种类为“%@”的时间记录", type.name]];

@@ -9,6 +9,13 @@
 #import "DZAccountManager.h"
 #import "DZAccount.h"
 #import "DZUserDataManager.h"
+
+@interface DZAccountManager ()
+{
+    DZAccount* _activeAccount;
+}
+@end
+
 @implementation DZAccountManager
 + (DZAccountManager*) shareManager
 {
@@ -19,18 +26,26 @@
     });
     return share;
 }
-
+- (void) registerActiveAccount:(DZAccount*)account
+{
+    if (![account isEqual:[DZAccount defaultAccount]] && _activeAccount == [DZAccount defaultAccount]) {
+        [self moveAccountDataFrom:_activeAccount aim:account];
+    }
+    _activeAccount = account;
+}
 - (DZAccount*) activeAccount
 {
-    static DZAccount* account = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        account = [[DZAccount alloc] init];
-        account.identifiy = @"b58a76b4-a3e5-47dd-0d1f-34bed9f7602f";
-        account.email = @"aasddddss1w@1.com";
-        account.password = @"1";
+        NSString* email = [[DZUserDataManager shareManager] activeAccountGUID];
+        if (email) {
+            _activeAccount = [[DZAccount alloc] initWithEmail:email];
+        } else
+        {
+            _activeAccount = [DZAccount defaultAccount];
+        }
     });
-    return account;
+    return _activeAccount;
 }
 
 - (void) moveAccountDataFrom:(DZAccount*)origin aim:(DZAccount*)aim

@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 @class DZRegisterAccountOperation;
 @protocol DZRegisterAccountDelegate <NSObject>
-
 - (void) registerAccountOperation:(DZRegisterAccountOperation*)op failedWithError:(NSError*)error;
 - (void) registerAccountOperation:(DZRegisterAccountOperation *)op successWithUserInfo:(NSDictionary*)userInfo;
 @end

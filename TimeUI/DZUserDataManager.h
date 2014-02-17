@@ -14,8 +14,12 @@
 - (id) userDataForKey:(NSString*)key user:(NSString*)identify;
 - (void) setActiveUserData:(id)data forKey:(NSString*)key;
 - (id) activeUserDataForKey:(NSString*)key;
-
-
+- (void) setInfo:(id)info forKey:(NSString*)key;
+- (id) infoForKey:(NSString*)key;
 //
 - (void) moveSettingsFrom:(DZAccount*)origin aim:(DZAccount*)account;
+
+//
+- (void) setActiveAccountGUID:(NSString*)guid;
+- (NSString*) activeAccountGUID;
 @end

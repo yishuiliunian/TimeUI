@@ -15,6 +15,9 @@
 @property (nonatomic, assign) BOOL isLogin;
 @property (nonatomic, strong, readonly) NSString* documentsPath;
 @property (nonatomic, strong, readonly) NSString* timeDatabasePath;
+
++ (DZAccount*) defaultAccount;
+
 - (instancetype) initWithEmail:(NSString*)email;
 - (void) synchronize;
 @end
