@@ -566,6 +566,7 @@ typedef vector<float>   DZCellHeightVector;
         
         void(^finishBlock)(void) = ^(void) {
             [self endLayoutCells];
+            [self manuSelectedRowAt:[[rowsSet anyObject] intValue]];
         };
         if (animation) {
             [UIView animateWithDuration:DZAnimationDefualtDuration animations:animationBlock completion:^(BOOL finished) {

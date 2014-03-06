@@ -47,14 +47,13 @@ DEFINE_PROPERTY_STRONG(UIView*, contentView);
 {
     self = [super initWithFrame:frame];
     if (self) {
-        if(NO)
+        if(DZActiveAccount.isLogin)
         {
             [self setContentView:[DZHasAccountContentView new] animation:NO];
         }
         else
         {
             DZNoAccountContentView* noAccountView = [DZNoAccountContentView new];
-            
             [noAccountView.registerButton addTarget:self action:@selector(registerAccount:) forControlEvents:UIControlEventTouchUpInside];
             [noAccountView.loginButton addTarget:self action:@selector(loginAccount:) forControlEvents:UIControlEventTouchUpInside];
             [self setContentView:noAccountView animation:NO];

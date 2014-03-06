@@ -18,6 +18,8 @@
 #import "DZSettingsViewController.h"
 #import "DZLoginViewController.h"
 #import "DZRegisterViewController.h"
+#import "UIViewController+PullDown.h"
+
 
 #define DZMainStateMiddleOffset (CGRectGetViewControllerHeight/2)
 
@@ -211,8 +213,9 @@
 {
     if (index == 1) {
         UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZHistoryViewController new]];
+        
         [self presentViewController:navigationVC animated:YES completion:^{
-            
+            [navigationVC trigglePullDown];
         }];
     } else if (index == 2)
     {

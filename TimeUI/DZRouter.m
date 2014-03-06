@@ -12,8 +12,8 @@
 #import "DZDevices.h"
 #import "NSError+dz.h"
 
-#if DZDEBUG == 0
-NSString* DZDefautlServerUrl = @"http://192.168.1.101:9091/json";
+#if DZDEBUG == 1
+NSString* DZDefautlServerUrl = @"http://10.66.65.56:9091/json";
 #else
 NSString* DZDefautlServerUrl = @"http://www.catchitime.com:9091/json";
 #endif

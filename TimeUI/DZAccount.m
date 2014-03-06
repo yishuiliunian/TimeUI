@@ -51,7 +51,6 @@ static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accoun
     [SSKeychain setPassword:_email forService:kDZCatchITimeServiceAccountData account:_identifiy];
     [SSKeychain setPassword:_identifiy forService:kDZCatchITimeServiceAccountData account:_email];
     [[DZUserDataManager shareManager] setUserData:@(_isLogin) forKey:@"islogin" user:_identifiy];
-    
 }
 
 - (void) setIsLogin:(BOOL)isLogin

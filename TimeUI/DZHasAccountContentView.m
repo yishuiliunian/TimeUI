@@ -21,7 +21,10 @@
 @end
 
 @implementation DZHasAccountContentView
-
+- (void) dealloc
+{
+    [DZDefaultNotificationCenter removeObserver:self forMessage:kDZSyncContextChangedMessage];
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

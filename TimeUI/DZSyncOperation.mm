@@ -134,10 +134,13 @@ static float const DZDefaultRequestCount = 100;
         if (*error) {
             return NO;
         }
-        int64_t version = localVersion;
+        int64_t version = MAX(0, localVersion);
         if ([sobj isKindOfClass:[NSDictionary class]]) {
             NSArray* times = sobj[@"objects"];
-            if (![times isKindOfClass:[NSArray class]]) {
+            if ([times isKindOfClass:[NSNull class]]) {
+                times = nil;
+            }
+            if (times && ![times isKindOfClass:[NSArray class]]) {
                 if (error != NULL) {
                     *error = [NSError dzErrorWithCode:-99 message:@"解析数据数组出错"];
                 }

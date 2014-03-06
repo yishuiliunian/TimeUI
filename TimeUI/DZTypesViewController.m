@@ -56,32 +56,49 @@
     [self reloadAllData];
 }
 
-
+- (void) printTypes
+{
+    for (int i = 0; i < _timeTypes.count; i++) {
+        NSLog(@"type %d is %@",i, [_timeTypes[i] name]);
+    }
+}
 - (void) sortTypes
 {
     NSString* filePath = [DZActiveAccount.documentsPath stringByAppendingPathComponent:@"sortstypes"];
-    static NSMutableDictionary* typesSortMap = nil;
+     NSMutableDictionary* typesSortMap = nil;
     typesSortMap = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
     if (!typesSortMap) {
         typesSortMap = [NSMutableDictionary new];
     }
-    [_timeTypes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    [self printTypes];
+    
+    [_timeTypes sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         DZTimeType* t1 = (DZTimeType*)obj1;
         DZTimeType* t2 = (DZTimeType*)obj2;
-        return [typesSortMap[t1.guid] compare:typesSortMap[t2.guid]];
+        NSNumber* index1 = typesSortMap[t1.name];
+        NSNumber* index2 = typesSortMap[t2.name];
+        return (NSComparisonResult)( [index1 intValue] - [index2 intValue]);
     }];
+    
+    [self printTypes];
+    [self localizedSotreTypes];
+}
+- (void) localizedSotreTypes
+{
+    NSString* filePath = [DZActiveAccount.documentsPath stringByAppendingPathComponent:@"sortstypes"];
+    NSMutableDictionary* typesSortMap = [NSMutableDictionary new];
     for (int i = 0 ; i < _timeTypes.count; i++) {
         DZTimeType* type = _timeTypes[i];
-        typesSortMap[type.guid] = @(i);
+        typesSortMap[type.name] = @(i);
         [[DZAnalysisManager shareManager] triggleAnaylysisWeekWithType:type];
     }
     [typesSortMap writeToFile:filePath atomically:YES];
 }
-
 - (void) reloadAllData
 {
     _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
     [self sortTypes];
+    
     [self.tableView reloadData];
     [[DZAnalysisManager shareManager] triggleAnaylysisTimeCount];
 }
@@ -142,6 +159,8 @@
     [DZActiveTimeDataBase updateTimeType:type];
     [_timeTypes insertObject:type atIndex:0];
     [self.tableView insertRowAt:[NSSet setWithObject:@(0)] withAnimation:YES];
+    [self printTypes];
+    [self localizedSotreTypes];
 }
 
 - (void) dzInputCellViewUserCancel:(DZInputCellView *)inputView
@@ -155,6 +174,7 @@
     [_timeTypes removeObjectAtIndex:row];
     [self.tableView removeRowAt:row withAnimation:YES];
     NSLog(@"delete row at %d %d", row,     [DZActiveTimeDataBase delteTimeType:type]);
+    [self localizedSotreTypes];
 }
 
 - (void) dzTableView:(DZTableView *)tableView editCellDataAtRow:(NSInteger)row

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define DEFINE_PROPERTY_KEY(key)  static void const *  kPK##key = &kPK##key
+
 /**
  *
  * 定义字符串

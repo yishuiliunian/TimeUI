@@ -16,19 +16,19 @@
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack 1
 #define COCOAPODS_VERSION_MINOR_CocoaLumberjack 8
-#define COCOAPODS_VERSION_PATCH_CocoaLumberjack 0
+#define COCOAPODS_VERSION_PATCH_CocoaLumberjack 1
 
 // CocoaLumberjack/Core
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack_Core
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack_Core 1
 #define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Core 8
-#define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Core 0
+#define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Core 1
 
 // CocoaLumberjack/Extensions
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack_Extensions
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack_Extensions 1
 #define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Extensions 8
-#define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Extensions 0
+#define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Extensions 1
 
 // FMDB
 #define COCOAPODS_POD_AVAILABLE_FMDB
@@ -84,6 +84,12 @@
 #define COCOAPODS_VERSION_MINOR_NSDate_TKExtensions 4
 #define COCOAPODS_VERSION_PATCH_NSDate_TKExtensions 0
 
+// ObjectiveSugar
+#define COCOAPODS_POD_AVAILABLE_ObjectiveSugar
+#define COCOAPODS_VERSION_MAJOR_ObjectiveSugar 1
+#define COCOAPODS_VERSION_MINOR_ObjectiveSugar 1
+#define COCOAPODS_VERSION_PATCH_ObjectiveSugar 0
+
 // PNChart
 #define COCOAPODS_POD_AVAILABLE_PNChart
 #define COCOAPODS_VERSION_MAJOR_PNChart 0
@@ -130,7 +136,7 @@
 #define COCOAPODS_POD_AVAILABLE_TestFlightSDK
 #define COCOAPODS_VERSION_MAJOR_TestFlightSDK 2
 #define COCOAPODS_VERSION_MINOR_TestFlightSDK 2
-#define COCOAPODS_VERSION_PATCH_TestFlightSDK 1
+#define COCOAPODS_VERSION_PATCH_TestFlightSDK 3
 
 // TheAmazingAudioEngine
 #define COCOAPODS_POD_AVAILABLE_TheAmazingAudioEngine

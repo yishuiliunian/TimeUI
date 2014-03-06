@@ -154,6 +154,7 @@
 		65CE6D44187ACA4E00DACA12 /* ThemeResources.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D43187ACA4E00DACA12 /* ThemeResources.plist */; };
 		65D051E8187D791300923A46 /* DZLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D051E7187D791300923A46 /* DZLineChartViewController.m */; };
 		65D051EB187D79F600923A46 /* DZChartNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D051EA187D79F600923A46 /* DZChartNode.m */; };
+		65D2785718B840BE00AAF8B1 /* UIViewController+PullDown.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65D2785618B840BE00AAF8B1 /* UIViewController+PullDown.mm */; };
 		65D6BD2C188D57390028F063 /* DZNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD2B188D57390028F063 /* DZNumberLabel.m */; };
 		65D6BD3F188E67B00028F063 /* DZProgramDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD3E188E67B00028F063 /* DZProgramDefines.m */; };
 		65D6BD43188F5BC00028F063 /* DZCommonStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD42188F5BC00028F063 /* DZCommonStrings.m */; };
@@ -451,6 +452,8 @@
 		65D051E7187D791300923A46 /* DZLineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLineChartViewController.m; sourceTree = "<group>"; };
 		65D051E9187D79F600923A46 /* DZChartNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZChartNode.h; sourceTree = "<group>"; };
 		65D051EA187D79F600923A46 /* DZChartNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZChartNode.m; sourceTree = "<group>"; };
+		65D2785518B840BE00AAF8B1 /* UIViewController+PullDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PullDown.h"; sourceTree = "<group>"; };
+		65D2785618B840BE00AAF8B1 /* UIViewController+PullDown.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIViewController+PullDown.mm"; sourceTree = "<group>"; };
 		65D6BD2A188D57390028F063 /* DZNumberLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNumberLabel.h; sourceTree = "<group>"; };
 		65D6BD2B188D57390028F063 /* DZNumberLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZNumberLabel.m; sourceTree = "<group>"; };
 		65D6BD3D188E67B00028F063 /* DZProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZProgramDefines.h; sourceTree = "<group>"; };
@@ -591,6 +594,7 @@
 		6514652818629F54005060CB /* componet */ = {
 			isa = PBXGroup;
 			children = (
+				65D2785418B8400F00AAF8B1 /* ViewControllers */,
 				65D6BD3C188E678C0028F063 /* base */,
 				65F28FB018657A38009403D1 /* ResourcesManager */,
 				6514654D18640F25005060CB /* command queue */,
@@ -1345,6 +1349,15 @@
 			name = "accounts vc";
 			sourceTree = "<group>";
 		};
+		65D2785418B8400F00AAF8B1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				65D2785518B840BE00AAF8B1 /* UIViewController+PullDown.h */,
+				65D2785618B840BE00AAF8B1 /* UIViewController+PullDown.mm */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		65D6BD29188D56FC0028F063 /* TimeLabels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1682,6 +1695,7 @@
 				65238F21185748A400FE5D89 /* DZTime.m in Sources */,
 				657A56141858D78F00521B01 /* DZAudioManager.m in Sources */,
 				65238F191857393500FE5D89 /* DZAccountManager.m in Sources */,
+				65D2785718B840BE00AAF8B1 /* UIViewController+PullDown.mm in Sources */,
 				650E156718AC6675007DDF47 /* DZDirection.m in Sources */,
 				655CA67C188D3D7F0051678A /* DZChartsViewController.m in Sources */,
 				657685EB185CB055006D7C0F /* DZMessageView.m in Sources */,
@@ -1838,8 +1852,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao Dong (FM9P6LZ2YK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhao Dong (FM9P6LZ2YK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeUI/TimeUI-Prefix.pch";
 				INFOPLIST_FILE = "TimeUI/TimeUI-Info.plist";
