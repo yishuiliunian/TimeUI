@@ -82,4 +82,11 @@ static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accoun
 {
     return [self.documentsPath stringByAppendingPathComponent:kDZDBName];
 }
+
+- (NSString*) analysisModelPathWithKey:(NSString *)key
+{
+    NSString* analysisPath = [self.documentsPath stringByAppendingPathComponent:@"analysis"];
+    [DZFileUtility ensurePathExists:analysisPath];
+    return [analysisPath stringByAppendingPathComponent:key];
+}
 @end

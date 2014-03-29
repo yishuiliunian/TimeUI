@@ -13,6 +13,9 @@
 #import "DZTimeType.h"
 #import "DZAnalysisModels.h"
 #import "DZAnalysisNotificationInterface.h"
+#import "DZAccountManager.h"
+
+DEFINE_NSString(AllTimeCost);
 
 NSString* commondIdentify(NSString* guid , NSString* type)
 {
@@ -25,6 +28,8 @@ NSString* commondIdentify(NSString* guid , NSString* type)
     NSMutableDictionary* _typesWeekModels;
     NSMutableDictionary* _timeCountMap;
     NSMutableDictionary* _timeCostMap;
+    //
+    NSMutableDictionary* _allCostMap;
 }
 @end
 
@@ -48,12 +53,25 @@ NSString* commondIdentify(NSString* guid , NSString* type)
     return self;
 }
 
+
 - (void) addWeekModel:(DZAnalysisWeekModel*)midek withType:(DZTimeType*)type
 {
     @synchronized(_typesWeekModels)
     {
         [_typesWeekModels setObject:midek forKey:type.name];
     }
+}
+
+- (NSDictionary*) allTimeCostModel
+{
+    if (_allCostMap) {
+        return _allCostMap;
+    }
+    
+    NSDictionary* dic = [NSKeyedUnarchiver unarchiveObjectWithFile:[DZActiveAccount analysisModelPathWithKey:kDZAllTimeCost]];
+
+    _allCostMap = [dic mutableCopy] ;
+    return _allCostMap;
 }
 
 - (DZAnalysisWeekModel*) parseOnweakTimeData:(DZTimeType*)type
@@ -158,6 +176,38 @@ NSString* commondIdentify(NSString* guid , NSString* type)
         NSTimeInterval time = [DZActiveTimeDataBase timeCostWithTypeGUID:type.guid];
         _timeCostMap[type.guid] = @(time);
         [DZDefaultNotificationCenter postMessage:kDZNotification_time_cost userInfo:@{@"cost":@(time), @"guid":type.guid}];
+    }];
+    [_commandQueue addCommand:c];
+}
+
+- (void) triggleAnaylysisTimeCost
+{
+    DZCommand* c = [DZCommand commondWithIdentify:commondIdentify(@"cost", @"all") Block:^{
+        NSArray* allTimes = [DZActiveTimeDataBase allTimes];
+        
+        NSMutableDictionary* timeCosts = [NSMutableDictionary new];
+        
+        void(^AddCostWithType)(int64_t cost, NSString* guid) = ^(int64_t cost, NSString* guid) {
+            int64_t sumCost  = [timeCosts[guid] longLongValue];
+            timeCosts[guid] = @(sumCost + cost);
+        };
+        
+        for (DZTime* time  in allTimes) {
+            AddCostWithType(ABS([time.dateEnd timeIntervalSinceDate:time.dateBegin]), time.typeGuid);
+        }
+        
+        NSArray* allKeys = timeCosts.allKeys;
+        
+        NSMutableDictionary* allCost = [NSMutableDictionary new];
+        for (NSString* key in allKeys) {
+            DZTimeType* type = [DZActiveTimeDataBase tiemTypeByIdentifiy:key];
+            if (type && type.name && !type.isFinished) {
+                allCost[type.name] = timeCosts[key];
+            }
+        }
+        _allCostMap = allCost;
+        [NSKeyedArchiver archiveRootObject:_allCostMap toFile:[DZActiveAccount analysisModelPathWithKey:kDZAllTimeCost]];
+        [DZDefaultNotificationCenter postMessage:kDZNotification_AnalaysisAllCost userInfo:nil];
     }];
     [_commandQueue addCommand:c];
 }

@@ -167,6 +167,10 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 
 - (BOOL) delteTimeType:(DZTimeType *)type
 {
+    type.isFinished = YES;
+    type.localChanged = YES;
+    return [self updateTimeType:type];
+    //
     NSString* sql = [NSString deleteSql:kDZTableType whereArray:@[kDZ_T_Type_C_GUID] decorate:nil];
     return [_dataBase executeUpdate:sql withArgumentsInArray:@[type.guid]];
 }
@@ -235,7 +239,9 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
         type.localChanged = [result boolForColumn:kDZ_T_Type_C_LocalChanged];
         type.otherInfos = [result stringForColumn:kDZ_T_Type_C_Other_Infos];
         type.userGuid = self.userGuid;
-        [types addObject:type];
+        if (!type.isFinished) {
+            [types addObject:type];
+        }
     }
     [result close];
     return types;

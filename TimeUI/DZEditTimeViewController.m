@@ -85,8 +85,9 @@
         [DZShareAnalysisManager triggleAnaylysisWeekWithType:type];
         [DZShareAnalysisManager triggleAnaylysisTimeCostWithType:type];
         [DZShareAnalysisManager triggleAnaylysisTimeCountWithType:type];
-
     }
+    
+    [DZShareAnalysisManager triggleAnaylysisTimeCost];
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];

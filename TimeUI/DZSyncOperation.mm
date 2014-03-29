@@ -155,8 +155,13 @@ static float const DZDefaultRequestCount = 100;
                 }
                 version = MAX([dic[@"Version"] longLongValue] , version);
             }
+            if (times.count == 0) {
+                localVersion = serverVersion;
+            } else
+            {
+                localVersion = version;
+            }
         }
-        localVersion = version;
         [_database setSyncVersion:methodKey version:localVersion];
     }
     return YES;

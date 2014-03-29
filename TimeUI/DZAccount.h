@@ -20,4 +20,7 @@
 
 - (instancetype) initWithEmail:(NSString*)email;
 - (void) synchronize;
+
+//
+- (NSString*) analysisModelPathWithKey:(NSString*)key;
 @end

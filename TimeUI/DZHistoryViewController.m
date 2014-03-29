@@ -8,6 +8,8 @@
 
 #import "DZHistoryViewController.h"
 #import "DZTime.h"
+
+
 @interface DZHistoryViewController ()
 @property (nonatomic, strong) NSMutableArray* _timeHistoryArray;
 @end
@@ -24,11 +26,22 @@
     return self;
 }
 
+- (void) popSelfPd
+{
+    [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
+    UIBarButtonItem* item = [[UIBarButtonItem alloc]
+                             initWithTitle:@"返回"
+                             style:UIBarButtonItemStyleDone
+                             target:self
+                             action:@selector(popSelfPd)];
     self.navigationItem.rightBarButtonItem = item;
     __timeHistoryArray = [[DZActiveTimeDataBase allTimes] mutableCopy];
     [self.tableView reloadData];
@@ -68,7 +81,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     DZTime* time = __timeHistoryArray[indexPath.row];
-    cell.textLabel.text = time.typeGuid;
+    cell.textLabel.text = time.typeName;
     return cell;
 }
 

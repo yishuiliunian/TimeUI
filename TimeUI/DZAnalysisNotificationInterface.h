@@ -25,3 +25,11 @@ DEFINE_NOTIFICATION_MESSAGE(time_cost);
 @protocol DZAnalysisTimeCostNI <NSObject>
 - (void) parasedTimeCost:(NSTimeInterval)cost forTypeGUID:(NSString*)guid;
 @end
+
+//
+DEFINE_NOTIFICATION_MESSAGE(AnalaysisAllCost);
+@protocol DZAnalysisAllCostNI <NSObject>
+
+- (void) parasedAllTimeCost;
+
+@end

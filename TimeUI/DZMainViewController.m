@@ -19,6 +19,7 @@
 #import "DZLoginViewController.h"
 #import "DZRegisterViewController.h"
 #import "UIViewController+PullDown.h"
+#import "DZPullDownViewController.h"
 
 
 #define DZMainStateMiddleOffset (CGRectGetViewControllerHeight/2)
@@ -156,6 +157,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     _typesViewController.view.frame = CGRectMake(0, 0, CGRectVCWidth, 230);
     _chartsViewController.view.frame = CGRectMake(0, CGRectGetMaxY(_typesViewController.view.frame), CGRectVCWidth, CGRectVCHeight - CGRectGetHeight(_typesViewController.view.frame));
 
@@ -212,10 +214,16 @@
 - (void) actionView:(DZActionView *)actionView didHideWithTapAtIndex:(NSInteger)index item:(DZActionItemView *)item
 {
     if (index == 1) {
-        UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZHistoryViewController new]];
+      UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZHistoryViewController new]];
+        
+        [self.pdSuperViewController  pdPresentViewController:navigationVC animated:YES completion:^{
+            
+        }];
+        return;
+      
         
         [self presentViewController:navigationVC animated:YES completion:^{
-            [navigationVC trigglePullDown];
+           
         }];
     } else if (index == 2)
     {

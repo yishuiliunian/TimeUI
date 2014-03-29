@@ -111,7 +111,17 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
                 });
             }
         };
-    } else if([message isEqualToString:kDZNotification_changed_account])
+    } else if ([message isEqualToString:kDZNotification_AnalaysisAllCost])
+    {
+        return ^(id observer, NSDictionary *userInfo) {
+            if ([observer respondsToSelector:@selector(parasedAllTimeCost)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer parasedAllTimeCost];
+                });
+            }
+        };
+    }
+    else if([message isEqualToString:kDZNotification_changed_account])
     {
         return ^(id observer, NSDictionary *userInfo)
         {

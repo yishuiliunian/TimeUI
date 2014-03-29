@@ -173,8 +173,10 @@
     DZTimeType* type = _timeTypes[row];
     [_timeTypes removeObjectAtIndex:row];
     [self.tableView removeRowAt:row withAnimation:YES];
-    NSLog(@"delete row at %d %d", row,     [DZActiveTimeDataBase delteTimeType:type]);
+    [DZActiveTimeDataBase delteTimeType:type];
     [self localizedSotreTypes];
+    
+    [DZShareAnalysisManager triggleAnaylysisTimeCost];
 }
 
 - (void) dzTableView:(DZTableView *)tableView editCellDataAtRow:(NSInteger)row

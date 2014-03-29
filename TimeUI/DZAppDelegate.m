@@ -28,8 +28,10 @@
 #import "DZAnalysisManager.h"
 
 //
-
+#import "DZPullDownViewController.h"
 #import "DZEditTimeSegemntViewController.h"
+#import "DZPieChartViewController.h"
+#import "DZTopCostViewController.h"
 
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
@@ -54,35 +56,27 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     DZCheckTypeViewController* typesVC = [[DZCheckTypeViewController alloc] init];
     
     DZLineChartViewController* lineChat1 = [[DZLineChartViewController alloc] init];
-    DZLineChartViewController* lineChat2 = [[DZLineChartViewController alloc] init];
-    DZLineChartViewController* lineChat3 = [[DZLineChartViewController alloc] init];
+    DZTopCostViewController* lineChat2 = [[DZTopCostViewController alloc] init];
 
-    DZChartsViewController* chartsVC = [[DZChartsViewController alloc] initWithChartControllers:@[lineChat1, lineChat2, lineChat3]];
+    DZChartsViewController* chartsVC = [[DZChartsViewController alloc] initWithChartControllers:@[lineChat1, lineChat2]];
     
     DZMainViewController* mainViewController = [[DZMainViewController alloc] init];
     mainViewController.chartsViewController = chartsVC;
     mainViewController.typesViewController = typesVC;
-    self.window.rootViewController = mainViewController;
+    
+    
+    self.window.rootViewController = [[DZPullDownViewController alloc] initWithRootViewController:mainViewController];
 //    self.window.rootViewController = [DZEditTimeSegemntViewController new];
+    
+//    self.window.rootViewController = [DZPieChartViewController new];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-//    DZAccount* account = DZActiveAccount;
-//    [DZRegisterAccountOperation runRegiserOperatioWithDelegate:self userEmail:account.email password:account.password];
     
     return YES;
 }
 
 
-- (void) registerAccountOperation:(DZRegisterAccountOperation *)op failedWithError:(NSError *)error
-{
-    NSLog(@"%@",error);
-}
-
-- (void) registerAccountOperation:(DZRegisterAccountOperation *)op successWithUserInfo:(NSDictionary *)userInfo
-{
-    NSLog(@"register success");
-}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
