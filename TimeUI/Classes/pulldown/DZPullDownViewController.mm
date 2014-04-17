@@ -149,7 +149,7 @@ DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
     [UIView animateWithDuration:0.25 animations:^{
         viewControllerToPresent.view.frame = self.view.bounds;
     } completion:^(BOOL finished) {
-
+        
     }];
 }
 

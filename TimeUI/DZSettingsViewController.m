@@ -2,38 +2,95 @@
 //  DZSettingsViewController.m
 //  TimeUI
 //
-//  Created by Stone Dong on 13-12-31.
-//  Copyright (c) 2013年 Stone Dong. All rights reserved.
+//  Created by stonedong on 14-3-29.
+//  Copyright (c) 2014年 Stone Dong. All rights reserved.
 //
 
 #import "DZSettingsViewController.h"
-
+#import "DZEditServerHostViewController.h"
+#import "DZAccountManager.h"
+DEFINE_NSStringValue(RowServerHost, 服务器地址);
 @interface DZSettingsViewController ()
 
 @end
 
 @implementation DZSettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
     return self;
 }
 
+- (void) loadData
+{
+    
+    
+    QQSTSection* accountSection = [QQSTSection new];
+    accountSection.title = @"账号";
+    accountSection.footerTitle = @"注销账号后，将会使用默认账号来保存您的时间信息，并且不能够与服务器同步您的时间信息。";
+    
+    
+    QQSTRow* logoutRow = [[QQSTRow alloc] initWithTarget:self action:@selector(logoutCurrentAccount)];
+    logoutRow.title = @"注销";
+    [accountSection addRow:logoutRow atIndex:0];
+    
+    
+    QQSTSection* sectionDebug = [[QQSTSection alloc] init];
+    sectionDebug.title = @"调试";
+    sectionDebug.footerTitle = @"看到该设置，表示您现在使用的是开发或者测试版本，如果需要正式版本请从AppStore下载";
+    
+    QQSTRow* serverHost = [[QQSTRow alloc] initWithTarget:self action:@selector(changedServerHost)];
+    serverHost.title = kDZRowServerHost;
+    [sectionDebug addRow:serverHost atIndex:0];
+    
+    NSMutableArray* sectionDatas  = [NSMutableArray new];
+#if DZDEBUG == 1
+    [sectionDatas addObject:sectionDebug];
+#endif
+    if (DZActiveAccount.isLogin) {
+        [sectionDatas addObject:accountSection];
+    }
+    _sectionData = sectionDatas;
+}
+
+- (void) changedServerHost
+{
+    [self.navigationController pushViewController:[DZEditServerHostViewController new] animated:YES];
+}
+
+- (void) logoutCurrentAccount
+{
+    DZActiveAccount.isLogin = NO;
+}
+
+- (void) updateTableViewCell:(UITableViewCell *)cell forRowData:(QQSTRow *)row
+{
+    [super updateTableViewCell:cell forRowData:row];
+    if ([row.title isEqual:kDZRowServerHost]) {
+        cell.detailTextLabel.text = DZServerHost;
+    } else if ([row.title isEqual:@"注销"])
+    {
+        cell.backgroundColor = [UIColor redColor];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
     self.navigationItem.rightBarButtonItem = item;
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Do any additional setup after loading the view.
+}
+
+- (void) dismiss
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,81 +99,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 /*
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
+// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
- */
+*/
 
 @end

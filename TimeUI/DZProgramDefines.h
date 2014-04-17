@@ -16,6 +16,8 @@
  */
 #define DEFINE_NSString(str)  static NSString* const kDZ##str = @""#str;
 
+#define DEFINE_NSStringValue(str, value) static NSString* const kDZ##str = @""#value;
+
 #define DEFINE_NOTIFICATION_MESSAGE(str) static NSString* const kDZNotification_##str = @""#str;
 
 #define DEFINE_PROPERTY(mnmKind, type , name) @property (nonatomic, mnmKind)  type  name
@@ -64,6 +66,10 @@ name.numberOfTouchesRequired = 1;\
  *  在当前视图上初始化一个点击手势
  */
 #define INIT_GESTRUE_TAP_IN_SELF(name, taps, touchs) INIT_GESTRUE_TAP_IN_VIEW(name, self, taps, touchs)
+
+
+#define DEFINE_DZ_EXTERN_STRING(key) extern NSString* const  key;
+#define INIT_DZ_EXTERN_STRING(key , value) NSString* const key = @""#value;
 
 @interface DZProgramDefines : NSObject
 

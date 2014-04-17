@@ -51,6 +51,14 @@
 {
     _password = _passwordTextField.text;
     _email = [_emailTextField.text lowercaseString];
+    if (!_password || [_password isEqualToString:@""]) {
+        [DZMessageShareCenter showErrorMessage:@"您输入的密码为空！"];
+        return;
+    } else if (!_email || [_email isEqualToString:@""])
+    {
+        [DZMessageShareCenter showErrorMessage:@"您输入的用户名为空！"];
+        return;
+    }
     [self handleActionWithEmail:_email password:_password];
 }
 

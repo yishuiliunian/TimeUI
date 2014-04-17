@@ -2,12 +2,12 @@
 //  DZSettingsViewController.h
 //  TimeUI
 //
-//  Created by Stone Dong on 13-12-31.
-//  Copyright (c) 2013年 Stone Dong. All rights reserved.
+//  Created by stonedong on 14-3-29.
+//  Copyright (c) 2014年 Stone Dong. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "QQSimpleTableViewController.h"
 
-@interface DZSettingsViewController : UITableViewController
+@interface DZSettingsViewController : QQSimpleTableViewController
 
 @end

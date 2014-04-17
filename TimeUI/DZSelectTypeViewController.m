@@ -7,7 +7,7 @@
 //
 
 #import "DZSelectTypeViewController.h"
-
+#import "DZChangedTypesNI.h"
 @interface DZSelectTypeViewController ()
 
 @end
@@ -44,4 +44,24 @@
         }
     }];
 }
+- (void) didAddTypes:(DZTimeType *)type
+{
+    NSMutableDictionary* infos = [NSMutableDictionary dictionary];
+    if (type) {
+        infos[@"type"] = type;
+    }
+    infos[@"method"] = kDZTypesChangedAdd;
+    [DZDefaultNotificationCenter postMessage:kDZNotification_TypesChanged userInfo:infos];
+}
+
+- (void) didRemoveTypes:(DZTimeType *)type
+{
+    NSMutableDictionary* infos = [NSMutableDictionary dictionary];
+    if (type) {
+        infos[@"type"] = type;
+    }
+    infos[@"method"] = kDZTypesChangedRemove;
+    [DZDefaultNotificationCenter postMessage:kDZNotification_TypesChanged userInfo:infos];
+}
+
 @end

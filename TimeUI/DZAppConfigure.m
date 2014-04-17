@@ -29,7 +29,10 @@
 #import "DZSelecteTypeInterface.h"
 #import "DZAnalysisNotificationInterface.h"
 #import "DZMChangedAccountNI.h"
+#import "DZChangedTypesNI.h"
 //
+
+
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
 @interface DZAppConfigure () <DZNotificationInitDelegaete, DZSyncContextChangedInterface>
@@ -131,10 +134,36 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
                 [observer didChangedAccount:old toAccount:other];
             }
         };
+    } else if ([message isEqualToString:kDZNotification_ServerHostDidChanged])
+    {
+        return ^(id observer, NSDictionary* userInfo)
+        {
+            if ([observer respondsToSelector:@selector(serverHostDidChanged)]) {
+                [observer serverHostDidChanged];
+            }
+        };
+    } else if ([message isEqualToString:kDZNotification_TypesChanged])
+    {
+        return ^(id observer, NSDictionary* userInfo)
+        {
+            DZTimeType* type = userInfo[@"type"];
+            NSString* method = userInfo[@"method"];
+            
+            if ([method isEqualToString:kDZTypesChangedAdd]) {
+                if ([observer respondsToSelector:@selector(handleMessageDidAddType:)]) {
+                    [observer handleMessageDidAddType:type];
+                }
+            } else if ([method isEqualToString:kDZTypesChangedRemove])
+            {
+                if ([observer respondsToSelector:@selector(handleMessageDidRemoveType:)]) {
+                    [observer handleMessageDidRemoveType:type];
+                }
+            }
+            
+        };
     }
     return nil;
 }
-
 + (void) initNotifications
 {
     

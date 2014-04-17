@@ -11,6 +11,11 @@
 #import <SSKeychain.h>
 #import "DZUserDataManager.h"
 
+
+static NSString* const kDZDefaultAccountGUID = @"b58a76b4-a3e5-47dd-0d1f-34bed9f7602f";
+static NSString* const kDZDefaultAccountEmail = @"aasddddss1w@1.com";
+static NSString* const kDZdefaultAccountPassword = @"1";
+
 static NSString* const kDZDBName                       = @"time.db";
 
 static NSString* const kDZCatchITimeService            = @"com.catchitime.accounts";
@@ -24,9 +29,9 @@ static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accoun
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         account = [[DZAccount alloc] init];
-        account.identifiy = @"b58a76b4-a3e5-47dd-0d1f-34bed9f7602f";
-        account.email = @"aasddddss1w@1.com";
-        account.password = @"1";
+        account.identifiy = kDZDefaultAccountGUID;
+        account.email = kDZDefaultAccountEmail;
+        account.password = kDZdefaultAccountPassword;
     });
     return account;
 }

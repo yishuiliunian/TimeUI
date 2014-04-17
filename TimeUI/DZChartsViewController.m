@@ -183,22 +183,22 @@
     _pageControl.currentPage = index;
 }
 //
-//- (void) pageScrollView:(DZPageScrollView *)pageView willDisplayCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
-//{
-//    UIViewController* vc  = _chartsViewContoller[index];
-//    [vc viewWillAppear:YES];
-//}
-//
-//- (void) pageScrollView:(DZPageScrollView *)pageView didDisplayCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
-//{
-//    UIViewController* vc  = _chartsViewContoller[index];
-//    [vc viewDidAppear:YES];
-//}
-//
-//- (void) pageScrollView:(DZPageScrollView *)pageView willDisappearCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
-//{
-//    UIViewController* vc  = _chartsViewContoller[index];
-//    [vc viewWillDisappear:YES];
-//    [vc viewDidDisappear:YES];
-//}
+- (void) pageScrollView:(DZPageScrollView *)pageView willDisplayCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
+{
+    UIViewController* vc  = _chartsViewContoller[index];
+    [vc viewWillAppear:YES];
+}
+
+- (void) pageScrollView:(DZPageScrollView *)pageView didDisplayCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
+{
+    UIViewController* vc  = _chartsViewContoller[index];
+    [vc viewDidAppear:YES];
+}
+
+- (void) pageScrollView:(DZPageScrollView *)pageView willDisappearCell:(DZPageScrollViewCell *)cell atIndex:(NSInteger)index
+{
+    UIViewController* vc  = _chartsViewContoller[index];
+    [vc viewWillDisappear:YES];
+    [vc viewDidDisappear:YES];
+}
 @end

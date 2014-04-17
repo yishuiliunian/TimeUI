@@ -32,6 +32,7 @@
     UIPanGestureRecognizer* _panGestureRecognizer;
     CGPoint _lastPoint;
 }
+@property (nonatomic, weak) DZGlobalActionView* globalActionView;
 @end
 
 @implementation DZMainViewController
@@ -57,7 +58,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[DZNotificationCenter defaultCenter] addObserver:self forKey:DZShareNotificationMessage];
     [_typesViewController willMoveToParentViewController:self];
     [self addChildViewController:_typesViewController];
     [self.view addSubview:_typesViewController.view];
@@ -146,7 +146,7 @@
     rect.size.height = CGRectGetViewControllerHeight - offset;
     _chartsViewController.view.frame = rect;
     
-    _typesViewController.view.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight - offset);
+    _typesViewController.view.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight - CGRectGetHeight(rect));
 }
 
 - (void) viewWillLayoutSubviews
@@ -166,8 +166,19 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    
+    [[DZNotificationCenter defaultCenter] addObserver:self forKey:DZShareNotificationMessage];
+
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [DZDefaultNotificationCenter removeObserver:self forMessage:DZShareNotificationMessage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -178,6 +189,9 @@
 
 - (void) didGetShareMessage
 {
+    if (self.globalActionView) {
+        return;
+    }
     DZGlobalActionView* actionView = [[DZGlobalActionView alloc] init];
     actionView.delegate = self;
     DZSyncActionItemView* syncItem = [[DZSyncActionItemView alloc] init];
@@ -201,6 +215,8 @@
     cancelItem.textLabel.textAlignment = NSTextAlignmentRight;
     [actionView.actionContentView setItems:@[syncItem, historyItem, settingItem,cancelItem]];
     [actionView showWithAnimation:YES];
+    //
+    self.globalActionView = actionView;
 }
 
 - (BOOL) actionView:(DZActionView *)actionView shouldHideTapAtIndex:(NSInteger)index item:(DZActionItemView *)item
@@ -229,7 +245,7 @@
     {
         UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZSettingsViewController new]];
         [self presentViewController:navigationVC animated:YES completion:^{
-            
+            NSLog(@"self.%@",self.globalActionView);
         }];
     }
 }

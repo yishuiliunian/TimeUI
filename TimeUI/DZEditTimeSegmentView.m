@@ -14,6 +14,7 @@
 //
 #import "DZTime.h"
 #import "DZTimeType.h"
+#import "GLBucket.h"
 
 @interface DZEditTimeSegmentView() <DZEditTimeLineDelegate, UIGestureRecognizerDelegate>
 {
@@ -37,6 +38,10 @@
     DZTime* _editingTime;
     //
     NSMutableDictionary* _timeTypesCache;
+    //
+    BOOL _isShowDeleting;
+    GLBucket* _glBucket;
+    CALayer* _bucketContanierLayer;
 }
 @end
 
@@ -47,7 +52,7 @@
     self.backgroundColor = [UIColor clearColor];
     _linesInfoDic = [NSMutableDictionary new];
     _colorsCache       = [NSMutableDictionary new];
-
+    _isShowDeleting = NO;
     
     _doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTapGestrueRecg:)];
     _doubleTapGesture.numberOfTapsRequired = 2;
@@ -61,6 +66,13 @@
     //
     _timesDataArray = [NSMutableArray new];
     _timeTypesCache = [NSMutableDictionary new];
+    //
+    _bucketContanierLayer = [CALayer new];
+    CGRect bucketRect = CGRectMake(0, 0, 50, 40);
+    _bucketContanierLayer.frame = bucketRect;
+    _glBucket = [[GLBucket alloc] initWithFrame:bucketRect inLayer:_bucketContanierLayer];
+    [self.layer addSublayer:_bucketContanierLayer];
+    
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -124,11 +136,24 @@
             _selectedLineView.frame = frame;
             float rote = point.y / CGRectViewHeight;
             [self changeLineView:_selectedLineView toRatio:rote];
+            if (rote < 0.05f) {
+                [self showTrashBunket];
+            } else
+            {
+                [self hideTrashBunket];
+            }
         }
     } else if(lpRecg.state == UIGestureRecognizerStateEnded)
     {
         if (_selectedLineView) {
             _selectedLineView.backgroundColor = [UIColor clearColor];
+            if (_isShowDeleting) {
+                NSNumber* ratio = @(_selectedLineView.ratio);
+                [_linesInfoDic removeObjectForKey:ratio];
+                [_timeTypesCache removeObjectForKey:ratio];
+                [_selectedLineView removeFromSuperview];
+                [self hideTrashBunket];
+            }
             _selectedLineView = nil;
             [self setNeedsLayout];
             [self setNeedsDisplay];
@@ -301,6 +326,11 @@
 
 - (void) layoutSubviews
 {
+    _bucketContanierLayer.frame = CGRectMake(CGRectGetWidth(self.frame) - CGRectGetWidth(_bucketContanierLayer.frame),
+                                             0,
+                                             CGRectGetWidth(_bucketContanierLayer.frame),
+                                             CGRectGetHeight(_bucketContanierLayer.frame));
+    //
     
     NSArray* allInfos = _linesInfoDic.allKeys;
     allInfos = [allInfos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -343,5 +373,23 @@
         [allTimes addObject:time];
     }
     return allTimes;
+}
+
+- (void) showTrashBunket
+{
+    if (_isShowDeleting) {
+        return;
+    }
+    [_glBucket openBucket];
+    _isShowDeleting = YES;
+}
+
+- (void) hideTrashBunket
+{
+    if (!_isShowDeleting) {
+        return;
+    }
+    [_glBucket closeBucket];
+    _isShowDeleting = NO;
 }
 @end

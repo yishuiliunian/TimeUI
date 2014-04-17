@@ -79,7 +79,6 @@
         NSNumber* index2 = typesSortMap[t2.name];
         return (NSComparisonResult)( [index1 intValue] - [index2 intValue]);
     }];
-    
     [self printTypes];
     [self localizedSotreTypes];
 }
@@ -126,6 +125,9 @@
         cell.nameLabel.textColor = [UIColor whiteColor];
         cell.nameLabel.font = [UIFont systemFontOfSize:28];
     }
+    if (row < _typesArray.count) {
+        return cell;
+    }
     DZTimeType* type = [_timeTypes objectAtIndex:row];
     cell.nameLabel.text = type.name;
     cell.countLabel.text = [@([DZShareAnalysisManager numberOfTimeForType:type]) stringValue];
@@ -161,6 +163,7 @@
     [self.tableView insertRowAt:[NSSet setWithObject:@(0)] withAnimation:YES];
     [self printTypes];
     [self localizedSotreTypes];
+    [self didAddTypes:type];
 }
 
 - (void) dzInputCellViewUserCancel:(DZInputCellView *)inputView
@@ -177,6 +180,8 @@
     [self localizedSotreTypes];
     
     [DZShareAnalysisManager triggleAnaylysisTimeCost];
+    
+    [self didRemoveTypes:type];
 }
 
 - (void) dzTableView:(DZTableView *)tableView editCellDataAtRow:(NSInteger)row
@@ -184,5 +189,13 @@
     [DZShareAnalysisManager triggleCommand:@""];
 }
 
+- (void) didAddTypes:(DZTimeType *)type
+{
+    
+}
 
+- (void) didRemoveTypes:(DZTimeType *)type
+{
+    
+}
 @end

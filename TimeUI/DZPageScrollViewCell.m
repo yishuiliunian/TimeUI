@@ -48,8 +48,8 @@
             [self addSubview:contentView];
         }
         _contentView = contentView;
-        [self setNeedsLayout];
     }
+    [self setNeedsLayout];
 }
 
 - (void) layoutSubviews

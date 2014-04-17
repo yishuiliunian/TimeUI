@@ -32,6 +32,8 @@
 #import "DZEditTimeSegemntViewController.h"
 #import "DZPieChartViewController.h"
 #import "DZTopCostViewController.h"
+//
+#import "DZWebPluginEngine.h"
 
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
@@ -46,13 +48,7 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     
     [DZAppConfigure initApp];
     self.window = [[DZShakeRecognizedWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    
-    
 
-
-//    self.window.rootViewController = dragVC;
-    //
     DZCheckTypeViewController* typesVC = [[DZCheckTypeViewController alloc] init];
     
     DZLineChartViewController* lineChat1 = [[DZLineChartViewController alloc] init];

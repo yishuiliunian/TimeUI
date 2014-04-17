@@ -12,28 +12,35 @@
 #import "DZDevices.h"
 #import "NSError+dz.h"
 
-#if DZDEBUG == 1
-NSString* DZDefautlServerUrl = @"http://192.168.1.118:9091/json";
-#else
-NSString* DZDefautlServerUrl = @"http://www.catchitime.com:9091/json";
-#endif
+@interface DZRouter () <DZServerHostChangedNI>
+
+@end
 @implementation DZRouter
+
 
 + (DZRouter*) defaultRouter
 {
     return DZSingleForClass([DZRouter class]);
 }
 
+- (void) dealloc
+{
+    [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_ServerHostDidChanged];
+}
 - (instancetype) init
 {
     self = [super init];
     if (!self) {
         return nil;
     }
-    _baseURL = [NSURL URLWithString:DZDefautlServerUrl];
+    _baseURL = [NSURL URLWithString:DZServerHost];
+    [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_ServerHostDidChanged];
     return self;
 }
-
+- (void) serverHostDidChanged
+{
+    _baseURL = [NSURL URLWithString:DZServerHost];
+}
 - (NSData*) addCommonInfos:(NSMutableDictionary*)body
            serverMethod:(NSString*)serverMethod
               bodyDatas:(NSDictionary*)bodyDatas

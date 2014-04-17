@@ -12,8 +12,10 @@
 #import "DZMChangedAccountNI.h"
 #import "DZUserDataManager.h"
 #import "DZTimeType.h"
+#import "DZChangedTypesNI.h"
+
 DEFINE_NSString(active_type);
-@interface DZCheckTypeViewController () <DZMChangedAccountNI>
+@interface DZCheckTypeViewController () <DZMChangedAccountNI, DZChangedTypesNI>
 
 @end
 
@@ -22,6 +24,7 @@ DEFINE_NSString(active_type);
 - (void) dealloc
 {
     [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_changed_account];
+    [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_TypesChanged];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +33,7 @@ DEFINE_NSString(active_type);
     if (self) {
         // Custom initialization
         [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_changed_account];
+        [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_TypesChanged];
     }
     return self;
 }
@@ -77,4 +81,14 @@ DEFINE_NSString(active_type);
     [[DZNotificationCenter defaultCenter] postMessage:kDZNotification_selectedType userInfo:@{@"type": type}];
 }
 
+
+- (void) handleMessageDidRemoveType:(DZTimeType *)type
+{
+    [self reloadAllData];
+}
+
+- (void) handleMessageDidAddType:(DZTimeType *)type
+{
+    [self reloadAllData];
+}
 @end

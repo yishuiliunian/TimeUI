@@ -19,6 +19,8 @@
     #import "DZMessageCenter.h"
     #import "DZThemeManager.h"
     #import "DZProgramDefines.h"
+#import "DZGlobalSettingsManager.h"
 #import "DZNotificationCenter.h"
 #import "DZPullDownViewController.h"
+#import "DZServerHostChangedNI.h"
 #endif

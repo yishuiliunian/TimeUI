@@ -25,4 +25,7 @@
 @property (nonatomic, weak) id<DZSelectTypeDelegate> selectDelegate;
 
 - (void) reloadAllData;
+
+- (void) didAddTypes:(DZTimeType*)type;
+- (void) didRemoveTypes:(DZTimeType*)type;
 @end

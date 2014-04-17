@@ -220,7 +220,6 @@ static float const DZDefaultRequestCount = 100;
      {
          return NO;
      }
-    
     return YES;
 }
 
