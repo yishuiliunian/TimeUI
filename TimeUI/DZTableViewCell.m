@@ -78,31 +78,9 @@
     if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewPanGestureRecognizer")]) {
         return YES;
     }
-    
-    NSLog(@"%@", otherGestureRecognizer);
     return YES;
 }
 
-//- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-//{
-//    if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-//        return YES;
-//    }
-//    else
-//    {
-//        return YES;
-//    }
-//}
-//- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-//{
-//    if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-//        return NO;
-//    }
-//    else
-//    {
-//        return YES;
-//    }
-//}
 - (void) handlePanGestureRecognizer:(UIPanGestureRecognizer*)prcg
 {
     if ([self.superview isKindOfClass:[UIScrollView class]]) {

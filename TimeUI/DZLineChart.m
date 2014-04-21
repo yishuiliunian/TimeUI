@@ -22,6 +22,7 @@
 - (void) commonInit
 {
     _animationTime = 2;
+    _yTitle = @"秒";
     //
     _xLabelFont           = [UIFont systemFontOfSize:12];
     _xLabelColor          = [UIColor blackColor];
@@ -29,7 +30,7 @@
     _yLabelFont           = [UIFont systemFontOfSize:12];
     _minYInterval         = 30;
     _yLabelColor          = [UIColor blackColor];
-
+    _yLabelTitleFont        = [UIFont systemFontOfSize:10];
     _shapeLayer           = [CAShapeLayer layer];
     _shapeLayer.lineCap   = kCALineCapRound;
     _shapeLayer.lineJoin  = kCALineJoinBevel;
@@ -111,7 +112,7 @@
     float yInterval          = max/count;
 
     float yAxisBottomOffSet  = 40;
-    float yAxisTopOffSet     = 10;
+    float yAxisTopOffSet     = 15;
     float yLabelsXOffset     = 10;
     float yLabelsWidth       = 20;
     float yAxisHeight        = CGRectGetHeight(self.frame) - yAxisBottomOffSet - yAxisTopOffSet;
@@ -145,24 +146,48 @@
         CGRect rect = CGRectMake(yLabelsXOffset, CGRectGetHeight(self.frame) - ( yAxisBottomOffSet + yHInterval * (i +1)), yLabelsWidth, yHInterval);
         
         CGFloat textHeight = [ytext sizeWithFont:_yLabelFont constrainedToSize:CGSizeMake(1000, 1000)].height;
+        
+        UIFont* font = _yLabelFont;
+        for (int i = 12; i > 1; i--) {
+            UIFont* tmpFont = [UIFont systemFontOfSize:i];
+            CGSize size = [ytext sizeWithFont:tmpFont constrainedToSize:CGSizeMake(1000, 1000)];
+            if (size.width <= yLabelsWidth ) {
+                textHeight = size.height;
+                font = tmpFont;
+                break;
+            }
+        }
+        
         CGRect yTextRect  = CGRectMake(CGRectGetMinX(rect), CGRectGetMaxY(rect) - textHeight/2, yLabelsWidth, textHeight);
         CGPoint currentYaxisPoint = CGPointMake(CGRectGetMaxX(rect) + xLabelsOffsetYAxis, CGRectGetMaxY(rect));
-        if (i == 0) {
-            axisOriginPoint = currentYaxisPoint;
-        } else if (i == count) {
-            yAxisMaxPoint = currentYaxisPoint;
-        }
         [_yLabelColor setFill];
         [_yLabelColor setStroke];
-        [ytext drawInRect:yTextRect  withAttributes:nil];
+        
+        [ytext drawInRect:yTextRect  withFont:font];
+
         UIBezierPath* path = [UIBezierPath bezierPath];
         CGPoint beginPoint = currentYaxisPoint;
         [path moveToPoint:beginPoint];
         [path addLineToPoint:CGPointMake(beginPoint.x + xContextWidth - perXLabelWidth, beginPoint.y )];
         [gridLines addObject:path];
+        
+        if (i == 0) {
+            axisOriginPoint = currentYaxisPoint;
+        } else if (i == count) {
+            yAxisMaxPoint = currentYaxisPoint;
+            CGSize yTitleSize = [_yTitle sizeWithFont:_yLabelTitleFont constrainedToSize:CGSizeMake(1000, 1000)];
+            CGRect yTitleRect = CGRectMake(axisOriginPoint.x - yTitleSize.width/2,
+                                           0,
+                                           yTitleSize.width,
+                                           yTitleSize.height);
+            [_yTitle drawInRect:yTitleRect withFont:_yLabelTitleFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+        }
+        
     }
+    
     float chartContentHeight = ABS(yAxisMaxPoint.y - axisOriginPoint.y);
 
+    
     //draw x line
     
     UIBezierPath* xAxisLine = [UIBezierPath bezierPath];

@@ -224,8 +224,26 @@ DEFINE_PROPERTY_STRONG(UITapGestureRecognizer*, tapGesture);
     
     CGRect circleRect = CGRectMake(centerPoint.x - cicleRedius, centerPoint.y - cicleRedius, 2*cicleRedius, 2*cicleRedius);
     
-    CGFloat titleHeight = [selectedItemNode.key sizeWithFont:_selectedItemFont].height + 5;
-    CGRect selectedItemTiltleRect = CGRectMake(CGRectGetMinX(circleRect), CGRectGetMinY(circleRect) - titleHeight, CGRectViewWidth, titleHeight);
+    CGSize titleSize = [selectedItemNode.key sizeWithFont:_selectedItemFont];
+    
+    CGFloat titleHeight = titleSize.height + 5;
+    CGFloat restWidth = CGRectGetWidth(self.frame) - CGRectGetWidth(circleRect);
+    CGPoint titleStartPoint = CGPointMake(0, CGRectGetMinY(circleRect));
+    
+    CGFloat titleXOffSetCenter = sqrt(2*cicleRedius*titleHeight - titleHeight*titleHeight);
+    CGFloat titleXRestWidth = cicleRedius - titleXOffSetCenter;
+    if (titleSize.width < titleXRestWidth) {
+        titleStartPoint.x = CGRectGetMinX(circleRect);
+    } else {
+        if (restWidth/2 + titleXRestWidth > titleSize.width) {
+            titleStartPoint.x = centerPoint.x - titleXOffSetCenter - titleSize.width;
+        }
+        else
+        {
+            titleStartPoint.x = 0;
+        }
+    }
+    CGRect selectedItemTiltleRect = CGRectMake(titleStartPoint.x, titleStartPoint.y , CGRectViewWidth, titleHeight);
     
     [selectedItemNode.key drawInRect:selectedItemTiltleRect withFont:_selectedItemFont];
     

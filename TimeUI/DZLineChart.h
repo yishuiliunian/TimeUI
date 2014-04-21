@@ -19,6 +19,8 @@
 @property (nonatomic, strong) UIColor* lineColor;
 DEFINE_PROPERTY_STRONG(UIColor*, gridColor);
 DEFINE_PROPERTY_STRONG(UIColor*, specialNodeColor);
+DEFINE_PROPERTY_STRONG(UIFont* , yLabelTitleFont);
+DEFINE_PROPERTY_STRONG(NSString*, yTitle);
 @property (nonatomic, assign) float minYInterval;
 @property (nonatomic, strong) NSArray*  values;
 @end
