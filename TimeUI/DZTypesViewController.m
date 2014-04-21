@@ -125,7 +125,7 @@
         cell.nameLabel.textColor = [UIColor whiteColor];
         cell.nameLabel.font = [UIFont systemFontOfSize:28];
     }
-    if (row < _typesArray.count) {
+    if (row == _timeTypes.count) {
         return cell;
     }
     DZTimeType* type = [_timeTypes objectAtIndex:row];

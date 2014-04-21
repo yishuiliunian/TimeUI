@@ -13,6 +13,11 @@ static NSString* const DZShareNotificationMessage = @"DZShareNotificationMessage
 - (void) didGetShareMessage;
 @end
 
+@interface UIWindow (guid)
+@property (nonatomic, assign, readonly) BOOL isShowGuidView;
+- (void) triggleTeachGuideView;
+@end
+
 @interface DZShakeRecognizedWindow : UIWindow
 
 @end

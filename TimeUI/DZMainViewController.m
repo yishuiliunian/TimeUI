@@ -145,13 +145,12 @@
     rect.size.width = CGRectGetViewControllerWidth;
     rect.size.height = CGRectGetViewControllerHeight - offset;
     _chartsViewController.view.frame = rect;
-    
     _typesViewController.view.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight - CGRectGetHeight(rect));
 }
 
 - (void) viewWillLayoutSubviews
 {
-
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated

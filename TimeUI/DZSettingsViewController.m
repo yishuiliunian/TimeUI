@@ -9,6 +9,7 @@
 #import "DZSettingsViewController.h"
 #import "DZEditServerHostViewController.h"
 #import "DZAccountManager.h"
+#import "DZ24Analysis.h"
 DEFINE_NSStringValue(RowServerHost, 服务器地址);
 @interface DZSettingsViewController ()
 
@@ -65,6 +66,7 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 - (void) logoutCurrentAccount
 {
     DZActiveAccount.isLogin = NO;
+    [self reloadAllData];
 }
 
 - (void) updateTableViewCell:(UITableViewCell *)cell forRowData:(QQSTRow *)row
@@ -84,6 +86,10 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
     self.navigationItem.rightBarButtonItem = item;
     // Do any additional setup after loading the view.
+    
+    
+    DZ24Analysis* ana = [DZ24Analysis new];
+    [ana loadTypes:[DZActiveTimeDataBase allTimeTypes] times:[DZActiveTimeDataBase allTimes]];
 }
 
 - (void) dismiss
@@ -99,6 +105,15 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self reloadAllData];
+    
+    
+    
+}
 /*
 #pragma mark - Navigation
 

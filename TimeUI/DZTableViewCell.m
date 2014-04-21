@@ -63,14 +63,23 @@
 
 - (BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
+    if ([self.superview isKindOfClass:[UIScrollView class]]) {
+        UIScrollView* scrollView = (UIScrollView*)self.superview;
+        return ! scrollView.isDragging;
+    }
     return YES;
 }
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
+        return NO;
+    }
+    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewPanGestureRecognizer")]) {
         return YES;
     }
+    
+    NSLog(@"%@", otherGestureRecognizer);
     return YES;
 }
 
@@ -96,6 +105,14 @@
 //}
 - (void) handlePanGestureRecognizer:(UIPanGestureRecognizer*)prcg
 {
+    if ([self.superview isKindOfClass:[UIScrollView class]]) {
+        UIScrollView* scrollView = (UIScrollView*)self.superview;
+        if (scrollView.isDragging) {
+            [_actionsView setEableItemWithMaskOffSet:0];
+            return;
+        }
+    }
+    
     CGPoint point = [prcg locationInView:self];
     if (prcg.state == UIGestureRecognizerStateBegan) {
         _startPoint  = point;

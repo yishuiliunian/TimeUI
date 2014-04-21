@@ -11,6 +11,8 @@
 		65020B2B185B0D3200D1ECBA /* DZTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2A185B0D3200D1ECBA /* DZTypeCell.m */; };
 		65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B2F185B42D100D1ECBA /* DZCellActionsView.m */; };
 		65020B37185B433800D1ECBA /* DZCellActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65020B36185B433800D1ECBA /* DZCellActionItem.m */; };
+		6502F3011901135E001ABF92 /* DZTeachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6502F3001901135E001ABF92 /* DZTeachViewController.m */; };
+		6502F30419038A59001ABF92 /* DZ24Analysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 6502F30319038A59001ABF92 /* DZ24Analysis.m */; };
 		650E156718AC6675007DDF47 /* DZDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156618AC6675007DDF47 /* DZDirection.m */; };
 		650E156B18ADB5F4007DDF47 /* DZEditTimeSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156A18ADB5F4007DDF47 /* DZEditTimeSegmentView.m */; };
 		650E156E18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650E156D18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m */; };
@@ -221,6 +223,10 @@
 		65020B2F185B42D100D1ECBA /* DZCellActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionsView.m; sourceTree = "<group>"; };
 		65020B35185B433800D1ECBA /* DZCellActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCellActionItem.h; sourceTree = "<group>"; };
 		65020B36185B433800D1ECBA /* DZCellActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCellActionItem.m; sourceTree = "<group>"; };
+		6502F2FF1901135E001ABF92 /* DZTeachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTeachViewController.h; sourceTree = "<group>"; };
+		6502F3001901135E001ABF92 /* DZTeachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTeachViewController.m; sourceTree = "<group>"; };
+		6502F30219038A59001ABF92 /* DZ24Analysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZ24Analysis.h; sourceTree = "<group>"; };
+		6502F30319038A59001ABF92 /* DZ24Analysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZ24Analysis.m; sourceTree = "<group>"; };
 		650E156518AC6675007DDF47 /* DZDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDirection.h; sourceTree = "<group>"; };
 		650E156618AC6675007DDF47 /* DZDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZDirection.m; sourceTree = "<group>"; };
 		650E156918ADB5F4007DDF47 /* DZEditTimeSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZEditTimeSegmentView.h; sourceTree = "<group>"; };
@@ -661,6 +667,15 @@
 			name = pulldown;
 			sourceTree = "<group>";
 		};
+		6502F2FE19011339001ABF92 /* guid */ = {
+			isa = PBXGroup;
+			children = (
+				6502F2FF1901135E001ABF92 /* DZTeachViewController.h */,
+				6502F3001901135E001ABF92 /* DZTeachViewController.m */,
+			);
+			name = guid;
+			sourceTree = "<group>";
+		};
 		650E156818ADB5D4007DDF47 /* editTime */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +720,7 @@
 		6514652C1862A095005060CB /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				6502F2FE19011339001ABF92 /* guid */,
 				6545145518E909870008055B /* SimpleTable */,
 				6560FEA518E56EB100697356 /* PieCharts */,
 				65238F4D1858367600FE5D89 /* LineCharts */,
@@ -749,6 +765,8 @@
 				65F28FAD18641DE3009403D1 /* DZAnalysisModels.h */,
 				65F28FAE18641DE3009403D1 /* DZAnalysisModels.m */,
 				65EB0BEA18AA4A0B00D2E2F3 /* DZAnalysisNotificationInterface.h */,
+				6502F30219038A59001ABF92 /* DZ24Analysis.h */,
+				6502F30319038A59001ABF92 /* DZ24Analysis.m */,
 			);
 			name = Analysis;
 			sourceTree = "<group>";
@@ -1952,6 +1970,7 @@
 				65C47CB71855E06200796395 /* DZAstirFrameViewController.m in Sources */,
 				6547407518EEB7E40007361C /* SBJson4StreamTokeniser.m in Sources */,
 				651465301862B3BD005060CB /* DZContextManager.m in Sources */,
+				6502F30419038A59001ABF92 /* DZ24Analysis.m in Sources */,
 				6535A0321862054400173E0E /* DZShakeRecognizedWindow.m in Sources */,
 				65C38F2E1894E69100420CF7 /* MFLTransformingDigit+Animation.m in Sources */,
 				65238F21185748A400FE5D89 /* DZTime.m in Sources */,
@@ -1994,6 +2013,7 @@
 				6545145318E7CA140008055B /* DZEditServerHostViewController.m in Sources */,
 				65768613185DF2A8006D7C0F /* DZTokenManager.m in Sources */,
 				657685F5185D5F96006D7C0F /* DZImageCache.m in Sources */,
+				6502F3011901135E001ABF92 /* DZTeachViewController.m in Sources */,
 				656F68B818324B2D001F7B7C /* main.m in Sources */,
 				65238F3A1857644B00FE5D89 /* DZTimeTrickManger.m in Sources */,
 				65624F3518912F5700ECD113 /* DZSeparationLine.m in Sources */,

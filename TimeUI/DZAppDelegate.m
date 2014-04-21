@@ -34,7 +34,7 @@
 #import "DZTopCostViewController.h"
 //
 #import "DZWebPluginEngine.h"
-
+#import "DZShakeRecognizedWindow.h"
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
 DEFINE_PROPERTY_STRONG_UILabel(label);
@@ -68,7 +68,7 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+//    [self.window triggleTeachGuideView];
     return YES;
 }
 

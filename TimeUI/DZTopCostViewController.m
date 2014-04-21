@@ -49,6 +49,17 @@
         [self.pieChart addChartNode:node1];
     }
 }
+- (void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self.pieChart setNeedsDisplay];
+}
+
+- (void) viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    [self.pieChart setNeedsDisplay];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
