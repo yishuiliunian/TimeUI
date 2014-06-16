@@ -9,6 +9,7 @@
 #import "DZImageCache.h"
 #import "DZMemoryCache.h"
 #import "DZSingletonFactory.h"
+#import "DZCDNActionManager.h"
 @implementation DZImageCache
 
 + (DZImageCache*) shareCache
@@ -47,5 +48,39 @@
     return image;
 }
 
+- (void) cachedImageForServerURL:(NSString *)url
+            placeHolderImageName:(NSString *)name
+                      downloaded:(GetImageBlock)block
+{
+    UIImage* image = [DZMemoryShareCache objectForKey:url];
+    if (image) {
+        if (block) {
+            block(image);
+        }
+    } else {
+        [[DZCDNActionManager shareManager] downloadImage:url downloaded:^(UIImage *image, NSError *error) {
+            if (!error && image) {
+                if (block) {
+                    block(image);
+                    [DZMemoryShareCache setObject:image forKey:url];
+                }
+            } else {
+                if (name) {
+                    image = [self cachedImageForName:name];
+                    
+                    if (block) {
+                        block(image);
+                    }
+                }
+
+            }
+        }];
+    }
+}
+
+- (void) cachedImageUsingDefaultPlaceHolderForServerURL:(NSString *)url  downloaded:(GetImageBlock)block
+{
+    return [self cachedImageForServerURL:url placeHolderImageName:@"basketball" downloaded:block];
+}
 
 @end

@@ -13,8 +13,16 @@
 #define DZCachedImageByName(name) [DZImageShareCache cachedImageForName:(name)]
 #define DZCachedImageByPath(path) [DZImageShareCache cachedImageFroPath:(path)]
 
+
+typedef void(^GetImageBlock)(UIImage*image);
+
 @interface DZImageCache : NSObject
 + (DZImageCache*) shareCache;
 - (UIImage*) cachedImageForName:(NSString*)name;
 - (UIImage*) cachedImageFroPath:(NSString*)path;
+- (void) cachedImageForServerURL:(NSString*)url
+            placeHolderImageName:(NSString*)name
+                      downloaded:(GetImageBlock)block;
+- (void) cachedImageUsingDefaultPlaceHolderForServerURL:(NSString *)url
+                                             downloaded:(GetImageBlock)block;
 @end
