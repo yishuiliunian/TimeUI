@@ -153,6 +153,7 @@
 		65768610185DF225006D7C0F /* DZNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6576860F185DF225006D7C0F /* DZNetworkManager.m */; };
 		65768613185DF2A8006D7C0F /* DZTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65768612185DF2A8006D7C0F /* DZTokenManager.m */; };
 		65768617185DF335006D7C0F /* DZNotificationCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65768616185DF335006D7C0F /* DZNotificationCenter.mm */; };
+		6579723019513D31009CDCC2 /* defaults_functions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6579722F19513D31009CDCC2 /* defaults_functions.json */; };
 		657A56141858D78F00521B01 /* DZAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56131858D78F00521B01 /* DZAudioManager.m */; };
 		657A56171858D94300521B01 /* DZSingletonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56161858D94300521B01 /* DZSingletonFactory.m */; };
 		657A56191858DDDA00521B01 /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 657A56181858DC0100521B01 /* test.m4a */; };
@@ -189,6 +190,8 @@
 		65CE6D44187ACA4E00DACA12 /* ThemeResources.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65CE6D43187ACA4E00DACA12 /* ThemeResources.plist */; };
 		65D051E8187D791300923A46 /* DZLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D051E7187D791300923A46 /* DZLineChartViewController.m */; };
 		65D051EB187D79F600923A46 /* DZChartNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D051EA187D79F600923A46 /* DZChartNode.m */; };
+		65D2556F1951342E005A4A51 /* DZFunctionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D2556E1951342E005A4A51 /* DZFunctionsManager.m */; };
+		65D2557219513873005A4A51 /* DZFuncPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D2557119513873005A4A51 /* DZFuncPlugin.m */; };
 		65D6BD2C188D57390028F063 /* DZNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD2B188D57390028F063 /* DZNumberLabel.m */; };
 		65D6BD3F188E67B00028F063 /* DZProgramDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD3E188E67B00028F063 /* DZProgramDefines.m */; };
 		65D6BD43188F5BC00028F063 /* DZCommonStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD42188F5BC00028F063 /* DZCommonStrings.m */; };
@@ -492,6 +495,7 @@
 		65768612185DF2A8006D7C0F /* DZTokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTokenManager.m; sourceTree = "<group>"; };
 		65768615185DF335006D7C0F /* DZNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNotificationCenter.h; sourceTree = "<group>"; };
 		65768616185DF335006D7C0F /* DZNotificationCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DZNotificationCenter.mm; sourceTree = "<group>"; };
+		6579722F19513D31009CDCC2 /* defaults_functions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaults_functions.json; sourceTree = "<group>"; };
 		657A56121858D78F00521B01 /* DZAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAudioManager.h; sourceTree = "<group>"; };
 		657A56131858D78F00521B01 /* DZAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAudioManager.m; sourceTree = "<group>"; };
 		657A56151858D94300521B01 /* DZSingletonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSingletonFactory.h; sourceTree = "<group>"; };
@@ -558,6 +562,10 @@
 		65D051E7187D791300923A46 /* DZLineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLineChartViewController.m; sourceTree = "<group>"; };
 		65D051E9187D79F600923A46 /* DZChartNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZChartNode.h; sourceTree = "<group>"; };
 		65D051EA187D79F600923A46 /* DZChartNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZChartNode.m; sourceTree = "<group>"; };
+		65D2556D1951342E005A4A51 /* DZFunctionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZFunctionsManager.h; sourceTree = "<group>"; };
+		65D2556E1951342E005A4A51 /* DZFunctionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZFunctionsManager.m; sourceTree = "<group>"; };
+		65D2557019513873005A4A51 /* DZFuncPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZFuncPlugin.h; sourceTree = "<group>"; };
+		65D2557119513873005A4A51 /* DZFuncPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZFuncPlugin.m; sourceTree = "<group>"; };
 		65D6BD2A188D57390028F063 /* DZNumberLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNumberLabel.h; sourceTree = "<group>"; };
 		65D6BD2B188D57390028F063 /* DZNumberLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZNumberLabel.m; sourceTree = "<group>"; };
 		65D6BD3D188E67B00028F063 /* DZProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZProgramDefines.h; sourceTree = "<group>"; };
@@ -1291,6 +1299,7 @@
 		656F68B118324B2D001F7B7C /* TimeUI */ = {
 			isa = PBXGroup;
 			children = (
+				65D25569195133F6005A4A51 /* Founctions */,
 				6514654018640A96005060CB /* Analysis */,
 				6535A0331862074D00173E0E /* Controls */,
 				65238F541858423500FE5D89 /* MZLoading */,
@@ -1643,6 +1652,19 @@
 			name = "accounts vc";
 			sourceTree = "<group>";
 		};
+		65D25569195133F6005A4A51 /* Founctions */ = {
+			isa = PBXGroup;
+			children = (
+				6579722F19513D31009CDCC2 /* defaults_functions.json */,
+				65D2556D1951342E005A4A51 /* DZFunctionsManager.h */,
+				65D2556E1951342E005A4A51 /* DZFunctionsManager.m */,
+				65D2557019513873005A4A51 /* DZFuncPlugin.h */,
+				65D2557119513873005A4A51 /* DZFuncPlugin.m */,
+			);
+			name = Founctions;
+			path = Functions;
+			sourceTree = "<group>";
+		};
 		65D2785418B8400F00AAF8B1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1855,6 +1877,7 @@
 				654513E918E6E1CE0008055B /* Settings.bundle in Resources */,
 				657685FE185D624B006D7C0F /* icon-error.png in Resources */,
 				65238EFD185731C100FE5D89 /* DZTimeTrick.plist in Resources */,
+				6579723019513D31009CDCC2 /* defaults_functions.json in Resources */,
 				656F68BE18324B2D001F7B7C /* Images.xcassets in Resources */,
 				65CE6D3C187AC82B00DACA12 /* icon_email@2x.png in Resources */,
 				65CE6D32187AC72C00DACA12 /* bg_textfiled_login@2x.png in Resources */,
@@ -1968,6 +1991,7 @@
 				65C38F2A1894E69100420CF7 /* CAAnimation+Blocks.m in Sources */,
 				6547407718EEB7E40007361C /* SBJson4StreamWriterState.m in Sources */,
 				6576860C185DDF5B006D7C0F /* DZRouter.m in Sources */,
+				65D2556F1951342E005A4A51 /* DZFunctionsManager.m in Sources */,
 				650E156E18ADBCE7007DDF47 /* DZEditTimeSegemntViewController.m in Sources */,
 				65CE6D42187AC8E000DACA12 /* DZLoginViewController.m in Sources */,
 				65238F5C185853B100FE5D89 /* DZTypesViewController.m in Sources */,
@@ -1991,6 +2015,7 @@
 				65F28FAF18641DE3009403D1 /* DZAnalysisModels.m in Sources */,
 				6535A0221861E78500173E0E /* DZActionView.m in Sources */,
 				65EF8F01185DFB9000160A71 /* DZSendSelector.m in Sources */,
+				65D2557219513873005A4A51 /* DZFuncPlugin.m in Sources */,
 				6526C8DE1859893300A53B79 /* DZDevices.m in Sources */,
 				65F28FB318657A4C009403D1 /* DZResourcesManager.m in Sources */,
 				65C6BAA91859636D00984D25 /* DZTableView.mm in Sources */,
