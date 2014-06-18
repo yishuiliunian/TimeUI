@@ -9,59 +9,7 @@
 #import "DZPieChart.h"
 #import "DZChartNode.h"
 #import "UIColor+DZColor.h"
-@interface DZPieChartNode : NSObject
-@property (nonatomic, strong) DZChartNode* chartNode;
-@property (nonatomic, strong) NSString* key;
-@property (nonatomic, assign) int64_t value;
-@property (nonatomic, assign) BOOL isSpecial;
-@property (nonatomic, strong) CAShapeLayer* shapeLayer;
-@end
-
-@implementation DZPieChartNode
-
-- (instancetype) initWithChartNode:(DZChartNode*)node
-{
-    self = [super init];
-    if (!self) {
-        return self;
-    }
-    _chartNode = node;
-    _shapeLayer = [CAShapeLayer layer];
-    _shapeLayer.fillColor = [[UIColor blackColor] colorWithOffset:rand()%255/ 255.0f].CGColor;
-    _shapeLayer.strokeColor = [UIColor blackColor].CGColor;
-    _shapeLayer.lineWidth = 2;
-    _shapeLayer.opacity = 0.5f;
-    return self;
-}
-- (NSString*) key
-{
-    return _chartNode.key;
-}
-- (void) setKey:(NSString *)key
-{
-    [_chartNode setKey:key];
-}
-
-- (int64_t) value
-{
-    return _chartNode.value;
-}
-
-- (void) setValue:(int64_t)value
-{
-    [_chartNode setValue:value];
-}
-
-- (BOOL) isSpecial
-{
-    return _chartNode.isSpecial;
-}
-
-- (void) setIsSpecial:(BOOL)isSpecial
-{
-    [_chartNode setIsSpecial:isSpecial];
-}
-@end
+#import "DZPieChartNode.h"
 
 @interface DZPieChart ()
 DEFINE_PROPERTY_STRONG(UITapGestureRecognizer*, tapGesture);
@@ -157,6 +105,7 @@ DEFINE_PROPERTY_STRONG(UITapGestureRecognizer*, tapGesture);
     CGPoint centerPoint = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);
     
     CGFloat cicleRedius = (CGRectGetWidth(self.frame) > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : CGRectGetWidth(self.frame) ) /2 - 10;
+    
     
     DZPieChartNode* selectedItemNode;
     for (int i = 0 ; i < _nodes.count; i++) {

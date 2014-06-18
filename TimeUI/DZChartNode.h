@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface DZChartNode : NSObject
+@property (nonatomic, strong, readonly) NSString* identify;
 @property (nonatomic, strong) NSString* key;
 @property (nonatomic, assign) int64_t value;
 @property (nonatomic, assign) BOOL isSpecial;
+
++ (DZChartNode*) nodeWithKey:(NSString*)key value:(int64_t)value;
 @end

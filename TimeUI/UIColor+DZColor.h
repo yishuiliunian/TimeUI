@@ -11,4 +11,5 @@
 @interface UIColor (DZColor)
 - (UIColor*) colorWithOffset:(float)offset;
 + (NSDictionary*) typeCellColors;
++ (UIColor*) randomColor;
 @end

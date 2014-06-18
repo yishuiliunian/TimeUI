@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface DZ24Analysis : NSObject
-- (void) loadTypes:(NSArray*)types times:(NSArray*)times;
+- (NSArray*) loadTypes:(NSArray*)types times:(NSArray*)times;
++ (NSArray*) chartNodes;
 @end

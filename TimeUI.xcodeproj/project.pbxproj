@@ -154,6 +154,9 @@
 		65768613185DF2A8006D7C0F /* DZTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65768612185DF2A8006D7C0F /* DZTokenManager.m */; };
 		65768617185DF335006D7C0F /* DZNotificationCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65768616185DF335006D7C0F /* DZNotificationCenter.mm */; };
 		6579723019513D31009CDCC2 /* defaults_functions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6579722F19513D31009CDCC2 /* defaults_functions.json */; };
+		6579723819516C73009CDCC2 /* DZPieChartNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579723719516C73009CDCC2 /* DZPieChartNode.m */; };
+		6579723E19517302009CDCC2 /* DZSplitChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579723D19517302009CDCC2 /* DZSplitChartView.m */; };
+		65797241195176D8009CDCC2 /* DZSplitChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65797240195176D8009CDCC2 /* DZSplitChartViewController.m */; };
 		657A56141858D78F00521B01 /* DZAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56131858D78F00521B01 /* DZAudioManager.m */; };
 		657A56171858D94300521B01 /* DZSingletonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56161858D94300521B01 /* DZSingletonFactory.m */; };
 		657A56191858DDDA00521B01 /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 657A56181858DC0100521B01 /* test.m4a */; };
@@ -496,6 +499,12 @@
 		65768615185DF335006D7C0F /* DZNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNotificationCenter.h; sourceTree = "<group>"; };
 		65768616185DF335006D7C0F /* DZNotificationCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DZNotificationCenter.mm; sourceTree = "<group>"; };
 		6579722F19513D31009CDCC2 /* defaults_functions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaults_functions.json; sourceTree = "<group>"; };
+		6579723619516C73009CDCC2 /* DZPieChartNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPieChartNode.h; sourceTree = "<group>"; };
+		6579723719516C73009CDCC2 /* DZPieChartNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPieChartNode.m; sourceTree = "<group>"; };
+		6579723C19517302009CDCC2 /* DZSplitChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSplitChartView.h; sourceTree = "<group>"; };
+		6579723D19517302009CDCC2 /* DZSplitChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSplitChartView.m; sourceTree = "<group>"; };
+		6579723F195176D8009CDCC2 /* DZSplitChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSplitChartViewController.h; sourceTree = "<group>"; };
+		65797240195176D8009CDCC2 /* DZSplitChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSplitChartViewController.m; sourceTree = "<group>"; };
 		657A56121858D78F00521B01 /* DZAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAudioManager.h; sourceTree = "<group>"; };
 		657A56131858D78F00521B01 /* DZAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAudioManager.m; sourceTree = "<group>"; };
 		657A56151858D94300521B01 /* DZSingletonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSingletonFactory.h; sourceTree = "<group>"; };
@@ -740,10 +749,9 @@
 		6514652C1862A095005060CB /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				6579723519516BFB009CDCC2 /* charts */,
 				6502F2FE19011339001ABF92 /* guid */,
 				6545145518E909870008055B /* SimpleTable */,
-				6560FEA518E56EB100697356 /* PieCharts */,
-				65238F4D1858367600FE5D89 /* LineCharts */,
 				6553E41918C8A0250012208E /* pulldown */,
 				65624F251890BFDF00ECD113 /* PageScrollView */,
 				6535A01F1861E73B00173E0E /* action view */,
@@ -1239,6 +1247,8 @@
 				6560FEAA18E57BD400697356 /* DZPieChartViewController.m */,
 				654513E518E681010008055B /* DZTopCostViewController.h */,
 				654513E618E681010008055B /* DZTopCostViewController.m */,
+				6579723619516C73009CDCC2 /* DZPieChartNode.h */,
+				6579723719516C73009CDCC2 /* DZPieChartNode.m */,
 			);
 			name = PieCharts;
 			sourceTree = "<group>";
@@ -1452,6 +1462,27 @@
 				65EF8F02185E010900160A71 /* DZTestInterface.h */,
 			);
 			name = notification;
+			sourceTree = "<group>";
+		};
+		6579723119516B27009CDCC2 /* splitChart */ = {
+			isa = PBXGroup;
+			children = (
+				6579723C19517302009CDCC2 /* DZSplitChartView.h */,
+				6579723D19517302009CDCC2 /* DZSplitChartView.m */,
+				6579723F195176D8009CDCC2 /* DZSplitChartViewController.h */,
+				65797240195176D8009CDCC2 /* DZSplitChartViewController.m */,
+			);
+			name = splitChart;
+			sourceTree = "<group>";
+		};
+		6579723519516BFB009CDCC2 /* charts */ = {
+			isa = PBXGroup;
+			children = (
+				6579723119516B27009CDCC2 /* splitChart */,
+				6560FEA518E56EB100697356 /* PieCharts */,
+				65238F4D1858367600FE5D89 /* LineCharts */,
+			);
+			name = charts;
 			sourceTree = "<group>";
 		};
 		657A56111858D77100521B01 /* Audio */ = {
@@ -1956,6 +1987,7 @@
 				65E65EFC1892139B00AFA60E /* DZSawtoothView.m in Sources */,
 				65D6BD43188F5BC00028F063 /* DZCommonStrings.m in Sources */,
 				65238F03185734BF00FE5D89 /* WizGlobals.m in Sources */,
+				65797241195176D8009CDCC2 /* DZSplitChartViewController.m in Sources */,
 				65768610185DF225006D7C0F /* DZNetworkManager.m in Sources */,
 				657C74A8185AFE60008728EB /* UIView+AddTaps.m in Sources */,
 				6580F16518EAF6E40041D6C1 /* GLBucket.m in Sources */,
@@ -1966,6 +1998,7 @@
 				6526C8E31859BFDF00A53B79 /* DZPullDownView.m in Sources */,
 				65238F071857357B00FE5D89 /* DZGlobals.m in Sources */,
 				6547405518EEB1580007361C /* DZWebAppRuntime.m in Sources */,
+				6579723E19517302009CDCC2 /* DZSplitChartView.m in Sources */,
 				6536A5FA194ED05500225D74 /* DZCDNAction.m in Sources */,
 				6514655318640FA0005060CB /* DZCommandQueue.m in Sources */,
 				6530681F186092D3008AEC6D /* DZSyncOperation.mm in Sources */,
@@ -2013,6 +2046,7 @@
 				655CA675188D373D0051678A /* DZTimeControl.m in Sources */,
 				657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */,
 				65F28FAF18641DE3009403D1 /* DZAnalysisModels.m in Sources */,
+				6579723819516C73009CDCC2 /* DZPieChartNode.m in Sources */,
 				6535A0221861E78500173E0E /* DZActionView.m in Sources */,
 				65EF8F01185DFB9000160A71 /* DZSendSelector.m in Sources */,
 				65D2557219513873005A4A51 /* DZFuncPlugin.m in Sources */,

@@ -62,7 +62,6 @@ static NSString* kDZUserFunctions = @"kDZUserFunctions";
     return self;
 }
 
-
 - (NSArray*) functions
 {
     return [_allFunctions copy];

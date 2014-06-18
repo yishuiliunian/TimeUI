@@ -15,5 +15,8 @@ DEFINE_PROPERTY_STRONG_UIImageView(dragItemImageView);
 DEFINE_PROPERTY_STRONG_UILabel(typeLabel);
 DEFINE_PROPERTY_STRONG_UILabel(bottomLabel);
 DEFINE_PROPERTY_STRONG_UIImageView(labelsBackgroundImageView);
+DEFINE_PROPERTY_STRONG_UIButton(leftButton);
+DEFINE_PROPERTY_STRONG_UIButton(rightButton);
+
 @property (nonatomic, strong, readonly) DZTimeCountLabel* counterLabel;
 @end

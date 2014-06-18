@@ -20,7 +20,7 @@
 #import "DZRegisterViewController.h"
 #import "UIViewController+PullDown.h"
 #import "DZPullDownViewController.h"
-
+#import "DZSplitChartViewController.h"
 
 #define DZMainStateMiddleOffset (CGRectGetViewControllerHeight/2)
 
@@ -75,8 +75,10 @@
     _panGestureRecognizer.maximumNumberOfTouches = 1;
     
     _panGestureRecognizer.delegate = self;
+    [_chartsViewController.timeControl.leftButton addTapTarget:self selector:@selector(didGetShareMessage)];
 	// Do any additional setup after loading the view.
 }
+
 
 
 - (CGRect) stateRecognizerArea:(DZMainViewState)state direction:(DZDirection)direction
@@ -211,8 +213,12 @@
     cancelItem.textLabel.text = @"取消";
     cancelItem.height = 70;
     
+    DZLabelActionItem* funcsItem = [[DZLabelActionItem alloc] init];
+    funcsItem.textLabel.text = @"牛逼功能大集合";
+    funcsItem.height = 70;
+    
     cancelItem.textLabel.textAlignment = NSTextAlignmentRight;
-    [actionView.actionContentView setItems:@[syncItem, historyItem, settingItem,cancelItem]];
+    [actionView.actionContentView setItems:@[syncItem, funcsItem, historyItem, settingItem,cancelItem]];
     [actionView showWithAnimation:YES];
     //
     self.globalActionView = actionView;
@@ -229,6 +235,12 @@
 - (void) actionView:(DZActionView *)actionView didHideWithTapAtIndex:(NSInteger)index item:(DZActionItemView *)item
 {
     if (index == 1) {
+        DZSplitChartViewController* splitVC = [DZSplitChartViewController new];
+        [self.pdSuperViewController pdPresentViewController:splitVC animated:YES completion:^{
+            
+        }];
+    }
+     else if (index == 2) {
       UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZHistoryViewController new]];
         
         [self.pdSuperViewController  pdPresentViewController:navigationVC animated:YES completion:^{
@@ -240,7 +252,7 @@
         [self presentViewController:navigationVC animated:YES completion:^{
            
         }];
-    } else if (index == 2)
+    } else if (index == 3)
     {
         UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZSettingsViewController new]];
         [self presentViewController:navigationVC animated:YES completion:^{

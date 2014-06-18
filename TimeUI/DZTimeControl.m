@@ -13,7 +13,7 @@
 #import "DZSelecteTypeInterface.h"
 #import "DZNotificationCenter.h"
 #import "DZTimeType.h"
-static float const kDefaultDragItemHeight = 25;
+static float const kDefaultDragItemHeight = 40;
 
 @interface DZTimeControl () <DZSelecteTypeInterface>
 {
@@ -45,6 +45,12 @@ static float const kDefaultDragItemHeight = 25;
     INIT_SELF_SUBVIEW_UIImageView(_dragBackgroundImageView);
     INIT_SUBVIEW_UIImageView(_dragBackgroundImageView, _dragItemImageView);
     INIT_SELF_SUBVIEW_UIImageView(_labelsBackgroundImageView);
+    INIT_SUBVIEW_UIButton(_dragBackgroundImageView, _leftButton);
+    INIT_SUBVIEW_UIButton(_dragBackgroundImageView, _rightButton);
+    
+    _leftButton.backgroundColor = [UIColor redColor];
+    _rightButton.backgroundColor = [UIColor blueColor];
+    
     _counterLabel = [[DZTimeCountLabel alloc] init];
     [_labelsBackgroundImageView addSubview:_counterLabel];
     INIT_SUBVIEW_UILabel(_labelsBackgroundImageView, _typeLabel);
@@ -83,6 +89,16 @@ static float const kDefaultDragItemHeight = 25;
     LAYOUT_VIEW_TOP_FILL_WIDTH(_typeLabel, _labelsBackgroundImageView, 5, 5, 15);
     LAYOUT_SUBVIEW_FILL_WIDTH_RELY_MAX_Y(_counterLabel, _labelsBackgroundImageView,0, _typeLabel, 0, CGRectGetHeight(_labelsBackgroundImageView.frame) - CGRectGetMaxY(_typeLabel.frame) - 20);
     LAYOUT_SUBVIEW_FILL_WIDTH_RELY_MAX_Y(_bottomLabel,_labelsBackgroundImageView, 0, _counterLabel, 0, CGRectGetHeight(_labelsBackgroundImageView.frame) - CGRectGetMaxY(_counterLabel.frame));
+    
+    static float ButttonHeight = 35;
+    _leftButton.frame = CGRectMake(10,
+                                   (CGRectGetHeight(_dragBackgroundImageView.frame) - ButttonHeight) /2,
+                                   ButttonHeight ,
+                                   ButttonHeight);
+    
+    _rightButton.frame = CGRectMake(CGRectGetWidth(rect_dragBackgroundImageView) - 10 -ButttonHeight,
+                                    (CGRectGetHeight(_dragBackgroundImageView.frame) - ButttonHeight) /2,
+                                    ButttonHeight,  ButttonHeight);
 }
 
 @end

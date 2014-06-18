@@ -37,6 +37,7 @@
 #import "DZShakeRecognizedWindow.h"
 #import "DZImageCache.h"
 #import "DZFunctionsManager.h"
+#import "DZSplitChartViewController.h"
 
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
@@ -69,9 +70,8 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     
     
     self.window.rootViewController = [[DZPullDownViewController alloc] initWithRootViewController:mainViewController];
-//    self.window.rootViewController = [DZEditTimeSegemntViewController new];
-    
-//    self.window.rootViewController = [DZPieChartViewController new];
+
+//    self.window.rootViewController = [DZSplitChartViewController new];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

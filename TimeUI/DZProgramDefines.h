@@ -34,12 +34,14 @@
 #define DEFINE_PROPERTY_STRONG_UILabel(name) DEFINE_PROPERTY_STRONG(UILabel*, name)
 #define DEFINE_PROPERTY_STRONG_NSString(name) DEFINE_PROPERTY_STRONG(NSString*, name)
 #define DEFINE_PROPERTY_STRONG_UIImageView(name) DEFINE_PROPERTY_STRONG(UIImageView*, name)
-
+#define DEFINE_PROPERTY_STRONG_UIButton(name) DEFINE_PROPERTY_STRONG(UIButton*, name)
 
 
 #define INIT_SUBVIEW(sView, class, name) name = [[class alloc] init]; [sView addSubview:name];
 #define INIT_SUBVIEW_UIImageView(sView, name) INIT_SUBVIEW(sView, UIImageView, name)
 #define INIT_SUBVIEW_UILabel(sView, name) INIT_SUBVIEW(sView, UILabel, name)
+
+#define INIT_SUBVIEW_UIButton(sView, name) name =[UIButton buttonWithType:UIButtonTypeCustom]; [sView addSubview:name];
 
 #define INIT_SELF_SUBVIEW(class, name) INIT_SUBVIEW(self, class , name)
 #define INIT_SELF_SUBVIEW_UIImageView(name) INIT_SUBVIEW_UIImageView(self, name)
