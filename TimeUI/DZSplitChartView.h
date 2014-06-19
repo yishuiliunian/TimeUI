@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DZOvalMaskImageView.h"
 @class DZChartNode;
 @interface DZSplitChartView : UIScrollView
 DEFINE_PROPERTY_ASSIGN_Float(innerCiclePercent);
+DEFINE_PROPERTY_STRONG(DZOvalMaskImageView*, avatarImageView);
 - (void) addChartNode:(DZChartNode *)node;
 @end

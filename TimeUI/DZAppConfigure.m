@@ -30,6 +30,8 @@
 #import "DZAnalysisNotificationInterface.h"
 #import "DZMChangedAccountNI.h"
 #import "DZChangedTypesNI.h"
+#import <ShareSDK/ShareSDK.h>
+#import "DZLocalNotificationCenter.h"
 //
 
 
@@ -205,6 +207,14 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
     [DZAppConfigure initNotifications];
     [self initThirdTools];
     [DZThemeManager shareManager];
+    
+    
+    [ShareSDK registerApp:@"21244748923e"];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[DZLocalNotificationCenter defaultCenter] repostAllNotifications];
+    });
+    
     return YES;
 }
 @end

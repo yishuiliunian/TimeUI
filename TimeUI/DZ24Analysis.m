@@ -105,6 +105,12 @@
                 maxIndex = j;
             }
         }
+        if (lastMaxIndex != -1) {
+           int cost =  _analysisCache[i][lastMaxIndex];
+            if (maxIndex == cost) {
+                maxIndex = lastMaxIndex;
+            }
+        }
         if (maxIndex != lastMaxIndex) {
             lastMaxIndex = maxIndex;
             lastNode = [DZ24Node new];

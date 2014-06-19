@@ -236,7 +236,9 @@
 {
     if (index == 1) {
         DZSplitChartViewController* splitVC = [DZSplitChartViewController new];
-        [self.pdSuperViewController pdPresentViewController:splitVC animated:YES completion:^{
+        [self.pdSuperViewController pdPresentViewController:[[UINavigationController alloc] initWithRootViewController:splitVC]
+                                                   animated:YES
+                                                 completion:^{
             
         }];
     }

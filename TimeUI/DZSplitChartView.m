@@ -78,6 +78,7 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     
     INIT_SELF_SUBVIEW_UILabel(_zeroHourLabel);
     INIT_SELF_SUBVIEW_UILabel(_twHourLabel);
+    INIT_SELF_SUBVIEW(DZOvalMaskImageView, _avatarImageView);
     
     _zeroHourLabel.text = @"00:00 AM";
     _twHourLabel.text = @"12:00 PM";
@@ -138,7 +139,7 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     CGFloat startAngle = DEGREE_TO_ANGLE(-90);
     CGPoint centerPoint = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);
     CGFloat outerRedius = (CGRectGetWidth(self.frame) > CGRectGetHeight(self.frame) ? CGRectGetHeight(self.frame) : CGRectGetWidth(self.frame) ) /2 - 10;
-    CGFloat decorateRedius = outerRedius - 10;
+    CGFloat decorateRedius = outerRedius - 5;
     CGFloat innerRedius = decorateRedius * _innerCiclePercent;
     
     CGFloat decorateStartAngle = DEGREE_TO_ANGLE(-90);
@@ -210,6 +211,16 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     _zeroHourLabel.frame = zeroHourRect;
     CGRect twHourRect = CGRectMake(centerPoint.x - 30, centerPoint.y + outerRedius - 30 , 60, 20);
     _twHourLabel.frame = twHourRect;
+    
+    //
+    CGRect centerRect = CGRectZero;
+    centerRect.origin = CGPointMake(centerPoint.x - innerRedius, centerPoint.y - innerRedius);
+    centerRect.size = CGSizeMake(innerRedius*2, innerRedius*2);
+
+    UIImage* image = DZCachedImageByName(@"bg_types");
+    
+    _avatarImageView.frame = centerRect;
+    _avatarImageView.image = image;
 }
 
 

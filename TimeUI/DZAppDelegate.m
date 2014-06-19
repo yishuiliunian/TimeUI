@@ -38,6 +38,7 @@
 #import "DZImageCache.h"
 #import "DZFunctionsManager.h"
 #import "DZSplitChartViewController.h"
+#import "DZLocalNotificationCenter.h"
 
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
@@ -110,5 +111,8 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+- (void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    [[DZLocalNotificationCenter defaultCenter] repostAllNotifications];
+}
 @end
