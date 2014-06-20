@@ -23,4 +23,5 @@
 #import "DZNotificationCenter.h"
 #import "DZPullDownViewController.h"
 #import "DZServerHostChangedNI.h"
+#import "DZImageCache.h"
 #endif

@@ -30,4 +30,12 @@
                        @(4): [UIColor colorWithHexString:@"ffc000"],
                        @(5): [UIColor colorWithHexString:@"#ffb19b"]};
 }
+
++ (UIColor*) randomColor
+{
+    CGFloat red = rand()%255/255.0f;
+    CGFloat green =  rand()%255/255.0f;
+    CGFloat blue = rand()%255/255.0f;
+    return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+}
 @end

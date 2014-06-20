@@ -15,6 +15,7 @@
 
 DEFINE_PROPERTY_STRONG(UIColor*, selectedItemColor);
 DEFINE_PROPERTY_STRONG(UIFont*, selectedItemFont);
+DEFINE_PROPERTY_ASSIGN_Float(centerRediusPercent);
 - (void) cleanAllNodes;
 - (void) addChartNode:(DZChartNode*)node;
 - (instancetype) initWithChartNodes:(NSArray*)nodes;

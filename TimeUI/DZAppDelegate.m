@@ -36,6 +36,10 @@
 #import "DZWebPluginEngine.h"
 #import "DZShakeRecognizedWindow.h"
 #import "DZImageCache.h"
+#import "DZFunctionsManager.h"
+#import "DZSplitChartViewController.h"
+#import "DZLocalNotificationCenter.h"
+
 @interface DZAppDelegate () <DZRegisterAccountDelegate>
 DEFINE_PROPERTY_ASSIGN_Float(hello);
 DEFINE_PROPERTY_STRONG_UILabel(label);
@@ -43,6 +47,10 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
 
 @implementation DZAppDelegate
 
+
+- (void) test{
+    DZFunctionsDefaultManager.functions;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
@@ -63,20 +71,16 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
     
     
     self.window.rootViewController = [[DZPullDownViewController alloc] initWithRootViewController:mainViewController];
-//    self.window.rootViewController = [DZEditTimeSegemntViewController new];
-    
-//    self.window.rootViewController = [DZPieChartViewController new];
+
+//    self.window.rootViewController = [DZSplitChartViewController new];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 //    [self.window triggleTeachGuideView];
     
-    
-    [DZImageShareCache cachedImageUsingDefaultPlaceHolderForServerURL:@"http://www.baidu.com/img/bdlogddo.gif" downloaded:^(UIImage *image) {
-        
-        NSLog(@"uiimage %@",image);
-        
-    }];
+#ifdef DEBUG
+    [self test];
+#endif
     return YES;
 }
 
@@ -107,5 +111,8 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+- (void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    [[DZLocalNotificationCenter defaultCenter] repostAllNotifications];
+}
 @end

@@ -15,7 +15,16 @@
     if (!self) {
         return self;
     }
+    _identify = [DZGlobals genGUID];
     _isSpecial = NO;
     return self;
+}
+
++ (DZChartNode*) nodeWithKey:(NSString *)key value:(int64_t)value
+{
+    DZChartNode* node = [DZChartNode new];
+    node.key = key;
+    node.value = value;
+    return node;
 }
 @end

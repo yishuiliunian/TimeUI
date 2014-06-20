@@ -48,5 +48,10 @@
     return YES;
 }
 
-
++ (id) jsonObjectFromResourcesByName:(NSString *)name type:(NSString*)type error:(NSError *__autoreleasing *)error
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:type];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:error];
+}
 @end

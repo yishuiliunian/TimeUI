@@ -12,6 +12,7 @@
 #import "NSDate+SSToolkitAdditions.h"
 #import <NSDate-TKExtensions.h>
 #import "NSString+WizString.h"
+#import "DZChartNode.h"
 
 @interface DZ24Node : NSObject
 @property (nonatomic, assign) NSRange range;
@@ -68,10 +69,10 @@
     }
 }
 
-- (void) loadTypes:(NSArray*)types times:(NSArray*)times
+- (NSArray*) loadTypes:(NSArray*)types times:(NSArray*)times
 {
     if ((types.count == 0) || (times.count==0)) {
-        return;
+        return nil;
     }
     _allTypes = types;
     [self loadTypesIndex];
@@ -104,6 +105,12 @@
                 maxIndex = j;
             }
         }
+        if (lastMaxIndex != -1) {
+           int cost =  _analysisCache[i][lastMaxIndex];
+            if (maxIndex == cost) {
+                maxIndex = lastMaxIndex;
+            }
+        }
         if (maxIndex != lastMaxIndex) {
             lastMaxIndex = maxIndex;
             lastNode = [DZ24Node new];
@@ -117,17 +124,31 @@
         }
     }
 
+    nodes = [[nodes sortedArrayUsingComparator:^NSComparisonResult(DZ24Node* obj1, DZ24Node* obj2) {
+        return obj1.range.location > obj2.range.location;
+        
+    }] mutableCopy];
+    
+    
     for (int i = 0 ; i < nodes.count; i ++) {
         DZ24Node* node = nodes[i];
         float start = node.range.location * _granularity;
-        float end = start + node.range.length * _granularity;
-        NSLog(@"(%@-%@) %@", [NSString readableTimeStringWithInterval:start], [NSString readableTimeStringWithInterval:end] , node.name);
+        node.range = NSMakeRange(start, node.range.length*_granularity);
     }
-    for (DZ24Node* node  in nodes) {
-        float start = node.range.location * _granularity;
-        float end = start + node.range.length * _granularity;
-        NSLog(@"(%f-%f) %@", start ,end , node.name);
+    return nodes;
+}
+
++ (NSArray*) chartNodes
+{
+    DZ24Analysis* ana = [DZ24Analysis new];
+    NSArray* array= [ana loadTypes:[DZActiveTimeDataBase allTimeTypes] times:[DZActiveTimeDataBase allTimes]];
+    
+    NSMutableArray* allNodes = [NSMutableArray new];
+    for (DZ24Node* node in array) {
+        DZChartNode* chartNode = [DZChartNode nodeWithKey:node.name value:node.range.length];
+        [allNodes addObject:chartNode];
     }
+    return allNodes;
 }
 
 @end

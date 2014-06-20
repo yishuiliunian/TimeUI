@@ -87,9 +87,7 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
     self.navigationItem.rightBarButtonItem = item;
     // Do any additional setup after loading the view.
     
-    
-    DZ24Analysis* ana = [DZ24Analysis new];
-    [ana loadTypes:[DZActiveTimeDataBase allTimeTypes] times:[DZActiveTimeDataBase allTimes]];
+
 }
 
 - (void) dismiss

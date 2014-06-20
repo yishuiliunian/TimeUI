@@ -30,6 +30,8 @@
 #import "DZAnalysisNotificationInterface.h"
 #import "DZMChangedAccountNI.h"
 #import "DZChangedTypesNI.h"
+#import <ShareSDK/ShareSDK.h>
+#import "DZLocalNotificationCenter.h"
 //
 
 
@@ -205,6 +207,27 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
     [DZAppConfigure initNotifications];
     [self initThirdTools];
     [DZThemeManager shareManager];
+    
+
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[DZLocalNotificationCenter defaultCenter] repostAllNotifications];
+    });
+    [self initShareSDK];
     return YES;
+}
+
++ (void) initShareSDK
+{
+    [ShareSDK registerApp:@"21244748923e"];
+
+
+    [ShareSDK connectSinaWeiboWithAppKey:@"1227875931"
+                               appSecret:@"8ca96c2a25b61888c8d41bf3f2695cd3"
+                             redirectUri:@"www.weibo.com"];
+    [ShareSDK connectSMS];
+    [ShareSDK connectCopy];
+    [ShareSDK connectMail];
+    [ShareSDK connectAirPrint];
 }
 @end

@@ -1,0 +1,7 @@
+[
+  {
+    "name": "24Hours",
+    "detail": "统计24个小时的情况",
+    "class": "DZ24HoursViewController"
+  }
+]
