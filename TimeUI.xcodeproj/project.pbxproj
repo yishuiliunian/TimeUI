@@ -710,8 +710,15 @@
 		6514652818629F54005060CB /* componet */ = {
 			isa = PBXGroup;
 			children = (
+				6536A5EF194ECF0000225D74 /* CDNFiles */,
+				6547406118EEB74B0007361C /* json */,
+				654513ED18E7015E0008055B /* settings */,
+				65D6BD40188F5BB20028F063 /* strings */,
+				65768608185DDF28006D7C0F /* restful framework */,
+				65CE6CEC187AB74300DACA12 /* Share */,
+				651465351863EEB1005060CB /* Theme */,
+				6514652D1862B3A8005060CB /* Context */,
 				6545144C18E7C5720008055B /* GlobalSettings */,
-				65D2785418B8400F00AAF8B1 /* ViewControllers */,
 				65D6BD3C188E678C0028F063 /* base */,
 				65F28FB018657A38009403D1 /* ResourcesManager */,
 				6514654D18640F25005060CB /* command queue */,
@@ -732,6 +739,7 @@
 		6514652C1862A095005060CB /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				6547404518EEAF740007361C /* WebView */,
 				6502F2FE19011339001ABF92 /* guid */,
 				6545145518E909870008055B /* SimpleTable */,
 				6560FEA518E56EB100697356 /* PieCharts */,
@@ -1551,18 +1559,9 @@
 		65C47CB81855E0C500796395 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				6536A5EF194ECF0000225D74 /* CDNFiles */,
-				6547406118EEB74B0007361C /* json */,
-				6547404518EEAF740007361C /* WebView */,
-				654513ED18E7015E0008055B /* settings */,
-				65D6BD40188F5BB20028F063 /* strings */,
-				65CE6CEC187AB74300DACA12 /* Share */,
-				651465351863EEB1005060CB /* Theme */,
-				6514652D1862B3A8005060CB /* Context */,
 				6514652C1862A095005060CB /* controls */,
 				6514652818629F54005060CB /* componet */,
 				65EE1009185F279400FA0882 /* others */,
-				65768608185DDF28006D7C0F /* restful framework */,
 				65238F161857392700FE5D89 /* Account */,
 				65C47CB91855E0D500796395 /* DZKVODefines.h */,
 				65238EFC185731C100FE5D89 /* DZTimeTrick.plist */,
@@ -1641,13 +1640,6 @@
 				655EE809187AE98D004F1116 /* DZRegisterViewController.m */,
 			);
 			name = "accounts vc";
-			sourceTree = "<group>";
-		};
-		65D2785418B8400F00AAF8B1 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		65D6BD29188D56FC0028F063 /* TimeLabels */ = {
