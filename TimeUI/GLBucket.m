@@ -35,8 +35,8 @@ static inline CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI /
     
     switch (_bucketStyle) {
         case BucketStyle1OpenFromRight:
-            self.bucketLidImage = [UIImage imageNamed:@"Resource.bundle/BucketLid.png"];
-            self.bucketBodyImage = [UIImage imageNamed:@"Resource.bundle/BucketBody.png"];
+            self.bucketLidImage = [UIImage imageNamed:@"BucketResource.bundle/BucketLid.png"];
+            self.bucketBodyImage = [UIImage imageNamed:@"BucketResource.bundle/BucketBody.png"];
             self.animationDuration = 0.1;
             self.animationTimingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
             self.degreesVariance = -135;
@@ -45,8 +45,8 @@ static inline CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI /
             break;
             
         case BucketStyle1OpenFromLeft:
-            self.bucketLidImage = [UIImage imageNamed:@"Resource.bundle/BucketLid.png"];
-            self.bucketBodyImage = [UIImage imageNamed:@"Resource.bundle/BucketBody.png"];
+            self.bucketLidImage = [UIImage imageNamed:@"BucketResource.bundle/BucketLid.png"];
+            self.bucketBodyImage = [UIImage imageNamed:@"BucketResource.bundle/BucketBody.png"];
             self.animationDuration = 0.1;
             self.animationTimingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
             self.degreesVariance = 135;
@@ -55,8 +55,8 @@ static inline CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI /
             break;
         
         case BucketStyle2OpenFromRight:
-            self.bucketLidImage = [UIImage imageNamed:@"Resource.bundle/bucket_lid_style2.png"];
-            self.bucketBodyImage = [UIImage imageNamed:@"Resource.bundle/bucket_body_style2.png"];
+            self.bucketLidImage = [UIImage imageNamed:@"BucketResource.bundle/bucket_lid_style2.png"];
+            self.bucketBodyImage = [UIImage imageNamed:@"BucketResource.bundle/bucket_body_style2.png"];
             self.animationDuration = 0.1;
             self.animationTimingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
             self.degreesVariance = -60;
@@ -65,8 +65,8 @@ static inline CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI /
             break;
             
         case BucketStyle2OpenFromLeft:
-            self.bucketLidImage = [UIImage imageNamed:@"Resource.bundle/bucket_lid_style2.png"];
-            self.bucketBodyImage = [UIImage imageNamed:@"Resource.bundle/bucket_body_style2.png"];
+            self.bucketLidImage = [UIImage imageNamed:@"BucketResource.bundle/bucket_lid_style2.png"];
+            self.bucketBodyImage = [UIImage imageNamed:@"BucketResource.bundle/bucket_body_style2.png"];
             self.animationDuration = 0.1;
             self.animationTimingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
             self.degreesVariance = 60;

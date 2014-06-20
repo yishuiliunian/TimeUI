@@ -107,6 +107,8 @@
 		651DA8B51952893300EA1C98 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651DA8B41952893300EA1C98 /* AssetsLibrary.framework */; };
 		651DA8B71952893900EA1C98 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651DA8B61952893900EA1C98 /* AddressBook.framework */; };
 		651DA8BB1952B81800EA1C98 /* DZLocalNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651DA8BA1952B81800EA1C98 /* DZLocalNotificationCenter.m */; };
+		651DA8BF195308D300EA1C98 /* DZParallelTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651DA8BE195308D300EA1C98 /* DZParallelTableView.m */; };
+		651DA8C2195308E100EA1C98 /* DZParallelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 651DA8C1195308E100EA1C98 /* DZParallelTableViewCell.m */; };
 		65238EEC1856E86700FE5D89 /* DZAppConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EEB1856E86700FE5D89 /* DZAppConfigure.m */; };
 		65238EF418572ED900FE5D89 /* FMDatabase+WizDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF318572ED900FE5D89 /* FMDatabase+WizDb.m */; };
 		65238EF718572F1D00FE5D89 /* NSString+WizString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65238EF618572F1D00FE5D89 /* NSString+WizString.mm */; };
@@ -159,7 +161,7 @@
 		6545145318E7CA140008055B /* DZEditServerHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6545145118E7CA140008055B /* DZEditServerHostViewController.m */; };
 		6545145418E7CA140008055B /* DZEditServerHostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6545145218E7CA140008055B /* DZEditServerHostViewController.xib */; };
 		654629271864115000E7C072 /* DZCommandThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 654629261864115000E7C072 /* DZCommandThread.m */; };
-		6547403D18EE60070007361C /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6547403C18EE60070007361C /* Resource.bundle */; };
+		6547403D18EE60070007361C /* BucketResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6547403C18EE60070007361C /* BucketResource.bundle */; };
 		6547404818EEAFE70007361C /* DZWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547404718EEAFE70007361C /* DZWebViewController.m */; };
 		6547404B18EEB0610007361C /* DZWebPluginEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547404A18EEB0610007361C /* DZWebPluginEngine.m */; };
 		6547404E18EEB07C0007361C /* DZWebPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547404D18EEB07C0007361C /* DZWebPlugin.m */; };
@@ -428,6 +430,10 @@
 		651DA8B61952893900EA1C98 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		651DA8B91952B81800EA1C98 /* DZLocalNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLocalNotificationCenter.h; sourceTree = "<group>"; };
 		651DA8BA1952B81800EA1C98 /* DZLocalNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZLocalNotificationCenter.m; sourceTree = "<group>"; };
+		651DA8BD195308D300EA1C98 /* DZParallelTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZParallelTableView.h; sourceTree = "<group>"; };
+		651DA8BE195308D300EA1C98 /* DZParallelTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZParallelTableView.m; sourceTree = "<group>"; };
+		651DA8C0195308E100EA1C98 /* DZParallelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZParallelTableViewCell.h; sourceTree = "<group>"; };
+		651DA8C1195308E100EA1C98 /* DZParallelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZParallelTableViewCell.m; sourceTree = "<group>"; };
 		65238EEA1856E86700FE5D89 /* DZAppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZAppConfigure.h; sourceTree = "<group>"; };
 		65238EEB1856E86700FE5D89 /* DZAppConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZAppConfigure.m; sourceTree = "<group>"; };
 		65238EF218572ED900FE5D89 /* FMDatabase+WizDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+WizDb.h"; sourceTree = "<group>"; };
@@ -534,7 +540,7 @@
 		6545145818E909F70008055B /* DZServerHostChangedNI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZServerHostChangedNI.h; sourceTree = "<group>"; };
 		654629251864115000E7C072 /* DZCommandThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCommandThread.h; sourceTree = "<group>"; };
 		654629261864115000E7C072 /* DZCommandThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCommandThread.m; sourceTree = "<group>"; };
-		6547403C18EE60070007361C /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
+		6547403C18EE60070007361C /* BucketResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BucketResource.bundle; sourceTree = "<group>"; };
 		6547404618EEAFE70007361C /* DZWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZWebViewController.h; sourceTree = "<group>"; };
 		6547404718EEAFE70007361C /* DZWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZWebViewController.m; sourceTree = "<group>"; };
 		6547404918EEB0610007361C /* DZWebPluginEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DZWebPluginEngine.h; path = Classes/web/DZWebPluginEngine.h; sourceTree = "<group>"; };
@@ -927,7 +933,7 @@
 		650E156818ADB5D4007DDF47 /* editTime */ = {
 			isa = PBXGroup;
 			children = (
-				6547403C18EE60070007361C /* Resource.bundle */,
+				6547403C18EE60070007361C /* BucketResource.bundle */,
 				6580F16318EAF6E40041D6C1 /* GLBucket.h */,
 				6580F16418EAF6E40041D6C1 /* GLBucket.m */,
 				650E156918ADB5F4007DDF47 /* DZEditTimeSegmentView.h */,
@@ -968,6 +974,7 @@
 		6514652C1862A095005060CB /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				651DA8BC195308BF00EA1C98 /* parallel */,
 				6579725519527954009CDCC2 /* maskView */,
 				6579723519516BFB009CDCC2 /* charts */,
 				6502F2FE19011339001ABF92 /* guid */,
@@ -1218,6 +1225,17 @@
 				651DA8BA1952B81800EA1C98 /* DZLocalNotificationCenter.m */,
 			);
 			name = LocalNotification;
+			sourceTree = "<group>";
+		};
+		651DA8BC195308BF00EA1C98 /* parallel */ = {
+			isa = PBXGroup;
+			children = (
+				651DA8BD195308D300EA1C98 /* DZParallelTableView.h */,
+				651DA8BE195308D300EA1C98 /* DZParallelTableView.m */,
+				651DA8C0195308E100EA1C98 /* DZParallelTableViewCell.h */,
+				651DA8C1195308E100EA1C98 /* DZParallelTableViewCell.m */,
+			);
+			name = parallel;
 			sourceTree = "<group>";
 		};
 		65238EF118572ECE00FE5D89 /* Database */ = {
@@ -2325,7 +2343,7 @@
 				655CA680188D3E0F0051678A /* bg_backgroud.png in Resources */,
 				65F0AAC7186CA284001C6302 /* ReleaseNotes.txt in Resources */,
 				657685FF185D624B006D7C0F /* icon-error@2x.png in Resources */,
-				6547403D18EE60070007361C /* Resource.bundle in Resources */,
+				6547403D18EE60070007361C /* BucketResource.bundle in Resources */,
 				65768600185D624B006D7C0F /* icon-info.png in Resources */,
 				65F28FD218658899009403D1 /* basketball.png in Resources */,
 				65768601185D624B006D7C0F /* icon-info@2x.png in Resources */,
@@ -2452,6 +2470,7 @@
 				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,
 				65FB8E6A1892631D006F8D8A /* DZHasAccountContentView.m in Sources */,
 				65FB8E6718926305006F8D8A /* DZNoAccountContentView.m in Sources */,
+				651DA8BF195308D300EA1C98 /* DZParallelTableView.m in Sources */,
 				650E156B18ADB5F4007DDF47 /* DZEditTimeSegmentView.m in Sources */,
 				6547404818EEAFE70007361C /* DZWebViewController.m in Sources */,
 				65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */,
@@ -2485,6 +2504,7 @@
 				6535A0281861E81200173E0E /* DZActionContentView.m in Sources */,
 				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
 				65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */,
+				651DA8C2195308E100EA1C98 /* DZParallelTableViewCell.m in Sources */,
 				65238F2518574A1700FE5D89 /* NSString+database.m in Sources */,
 				65C38F2D1894E69100420CF7 /* MFLTransformingScoreBoard.m in Sources */,
 				655CA675188D373D0051678A /* DZTimeControl.m in Sources */,
