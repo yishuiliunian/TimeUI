@@ -12,6 +12,7 @@
 #import "DZTokenManager.h"
 #import "DZAccountManager.h"
 
+#import "DZHUDCenter.h"
 @interface DZLoginViewController ()
 {
     BOOL _running;
@@ -19,7 +20,6 @@
 @end
 
 @implementation DZLoginViewController
-
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,9 +36,10 @@
 
 - (void) handleActionWithEmail:(NSString *)email password:(NSString *)password
 {
+    
+    DZHUDShow
     [[DZTokenManager shareManager] appleToken:email password:password response:^(NSString *token, NSString *userGuid, NSError *error) {
         if (error) {
-            [DZMessageShareCenter showErrorMessage:error.localizedDescription];
         }
         else
         {
@@ -50,10 +51,8 @@
             [account synchronize];
             [DZMessageShareCenter showSuccessMessage:@"登陆成功！"];
             [[DZAccountManager shareManager] registerActiveAccount:account];
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                
-            }];
         }
+        [self handleActionEndWithError:error];
     } ];
     
 }

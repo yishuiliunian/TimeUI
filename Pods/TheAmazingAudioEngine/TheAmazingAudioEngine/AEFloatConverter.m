@@ -70,17 +70,7 @@ static OSStatus complexInputDataProc(AudioConverterRef             inAudioConver
     _floatAudioDescription.mBitsPerChannel    = 8 * sizeof(float);
     _floatAudioDescription.mSampleRate        = sourceFormat.mSampleRate;
     
-    _sourceAudioDescription = sourceFormat;
-    
-    if ( memcmp(&sourceFormat, &_floatAudioDescription, sizeof(AudioStreamBasicDescription)) != 0 ) {
-        checkResult(AudioConverterNew(&sourceFormat, &_floatAudioDescription, &_toFloatConverter), "AudioConverterNew");
-        checkResult(AudioConverterNew(&_floatAudioDescription, &sourceFormat, &_fromFloatConverter), "AudioConverterNew");
-        _scratchFloatBufferList = (AudioBufferList*)malloc(sizeof(AudioBufferList) + (_floatAudioDescription.mChannelsPerFrame-1)*sizeof(AudioBuffer));
-        _scratchFloatBufferList->mNumberBuffers = _floatAudioDescription.mChannelsPerFrame;
-        for ( int i=0; i<_scratchFloatBufferList->mNumberBuffers; i++ ) {
-            _scratchFloatBufferList->mBuffers[i].mNumberChannels = 1;
-        }
-    }
+    self.sourceFormat = sourceFormat;
     
     return self;
 }
@@ -92,6 +82,34 @@ static OSStatus complexInputDataProc(AudioConverterRef             inAudioConver
     [super dealloc];
 }
 
+-(void)setSourceFormat:(AudioStreamBasicDescription)sourceFormat {
+    if ( !memcmp(&sourceFormat, &_sourceAudioDescription, sizeof(sourceFormat)) ) return;
+    
+    if ( _toFloatConverter ) {
+        AudioConverterDispose(_toFloatConverter);
+        _toFloatConverter = NULL;
+    }
+    if ( _fromFloatConverter ) {
+        AudioConverterDispose(_fromFloatConverter);
+        _fromFloatConverter = NULL;
+    }
+    if ( _scratchFloatBufferList ) {
+        free(_scratchFloatBufferList);
+        _scratchFloatBufferList = NULL;
+    }
+    
+    _sourceAudioDescription = sourceFormat;
+    
+    if ( memcmp(&sourceFormat, &_floatAudioDescription, sizeof(AudioStreamBasicDescription)) != 0 ) {
+        checkResult(AudioConverterNew(&sourceFormat, &_floatAudioDescription, &_toFloatConverter), "AudioConverterNew");
+        checkResult(AudioConverterNew(&_floatAudioDescription, &sourceFormat, &_fromFloatConverter), "AudioConverterNew");
+        _scratchFloatBufferList = (AudioBufferList*)malloc(sizeof(AudioBufferList) + (_floatAudioDescription.mChannelsPerFrame-1)*sizeof(AudioBuffer));
+        _scratchFloatBufferList->mNumberBuffers = _floatAudioDescription.mChannelsPerFrame;
+        for ( int i=0; i<_scratchFloatBufferList->mNumberBuffers; i++ ) {
+            _scratchFloatBufferList->mBuffers[i].mNumberChannels = 1;
+        }
+    }
+}
 
 BOOL AEFloatConverterToFloat(AEFloatConverter* THIS, AudioBufferList *sourceBuffer, float * const * targetBuffers, UInt32 frames) {
     if ( frames == 0 ) return YES;

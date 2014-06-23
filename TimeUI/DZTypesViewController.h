@@ -16,7 +16,7 @@
 
 @end
 
-@interface DZTypesViewController : DZTableViewController<UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate>
+@interface DZTypesViewController : DZTableViewController<UITableViewDataSource, UITableViewDelegate, DZInputCellViewDelegate, DZReloadTypesNI>
 {
     NSMutableArray* _typesArray;
     NSMutableArray* _timeTypes;

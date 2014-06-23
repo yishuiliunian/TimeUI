@@ -106,6 +106,7 @@ static float const DZDefaultRequestCount = 100;
     if (![self updateTimeTypes:error]) {
         return NO;
     }
+    [[DZNotificationCenter defaultCenter] postMessage:kDZNotification_DidReloadTypes userInfo:nil];
     return YES;
 }
 

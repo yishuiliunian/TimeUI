@@ -18,4 +18,5 @@
 @property (nonatomic, strong, readonly) UIButton* loginBtn;
 - (void) setAllControlsEnable:(BOOL)enable;
 - (void) handleActionWithEmail:(NSString*)email password:(NSString*)password;
+- (void) handleActionEndWithError:(NSError*)error;
 @end

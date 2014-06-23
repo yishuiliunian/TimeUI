@@ -170,6 +170,14 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
             }
             
         };
+    } else if ([message isEqualToString:kDZNotification_DidReloadTypes])
+    {
+        return ^(id observer, NSDictionary* userInfo)
+        {
+            if ([observer respondsToSelector:@selector(globalDidReloadTypes)]) {
+                [observer globalDidReloadTypes];
+            }
+        };
     }
     return nil;
 }

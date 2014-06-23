@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 @class DZEditTimeSegmentView;
 @class DZTimeType;
+@class DZEditTimeLine;
 @protocol DZEditTimeSegmentDelegate <NSObject>
 - (void) editTimeSegmentView:(DZEditTimeSegmentView*)timeView willAddLinewithRote:(float)rote;
+- (void) editTimeSegmentView:(DZEditTimeSegmentView *)timeView beginEditLine:(DZEditTimeLine*)line;
+- (void) editTimeSegmentView:(DZEditTimeSegmentView *)timeView finishEditLine:(DZEditTimeLine *)line;
 @end

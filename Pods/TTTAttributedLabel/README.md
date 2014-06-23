@@ -17,11 +17,23 @@ It also includes advanced paragraph style properties:
 - `verticalAlignment`
 - `textInsets`
 - `firstLineIndent`
-- `leading`
+- `lineSpacing`
 - `lineHeightMultiple`
 - `shadowRadius`
 - `highlightedShadowRadius` / `highlightedShadowOffset` / `highlightedShadowColor`
 - `truncationTokenString`
+
+### Accessibility
+
+As of version 1.10.0, `TTTAttributedLabel` supports VoiceOver, through the  `UIAccessibilityElement` protocol. Each link can be individually selected, with an `accessibilityLabel` equal to its string value, and a corresponding `accessibilityValue` for URL, phone number, and date links.  Developers who wish to change this behavior or provide custom values should create a subclass and override `accessibilityElements`.
+
+## Communication
+
+- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tttattributedlabel). (Tag 'tttattributedlabel')
+- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/tttattributedlabel).
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
 
 ## Installation
 
@@ -69,7 +81,7 @@ The normal `setText:` setter accepts both `NSString` and `NSAttributedString`; i
 In addition to supporting rich text, `TTTAttributedLabel` allows you to automatically detect links for dates, addresses, links, phone numbers, transit information, or allow you to embed your own.
 
 ``` objective-c
-label.dataDetectorTypes = NSTextCheckingTypeLink; // Automatically detect links when the label text is subsequently changed
+label.enabledTextCheckingTypes = NSTextCheckingTypeLink; // Automatically detect links when the label text is subsequently changed
 label.delegate = self; // Delegate methods are called when the user taps on a link (see `TTTAttributedLabelDelegate` protocol)
 
 label.text = @"Fork me on GitHub! (http://github.com/mattt/TTTAttributedLabel/)"; // Repository URL will be automatically detected and linked

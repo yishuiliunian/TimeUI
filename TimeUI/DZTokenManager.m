@@ -80,6 +80,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
+        sleep(3);
         NSString* token = _tokensMap[userEmail];
         NSError* error = nil;
         if (token) {

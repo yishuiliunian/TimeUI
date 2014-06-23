@@ -75,7 +75,7 @@ typedef struct {
     void *userInfo;
 } action_t;
 
-static const int kMaxSources                                = 10;
+static const int kMaxSources                                = 30;
 static const NSTimeInterval kResyncTimestampThreshold       = 0.002;
 static const NSTimeInterval kSourceTimestampIdleThreshold   = 1.0;
 static const UInt32 kConversionBufferLength                 = 16384;
@@ -84,7 +84,6 @@ static const UInt32 kSourceBufferFrames                     = 8192;
 static const int kActionBufferSize                          = 2048;
 static const NSTimeInterval kActionMainThreadPollDuration   = 0.2;
 static const int kMinimumFrameCount                         = 64;
-static const int64_t kNoValue                               = INT64_MAX;
 static const UInt32 kMaxMicrofadeDuration                   = 512;
 
 @interface AEMixerBuffer () {
@@ -500,7 +499,7 @@ void AEMixerBufferDequeueSingleSource(AEMixerBuffer *THIS, AEMixerBufferSource s
     AudioTimeStamp sliceTimestamp = THIS->_currentSliceTimestamp;
     UInt32 sliceFrameCount = THIS->_currentSliceFrameCount;
     
-    if ( sliceTimestamp.mFlags == 0 ) {
+    if ( sliceTimestamp.mFlags == 0 || sliceFrameCount == 0 ) {
         // Determine how many frames are available globally
         sliceFrameCount = _AEMixerBufferPeek(THIS, &sliceTimestamp, YES);
         THIS->_currentSliceTimestamp = sliceTimestamp;
@@ -568,7 +567,7 @@ void AEMixerBufferDequeueSingleSource(AEMixerBuffer *THIS, AEMixerBufferSource s
         int totalRequiredSkipFrames = 0;
         int skipFrames = 0;
 
-        if ( sourceTimestamp.mHostTime < sliceTimestamp.mHostTime - ((!source->synced ? 0.001 : kResyncTimestampThreshold)*__secondsToHostTicks) ) {
+        if ( sourceTimestamp.mFlags & kAudioTimeStampHostTimeValid && sourceTimestamp.mHostTime < sliceTimestamp.mHostTime - ((!source->synced ? 0.001 : kResyncTimestampThreshold)*__secondsToHostTicks) ) {
             // This source is behind. We'll skip some frames.
             NSTimeInterval discrepancy = (sliceTimestamp.mHostTime - sourceTimestamp.mHostTime) * __hostTicksToSeconds;
             totalRequiredSkipFrames = discrepancy * audioDescription.mSampleRate;
@@ -734,12 +733,11 @@ void AEMixerBufferDequeueSingleSource(AEMixerBuffer *THIS, AEMixerBufferSource s
         if ( minConsumedFrameCount > 0 ) {
             dprintf(THIS, 3, "Increasing timeline by %u frames", (unsigned int)minConsumedFrameCount);
             
-            // Increment sample time
+            // Increment time slice info
             THIS->_sampleTime += minConsumedFrameCount;
-            
-            // Reset time slice info
-            THIS->_currentSliceFrameCount = 0;
-            memset(&THIS->_currentSliceTimestamp, 0, sizeof(AudioTimeStamp));
+            THIS->_currentSliceFrameCount -= minConsumedFrameCount;
+            THIS->_currentSliceTimestamp.mSampleTime += minConsumedFrameCount;
+            THIS->_currentSliceTimestamp.mHostTime += ((double)minConsumedFrameCount/THIS->_clientFormat.mSampleRate) * __secondsToHostTicks;
             for ( int i=0; i<kMaxSources; i++ ) {
                 if ( THIS->_table[i].source ) THIS->_table[i].consumedFramesInCurrentTimeSlice = 0;
             }
@@ -1204,6 +1202,11 @@ static OSStatus sourceInputCallback(void *inRefCon, AudioUnitRenderActionFlags *
     // Get reference to the audio unit
     result = AUGraphNodeInfo(_graph, _mixerNode, NULL, &_mixerUnit);
     if ( !checkResult(result, "AUGraphNodeInfo") ) return;
+    
+    // Set the audio unit to handle up to 4096 frames per slice to keep rendering during screen lock
+    UInt32 maxFPS = 4096;
+    checkResult(AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maxFPS, sizeof(maxFPS)),
+                "AudioUnitSetProperty(kAudioUnitProperty_MaximumFramesPerSlice)");
     
     // Try to set mixer's output stream format to our client format
     result = AudioUnitSetProperty(_mixerUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &_clientFormat, sizeof(_clientFormat));

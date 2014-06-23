@@ -113,7 +113,7 @@ DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
     if (!self) {
         return self;
     }
-    
+    _pulldownEnable = YES;
     _rootViewController = vc;
     return self;
 }
@@ -207,6 +207,9 @@ DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
 
 - (void) didPerformPanGestureRecoginzer:(UIGestureRecognizer*)recognizer
 {
+    if (!_pulldownEnable) {
+        return;
+    }
     //
     CGPoint location = [recognizer locationInView:self.view];
     //
@@ -281,7 +284,6 @@ DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
         }
         _moveData.clearData();
     }
-    
 }
 
 @end

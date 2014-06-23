@@ -7,7 +7,7 @@
 //
 
 #import "DZAccountViewController.h"
-
+#import "DZHUDCenter.h"
 @interface DZAccountViewController ()
 {
     UIImageView* _passwordImageView ;
@@ -59,7 +59,22 @@
         [DZMessageShareCenter showErrorMessage:@"您输入的用户名为空！"];
         return;
     }
+    DZHUDShow
     [self handleActionWithEmail:_email password:_password];
+    [self setAllControlsEnable:NO];
+}
+
+- (void) handleActionEndWithError:(NSError*)error
+{
+    if (!error) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            DZHUDHide
+        }];
+    } else {
+        [DZMessageShareCenter showErrorMessage:error.localizedDescription];
+        DZHUDHide
+        [self setAllControlsEnable:YES];
+    }
 }
 
 - (void) setAllControlsEnable:(BOOL)enable
@@ -91,6 +106,7 @@
     _passwordImageView              = [UIImageView new];
     _emailTextField.leftView        = _emailImageView;
     _passwordTextField.leftView     = _passwordImageView;
+    _passwordTextField.secureTextEntry = YES;
     
     _emailImageView.contentMode = UIViewContentModeCenter;
     _passwordImageView.contentMode = UIViewContentModeCenter;

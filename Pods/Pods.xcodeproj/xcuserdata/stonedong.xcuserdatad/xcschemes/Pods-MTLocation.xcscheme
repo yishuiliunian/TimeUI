@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D39EAA729F304D54BCF54EA3"
+               BlueprintIdentifier = "A150593F2AD041D488834481"
                BuildableName = "libPods-MTLocation.a"
                BlueprintName = "Pods-MTLocation"
                ReferencedContainer = "container:Pods.xcodeproj">

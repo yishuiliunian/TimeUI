@@ -139,6 +139,9 @@ DEFINE_PROPERTY_STRONG_UIImageView(indicatorHoldOnImageView);
         for (DZEditTimeLine* line  in _linesInfoDic.allValues) {
             if (CGRectContainsPoint(line.frame, point)) {
                 [self editTimeLine:line didHanldeLongPress:nil];
+                if ([self.delegate respondsToSelector:@selector(editTimeSegmentView:beginEditLine:)]) {
+                    [self.delegate editTimeSegmentView:self beginEditLine:line];
+                }
                 return;
             }
         }
@@ -174,12 +177,17 @@ DEFINE_PROPERTY_STRONG_UIImageView(indicatorHoldOnImageView);
                 [_selectedLineView removeFromSuperview];
                 [self hideTrashBunket];
             }
+            if ([self.delegate respondsToSelector:@selector(editTimeSegmentView:finishEditLine:)]) {
+                [self.delegate editTimeSegmentView:self finishEditLine:_selectedLineView];
+            }
             _selectedLineView = nil;
             [self setNeedsLayout];
             [self setNeedsDisplay];
             for (DZEditTimeLine* line  in _linesInfoDic.allValues) {
                 line.alpha = 1.0;
             }
+            
+
         }
     }
 }

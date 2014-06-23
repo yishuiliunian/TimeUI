@@ -32,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [[DZNotificationCenter defaultCenter] addObserver:self forKey:kDZNotification_DidReloadTypes];
     }
     return self;
 }
@@ -197,5 +198,10 @@
 - (void) didRemoveTypes:(DZTimeType *)type
 {
     
+}
+
+- (void) globalDidReloadTypes
+{
+    [self reloadAllData];
 }
 @end

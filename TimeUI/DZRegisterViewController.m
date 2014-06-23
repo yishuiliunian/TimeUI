@@ -11,6 +11,7 @@
 #import "DZMessageCenter.h"
 #import "DZAccount.h"
 #import "DZAccountManager.h"
+#import "DZHUDCenter.h"
 @interface DZRegisterViewController () <DZRegisterAccountDelegate>
 {
     BOOL _running;
@@ -21,9 +22,7 @@
 @implementation DZRegisterViewController
 - (void) registerAccountOperation:(DZRegisterAccountOperation *)op failedWithError:(NSError *)error
 {
-    self.loginBtn.enabled  = YES;
-    [DZMessageShareCenter showErrorMessage:error.localizedDescription];
-    [self setAllControlsEnable:YES];
+    [self handleActionEndWithError:error];
 }
 
 - (void) registerAccountOperation:(DZRegisterAccountOperation *)op successWithUserInfo:(NSDictionary *)userInfo
@@ -38,12 +37,8 @@
     account.password = _password;
     account.isLogin = YES;
     [account synchronize];
-    
     [[DZAccountManager shareManager] registerActiveAccount:account];
-    
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self handleActionEndWithError:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

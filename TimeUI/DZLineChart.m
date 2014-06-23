@@ -107,6 +107,13 @@
     for (DZChartNode* node  in _values) {
         max = MAX(max, node.value);
     }
+    if (max > 60*60*24) {
+        max = max /(60);
+        for (DZChartNode* node  in _values) {
+            node.value = floor(node.value/(float)60.0f);
+        }
+        _yTitle = @"时";
+    }
     max = MAX(10, max);
     int64_t count            = _values.count;
     float yInterval          = max/count;

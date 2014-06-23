@@ -192,7 +192,6 @@
         case UIUserInterfaceIdiomPad: return @"~ipad";
         case UIUserInterfaceIdiomPhone: return @"~iphone";
     }
-    return  nil;
 }
 
 - (NSString *)file:(NSString *)file

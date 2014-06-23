@@ -58,7 +58,15 @@
         
     }];
 }
+- (void) editTimeSegmentView:(DZEditTimeSegmentView *)timeView beginEditLine:(DZEditTimeLine *)line
+{
+    self.pdSuperViewController.pulldownEnable = NO;
+}
 
+- (void) editTimeSegmentView:(DZEditTimeSegmentView *)timeView finishEditLine:(DZEditTimeLine *)line
+{
+    self.pdSuperViewController.pulldownEnable = YES;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

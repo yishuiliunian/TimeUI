@@ -229,6 +229,7 @@
 		65768610185DF225006D7C0F /* DZNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6576860F185DF225006D7C0F /* DZNetworkManager.m */; };
 		65768613185DF2A8006D7C0F /* DZTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65768612185DF2A8006D7C0F /* DZTokenManager.m */; };
 		65768617185DF335006D7C0F /* DZNotificationCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65768616185DF335006D7C0F /* DZNotificationCenter.mm */; };
+		657906B3195810E200310F26 /* DZHUDCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657906B2195810E200310F26 /* DZHUDCenter.m */; };
 		6579723019513D31009CDCC2 /* defaults_functions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6579722F19513D31009CDCC2 /* defaults_functions.json */; };
 		6579723819516C73009CDCC2 /* DZPieChartNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579723719516C73009CDCC2 /* DZPieChartNode.m */; };
 		6579723E19517302009CDCC2 /* DZSplitChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579723D19517302009CDCC2 /* DZSplitChartView.m */; };
@@ -674,6 +675,10 @@
 		65768612185DF2A8006D7C0F /* DZTokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTokenManager.m; sourceTree = "<group>"; };
 		65768615185DF335006D7C0F /* DZNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNotificationCenter.h; sourceTree = "<group>"; };
 		65768616185DF335006D7C0F /* DZNotificationCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DZNotificationCenter.mm; sourceTree = "<group>"; };
+		657906B1195810E200310F26 /* DZHUDCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZHUDCenter.h; sourceTree = "<group>"; };
+		657906B2195810E200310F26 /* DZHUDCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZHUDCenter.m; sourceTree = "<group>"; };
+		657906B6195817BB00310F26 /* DZReloadTypesNI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZReloadTypesNI.h; sourceTree = "<group>"; };
+		657906B71958183300310F26 /* DZNotificationHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZNotificationHeaders.h; sourceTree = "<group>"; };
 		6579722F19513D31009CDCC2 /* defaults_functions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaults_functions.json; sourceTree = "<group>"; };
 		6579723619516C73009CDCC2 /* DZPieChartNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPieChartNode.h; sourceTree = "<group>"; };
 		6579723719516C73009CDCC2 /* DZPieChartNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPieChartNode.m; sourceTree = "<group>"; };
@@ -983,6 +988,7 @@
 		6514652818629F54005060CB /* componet */ = {
 			isa = PBXGroup;
 			children = (
+				657906B5195817A100310F26 /* notification */,
 				6545144C18E7C5720008055B /* GlobalSettings */,
 				65D6BD3C188E678C0028F063 /* base */,
 				65F28FB018657A38009403D1 /* ResourcesManager */,
@@ -1004,6 +1010,7 @@
 		6514652C1862A095005060CB /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				657906B0195810D400310F26 /* HUD */,
 				651DA8BC195308BF00EA1C98 /* parallel */,
 				6579725519527954009CDCC2 /* maskView */,
 				6579723519516BFB009CDCC2 /* charts */,
@@ -1937,6 +1944,24 @@
 			name = notification;
 			sourceTree = "<group>";
 		};
+		657906B0195810D400310F26 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				657906B1195810E200310F26 /* DZHUDCenter.h */,
+				657906B2195810E200310F26 /* DZHUDCenter.m */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
+		657906B5195817A100310F26 /* notification */ = {
+			isa = PBXGroup;
+			children = (
+				657906B6195817BB00310F26 /* DZReloadTypesNI.h */,
+				657906B71958183300310F26 /* DZNotificationHeaders.h */,
+			);
+			name = notification;
+			sourceTree = "<group>";
+		};
 		6579723119516B27009CDCC2 /* splitChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -2570,6 +2595,7 @@
 				6547405818EEB1670007361C /* DZWebApplication.m in Sources */,
 				6535A0281861E81200173E0E /* DZActionContentView.m in Sources */,
 				65DE7D151953D1EC000CF384 /* DZFuncsViewController.m in Sources */,
+				657906B3195810E200310F26 /* DZHUDCenter.m in Sources */,
 				65238F4318576B3D00FE5D89 /* DZCenterButtonViewController.m in Sources */,
 				65020B30185B42D100D1ECBA /* DZCellActionsView.m in Sources */,
 				651DA8C2195308E100EA1C98 /* DZParallelTableViewCell.m in Sources */,
