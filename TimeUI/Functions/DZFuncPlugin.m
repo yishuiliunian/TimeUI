@@ -24,6 +24,7 @@ INIT_DZ_EXTERN_STRING(kFuncName , name);
 INIT_DZ_EXTERN_STRING(kFuncClassName , class)
 INIT_DZ_EXTERN_STRING(kFuncDetail, detail)
 INIT_DZ_EXTERN_STRING(kFuncType, type);
+INIT_DZ_EXTERN_STRING(kFuncDetailImage, image)
 
 @implementation DZFuncPlugin
 - (void) setValue:(id)value forKey:(NSString *)key
@@ -37,6 +38,9 @@ INIT_DZ_EXTERN_STRING(kFuncType, type);
     } else if ([key isEqualToString:kFuncType])
     {
         _type = DecodeIntToFuncPluginType([value integerValue]);
+    } else if ([key isEqualToString:kFuncDetailImage])
+    {
+        _detailImage = value;
     }
 }
 
@@ -51,6 +55,9 @@ INIT_DZ_EXTERN_STRING(kFuncType, type);
         return _detail;
     } else if ([key isEqualToString:kFuncType]) {
         return @(_type);
+    }
+    else if ([key isEqualToString:kFuncDetailImage]) {
+        return _detailImage;
     }
     else
     {

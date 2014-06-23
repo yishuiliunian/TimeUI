@@ -230,6 +230,7 @@
 		65768613185DF2A8006D7C0F /* DZTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65768612185DF2A8006D7C0F /* DZTokenManager.m */; };
 		65768617185DF335006D7C0F /* DZNotificationCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65768616185DF335006D7C0F /* DZNotificationCenter.mm */; };
 		657906B3195810E200310F26 /* DZHUDCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 657906B2195810E200310F26 /* DZHUDCenter.m */; };
+		657906BA1958202000310F26 /* niudon.png in Resources */ = {isa = PBXBuildFile; fileRef = 657906B91958202000310F26 /* niudon.png */; };
 		6579723019513D31009CDCC2 /* defaults_functions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6579722F19513D31009CDCC2 /* defaults_functions.json */; };
 		6579723819516C73009CDCC2 /* DZPieChartNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579723719516C73009CDCC2 /* DZPieChartNode.m */; };
 		6579723E19517302009CDCC2 /* DZSplitChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579723D19517302009CDCC2 /* DZSplitChartView.m */; };
@@ -679,6 +680,7 @@
 		657906B2195810E200310F26 /* DZHUDCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZHUDCenter.m; sourceTree = "<group>"; };
 		657906B6195817BB00310F26 /* DZReloadTypesNI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZReloadTypesNI.h; sourceTree = "<group>"; };
 		657906B71958183300310F26 /* DZNotificationHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZNotificationHeaders.h; sourceTree = "<group>"; };
+		657906B91958202000310F26 /* niudon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = niudon.png; sourceTree = "<group>"; };
 		6579722F19513D31009CDCC2 /* defaults_functions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaults_functions.json; sourceTree = "<group>"; };
 		6579723619516C73009CDCC2 /* DZPieChartNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPieChartNode.h; sourceTree = "<group>"; };
 		6579723719516C73009CDCC2 /* DZPieChartNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZPieChartNode.m; sourceTree = "<group>"; };
@@ -1962,6 +1964,14 @@
 			name = notification;
 			sourceTree = "<group>";
 		};
+		657906B81958200400310F26 /* funcsBackground */ = {
+			isa = PBXGroup;
+			children = (
+				657906B91958202000310F26 /* niudon.png */,
+			);
+			path = funcsBackground;
+			sourceTree = "<group>";
+		};
 		6579723119516B27009CDCC2 /* splitChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -2162,6 +2172,7 @@
 		65CE6D2E187AC70900DACA12 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				657906B81958200400310F26 /* funcsBackground */,
 				65FF97331958011F000CE463 /* dragItem */,
 				65FF97311957F79A000CE463 /* holdOn@2x.png */,
 				65FF972F1957D558000CE463 /* doubleClieckToSave@2x.png */,
@@ -2434,6 +2445,7 @@
 				65FF973C1958011F000CE463 /* down2.png in Resources */,
 				65768602185D624B006D7C0F /* icon-success.png in Resources */,
 				65768603185D624B006D7C0F /* icon-success@2x.png in Resources */,
+				657906BA1958202000310F26 /* niudon.png in Resources */,
 				651DA8851952882F00EA1C98 /* Resource.bundle in Resources */,
 				65CE6D3B187AC82B00DACA12 /* icon_email.png in Resources */,
 				656F68B618324B2D001F7B7C /* InfoPlist.strings in Resources */,

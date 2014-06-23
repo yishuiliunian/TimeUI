@@ -68,7 +68,7 @@
         cell = [[DZFuncCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kDZIdentifier];
     }
     DZFuncPlugin* plugin = _allFunctions[indexPath.row];
-    cell.backgroudImageView.image = DZCachedImageByName(@"bg_types");
+    cell.backgroudImageView.image = DZCachedImageByName(plugin.detailImage);
     cell.nameLabel.label.text = plugin.name;
     cell.nameLabel.backgroundImageView.backgroundColor = [UIColor whiteColor];
     cell.nameLabel.backgroundImageView.alpha = 0.5;

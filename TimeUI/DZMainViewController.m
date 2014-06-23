@@ -22,7 +22,7 @@
 #import "DZPullDownViewController.h"
 #import "DZSplitChartViewController.h"
 #import "DZFuncsViewController.h"
-#define DZMainStateMiddleOffset (CGRectGetViewControllerHeight/2)
+#define DZMainStateMiddleOffset (CGRectGetViewControllerHeight*(1-0.618))
 
 #define DZMainStateTopOffSet 20
 
