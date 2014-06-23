@@ -103,16 +103,25 @@
     //init
     
     //draw y labels
-    float max = 0;
+    __block float max = 0;
     for (DZChartNode* node  in _values) {
         max = MAX(max, node.value);
     }
-    if (max > 60*60*24) {
-        max = max /(60);
-        for (DZChartNode* node  in _values) {
-            node.value = floor(node.value/(float)60.0f);
+    BOOL (^ChangeTitle)(int64_t fixMax , int64_t dec , NSString* title) = ^(int64_t fixMax , int64_t dec , NSString* title) {
+        if (max > fixMax) {
+            max = max /(60);
+            for (DZChartNode* node  in _values) {
+                node.value = floor(node.value/(float)dec);
+            }
+            _yTitle = title;
+            return YES;
         }
-        _yTitle = @"时";
+        return NO;
+    };
+    if (!ChangeTitle(60*60*24*30, 60*60*24, @"天")) {
+        if (!ChangeTitle(60*60*24, 60*60, @"小时")) {
+            ChangeTitle(60*60 , 60 ,@"分钟");
+        }
     }
     max = MAX(10, max);
     int64_t count            = _values.count;
