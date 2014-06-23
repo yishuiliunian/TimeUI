@@ -43,10 +43,6 @@
     if ([key isEqualToString:@"time_drag_bg"]) {
         _timeControl.dragBackgroundImageView.backgroundColor = [UIColor colorWithPatternImage:cssValue];
     }
-    else if ([key isEqualToString:@"time_drag_item"])
-    {
-        _timeControl.dragItemImageView.image = cssValue;
-    }
     else if ([key isEqualToString:@"control_bg"])
     {
         UIImage* image = cssValue;

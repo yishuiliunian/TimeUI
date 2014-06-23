@@ -84,7 +84,7 @@ static float const kDefaultDragItemHeight = 40;
 - (void) layoutSubviews
 {
     LAYOUT_SUBVIEW_TOP_FILL_WIDTH(_dragBackgroundImageView, 0 , 0 , kDefaultDragItemHeight);
-    LAYOUT_SUBVIEW_CENTER(_dragItemImageView, _dragBackgroundImageView, 142.5, 5);
+    LAYOUT_SUBVIEW_CENTER(_dragItemImageView, _dragBackgroundImageView, 137, 8);
     LAYOUT_VIEW_FILL_WIDTH_RELY_MAX_Y(_labelsBackgroundImageView, 10, _dragBackgroundImageView, 5, CGRectViewHeight - 5 - CGRectGetMaxY(_dragBackgroundImageView.frame));
     LAYOUT_VIEW_TOP_FILL_WIDTH(_typeLabel, _labelsBackgroundImageView, 5, 5, 15);
     LAYOUT_SUBVIEW_FILL_WIDTH_RELY_MAX_Y(_counterLabel, _labelsBackgroundImageView,0, _typeLabel, 0, CGRectGetHeight(_labelsBackgroundImageView.frame) - CGRectGetMaxY(_typeLabel.frame) - 20);

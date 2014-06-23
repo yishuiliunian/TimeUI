@@ -32,7 +32,16 @@
         fileName = comps[0];
         fileType = comps[1];
     }
-    NSString* path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
+    NSString* path = nil;
+    if (DeviceScreenISRetain()) {
+        NSString* retainFileName = [fileName stringByAppendingString:@"@2x"];
+        path = [[NSBundle mainBundle] pathForResource:retainFileName ofType:fileType];
+        if (!path) {
+            path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
+        }
+    } else {
+        path = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
+    }
     return [self cachedImageFroPath:path];
 }
 

@@ -15,6 +15,7 @@ extern "C" {
     NSString*  netDeviceMacAddress();
     NSString* DZDevicesIdentify();
     NSDictionary* DZDevicesInfos();
+    BOOL DeviceScreenISRetain();
 #ifdef __cplusplus
 }
 #endif

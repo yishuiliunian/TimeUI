@@ -42,7 +42,11 @@
     BOOL _isShowDeleting;
     GLBucket* _glBucket;
     CALayer* _bucketContanierLayer;
+    BOOL _isDoubleClicked;
 }
+DEFINE_PROPERTY_STRONG_UIImageView(indicatorDoubleClickImageView);
+DEFINE_PROPERTY_STRONG_UIImageView(indicatorHoldOnImageView);
+
 @end
 
 @implementation DZEditTimeSegmentView
@@ -72,6 +76,13 @@
     _bucketContanierLayer.frame = bucketRect;
     _glBucket = [[GLBucket alloc] initWithFrame:bucketRect inLayer:_bucketContanierLayer];
     [self.layer addSublayer:_bucketContanierLayer];
+    
+    INIT_SELF_SUBVIEW_UIImageView(_indicatorDoubleClickImageView);
+    _indicatorDoubleClickImageView.image = DZCachedImageByName(@"doubleClieckToSave");
+    _isDoubleClicked = NO;
+    
+    INIT_SELF_SUBVIEW_UIImageView(_indicatorHoldOnImageView);
+    _indicatorHoldOnImageView.image = DZCachedImageByName(@"holdOn@2x");
     
 }
 - (id)initWithFrame:(CGRect)frame
@@ -109,6 +120,10 @@
         if ([_delegate respondsToSelector:@selector(editTimeSegmentView:willAddLinewithRote:)] ) {
             [_delegate editTimeSegmentView:self willAddLinewithRote:rote];
         }
+        if (!_isDoubleClicked) {
+            _isDoubleClicked = YES;
+            [self setNeedsLayout];
+        }
     }
 }
 
@@ -118,6 +133,7 @@
 }
 - (void) handleLongPressGestureRecgnizer:(UILongPressGestureRecognizer*)lpRecg
 {
+    
     if (lpRecg.state == UIGestureRecognizerStateBegan) {
         CGPoint point = [lpRecg locationInView:self];
         for (DZEditTimeLine* line  in _linesInfoDic.allValues) {
@@ -128,6 +144,10 @@
         }
     } else if(lpRecg.state == UIGestureRecognizerStateChanged)
     {
+        if (!_isDoubleClicked) {
+            _isDoubleClicked = YES;
+            [self setNeedsLayout];
+        }
         CGPoint point = [lpRecg locationInView:self];
         
         if (_selectedLineView) {
@@ -179,6 +199,7 @@
     if (type) {
         _timeTypesCache[@(rote)] = type;
     }
+    
 }
 
 - (void) changeLineView:(DZEditTimeLine*)line toRatio:(float)toRatio
@@ -271,7 +292,7 @@
     allInfos = [allInfos sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];
     }];
-    int count = allInfos.count;
+    int count = (int)allInfos.count;
     //
     for (int index =  0; index < count; index ++) {
         float rote = [allInfos[index] floatValue];
@@ -348,7 +369,15 @@
         }
         line.frame = CGRectMake(0, CGRectGetMaxY(rect) - 10, CGRectViewWidth, 20);
     }
-
+    
+    if (!_isDoubleClicked) {
+        _indicatorDoubleClickImageView.frame = CGRectMake(50, 50, 200, 171);
+        CGRect rect = [rects[@(0.95f)] CGRectValue];
+        _indicatorHoldOnImageView.frame = CGRectMake(20, CGRectGetMaxY(rect) - 120, 290, 110);
+    } else {
+        _indicatorHoldOnImageView.frame = CGRectZero;
+        _indicatorDoubleClickImageView.frame = CGRectZero;
+    }
 }
 
 

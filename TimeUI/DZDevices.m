@@ -109,6 +109,16 @@ NSDictionary* DZDevicesInfos()
     return infos;
 }
 
+
+BOOL DeviceScreenISRetain()
+{
+    static BOOL isRetain = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        isRetain = ABS([UIScreen mainScreen].scale - 2.0) < 0.0001;
+    });
+    return isRetain;
+}
 @implementation DZDevices
 
 @end

@@ -32,6 +32,8 @@
     }
     return self;
 }
+
+
 - (instancetype) initWithInitTime:(DZTime *)time
 {
     self = [super init];
@@ -55,7 +57,6 @@
     [self presentViewController:selectVC animated:YES completion:^{
         
     }];
-//    [timeView addDivisionLine:rote withType:type];
 }
 
 - (void)viewDidLoad
@@ -88,7 +89,12 @@
     }
     
     [DZShareAnalysisManager triggleAnaylysisTimeCost];
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissModel];
+}
+
+- (void) dismissModel
+{
+    [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
         
     }];
 }

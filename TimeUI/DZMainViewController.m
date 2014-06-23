@@ -138,6 +138,22 @@
     if (state == DZMainViewStateTop) {
         offset = DZMainStateTopOffSet;
     }
+    
+    if (state == DZMainViewStateMidlle) {
+        NSArray* imges = @[DZCachedImageByName(@"up0"),
+                           DZCachedImageByName(@"up1"),
+                           DZCachedImageByName(@"up2")];
+        _chartsViewController.timeControl.dragItemImageView.animationImages = imges;
+        _chartsViewController.timeControl.dragItemImageView.animationDuration = 1.5;
+        [_chartsViewController.timeControl.dragItemImageView startAnimating];
+    } else {
+        NSArray* imges = @[DZCachedImageByName(@"down0"),
+                           DZCachedImageByName(@"down1"),
+                           DZCachedImageByName(@"down2")];
+        _chartsViewController.timeControl.dragItemImageView.animationImages = imges;
+        _chartsViewController.timeControl.dragItemImageView.animationDuration = 1.5;
+        [_chartsViewController.timeControl.dragItemImageView startAnimating];
+    }
     [self layoutChildViewControllerOffSet:offset Animation:animation];
 }
 - (void) layoutChildViewControllerOffSet:(float)offset Animation:(BOOL)animation
@@ -167,6 +183,11 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    static BOOL isFirst = YES;
+    if (isFirst) {
+        [self setState:DZMainViewStateMidlle animation:NO];
+        isFirst = !isFirst;
+    }
     [[DZNotificationCenter defaultCenter] addObserver:self forKey:DZShareNotificationMessage];
 
 }
