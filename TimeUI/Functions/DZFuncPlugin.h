@@ -7,12 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+
+typedef enum {
+    DZFuncPluginNomarl,
+    DZFuncPluginViewController
+}DZFuncPluginType;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    DZFuncPluginType DecodeIntToFuncPluginType(int i);
+#ifdef __colusplus
+}
+#endif
+
 DEFINE_DZ_EXTERN_STRING(kFuncName);
 DEFINE_DZ_EXTERN_STRING(kFuncClassName);
 DEFINE_DZ_EXTERN_STRING(kFuncDetail);
+DEFINE_DZ_EXTERN_STRING(kFuncType);
 
 @interface DZFuncPlugin : NSObject
 DEFINE_PROPERTY_STRONG_NSString(name);
 DEFINE_PROPERTY_STRONG_NSString(className);
 DEFINE_PROPERTY_STRONG_NSString(detail);
+DEFINE_PROPERTY_ASSIGN(DZFuncPluginType, type);
 @end

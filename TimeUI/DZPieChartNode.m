@@ -22,9 +22,9 @@
     _shapeLayer = [CAShapeLayer layer];
     UIColor* color = [UIColor randomColor];
     _shapeLayer.fillColor = color.CGColor;
-    _shapeLayer.strokeColor = [UIColor blackColor].CGColor;
-    _shapeLayer.lineWidth = 2;
-    _shapeLayer.opacity = 0.5f;
+    _shapeLayer.strokeColor = [UIColor clearColor].CGColor;
+    _shapeLayer.lineWidth = 0;
+    _shapeLayer.opacity = 1.0f;
     return self;
 }
 - (NSString*) key

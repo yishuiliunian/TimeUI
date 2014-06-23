@@ -64,6 +64,10 @@ static NSString* kDZUserFunctions = @"kDZUserFunctions";
 
 - (NSArray*) functions
 {
+    NSMutableArray* arr = [NSMutableArray new];
+    [arr addObjectsFromArray:_allFunctions];
+    [arr addObjectsFromArray:_allFunctions];
+    return arr;
     return [_allFunctions copy];
 }
 

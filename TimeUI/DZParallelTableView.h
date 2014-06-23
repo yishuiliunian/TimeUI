@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DZParallelTableViewCell.h"
 @interface DZParallelTableView : UITableView
 
 @end

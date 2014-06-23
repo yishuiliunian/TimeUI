@@ -21,7 +21,7 @@
 #import "UIViewController+PullDown.h"
 #import "DZPullDownViewController.h"
 #import "DZSplitChartViewController.h"
-
+#import "DZFuncsViewController.h"
 #define DZMainStateMiddleOffset (CGRectGetViewControllerHeight/2)
 
 #define DZMainStateTopOffSet 20
@@ -235,7 +235,7 @@
 - (void) actionView:(DZActionView *)actionView didHideWithTapAtIndex:(NSInteger)index item:(DZActionItemView *)item
 {
     if (index == 1) {
-        DZSplitChartViewController* splitVC = [DZSplitChartViewController new];
+        DZFuncsViewController* splitVC = [DZFuncsViewController new];
         [self.pdSuperViewController pdPresentViewController:[[UINavigationController alloc] initWithRootViewController:splitVC]
                                                    animated:YES
                                                  completion:^{
@@ -257,8 +257,8 @@
     } else if (index == 3)
     {
         UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZSettingsViewController new]];
-        [self presentViewController:navigationVC animated:YES completion:^{
-            NSLog(@"self.%@",self.globalActionView);
+        [self.pdSuperViewController pdPresentViewController:navigationVC animated:YES completion:^{
+            
         }];
     }
 }

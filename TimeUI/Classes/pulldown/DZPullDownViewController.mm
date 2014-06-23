@@ -99,12 +99,24 @@ public:    CGPoint beginPoint;
 {
     NSMutableArray* _pdChildViewControllers;
     DZBookMove _moveData;
+    UIViewController* _rootViewController;
 }
 DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
 
 @end
 
 @implementation DZPullDownViewController
+
+- (instancetype) initWithRootViewController:(UIViewController *)vc
+{
+    self = [self initWithNibName:nil bundle:nil];
+    if (!self) {
+        return self;
+    }
+    
+    _rootViewController = vc;
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -113,9 +125,6 @@ DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
         // Custom initialization
         _pdChildViewControllers = [NSMutableArray new];
         
-        UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPerformPanGestureRecoginzer:)];
-        pan.delegate = self;
-        [self.view addGestureRecognizer:pan];
     }
     return self;
 }
@@ -128,6 +137,18 @@ DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    {
+        UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPerformPanGestureRecoginzer:)];
+        pan.delegate = self;
+        [self.view addGestureRecognizer:pan];
+    }
+    if (_rootViewController) {
+        [_rootViewController willMoveToParentViewController:self];
+        [self addChildViewController:_rootViewController];
+        [self.view insertSubview:_rootViewController.view atIndex:0];
+        _rootViewController.view.frame = self.view.bounds;
+        [_rootViewController didMoveToParentViewController:self];
+    }
 	// Do any additional setup after loading the view.
 }
 

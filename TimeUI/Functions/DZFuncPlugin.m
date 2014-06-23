@@ -8,9 +8,22 @@
 
 #import "DZFuncPlugin.h"
 
+DZFuncPluginType DecodeIntToFuncPluginType(int i)
+{
+    switch (i) {
+        case DZFuncPluginNomarl:
+            return DZFuncPluginNomarl;
+        case DZFuncPluginViewController:
+            return DZFuncPluginViewController;
+        default:
+            return DZFuncPluginNomarl;
+    }
+}
+
 INIT_DZ_EXTERN_STRING(kFuncName , name);
 INIT_DZ_EXTERN_STRING(kFuncClassName , class)
 INIT_DZ_EXTERN_STRING(kFuncDetail, detail)
+INIT_DZ_EXTERN_STRING(kFuncType, type);
 
 @implementation DZFuncPlugin
 - (void) setValue:(id)value forKey:(NSString *)key
@@ -21,6 +34,9 @@ INIT_DZ_EXTERN_STRING(kFuncDetail, detail)
         _detail = value;
     } else if ([key isEqualToString:kFuncClassName]) {
         _className = value;
+    } else if ([key isEqualToString:kFuncType])
+    {
+        _type = DecodeIntToFuncPluginType([value integerValue]);
     }
 }
 
@@ -33,7 +49,10 @@ INIT_DZ_EXTERN_STRING(kFuncDetail, detail)
         return _className;
     } else if ([key isEqualToString:kFuncDetail]) {
         return _detail;
-    } else
+    } else if ([key isEqualToString:kFuncType]) {
+        return @(_type);
+    }
+    else
     {
         return [super valueForKey:key];
     }

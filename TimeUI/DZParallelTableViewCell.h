@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DZParallelTableViewCell : UITableViewCell
-
+DEFINE_PROPERTY_STRONG_UIImageView(backgroudImageView);
+DEFINE_PROPERTY_ASSIGN_Float(offSet);
 @end

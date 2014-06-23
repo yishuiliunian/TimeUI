@@ -34,7 +34,11 @@
     [super layoutSubviews];
     NSArray* visibleCells = [self visibleCells];
     for (UITableViewCell* cell in visibleCells) {
-        CGFloat offsetRate = (CGRectGetMinY(cell.frame) - self.contentOffset.y) - CGRectGetHeight(self.frame)/2;
+        CGFloat offsetRate = (CGRectGetMinY(cell.frame) - self.contentOffset.y);
+        if ([cell isKindOfClass:[DZParallelTableViewCell class]]) {
+            DZParallelTableViewCell* parallerCell = (DZParallelTableViewCell*)cell;
+            parallerCell.offSet = offsetRate - CGRectGetHeight(self.bounds)/2;
+        }
     }
 }
 @end

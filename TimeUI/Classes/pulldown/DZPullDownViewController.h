@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+PullDown.h"
-@interface DZPullDownViewController : UINavigationController
+@interface DZPullDownViewController :  UIViewController
+- (instancetype) initWithRootViewController:(UIViewController*)vc;
 - (void) pdPresentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion;
 - (void) pdPopViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion;
 @end

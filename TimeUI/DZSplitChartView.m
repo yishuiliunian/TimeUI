@@ -63,7 +63,12 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     DZPieChartNode* pieChartNode = [[DZPieChartNode alloc] initWithChartNode:node];
     [_nodes addObject:pieChartNode];
     [self.layer addSublayer:pieChartNode.shapeLayer];
-    _colorMap[node.identify] = [UIColor colorWithCGColor:pieChartNode.shapeLayer.fillColor];
+    if (_colorMap[node.key]) {
+        pieChartNode.shapeLayer.fillColor = [_colorMap[node.key] CGColor];
+    } else
+    {
+        _colorMap[node.key] = [UIColor colorWithCGColor:pieChartNode.shapeLayer.fillColor];
+    }
     [self setNeedsDisplay];
 }
 
@@ -186,17 +191,35 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     
     int64_t max = 0;
     int64_t sum = 0;
+    
+    NSMutableDictionary* trimNodesMap = [NSMutableDictionary new];
     for (DZPieChartNode* node  in _nodes) {
+        DZPieChartNode* trimNode = node;
+        if (trimNodesMap[node.key]) {
+            trimNode = trimNodesMap[node.key];
+            trimNode.chartNode.value += node.value;
+        } else
+        {
+            trimNodesMap[node.key] = node;
+        }
+    }
+    NSArray* trimNodes = [trimNodesMap allValues];
+    trimNodes = [trimNodes sortedArrayUsingComparator:^NSComparisonResult(DZPieChartNode*  obj1, DZPieChartNode* obj2) {
+        return obj1.chartNode.value < obj2.chartNode.value;
+    }];
+    
+    
+    for (DZPieChartNode* node  in trimNodes) {
         max = node.value > max ? node.value : max;
         sum += node.value;
     }
     
-    for (int i = 0; i < _nodes.count; i++) {
-        DZPieChartNode* node = _nodes[i];
+    for (int i = 0; i < trimNodes.count; i++) {
+        DZPieChartNode* node = trimNodes[i];
         CGRect textRect = CGRectMake(10, startY, outerRedius*2, 30);
         DZNoteLayer* layer = [DZNoteLayer layer];
         layer.textLayer.string = node.key;
-        layer.colorLayer.backgroundColor = [_colorMap[node.chartNode.identify] CGColor];
+        layer.colorLayer.backgroundColor = [_colorMap[node.chartNode.key] CGColor];
         layer.frame = textRect;
         [_allTextLayers addObject:layer];
         [self.layer addSublayer:layer];
@@ -205,7 +228,7 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     }
     
     //
-    self.contentSize = CGSizeMake(CGRectGetWidth(self.frame), centerPoint.y + outerRedius + 10 + kTextLayerHeight * _nodes.count);
+    self.contentSize = CGSizeMake(CGRectGetWidth(self.frame), centerPoint.y + outerRedius + 10 + kTextLayerHeight * trimNodes.count);
     
     CGRect zeroHourRect = CGRectMake(centerPoint.x - 30, centerPoint.y - outerRedius - 20, 60, 20);
     _zeroHourLabel.frame = zeroHourRect;

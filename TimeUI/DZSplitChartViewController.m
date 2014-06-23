@@ -106,13 +106,14 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareCurrent)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
     
 }
 
 - (void) dismiss
 {
-    [self.pdSuperViewController popViewControllerAnimated:YES];
+    [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 - (void) shareCurrent
 {

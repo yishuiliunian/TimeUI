@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DZFuncPlugin.h"
 #define DZFunctionsDefaultManager [DZFunctionsManager defaultManager]
 
 @interface DZFunctionsManager : NSObject
