@@ -122,6 +122,8 @@
         if (!ChangeTitle(60*60*24, 60*60, @"小时")) {
             ChangeTitle(60*60 , 60 ,@"分钟");
         }
+    } else {
+        _yTitle = @"秒";
     }
     max = MAX(10, max);
     int64_t count            = _values.count;
