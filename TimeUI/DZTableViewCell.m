@@ -37,12 +37,12 @@
         [self setSelectedBackgroudView:a];
         
         //
-        _panGestureRcognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestureRecognizer:)];
-        _panGestureRcognizer.maximumNumberOfTouches = 1;
-        _panGestureRcognizer.minimumNumberOfTouches = 1;
-        _panGestureRcognizer.delegate = self;
-        
-        [self addGestureRecognizer:_panGestureRcognizer];
+//        _panGestureRcognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestureRecognizer:)];
+//        _panGestureRcognizer.maximumNumberOfTouches = 1;
+//        _panGestureRcognizer.minimumNumberOfTouches = 1;
+//        _panGestureRcognizer.delegate = self;
+//        
+//        [self addGestureRecognizer:_panGestureRcognizer];
         
         //
         DZCellActionsView* actionView = [[DZCellActionsView alloc] init];
@@ -61,24 +61,18 @@
     DDLogDebug(@"btn %@ tag %d",btn, btn.tag);
 }
 
-- (BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+- (void) setContentViewOffSet:(CGFloat)offset animation:(BOOL)animation
 {
-    if ([self.superview isKindOfClass:[UIScrollView class]]) {
-        UIScrollView* scrollView = (UIScrollView*)self.superview;
-        return ! scrollView.isDragging;
-    }
-    return YES;
-}
+    void(^AnimationBlock)(void) = ^(void) {
+        _contentView.frame = CGRectOffset(self.bounds, offset, 0);
 
-- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewDelayedTouchesBeganGestureRecognizer")]) {
-        return NO;
+    };
+    if (animation) {
+        [UIView animateWithDuration:DZAnimationDefualtDuration animations:AnimationBlock];
+    } else {
+        AnimationBlock();
     }
-    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewPanGestureRecognizer")]) {
-        return YES;
-    }
-    return YES;
+    [_actionsView setEableItemWithMaskOffSet:offset];
 }
 
 - (void) handlePanGestureRecognizer:(UIPanGestureRecognizer*)prcg
@@ -98,8 +92,7 @@
     else if (prcg.state == UIGestureRecognizerStateChanged)
     {
         float offset  = point.x - _startPoint.x;
-        _contentView.frame = CGRectOffset(self.bounds, offset, 0);
-        [_actionsView setEableItemWithMaskOffSet:offset];
+
     }
     else if (prcg.state == UIGestureRecognizerStateCancelled)
     {
@@ -107,9 +100,7 @@
     }
     else if (prcg.state == UIGestureRecognizerStateEnded)
     {
-        if (_actionsView.abledItem) {
-            [_actionsView.abledItem sendActionsForControlEvents:UIControlEventAllEvents];
-        }
+
         _contentView.frame = self.bounds;
     }
 }

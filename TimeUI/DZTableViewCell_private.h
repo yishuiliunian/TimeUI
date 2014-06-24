@@ -12,4 +12,5 @@
 @property (nonatomic, strong) NSString* identifiy;
 @property (nonatomic, assign) NSInteger index;
 - (void) prepareForReused;
+- (void) setContentViewOffSet:(CGFloat)offset animation:(BOOL)animation;
 @end

@@ -21,8 +21,6 @@ CGVector __CGVectorUnit()
 
 #define CGVectorUint  __CGVectorUnit()
 
-typedef float CGAngle;
-typedef float CGDegree;
 
 
 CGVector CGVectorWithPoints(CGPoint start, CGPoint end)

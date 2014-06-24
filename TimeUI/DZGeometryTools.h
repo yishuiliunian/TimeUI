@@ -34,6 +34,7 @@ extern "C"
      *  @param rect 要打印的CGRect
      */
     void CGPrintRect(CGRect rect );
+    void CGPrintPoint(CGPoint point);
     float CGDistanceBetweenPoints(CGPoint p1, CGPoint p2);
     CGRect CGRectCenter(CGRect rect, CGSize size);
     CGPoint CGPointCenterRect(CGRect rect);

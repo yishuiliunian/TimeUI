@@ -15,6 +15,9 @@ typedef enum {
     DZDirectionDown
 }DZDirection;
 
+typedef float CGAngle;
+typedef float CGDegree;
+
 
 #ifdef __cplusplus
 extern "C"
@@ -23,6 +26,8 @@ extern "C"
     CGVector CGVectorWithPoints(CGPoint start, CGPoint end);
     DZDirection DZDirectionWithPoints(CGPoint start, CGPoint end);
     DZDirection DZDirectionVerticalityWithPoints(CGPoint start, CGPoint end);
+    CGAngle CGAngleWithPoints(CGPoint start, CGPoint end);
+    DZDirection DZDirectionWithPoints(CGPoint start, CGPoint end);
 #ifdef __cplusplus
 }
 #endif

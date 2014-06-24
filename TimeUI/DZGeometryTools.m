@@ -100,6 +100,9 @@ void CGPrintRect(CGRect rect )
     NSLog(@"rec--|origin x:%f |y:%f |width:%f | height:%f", CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetWidth(rect), CGRectGetHeight(rect));
 }
 
+void CGPrintPoint(CGPoint point) {
+    DDLogCInfo(@"the point x:%f y:%f",point.x, point.y);
+}
 CGRect CGRectExpandPoint(CGPoint pint , CGSize aimSize)
 {
     return CGRectMake(pint.x - aimSize.width/2, pint.y - aimSize.height/2, aimSize.width, aimSize.height);

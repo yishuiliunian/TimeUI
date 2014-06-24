@@ -13,6 +13,7 @@
 #import "UIColor+DZColor.h"
 #import "DZSawtoothView.h"
 #import <HexColor.h>
+#import "DZDirection.h"
 #define kDZTableViewDefaultHeight 44.0f
 
 
@@ -94,7 +95,7 @@ typedef struct {
 typedef map<int, float> DZCellYoffsetMap;
 typedef vector<float>   DZCellHeightVector;
 
-@interface DZTableView ()
+@interface DZTableView () <UIGestureRecognizerDelegate>
 {
     DZTableDataSourceResponse _dataSourceReponse;
     NSMutableSet*  _cacheCells;
@@ -111,6 +112,12 @@ typedef vector<float>   DZCellHeightVector;
     
     //
     NSDictionary* _cellColorsDic;
+    
+    //
+    UIPanGestureRecognizer* _panCellGestureRecognizer;
+    CGPoint _panPoint;
+    
+    DZTableViewCell* _panGestureActionCell;
 }
 
 @end
@@ -162,24 +169,89 @@ typedef vector<float>   DZCellHeightVector;
 
 - (void) commonInit
 {
+    // Initialization code
+    _visibleCellsMap = [NSMutableDictionary new];
+    _cacheCells = [NSMutableSet new];
+    [self addTapTarget:self selector:@selector(handleTapGestrue:)];
+    _selectedIndex = NSNotFound;
+    [self setGradientColor:[UIColor blueColor]];
     _cellColorsDic = @{@(0): [UIColor colorWithHexString:@"#4859ad"],
                        @(1): [UIColor colorWithHexString:@"#bd64d3"],
                         @(2): [UIColor colorWithHexString:@"#2ea9df"],
                         @(3): [UIColor colorWithHexString:@"76c61e"],
                         @(4): [UIColor colorWithHexString:@"ffc000"],
                        @(5): [UIColor colorWithHexString:@"#ffb19b"]};
+    
+    
+    UIPanGestureRecognizer* panGestrue = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleCellPanGesture:)];
+    panGestrue.delegate = self;
+    _panCellGestureRecognizer = panGestrue;
+    [self addGestureRecognizer:panGestrue];
+    NSArray* allGestures = self.gestureRecognizers;
+    
+    for (UIGestureRecognizer* eachG in allGestures) {
+//        if ([NSStringFromClass(eachG.class) containsString:@"UIScrollViewDelayedTouchesBeganGestureRecognizer"]) {
+//            [panGestrue requireGestureRecognizerToFail:eachG];
+        
+//            }
+    }
+}
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    BOOL sSuppot = [super respondsToSelector:@selector(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)];
+
+    if (_panCellGestureRecognizer == gestureRecognizer ) {
+        return YES;
+    }
+    return NO;
+}
+- (void) handleCellPanGesture:(UIPanGestureRecognizer*)panGRST
+{
+    CGPoint currentPoint = [panGRST locationInView:self];
+    if (panGRST.state == UIGestureRecognizerStateBegan) {
+        _panPoint = currentPoint;
+    } else if (panGRST.state == UIGestureRecognizerStateChanged) {
+        CGAngle angle = CGAngleWithPoints(_panPoint, currentPoint);
+        if (self.dragging) {
+            return;
+        }
+        if(( ABS(angle) < 10 || ABS(180 - angle) < 10) && ABS(_panPoint.x - currentPoint.x) > 30 ){
+            self.scrollEnabled = NO;
+            CGPrintPoint(currentPoint);
+            if (!_panGestureActionCell) {
+                _panGestureActionCell = [self _cellAtPoint:currentPoint];
+            }
+        }
+        if (_panGestureActionCell) {
+            [_panGestureActionCell setContentViewOffSet:currentPoint.x - _panPoint.x animation:YES];
+        }
+    } else if (panGRST.state == UIGestureRecognizerStateEnded) {
+        self.scrollEnabled = YES;
+        if (_panGestureActionCell.actionsView.abledItem) {
+            [_panGestureActionCell.actionsView.abledItem sendActionsForControlEvents:UIControlEventAllEvents];
+        }
+        [_panGestureActionCell setContentViewOffSet:0 animation:YES];
+        _panGestureActionCell = nil;
+    }
+}
+
+- (DZTableViewCell*) _cellAtPoint:(CGPoint)point
+{
+    NSArray* visibleCells = [self.visibleCells copy];
+    for (DZTableViewCell* cell in visibleCells) {
+        if (CGRectContainsPoint(cell.frame, point)) {
+            return cell;
+        }
+    }
+    return nil;
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        _visibleCellsMap = [NSMutableDictionary new];
-        _cacheCells = [NSMutableSet new];
-        [self addTapTarget:self selector:@selector(handleTapGestrue:)];
-        _selectedIndex = NSNotFound;
-        [self setGradientColor:[UIColor blueColor]];
+
         //
         [self commonInit];
     }
