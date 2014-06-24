@@ -504,6 +504,7 @@ typedef vector<float>   DZCellHeightVector;
         if ([_bottomView isKindOfClass:[DZSawtoothView class]]) {
             
 //            UIColor* color = UIColorFromCColorModel(_beginGradientColor + _preGradientPiceColor*(_numberOfCells));
+            
             UIColor* color = _cellColorsDic[@((_numberOfCells -1)%_cellColorsDic.count)];
             [(DZSawtoothView*)_bottomView setColor:color];
         }
