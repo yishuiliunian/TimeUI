@@ -141,7 +141,7 @@
 + (NSArray*) chartNodes
 {
     DZ24Analysis* ana = [DZ24Analysis new];
-    NSArray* array= [ana loadTypes:[DZActiveTimeDataBase allTimeTypes] times:[DZActiveTimeDataBase allTimes]];
+    NSArray* array= [ana loadTypes:[DZActiveTimeDataBase allUnFinishedTimeTypes] times:[DZActiveTimeDataBase allTimes]];
     
     NSMutableArray* allNodes = [NSMutableArray new];
     for (DZ24Node* node in array) {

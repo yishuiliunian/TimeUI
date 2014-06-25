@@ -55,6 +55,8 @@
     tooth.color = [UIColor lightGrayColor];
     
     [self reloadAllData];
+    
+    
 }
 
 - (void) printTypes
@@ -96,7 +98,7 @@
 }
 - (void) reloadAllData
 {
-    _timeTypes = [[DZActiveTimeDataBase allTimeTypes] mutableCopy];
+    _timeTypes = [[DZActiveTimeDataBase allUnFinishedTimeTypes] mutableCopy];
     [self sortTypes];
     
     [self.tableView reloadData];

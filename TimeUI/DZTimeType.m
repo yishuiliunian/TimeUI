@@ -22,7 +22,7 @@
     _detail = @"";
     _imageAvatarGuid = @"";
     _isFinished = NO;
-    _localChanged = YES;
+    _localChanged = NO;
 }
 
 - (NSString*) userGuid
@@ -33,9 +33,9 @@
 {
     self = [super initGenGUID];
     if (self) {
+        [self commonInit];
         _createDate = [NSDate date];
         _localChanged = YES;
-        [self commonInit];
     }
     return self;
 }

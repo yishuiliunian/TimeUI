@@ -67,8 +67,8 @@
 - (void) handleActionEndWithError:(NSError*)error
 {
     if (!error) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            DZHUDHide
+        [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
+            
         }];
     } else {
         [DZMessageShareCenter showErrorMessage:error.localizedDescription];

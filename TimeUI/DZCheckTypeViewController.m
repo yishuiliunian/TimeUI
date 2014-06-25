@@ -46,7 +46,9 @@ DEFINE_NSString(active_type);
 - (void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self.tableView manuSelectedRowAt:self.tableView.selectedIndex];
+    if (self.tableView.selectedIndex < _timeTypes.count) {
+        [self.tableView manuSelectedRowAt:self.tableView.selectedIndex];
+    }
 }
 - (void)didReceiveMemoryWarning
 {
@@ -62,16 +64,18 @@ DEFINE_NSString(active_type);
 - (void) reloadAllData
 {
     [super reloadAllData];
-    NSString* typeGuid = [[DZUserDataManager shareManager] activeUserDataForKey:kDZactive_type];
-    NSInteger index = 0;
-    for (int i = 0; i < _timeTypes.count; i++) {
-        DZTimeType* type = _timeTypes[i];
-        if ([type.guid isEqualToString:typeGuid]) {
-            index = i;
-            break;
+    if (_timeTypes.count > 0) {
+        NSString* typeGuid = [[DZUserDataManager shareManager] activeUserDataForKey:kDZactive_type];
+        NSInteger index = 0;
+        for (int i = 0; i < _timeTypes.count; i++) {
+            DZTimeType* type = _timeTypes[i];
+            if ([type.guid isEqualToString:typeGuid]) {
+                index = i;
+                break;
+            }
         }
+        [self.tableView manuSelectedRowAt:index];
     }
-    [self.tableView manuSelectedRowAt:index];
 }
 - (void) dzTableView:(DZTableView *)tableView didTapAtRow:(NSInteger)row
 {

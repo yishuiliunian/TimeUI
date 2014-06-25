@@ -128,6 +128,7 @@ typedef vector<float>   DZCellHeightVector;
 
 - (void) manuSelectedRowAt:(NSInteger)row
 {
+    NSAssert(row >= 0 && row < _numberOfCells, @"手动选择cell时 超出范围，请检查");
     DZTableViewCell* cell = [self _cellForRow:row];
     NSArray* cells = _visibleCellsMap.allValues;
     for (DZTableViewCell* each in cells) {

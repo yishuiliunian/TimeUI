@@ -36,7 +36,7 @@
         
         _messageLabel = [UILabel new];
         [self addSubview:_messageLabel];
-        
+        _messageLabel.font = [UIFont systemFontOfSize:13];
         
         [[DZNotificationCenter defaultCenter] addObserver:self forKey:kDZSyncContextChangedMessage];
         [self showLastSyncDate];
@@ -48,7 +48,7 @@
 {
     NSDate* lastDate = DZDefaultContextManager.lastSyncDate;
     if (!lastDate) {
-        _messageLabel.text = @"亲，您从来都没有通不过啊！！";
+        _messageLabel.text = @"亲，您从来都没有同步过啊！！";
     } else {
         _messageLabel.text = [NSString stringWithFormat:@"上一次同步：%@", [lastDate  localDescription]];
     }
@@ -124,9 +124,7 @@
     BOOL isSyncing = bDZSyncContextIsSyncing;
     [self configureButtonWithSyncing:isSyncing];
     _actionButton.frame = CGRectMake(10, 0, 40, CGRectGetHeight(self.frame));
-    if (!isSyncing) {
-        _messageLabel.frame = CGRectMake(50, 0, CGRectGetWidth(self.frame)-60, CGRectGetHeight(self.frame));
-    }
+    _messageLabel.frame = CGRectMake(CGRectGetMaxX(_actionButton.frame) + 20, 0, CGRectGetWidth(self.frame)-20 - CGRectGetMaxX(_actionButton.frame), CGRectGetHeight(self.frame));
 }
 /*
 // Only override drawRect: if you perform custom drawing.

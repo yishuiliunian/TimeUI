@@ -37,7 +37,6 @@
 - (void) handleActionWithEmail:(NSString *)email password:(NSString *)password
 {
     
-    DZHUDShow
     [[DZTokenManager shareManager] appleToken:email password:password response:^(NSString *token, NSString *userGuid, NSError *error) {
         if (error) {
         }

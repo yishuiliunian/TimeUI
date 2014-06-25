@@ -93,7 +93,11 @@
         if (token) {
             if(![self updateToken:token error:&error])
             {
+                NSError* error = nil;
                 token = AppleNewToken(error);
+                if (error) {
+                    DDLogError(@"获取新的token 失败%@",error);
+                }
             }
         }
         else

@@ -89,6 +89,9 @@
 
 - (void) showAnalisyOfType:(DZTimeType*)type
 {
+    if (!type) {
+        return;
+    }
     NSArray* array =  [DZActiveTimeDataBase timesInOneWeakByType:type];
     NSArray* nodes = [self parseOnweakTimeData:array];
     _lineChart.values = nodes;
@@ -97,7 +100,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    DZTimeType* type = [DZActiveTimeDataBase allTimeTypes].firstObject;
+    DZTimeType* type = [DZActiveTimeDataBase allUnFinishedTimeTypes].firstObject;
     [self showAnalisyOfType:type];
 	// Do any additional setup after loading the view.
 }

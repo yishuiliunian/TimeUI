@@ -77,6 +77,7 @@ static float const DZDefaultRequestCount = 100;
                                                  else
                                                  {
                                                      DZSyncContextSet(DZSyncContextNomal);
+                                                     DZDefaultContextManager.lastSyncDate = [NSDate date];
                                                  }
                                              }
                                              else
@@ -197,6 +198,8 @@ static float const DZDefaultRequestCount = 100;
         NSDictionary* jsonType = [type toJsonObject];
         id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateType token:_token bodyDatas:jsonType error:error];
         NSLog(@"%@",sobj);
+        type.localChanged = NO;
+        [DZActiveTimeDataBase updateTimeType:type];
         if (*error) {
             return NO;
         }
@@ -213,6 +216,10 @@ static float const DZDefaultRequestCount = 100;
         if (![type decodeFromJSONObject:jsonDic error:&error]) {
             return error;
         }
+         DZTimeType* localType = [_database timeTypByGUID:type.guid];
+         if (localType.localChanged) {
+             return nil;
+         }
         if (![_database updateTimeType:type]) {
             return _database.lastError;
         }

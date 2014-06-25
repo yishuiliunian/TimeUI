@@ -25,6 +25,7 @@
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy;
 - (DZTimeType*) timeTypByGUID:(NSString*)guid;
 - (NSArray*) allTimeTypes;
+- (NSArray*) allUnFinishedTimeTypes;
 - (NSArray*) allChangedTimes;
 - (BOOL) setTime:(DZTime*)time localchanged:(BOOL)localchanged;
 

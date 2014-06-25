@@ -239,9 +239,8 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
         type.localChanged = [result boolForColumn:kDZ_T_Type_C_LocalChanged];
         type.otherInfos = [result stringForColumn:kDZ_T_Type_C_Other_Infos];
         type.userGuid = self.userGuid;
-        if (!type.isFinished) {
-            [types addObject:type];
-        }
+
+        [types addObject:type];
     }
     [result close];
     return types;
@@ -255,7 +254,8 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
 {
     NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_GUID] decorate:Nil];
     FMResultSet* re = [_dataBase executeQuery:sql withArgumentsInArray:@[guid]];
-    return [self timeTypeArrayFromFMResult:re].lastObject;
+    NSArray* array = [self timeTypeArrayFromFMResult:re];
+    return array.lastObject;
 }
 
 - (DZTimeType*) tiemTypeByIdentifiy:(NSString*)identifiy
@@ -271,6 +271,17 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     return [self timeTypeArrayFromSQL:sql];
 }
 
+- (NSArray*) allUnFinishedTimeTypes
+{
+    NSArray* array = [self allTimeTypes];
+    NSMutableArray* unFinishedArray = [NSMutableArray new];
+    for (DZTimeType* type in array) {
+        if (!type.isFinished) {
+            [unFinishedArray addObject:type];
+        }
+    }
+    return unFinishedArray;
+}
 - (NSArray*) allLocalChangedTypes
 {
     NSString* sql = [NSString selecteSql:kDZTableType whereArray:@[kDZ_T_Type_C_LocalChanged] decorate:nil];
