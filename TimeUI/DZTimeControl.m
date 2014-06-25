@@ -48,8 +48,6 @@ static float const kDefaultDragItemHeight = 40;
     INIT_SUBVIEW_UIButton(_dragBackgroundImageView, _leftButton);
     INIT_SUBVIEW_UIButton(_dragBackgroundImageView, _rightButton);
     
-    _leftButton.backgroundColor = [UIColor redColor];
-    _rightButton.backgroundColor = [UIColor blueColor];
     
     _counterLabel = [[DZTimeCountLabel alloc] init];
     [_labelsBackgroundImageView addSubview:_counterLabel];

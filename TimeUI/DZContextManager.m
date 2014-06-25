@@ -41,12 +41,7 @@
 - (NSDate*) lastSyncDate
 {
     if (!_lastSyncDate) {
-        NSDate* date = [[DZUserDataManager shareManager] activeUserDataForKey:@"lastSyncDate"];
-        if (!date) {
-            date = [NSDate date];
-            [self setLastSyncDate:date];
-            return date;
-        }
+        _lastSyncDate = [[DZUserDataManager shareManager] activeUserDataForKey:@"lastSyncDate"];
     }
     return _lastSyncDate;
 }

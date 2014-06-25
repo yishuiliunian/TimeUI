@@ -76,6 +76,7 @@
     
     _panGestureRecognizer.delegate = self;
     [_chartsViewController.timeControl.leftButton addTapTarget:self selector:@selector(didGetShareMessage)];
+    [_chartsViewController.timeControl.leftButton setImage:DZCachedImageByName(@"more") forState:UIControlStateNormal];
 	// Do any additional setup after loading the view.
 }
 
@@ -219,7 +220,6 @@
     DZSyncActionItemView* syncItem = [[DZSyncActionItemView alloc] init];
     syncItem.height = 40;
     syncItem.accountDelegate = self;
-    syncItem.backgroundColor = [UIColor redColor];
     
     
     DZLabelActionItem* historyItem = [[DZLabelActionItem alloc] init];
@@ -290,7 +290,7 @@
     [actionView hideWithAnimation:YES];
     
     DZLoginViewController * loginVC = [[DZLoginViewController alloc] init];
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginVC] animated:YES completion:^{
+    [self.pdSuperViewController pdPresentViewController:[[UINavigationController alloc] initWithRootViewController:loginVC] animated:YES completion:^{
         
     }];
 }
@@ -300,7 +300,7 @@
     DZActionView* actionView = itemView.dzActionView;
     [actionView hideWithAnimation:YES];
     DZRegisterViewController* registerVC = [[DZRegisterViewController alloc] init];
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:registerVC] animated:YES completion:^{
+    [self.pdSuperViewController pdPresentViewController:[[UINavigationController alloc] initWithRootViewController:registerVC] animated:YES completion:^{
         
     }];
 }

@@ -12,6 +12,8 @@
 #import "DZUserDataManager.h"
 
 
+static NSString* const kDZAccountIsLogin = @"islogin";
+
 static NSString* const kDZDefaultAccountGUID = @"b58a76b4-a3e5-47dd-0d1f-34bed9f7602f";
 static NSString* const kDZDefaultAccountEmail = @"aasddddss1w@1.com";
 static NSString* const kDZdefaultAccountPassword = @"1";
@@ -55,18 +57,18 @@ static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accoun
     [SSKeychain setPassword:_password forService:kDZCatchITimeService account:_identifiy];
     [SSKeychain setPassword:_email forService:kDZCatchITimeServiceAccountData account:_identifiy];
     [SSKeychain setPassword:_identifiy forService:kDZCatchITimeServiceAccountData account:_email];
-    [[DZUserDataManager shareManager] setUserData:@(_isLogin) forKey:@"islogin" user:_identifiy];
+    [[DZUserDataManager shareManager] setUserData:@(_isLogin) forKey:kDZAccountIsLogin user:_identifiy];
 }
 
 - (void) setIsLogin:(BOOL)isLogin
 {
     _isLogin = isLogin;
-    [[DZUserDataManager shareManager] setUserData:@(isLogin) forKey:@"islogin" user:_identifiy];
+    [[DZUserDataManager shareManager] setUserData:@(isLogin) forKey:kDZAccountIsLogin user:_identifiy];
 }
 
 - (BOOL) isLogin
 {
-    _isLogin = [[[DZUserDataManager shareManager] userDataForKey:@"islogin" user:_identifiy] boolValue];
+    _isLogin = [[[DZUserDataManager shareManager] userDataForKey:kDZAccountIsLogin user:_identifiy] boolValue];
     return _isLogin;
 }
 
@@ -81,7 +83,6 @@ static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accoun
     _identifiy = [SSKeychain passwordForService:kDZCatchITimeServiceAccountData account:_email];
     return self;
 }
-
 
 - (NSString*) timeDatabasePath
 {

@@ -42,6 +42,7 @@
 #import <TencentOpenAPI/TencentApiInterface.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "WXApi.h"
+#import "DZSyncManager.h"
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
 @interface DZAppConfigure () <DZNotificationInitDelegaete, DZSyncContextChangedInterface>
@@ -140,7 +141,9 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
             DZAccount* old = userInfo[@"old"];
             DZAccount* other = userInfo[@"new"];
             if ([observer respondsToSelector:@selector(didChangedAccount:toAccount:)]) {
-                [observer didChangedAccount:old toAccount:other];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer didChangedAccount:old toAccount:other];
+                });
             }
         };
     } else if ([message isEqualToString:kDZNotification_ServerHostDidChanged])
@@ -148,7 +151,10 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
         return ^(id observer, NSDictionary* userInfo)
         {
             if ([observer respondsToSelector:@selector(serverHostDidChanged)]) {
-                [observer serverHostDidChanged];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer serverHostDidChanged];
+
+                });
             }
         };
     } else if ([message isEqualToString:kDZNotification_TypesChanged])
@@ -160,12 +166,18 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
             
             if ([method isEqualToString:kDZTypesChangedAdd]) {
                 if ([observer respondsToSelector:@selector(handleMessageDidAddType:)]) {
-                    [observer handleMessageDidAddType:type];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [observer handleMessageDidAddType:type];
+
+                    });
                 }
             } else if ([method isEqualToString:kDZTypesChangedRemove])
             {
                 if ([observer respondsToSelector:@selector(handleMessageDidRemoveType:)]) {
-                    [observer handleMessageDidRemoveType:type];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [observer handleMessageDidRemoveType:type];
+
+                    });
                 }
             }
             
@@ -175,7 +187,10 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
         return ^(id observer, NSDictionary* userInfo)
         {
             if ([observer respondsToSelector:@selector(globalDidReloadTypes)]) {
-                [observer globalDidReloadTypes];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer globalDidReloadTypes];
+
+                });
             }
         };
     }
@@ -217,16 +232,15 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
         }
         [[DZUserDataManager shareManager] setActiveUserData:@(YES) forKey:key];
     }
-
     //
     [DZAppConfigure initNotifications];
     [self initThirdTools];
     [DZThemeManager shareManager];
     
 
-    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[DZLocalNotificationCenter defaultCenter] repostAllNotifications];
+        DZSyncShareManager;
     });
     [self initShareSDK];
     return YES;

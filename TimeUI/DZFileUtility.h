@@ -13,4 +13,6 @@
 + (NSString*) userDocumentsPath:(NSString*)userId;
 + (BOOL) ensurePathExists:(NSString*)path;
 + (id) jsonObjectFromResourcesByName:(NSString *)name type:(NSString*)type error:(NSError *__autoreleasing *)error;
+
++ (BOOL) removeFile:(NSString*)path error:(NSError* __autoreleasing*)error;
 @end

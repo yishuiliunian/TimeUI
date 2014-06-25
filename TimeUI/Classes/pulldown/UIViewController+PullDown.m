@@ -37,5 +37,15 @@ static void const * kPullDonwViewController = &kPullDonwViewController;
     }
     return nil;
 }
-
+- (void) backToPreviousViewController
+{
+    [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+- (void) addLeftBackItem
+{
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
+    self.navigationItem.leftBarButtonItem = item;
+}
 @end

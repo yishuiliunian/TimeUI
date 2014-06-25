@@ -54,4 +54,9 @@
     NSData* data = [NSData dataWithContentsOfFile:path];
     return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:error];
 }
+
++ (BOOL) removeFile:(NSString *)path error:(NSError *__autoreleasing *)error
+{
+    return ([[NSFileManager defaultManager] removeItemAtPath:path error:error]);
+}
 @end

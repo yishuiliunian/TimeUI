@@ -31,12 +31,22 @@ NSString*(^DZUserDataKey)(NSString*userId, NSString*key) = ^(NSString*userId, NS
 {
     return  [[NSUserDefaults standardUserDefaults] objectForKey:account.identifiy];
 }
-
+- (void) removeAccountsData:(DZAccount*)account
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:account.identifiy];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 - (void) moveSettingsFrom:(DZAccount*)origin aim:(DZAccount*)account
 {
     NSDictionary* dic = [self allUserData:origin];
+    NSMutableDictionary* aimDic = [[self allUserData:account] mutableCopy];
+    for (NSString* key  in dic.allKeys) {
+        if (!aimDic[key]) {
+            aimDic[key] = dic[key];
+        }
+    }
     if (dic) {
-        [[NSUserDefaults standardUserDefaults] setObject:dic  forKey:account.identifiy];
+        [[NSUserDefaults standardUserDefaults] setObject:aimDic  forKey:account.identifiy];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }

@@ -118,18 +118,17 @@
     [self.view addSubview:_loginBtn];
     
     [_loginBtn addTarget:self action:@selector(handleAccountAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
-    self.navigationItem.leftBarButtonItem = item;
     
     
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     UIBarButtonItem* syncItem = [[UIBarButtonItem alloc] initWithCustomView:_activityIndicatorView];
     self.navigationItem.rightBarButtonItem = syncItem;
 	// Do any additional setup after loading the view.
+    [self addLeftBackItem];
 }
 - (void ) dismiss
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+    [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
         
     }];
 }

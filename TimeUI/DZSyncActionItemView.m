@@ -91,6 +91,7 @@ DEFINE_PROPERTY_STRONG(UIView*, contentView);
 
 - (void) layoutSubviews
 {
+    [super layoutSubviews];
     _contentView.frame = self.bounds;
 }
 /*

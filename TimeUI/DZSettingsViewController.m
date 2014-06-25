@@ -83,10 +83,8 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
-    self.navigationItem.rightBarButtonItem = item;
+    [self addLeftBackItem];
     // Do any additional setup after loading the view.
-    
 
 }
 

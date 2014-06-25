@@ -18,4 +18,5 @@
 
 - (id<DZTimeDBInterface>) timeDBInterface;
 - (id<DZTimeDBInterface>) timeDBInterfaceForAccount:(DZAccount*)account;
+- (void) removeDBForAccount:(DZAccount*)account;
 @end

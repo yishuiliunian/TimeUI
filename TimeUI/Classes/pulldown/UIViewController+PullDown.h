@@ -10,4 +10,5 @@
 @class DZPullDownViewController;
 @interface UIViewController (PullDown)
 @property (nonatomic, strong) DZPullDownViewController* pdSuperViewController;
+- (void) addLeftBackItem;
 @end

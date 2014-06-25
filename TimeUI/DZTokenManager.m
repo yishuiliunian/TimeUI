@@ -80,15 +80,25 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
-        sleep(3);
         NSString* token = _tokensMap[userEmail];
-        NSError* error = nil;
+        __block NSError* error = nil;
+        
+        NSString* (^AppleNewToken)(NSError*) = ^(NSError* error) {
+            NSString* token = [self appleForNewToken:userEmail password:password error:&error];
+            if (!token) {
+                DDLogError(@"刷新Token失败 %@",error);
+            }
+            return token;
+        };
         if (token) {
-            [self updateToken:token error:&error];
+            if(![self updateToken:token error:&error])
+            {
+                token = AppleNewToken(error);
+            }
         }
         else
         {
-            token = [self appleForNewToken:userEmail password:password error:&error];
+            token = AppleNewToken(error);
         }
         NSString* guid = _userGuidMap[userEmail];
         if (isActionFromMain) {

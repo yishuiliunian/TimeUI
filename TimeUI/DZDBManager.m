@@ -10,7 +10,7 @@
 #import "DZTimeDB.h"
 #import "DZAccountManager.h"
 #import "DZSingletonFactory.h"
-
+#import "DZFileUtility.h"
 @implementation DZDBManager
 + (DZDBManager*) shareManager
 {
@@ -28,5 +28,14 @@
     DZTimeDB* db = [[DZTimeDB alloc] initWithPath:dbPath modelName:@"DZTimeTrick"];
     db.userGuid = account.identifiy;
     return db;
+}
+
+- (void) removeDBForAccount:(DZAccount *)account
+{
+    NSString* dbPath = account.timeDatabasePath;
+    NSError* error = nil;
+    if (![DZFileUtility removeFile:dbPath error:&error]) {
+        DDLogError(@"删除数据库文件失败! %@",error);
+    }
 }
 @end

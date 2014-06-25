@@ -21,7 +21,8 @@
 }
 - (void) layoutSubviews
 {
-    _textLabel.frame = self.bounds;
+    [super layoutSubviews];
+    _textLabel.frame = CGRectMake(10, 0, CGRectGetWidth(self.bounds) - 20, CGRectGetHeight(self.bounds));
 }
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -37,8 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"牛逼功能再次";
-    
+    self.title = @"牛逼功能在此";
+    [self addLeftBackItem];
     [self reloadAllData];
     // Do any additional setup after loading the view.
 }

@@ -21,6 +21,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        _lineColor = [UIColor lightGrayColor];
+        _topColor = [UIColor lightGrayColor];
+        _bottomColor = [UIColor lightGrayColor];
     }
     return self;
 }
@@ -41,6 +44,7 @@
             }
         }
     }
+    [self setNeedsDisplay];
 }
 
 

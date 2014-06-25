@@ -30,6 +30,8 @@
 {
     if (![account isEqual:[DZAccount defaultAccount]] && _activeAccount == [DZAccount defaultAccount]) {
         [self moveAccountDataFrom:_activeAccount aim:account];
+        [[DZUserDataManager shareManager] removeAccountsData:_activeAccount];
+        [[DZDBManager shareManager] removeDBForAccount:_activeAccount];
     }
     DZAccount* old = _activeAccount;
     _activeAccount = account;

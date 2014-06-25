@@ -31,19 +31,29 @@
     if (self) {
         // Initialization code
         _actionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_actionButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [self addSubview:_actionButton];
         
         _messageLabel = [UILabel new];
         [self addSubview:_messageLabel];
         
-        _messageLabel.text = [DZDefaultContextManager.lastSyncDate localDescription];
         
         [[DZNotificationCenter defaultCenter] addObserver:self forKey:kDZSyncContextChangedMessage];
+        [self showLastSyncDate];
     }
     return self;
 }
 
+- (void) showLastSyncDate
+{
+    NSDate* lastDate = DZDefaultContextManager.lastSyncDate;
+    if (!lastDate) {
+        _messageLabel.text = @"亲，您从来都没有通不过啊！！";
+    } else {
+        _messageLabel.text = [NSString stringWithFormat:@"上一次同步：%@", [lastDate  localDescription]];
+    }
 
+}
 
 - (void) syncContextChangedFrom:(DZSyncContext)origin toContext:(DZSyncContext)aim
 {
@@ -55,9 +65,31 @@
             _messageLabel.text = error.localizedDescription;
             break;
         }
+        case DZSyncContextSyncVersion:
+            _messageLabel.text = @"正在同步版本数据....";
+            break;
+        case DZSyncContextSyncUploadTime:
+            _messageLabel.text = @"正在上传时间片段...";
+            break;
+        case DZSyncContextSyncUploadType:
+            _messageLabel.text = @"正在上传时间类型...";
+            break;
+        case DZSyncContextSyncDownloadTime:
+            _messageLabel.text = @"正在下载服务器上的时间片段...";
+            break;
+        case DZSyncContextSyncDownloadType:
+            _messageLabel.text = @"正在下载服务器上的时间类型...";
+            break;
+        case DZSyncContextSyncAppleToken:
+            _messageLabel.text = @"正在登陆中....";
+            break;
+        case DZSyncContextNomal:
+            [self showLastSyncDate];
+            break;
         default:
             break;
     }
+    NSLog(@"current state is %d",aim);
 }
 
 - (void) configureButtonWithSyncing:(BOOL)isSyncing

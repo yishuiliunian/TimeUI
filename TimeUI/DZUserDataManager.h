@@ -22,4 +22,6 @@
 //
 - (void) setactiveAccountEmail:(NSString*)guid;
 - (NSString*) activeAccountEmail;
+//
+- (void) removeAccountsData:(DZAccount*)account;
 @end

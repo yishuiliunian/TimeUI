@@ -37,12 +37,8 @@
 {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    UIBarButtonItem* item = [[UIBarButtonItem alloc]
-                             initWithTitle:@"返回"
-                             style:UIBarButtonItemStyleDone
-                             target:self
-                             action:@selector(popSelfPd)];
-    self.navigationItem.rightBarButtonItem = item;
+
+    [self addLeftBackItem];
     __timeHistoryArray = [[DZActiveTimeDataBase allTimes] mutableCopy];
     [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
