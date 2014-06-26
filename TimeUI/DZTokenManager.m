@@ -47,7 +47,19 @@
     }
     return YES;
 }
-
+- (void) appleForNewToken:(NSString *)userEmail password:(NSString *)password response:(DZAuthorizationResponse)response
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSError* error = nil;
+        NSString* token = [self appleForNewToken:userEmail password:password error:&error];
+        NSString* guid = _userGuidMap[userEmail];
+        if (response) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                response(token, guid, error);
+            });
+        }
+    });
+}
 
 - (NSString*) appleForNewToken:(NSString*)userEmail password:(NSString *)password error:(NSError* __autoreleasing * )error
 {

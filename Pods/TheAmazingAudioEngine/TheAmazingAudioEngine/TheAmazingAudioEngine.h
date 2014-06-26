@@ -231,8 +231,8 @@ extern "C" {
 
  ...
  
- static OSStatus renderCallback(AEAudioFilePlayer *THIS,
-                                AEAudioController *audioController,
+ static OSStatus renderCallback(__unsafe_unretained AEAudioFilePlayer *THIS,
+                                __unsafe_unretained AEAudioController *audioController,
                                 const AudioTimeStamp *time,
                                 UInt32 frames,
                                 AudioBufferList *audio) {
@@ -370,15 +370,13 @@ self.filter = [AEBlockFilter filterWithBlock:^(AEAudioControllerFilterProducer p
 
  ...
  
- static OSStatus filterCallback(id                        filter,
-                                AEAudioController        *audioController,
+ static OSStatus filterCallback(__unsafe_unretained MyFilterClass *THIS,
+                                __unsafe_unretained AEAudioController *audioController,
                                 AEAudioControllerFilterProducer producer,
                                 void                     *producerToken,
                                 const AudioTimeStamp     *time,
                                 UInt32                    frames,
                                 AudioBufferList          *audio) {
- 
-     MyFilterClass *THIS = (MyFilterClass*)filter;
  
      // Pull audio
      OSStatus status = producer(producerToken, audio, &frames);
@@ -472,13 +470,12 @@ self.filter = [AEBlockFilter filterWithBlock:^(AEAudioControllerFilterProducer p
  @interface MyAudioReceiver : NSObject <AEAudioReceiver>
  @end
  @implementation MyAudioReceiver
- static void receiverCallback(id                        receiver,
-                              AEAudioController        *audioController,
+ static void receiverCallback(__unsafe_unretained MyAudioReceiver *THIS,
+                              __unsafe_unretained AEAudioController *audioController,
                               void                     *source,
                               const AudioTimeStamp     *time,
                               UInt32                    frames,
                               AudioBufferList          *audio) {
-     MyAudioReceiver *THIS = (MyAudioReceiver*)receiver;
      
      // Do something with 'audio'
  }
@@ -636,7 +633,7 @@ self.filter = [AEBlockFilter filterWithBlock:^(AEAudioControllerFilterProducer p
  
 @page Audiobus Audiobus
  
- [Audiobus](http://audiob.us) is an exciting new technology that lets users combine iOS apps into an integrated,
+ [Audiobus](http://audiob.us) is a widely-used iOS library that lets users combine iOS apps into an integrated,
  modular virtual studio - a bit like virtual audio cables.
  
  Compatible apps build in support for the Audiobus SDK, which allows them to create 'ports' which can either send,
@@ -656,16 +653,17 @@ self.filter = [AEBlockFilter filterWithBlock:^(AEAudioControllerFilterProducer p
 
  Then you can:
  
- - Receive Audiobus audio by creating an Audiobus Input Port and passing it to The Amazing Audio Engine
-   via AEAudioController's [audiobusInputPort](@ref AEAudioController::audiobusInputPort).
- - Send your app's audio output via Audiobus by creating an Output Port and assigning it to 
-   audiobusOutputPort](@ref AEAudioController::audiobusOutputPort).
- - Send one individual channel via Audiobus by assigning a new Output Port via
-   @link AEAudioController::setAudiobusOutputPort:forChannel: setAudiobusOutputPort:forChannel: @endlink
- - Send a channel group via Audiobus by assigning a new Output Port via
-   @link AEAudioController::setAudiobusOutputPort:forChannelGroup: setAudiobusOutputPort:forChannelGroup: @endlink
-
-
+ - Receive Audiobus audio by creating an Audiobus Sender port and passing it to The Amazing Audio Engine
+   via AEAudioController's [audiobusReceiverPort](@ref AEAudioController::audiobusReceiverPort).
+ - Send your app's audio output via Audiobus by creating a sender port and assigning it to 
+   audiobusSenderPort](@ref AEAudioController::audiobusSenderPort).
+ - Send one individual channel via Audiobus by assigning a new Sender port via
+   @link AEAudioController::setAudiobusSenderPort:forChannel: setAudiobusSenderPort:forChannel: @endlink
+ - Send a channel group via Audiobus by assigning a new Sender port via
+   @link AEAudioController::setAudiobusSenderPort:forChannelGroup: setAudiobusSenderPort:forChannelGroup: @endlink
+ 
+ Take a look at the header documentation for the @link AEAudioController(AudiobusAdditions) Audiobus functions @endlink
+ for details.
  
  -------------
  

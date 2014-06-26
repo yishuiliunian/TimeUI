@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "15E2199276F8499EBF437904"
+               BlueprintIdentifier = "C4C6BF4AD42F47AD901AF2A5"
                BuildableName = "CTFeedback.bundle"
                BlueprintName = "CTFeedback"
                ReferencedContainer = "container:Pods.xcodeproj">

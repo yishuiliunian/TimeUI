@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CF39B5FF2E74BE28499B589"
+               BlueprintIdentifier = "D15D0BA6F70148109D91F6C2"
                BuildableName = "libPods-SKBounceAnimation.a"
                BlueprintName = "Pods-SKBounceAnimation"
                ReferencedContainer = "container:Pods.xcodeproj">

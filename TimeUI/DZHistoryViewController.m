@@ -8,7 +8,10 @@
 
 #import "DZHistoryViewController.h"
 #import "DZTime.h"
-
+#import "NSString+WizString.h"
+#import "NSString+database.h"
+#import "NSDate+SSToolkitAdditions.h"
+#import <NSDate-TKExtensions.h>
 
 @interface DZHistoryViewController ()
 @property (nonatomic, strong) NSMutableArray* _timeHistoryArray;
@@ -36,10 +39,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
+    self.title = @"时间沙漏，记录点滴";
+    
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 
     [self addLeftBackItem];
-    __timeHistoryArray = [[DZActiveTimeDataBase allTimes] mutableCopy];
+    NSArray* times  = [[DZActiveTimeDataBase allTimes] mutableCopy];
+    
+    NSMutableDictionary* dayTimes = [NSMutableDictionary new];
+    for (DZTime*  each in times) {
+        NSString* str = [each.dateBegin TKDateDayMonthNameYear];
+        if (str) {
+            NSMutableArray* a = dayTimes[str];
+            if (!a) {
+                a = [NSMutableArray new];
+                dayTimes[str] = a;
+            }
+            [a addObject:each];
+        }
+    }
+    
+    NSArray* allTimesKey = [dayTimes.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString* obj1, NSString* obj2) {
+        return [obj2 compare:obj1];
+    }];
+    
+    NSMutableArray* allSortedTimes = [NSMutableArray new];
+    for (NSString* str in allTimesKey) {
+        NSMutableArray* sortedA = dayTimes[str];
+        [sortedA sortUsingComparator:^NSComparisonResult(DZTime* obj1, DZTime* obj2) {
+            return [obj2.dateBegin compare:obj1.dateBegin];
+        }];
+        [allSortedTimes addObject:sortedA];
+    }
+    __timeHistoryArray = allSortedTimes;
     [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,28 +92,34 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return __timeHistoryArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return __timeHistoryArray.count;
+    return [__timeHistoryArray[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-    DZTime* time = __timeHistoryArray[indexPath.row];
+    DZTime* time = __timeHistoryArray[indexPath.section][indexPath.row];
     cell.textLabel.text = time.typeName;
+    cell.detailTextLabel.text = [NSString readableTimeStringWithInterval:ABS([time.dateBegin timeIntervalSinceDate:time.dateEnd])];
     return cell;
 }
 
+
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[[__timeHistoryArray[section] firstObject] dateBegin] TKDateDayMonthNameYear];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

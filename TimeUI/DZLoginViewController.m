@@ -36,9 +36,9 @@
 
 - (void) handleActionWithEmail:(NSString *)email password:(NSString *)password
 {
-    
-    [[DZTokenManager shareManager] appleToken:email password:password response:^(NSString *token, NSString *userGuid, NSError *error) {
+    [[DZTokenManager shareManager] appleForNewToken:email password:password response:^(NSString *token, NSString *userGuid, NSError *error) {
         if (error) {
+            DDLogError(@"%@",error);
         }
         else
         {
@@ -52,8 +52,7 @@
             [[DZAccountManager shareManager] registerActiveAccount:account];
         }
         [self handleActionEndWithError:error];
-    } ];
-    
+    }];
 }
 - (void) viewDidLoad
 {

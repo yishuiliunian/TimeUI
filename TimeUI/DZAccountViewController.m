@@ -66,13 +66,13 @@
 
 - (void) handleActionEndWithError:(NSError*)error
 {
+    DZHUDHide
     if (!error) {
         [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
             
         }];
     } else {
         [DZMessageShareCenter showErrorMessage:error.localizedDescription];
-        DZHUDHide
         [self setAllControlsEnable:YES];
     }
 }

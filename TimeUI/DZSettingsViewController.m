@@ -10,6 +10,7 @@
 #import "DZEditServerHostViewController.h"
 #import "DZAccountManager.h"
 #import "DZ24Analysis.h"
+#import <CTFeedbackViewController.h>
 DEFINE_NSStringValue(RowServerHost, 服务器地址);
 @interface DZSettingsViewController ()
 
@@ -25,10 +26,28 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
     }
     return self;
 }
-
+- (void) feedbackUsingMail
+{
+    CTFeedbackViewController* fdVC = [CTFeedbackViewController new];
+    fdVC.topics = @[@"提些建议，以便用起来更爽",
+                    @"吐槽一下，有问题",
+                    @"亲，Crash了！！！",
+                    @"随便说说"];
+    fdVC.localizedTopics = fdVC.topics;
+    fdVC.selectedTopic = fdVC.topics[3];
+    fdVC.toRecipients = @[@"yishuiliunian@gmail.com"];
+    [self.navigationController pushViewController:fdVC animated:YES];
+    
+}
 - (void) loadData
 {
     
+    QQSTSection* feedBackSection = [QQSTSection new];
+    feedBackSection.title = @"反馈";
+    
+    QQSTRow* feedbackRow = [[QQSTRow alloc] initWithTarget:self action:@selector(feedbackUsingMail)];
+    feedbackRow.title = @"反馈";
+    [feedBackSection addRow:feedbackRow atIndex:0];
     
     QQSTSection* accountSection = [QQSTSection new];
     accountSection.title = @"账号";
@@ -49,6 +68,9 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
     [sectionDebug addRow:serverHost atIndex:0];
     
     NSMutableArray* sectionDatas  = [NSMutableArray new];
+    
+    [sectionDatas addObject:feedBackSection];
+    
 #if DZDEBUG == 1
     [sectionDatas addObject:sectionDebug];
 #endif
@@ -83,6 +105,7 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"设置";
     [self addLeftBackItem];
     // Do any additional setup after loading the view.
 

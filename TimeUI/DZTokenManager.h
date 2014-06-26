@@ -13,6 +13,7 @@ typedef void(^DZAuthorizationResponse)(NSString*token ,NSString* userGuid, NSErr
 @interface DZTokenManager : NSObject
 + (DZTokenManager*) shareManager;
 
+- (void) appleForNewToken:(NSString*)userEmail password:(NSString *)password response:(DZAuthorizationResponse)response;
 - (void) appleToken:(NSString*)userEmail password:(NSString*)password response:(DZAuthorizationResponse)response;
 - (void) appleActiveToken:(DZAuthorizationResponse)response;
 
