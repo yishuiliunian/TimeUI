@@ -46,6 +46,8 @@
     return self;
 }
 
+
+
 - (void) increaseTime:(NSTimer*)timer
 {
     CFTimeInterval current = CFAbsoluteTimeGetCurrent();
@@ -70,10 +72,11 @@
 }
 - (void) start
 {
-   _startTime = CFAbsoluteTimeGetCurrent();
+    _startTime = CFAbsoluteTimeGetCurrent();
     _countTimer = [NSTimer timerWithTimeInterval:0.02 target:self selector:@selector(increaseTime:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_countTimer forMode:NSRunLoopCommonModes];
 }
+
 
 - (void) layoutSubviews
 {

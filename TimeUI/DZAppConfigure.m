@@ -44,6 +44,7 @@
 #import "WXApi.h"
 #import "DZSyncManager.h"
 #import <iRate.h>
+#import "DZRestoreTrickDataNI.h"
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
 @interface DZAppConfigure () <DZNotificationInitDelegaete, DZSyncContextChangedInterface>
@@ -191,6 +192,15 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [observer globalDidReloadTypes];
 
+                });
+            }
+        };
+    } else if ([message isEqualToString:kDZNotification_restoreDate]) {
+        return ^(id observer, NSDictionary* userInfo)
+        {
+            if ([observer respondsToSelector:@selector(didGetRestoreTrickDateMessage)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [observer didGetRestoreTrickDateMessage];
                 });
             }
         };

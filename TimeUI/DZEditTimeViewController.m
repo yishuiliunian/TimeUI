@@ -11,6 +11,7 @@
 #import "DZSelectTypeViewController.h"
 #import "DZAnalysisManager.h"
 #import "DZTime.h"
+#import "DZTimeTrickManger.h"
 @interface DZEditTimeViewController () <DZEditTimeSegmentDelegate, DZSelectTypeViewControllerDelegate>
 {
     DZEditTimeSegmentView* _editTimeSegementView;
@@ -70,6 +71,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (bDEVICE_OSVERSION_EQUAL_OR_LATER7) {
+        self.edgesForExtendedLayout =UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     _editTimeSegementView = [[DZEditTimeSegmentView alloc] initWithTime:_initialTime];
     _editTimeSegementView.delegate = self;
@@ -78,25 +83,41 @@
 	// Do any additional setup after loading the view.
     
     //
-    _saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_saveButton addTapTarget:self selector:@selector(saveAllTimes)];
-    [_saveButton setTitle:@"保存" forState:UIControlStateNormal];
-    [self.view addSubview:_saveButton];
+    
+    UIBarButtonItem* iteml = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(cancelSave)];
+    self.navigationItem.leftBarButtonItem = iteml;
+    
+    
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAllTimes)];
+    self.navigationItem.rightBarButtonItem = item;
 }
-
+- (void) restoreTimeTrickToDate:(NSDate*)date
+{
+    [[DZTimeTrickManger shareManager] restoreTrickDate:date];
+}
 - (void) saveAllTimes
 {
     NSArray* allTimes = [_editTimeSegementView getAllEditedTimes];
     id<DZTimeDBInterface> db = DZActiveTimeDataBase;
+    NSDate* date = nil ;
     for (DZTime* time  in allTimes) {
         [db updateTime:time];
         DZTimeType*  type = [db timeTypByGUID:time.typeGuid];
         [DZShareAnalysisManager triggleAnaylysisWeekWithType:type];
         [DZShareAnalysisManager triggleAnaylysisTimeCostWithType:type];
         [DZShareAnalysisManager triggleAnaylysisTimeCountWithType:type];
+        if ( !date || [time.dateEnd laterDate:date]) {
+            date = time.dateEnd;
+        }
     }
-    
     [DZShareAnalysisManager triggleAnaylysisTimeCost];
+    [self dismissModel];
+    [self restoreTimeTrickToDate:date];
+}
+
+- (void) cancelSave
+{
+    [self restoreTimeTrickToDate:_initialTime.dateBegin];
     [self dismissModel];
 }
 
@@ -108,8 +129,7 @@
 }
 - (void) viewWillLayoutSubviews
 {
-    _editTimeSegementView.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight - 50);
-    _saveButton.frame = CGRectMake(0, CGRectGetMaxY(_editTimeSegementView.frame), CGRectGetViewControllerWidth, 40);
+    _editTimeSegementView.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight );
 }
 - (void)didReceiveMemoryWarning
 {

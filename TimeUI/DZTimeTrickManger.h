@@ -15,4 +15,5 @@
 + (DZTimeTrickManger*) shareManager;
 - (void) addTimeLogWithType:(DZTimeType*)type detail:(NSString*)detail;
 - (void) addTimeWithDetail:(NSString*)detail;
+- (void) restoreTrickDate:(NSDate*)date;
 @end

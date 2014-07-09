@@ -16,6 +16,7 @@
 #import "DZMessageCenter.h"
 //
 #import "DZEditTimeViewController.h"
+#import "DZRestoreTrickDataNI.h"
 
 static NSString* const kDZLastTrickDate = @"kDZLastTrickDate";
 static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
@@ -34,6 +35,13 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
 - (void) setLastTrickDate:(NSDate *)lastTrickDate
 {
     [[DZUserDataManager shareManager] setActiveUserData:lastTrickDate forKey:kDZLastTrickDate];
+}
+
+
+- (void) restoreTrickDate:(NSDate*)date
+{
+    [self setLastTrickDate:date];
+    [DZDefaultNotificationCenter postMessage:kDZNotification_restoreDate userInfo:nil];
 }
 
 - (NSDate*) lastTrickDate
@@ -59,7 +67,10 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
     [self setLastTrickDate:time.dateEnd];
     time.typeGuid = type.guid;
     DZEditTimeViewController* editVC = [[DZEditTimeViewController alloc] initWithInitTime:time];
-    [[UIApplication sharedApplication].keyWindow.rootViewController.pdSuperViewController pdPresentViewController:editVC animated:YES completion:^{
+    [[UIApplication sharedApplication].keyWindow.rootViewController.pdSuperViewController
+     
+     pdPresentViewController:[[UINavigationController alloc] initWithRootViewController:editVC]
+                                                                                                         animated:YES completion:^{
         
     }];
 }

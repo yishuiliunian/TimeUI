@@ -13,9 +13,10 @@
 #import "DZSelecteTypeInterface.h"
 #import "DZNotificationCenter.h"
 #import "DZTimeType.h"
+#import "DZRestoreTrickDataNI.h"
 static float const kDefaultDragItemHeight = 40;
 
-@interface DZTimeControl () <DZSelecteTypeInterface>
+@interface DZTimeControl () <DZSelecteTypeInterface, DZRestoreTrickDateNI>
 {
     UITapGestureRecognizer* _tapGerg;
 }
@@ -31,14 +32,22 @@ static float const kDefaultDragItemHeight = 40;
     }
 }
 
+
+
 - (void) dealloc
 {
     [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_selectedType];
+    [DZDefaultNotificationCenter removeObserver:self forMessage:kDZNotification_restoreDate];
 }
 
 - (void) didSelectedTimeType:(DZTimeType *)timetype
 {
     _typeLabel.text = timetype.name;
+}
+- (void) didGetRestoreTrickDateMessage
+{
+    _counterLabel.beginTimeOffset = ABS([[DZTimeTrickManger shareManager].lastTrickDate timeIntervalSinceNow]);
+    [_counterLabel start];
 }
 - (void) commonInit
 {
@@ -67,6 +76,7 @@ static float const kDefaultDragItemHeight = 40;
     
     
     [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_selectedType];
+    [DZDefaultNotificationCenter addObserver:self forKey:kDZNotification_restoreDate];
 }
 
 - (id)initWithFrame:(CGRect)frame

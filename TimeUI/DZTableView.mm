@@ -176,11 +176,11 @@ typedef vector<float>   DZCellHeightVector;
     [self addTapTarget:self selector:@selector(handleTapGestrue:)];
     _selectedIndex = NSNotFound;
     [self setGradientColor:[UIColor blueColor]];
-    _cellColorsDic = @{@(0): [UIColor colorWithHexString:@"#4859ad"],
+    _cellColorsDic = @{@(0): [UIColor colorWithHexString:@"#5263c3"],
                        @(1): [UIColor colorWithHexString:@"#bd64d3"],
                         @(2): [UIColor colorWithHexString:@"#2ea9df"],
-                        @(3): [UIColor colorWithHexString:@"76c61e"],
-                        @(4): [UIColor colorWithHexString:@"ffc000"],
+                        @(3): [UIColor colorWithHexString:@"#76c61e"],
+                        @(4): [UIColor colorWithHexString:@"#ffc000"],
                        @(5): [UIColor colorWithHexString:@"#ffb19b"]};
     
     

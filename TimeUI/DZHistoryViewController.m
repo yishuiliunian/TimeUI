@@ -120,6 +120,23 @@
 {
     return [[[__timeHistoryArray[section] firstObject] dateBegin] TKDateDayMonthNameYear];
 }
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* contentView = [UIView new];
+    contentView.frame = CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), 40);
+    NSString* title = [self tableView:tableView titleForHeaderInSection:section];
+    UILabel* titleLable = [UILabel new];
+    [contentView addSubview:titleLable];
+    titleLable.frame = contentView.bounds;
+    titleLable.text = title;
+    return contentView;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

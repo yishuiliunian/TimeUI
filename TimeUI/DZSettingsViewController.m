@@ -39,15 +39,29 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
     [self.navigationController pushViewController:fdVC animated:YES];
     
 }
+
+- (void) rateMyApp
+{
+    
+}
 - (void) loadData
 {
     
     QQSTSection* feedBackSection = [QQSTSection new];
     feedBackSection.title = @"反馈";
     
+    
+    QQSTRow* rateRow = [[QQSTRow alloc] initWithTarget:self action:@selector(rateMyApp)];
+    rateRow.title = @"评分";
+    rateRow.detail = @"亲，记得给好评偶！";
+    [feedBackSection addRow:rateRow atIndex:0];
+    
     QQSTRow* feedbackRow = [[QQSTRow alloc] initWithTarget:self action:@selector(feedbackUsingMail)];
     feedbackRow.title = @"反馈";
-    [feedBackSection addRow:feedbackRow atIndex:0];
+    [feedBackSection addRow:feedbackRow atIndex:1];
+    
+    
+    
     
     QQSTSection* accountSection = [QQSTSection new];
     accountSection.title = @"账号";

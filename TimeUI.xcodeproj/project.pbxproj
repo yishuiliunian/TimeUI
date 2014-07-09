@@ -768,6 +768,7 @@
 		65D6BD3E188E67B00028F063 /* DZProgramDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZProgramDefines.m; sourceTree = "<group>"; };
 		65D6BD41188F5BC00028F063 /* DZCommonStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCommonStrings.h; sourceTree = "<group>"; };
 		65D6BD42188F5BC00028F063 /* DZCommonStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCommonStrings.m; sourceTree = "<group>"; };
+		65DA02FE196D43AC00A6913B /* DZRestoreTrickDataNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRestoreTrickDataNI.h; sourceTree = "<group>"; };
 		65DE7D0F1953D0B6000CF384 /* DZParallelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZParallelTableViewController.h; sourceTree = "<group>"; };
 		65DE7D101953D0B6000CF384 /* DZParallelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZParallelTableViewController.m; sourceTree = "<group>"; };
 		65DE7D131953D1EC000CF384 /* DZFuncsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZFuncsViewController.h; sourceTree = "<group>"; };
@@ -2270,6 +2271,7 @@
 			children = (
 				65BBE0B518B1F58B001C776B /* base */,
 				65EB0BE918AA39DB00D2E2F3 /* DZSelecteTypeInterface.h */,
+				65DA02FE196D43AC00A6913B /* DZRestoreTrickDataNI.h */,
 				650E157618AF388F007DDF47 /* DZSelectTypeViewController.h */,
 				650E157718AF388F007DDF47 /* DZSelectTypeViewController.m */,
 				650E157918AF38A3007DDF47 /* DZCheckTypeViewController.h */,

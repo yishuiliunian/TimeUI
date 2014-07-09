@@ -61,9 +61,9 @@
 
 - (void) printTypes
 {
-    for (int i = 0; i < _timeTypes.count; i++) {
-        NSLog(@"type %d is %@",i, [_timeTypes[i] name]);
-    }
+//    for (int i = 0; i < _timeTypes.count; i++) {
+//        NSLog(@"type %d is %@",i, [_timeTypes[i] name]);
+//    }
 }
 - (void) sortTypes
 {

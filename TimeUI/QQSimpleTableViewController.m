@@ -106,7 +106,11 @@
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [[_sectionData objectAtIndex:section] headerTitle];
+    NSString* title = [[_sectionData objectAtIndex:section] headerTitle];
+    if (!title) {
+        return [[_sectionData objectAtIndex:section] title];
+    }
+    return title;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
