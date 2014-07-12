@@ -26,9 +26,12 @@ static float const kDefaultDragItemHeight = 40;
 - (void) handleTapGestrueRecg:(UITapGestureRecognizer*)recg
 {
     if (recg.state == UIGestureRecognizerStateRecognized) {
-        [[DZTimeTrickManger shareManager] addTimeWithDetail:@"nothind"];
-        _counterLabel.beginTimeOffset = ABS([[DZTimeTrickManger shareManager].lastTrickDate timeIntervalSinceNow]);
-        [_counterLabel start];
+        CGPoint point = [recg locationInView:self];
+        if (CGRectContainsPoint(self.labelsBackgroundImageView.frame, point)) {
+            [[DZTimeTrickManger shareManager] addTimeWithDetail:@"nothind"];
+            _counterLabel.beginTimeOffset = ABS([[DZTimeTrickManger shareManager].lastTrickDate timeIntervalSinceNow]);
+            [_counterLabel start];
+        }
     }
 }
 
