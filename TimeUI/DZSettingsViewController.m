@@ -11,6 +11,7 @@
 #import "DZAccountManager.h"
 #import "DZ24Analysis.h"
 #import <CTFeedbackViewController.h>
+#import "DZEditTypesViewController.h"
 DEFINE_NSStringValue(RowServerHost, 服务器地址);
 @interface DZSettingsViewController ()
 
@@ -44,8 +45,23 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 {
     
 }
+
+- (void) editAllTypes
+{
+    DZEditTypesViewController* editVC = [[DZEditTypesViewController alloc] init];
+    [self.navigationController pushViewController:editVC animated:YES];
+}
 - (void) loadData
 {
+    
+    QQSTSection* typesSection = [QQSTSection new];
+    typesSection.title = @"时间种类";
+    
+    QQSTRow* editRow = [[QQSTRow alloc] initWithTarget:self action:@selector(editAllTypes)];
+    editRow.title = @"修改时间种类";
+    editRow.detail = @"隐藏或者显示时间种类";
+    
+    [typesSection addRow:editRow atIndex:0];
     
     QQSTSection* feedBackSection = [QQSTSection new];
     feedBackSection.title = @"反馈";
@@ -83,6 +99,7 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
     
     NSMutableArray* sectionDatas  = [NSMutableArray new];
     
+    [sectionDatas addObject:typesSection];
     [sectionDatas addObject:feedBackSection];
     
 #if DZDEBUG == 1

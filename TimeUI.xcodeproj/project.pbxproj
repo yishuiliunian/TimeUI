@@ -239,6 +239,7 @@
 		657A56141858D78F00521B01 /* DZAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56131858D78F00521B01 /* DZAudioManager.m */; };
 		657A56171858D94300521B01 /* DZSingletonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 657A56161858D94300521B01 /* DZSingletonFactory.m */; };
 		657A56191858DDDA00521B01 /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 657A56181858DC0100521B01 /* test.m4a */; };
+		657AEE4F1971129200E223B9 /* DZEditTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657AEE4E1971129200E223B9 /* DZEditTypesViewController.m */; };
 		657C74A3185AF8FE008728EB /* DZInputCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 657C74A2185AF8FE008728EB /* DZInputCellView.m */; };
 		657C74A8185AFE60008728EB /* UIView+AddTaps.m in Sources */ = {isa = PBXBuildFile; fileRef = 657C74A7185AFE60008728EB /* UIView+AddTaps.m */; };
 		6580F16518EAF6E40041D6C1 /* GLBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6580F16418EAF6E40041D6C1 /* GLBucket.m */; };
@@ -278,6 +279,7 @@
 		65D6BD3F188E67B00028F063 /* DZProgramDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD3E188E67B00028F063 /* DZProgramDefines.m */; };
 		65D6BD43188F5BC00028F063 /* DZCommonStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD42188F5BC00028F063 /* DZCommonStrings.m */; };
 		65DA035819710ABF00A6913B /* more_functions.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65DA035719710ABF00A6913B /* more_functions.jpg */; };
+		65DA035B1971101000A6913B /* DZSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DA035A1971101000A6913B /* DZSwitchCell.m */; };
 		65DE7D111953D0B6000CF384 /* DZParallelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D101953D0B6000CF384 /* DZParallelTableViewController.m */; };
 		65DE7D151953D1EC000CF384 /* DZFuncsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D141953D1EC000CF384 /* DZFuncsViewController.m */; };
 		65DE7D181953D767000CF384 /* DZFuncCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D171953D767000CF384 /* DZFuncCell.m */; };
@@ -698,6 +700,8 @@
 		657A56151858D94300521B01 /* DZSingletonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSingletonFactory.h; sourceTree = "<group>"; };
 		657A56161858D94300521B01 /* DZSingletonFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZSingletonFactory.m; sourceTree = "<group>"; };
 		657A56181858DC0100521B01 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.m4a; sourceTree = "<group>"; };
+		657AEE4D1971129200E223B9 /* DZEditTypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZEditTypesViewController.h; sourceTree = "<group>"; };
+		657AEE4E1971129200E223B9 /* DZEditTypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZEditTypesViewController.m; sourceTree = "<group>"; };
 		657C74A1185AF8FE008728EB /* DZInputCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZInputCellView.h; sourceTree = "<group>"; };
 		657C74A2185AF8FE008728EB /* DZInputCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZInputCellView.m; sourceTree = "<group>"; };
 		657C74A4185AFA36008728EB /* DZAnimationDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZAnimationDefines.h; sourceTree = "<group>"; };
@@ -771,6 +775,8 @@
 		65D6BD42188F5BC00028F063 /* DZCommonStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCommonStrings.m; sourceTree = "<group>"; };
 		65DA02FE196D43AC00A6913B /* DZRestoreTrickDataNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRestoreTrickDataNI.h; sourceTree = "<group>"; };
 		65DA035719710ABF00A6913B /* more_functions.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = more_functions.jpg; sourceTree = "<group>"; };
+		65DA03591971101000A6913B /* DZSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DZSwitchCell.h; path = settings/DZSwitchCell.h; sourceTree = "<group>"; };
+		65DA035A1971101000A6913B /* DZSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DZSwitchCell.m; path = settings/DZSwitchCell.m; sourceTree = "<group>"; };
 		65DE7D0F1953D0B6000CF384 /* DZParallelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZParallelTableViewController.h; sourceTree = "<group>"; };
 		65DE7D101953D0B6000CF384 /* DZParallelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZParallelTableViewController.m; sourceTree = "<group>"; };
 		65DE7D131953D1EC000CF384 /* DZFuncsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZFuncsViewController.h; sourceTree = "<group>"; };
@@ -2111,6 +2117,10 @@
 				65C38F6218950A2000420CF7 /* DZSettingSectionModel.m */,
 				654513EA18E6FEEB0008055B /* DZSettingsViewController.h */,
 				654513EB18E6FEEB0008055B /* DZSettingsViewController.m */,
+				65DA03591971101000A6913B /* DZSwitchCell.h */,
+				65DA035A1971101000A6913B /* DZSwitchCell.m */,
+				657AEE4D1971129200E223B9 /* DZEditTypesViewController.h */,
+				657AEE4E1971129200E223B9 /* DZEditTypesViewController.m */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -2586,6 +2596,7 @@
 				657972581952796D009CDCC2 /* DZOvalMaskImageView.m in Sources */,
 				65D051EB187D79F600923A46 /* DZChartNode.m in Sources */,
 				65238F4818577B2B00FE5D89 /* DZChartViewController.m in Sources */,
+				65DA035B1971101000A6913B /* DZSwitchCell.m in Sources */,
 				65FB8E6A1892631D006F8D8A /* DZHasAccountContentView.m in Sources */,
 				65FB8E6718926305006F8D8A /* DZNoAccountContentView.m in Sources */,
 				651DA8BF195308D300EA1C98 /* DZParallelTableView.m in Sources */,
@@ -2619,6 +2630,7 @@
 				650E157518AF32C7007DDF47 /* DZEditTimeViewController.m in Sources */,
 				6545144F18E7C5870008055B /* DZGlobalSettingsManager.m in Sources */,
 				65C38F2C1894E69100420CF7 /* MFLTransformingClock.m in Sources */,
+				657AEE4F1971129200E223B9 /* DZEditTypesViewController.m in Sources */,
 				6547405818EEB1670007361C /* DZWebApplication.m in Sources */,
 				6535A0281861E81200173E0E /* DZActionContentView.m in Sources */,
 				65DE7D151953D1EC000CF384 /* DZFuncsViewController.m in Sources */,

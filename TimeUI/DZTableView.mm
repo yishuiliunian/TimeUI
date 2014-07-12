@@ -379,6 +379,11 @@ typedef vector<float>   DZCellHeightVector;
     NSCAssert(_dataSourceReponse.funcCellAtRow, @"dztalbeview %@ delegate %@ not response to selector numberOfRowsInDZTableView: ", self, _dataSource);
     NSCAssert(_dataSourceReponse.funcCellAtRow, @"dztalbeview %@ delegate %@ not response to selector dzTableView:cellAtRow: ", self, _dataSource);
 
+    for (DZTableViewCell* cell  in _visibleCellsMap.allValues) {
+        [cell removeFromSuperview];
+    }
+    [_visibleCellsMap removeAllObjects];
+    
     [self reduceContentSize];
     [self layoutNeedDisplayCells];
 }

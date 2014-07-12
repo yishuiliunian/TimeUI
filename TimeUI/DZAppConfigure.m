@@ -181,6 +181,9 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
                     });
                 }
+            } else if ([method isEqualToString:kDZTypesChangedModified])
+            {
+                SendSelectorToObjectInMainThread(@selector(handleMessageDidMofifiedType:), observer, type);
             }
             
         };

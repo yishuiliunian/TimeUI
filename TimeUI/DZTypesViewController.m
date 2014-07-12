@@ -100,7 +100,6 @@
 {
     _timeTypes = [[DZActiveTimeDataBase allUnFinishedTimeTypes] mutableCopy];
     [self sortTypes];
-    
     [self.tableView reloadData];
     [[DZAnalysisManager shareManager] triggleAnaylysisTimeCount];
 }

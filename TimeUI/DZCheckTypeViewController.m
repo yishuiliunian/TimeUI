@@ -43,6 +43,18 @@ DEFINE_NSString(active_type);
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self reloadAllData];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self reloadAllData];
+}
 - (void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
@@ -92,6 +104,11 @@ DEFINE_NSString(active_type);
 }
 
 - (void) handleMessageDidAddType:(DZTimeType *)type
+{
+    [self reloadAllData];
+}
+
+- (void) handleMessageDidMofifiedType:(DZTimeType *)type
 {
     [self reloadAllData];
 }

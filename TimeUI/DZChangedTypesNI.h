@@ -12,10 +12,12 @@ DEFINE_NOTIFICATION_MESSAGE(TypesChanged);
 
 DEFINE_NSString(TypesChangedAdd);
 DEFINE_NSString(TypesChangedRemove);
+DEFINE_NSString(TypesChangedModified);
 
 
 @class DZTimeType;
 @protocol DZChangedTypesNI <NSObject>
 - (void) handleMessageDidAddType:(DZTimeType*)type;
 - (void) handleMessageDidRemoveType:(DZTimeType*)type;
+- (void) handleMessageDidMofifiedType:(DZTimeType *)type;
 @end
