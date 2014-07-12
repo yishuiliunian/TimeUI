@@ -261,12 +261,14 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 + (void)initializeRate
 {
     //overriding the default iRate strings
-    [iRate sharedInstance].messageTitle = @"亲，给个好评呗！";
-    [iRate sharedInstance].message = @"如果你觉得这个应用不错，就给个好评，让更多的小伙伴一起来用吧。";
-    [iRate sharedInstance].cancelButtonLabel = @"忙着呢，没时间";
-    [iRate sharedInstance].remindButtonLabel = @"过一会儿再说吧";
-    [iRate sharedInstance].rateButtonLabel = @"好，现在就去给好评";
-    [[iRate sharedInstance] promptForRating];
+    if ([[iRate sharedInstance] shouldPromptForRating]) {
+        [iRate sharedInstance].messageTitle = @"亲，给个好评呗！";
+        [iRate sharedInstance].message = @"如果你觉得这个应用不错，就给个好评，让更多的小伙伴一起来用吧。";
+        [iRate sharedInstance].cancelButtonLabel = @"忙着呢，没时间";
+        [iRate sharedInstance].remindButtonLabel = @"过一会儿再说吧";
+        [iRate sharedInstance].rateButtonLabel = @"好，现在就去给好评";
+        [[iRate sharedInstance] promptForRating];
+    }
 }
 + (void)initializePlat
 {

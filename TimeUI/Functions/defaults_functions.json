@@ -4,6 +4,14 @@
     "detail": "统计24个小时的情况",
     "class": "DZSplitChartViewController",
     "type": "1",
-     "image":"niudon"
-  }
+    "image":"niudon"
+  },
+ {
+ "name": "更多功能",
+ "detail": "我们正在紧锣密鼓的开发新的功能中",
+ "class": "",
+ "type": "0",
+ "image":"more_functions.jpg"
+ }
 ]
+

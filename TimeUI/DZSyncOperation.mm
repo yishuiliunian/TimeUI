@@ -158,7 +158,11 @@ static float const DZDefaultRequestCount = 100;
                 version = MAX([dic[@"Version"] longLongValue] , version);
             }
             if (times.count == 0) {
-                localVersion = serverVersion;
+                if (localVersion + DZDefaultRequestCount < serverVersion) {
+                    localVersion = localVersion + DZDefaultRequestCount;
+                } else {
+                    localVersion = serverVersion;
+                }
             } else
             {
                 localVersion = version;

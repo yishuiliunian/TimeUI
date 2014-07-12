@@ -12,6 +12,9 @@
 #import "DZAnalysisManager.h"
 #import "DZTime.h"
 #import "DZTimeTrickManger.h"
+#import "DZSelecteTypeInterface.h"
+
+
 @interface DZEditTimeViewController () <DZEditTimeSegmentDelegate, DZSelectTypeViewControllerDelegate>
 {
     DZEditTimeSegmentView* _editTimeSegementView;
@@ -110,6 +113,9 @@
             date = time.dateEnd;
         }
     }
+    
+    //刷新最后一个
+     [[DZNotificationCenter defaultCenter] postMessage:kDZNotification_selectedType userInfo:@{}];
     [DZShareAnalysisManager triggleAnaylysisTimeCost];
     [self dismissModel];
     [self restoreTimeTrickToDate:date];

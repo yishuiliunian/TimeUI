@@ -102,6 +102,7 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 - (void) logoutCurrentAccount
 {
     DZActiveAccount.isLogin = NO;
+    [[DZAccountManager shareManager] registerActiveAccount:DZDefaultAccount];
     [self reloadAllData];
 }
 

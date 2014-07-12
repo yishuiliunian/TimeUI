@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define DZDefaultAccount [DZAccount defaultAccount]
+
 @interface DZAccount : NSObject
 @property (nonatomic, strong) NSString* identifiy;
 @property (nonatomic, strong) NSString* email;

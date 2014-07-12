@@ -277,6 +277,7 @@
 		65D6BD2C188D57390028F063 /* DZNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD2B188D57390028F063 /* DZNumberLabel.m */; };
 		65D6BD3F188E67B00028F063 /* DZProgramDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD3E188E67B00028F063 /* DZProgramDefines.m */; };
 		65D6BD43188F5BC00028F063 /* DZCommonStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D6BD42188F5BC00028F063 /* DZCommonStrings.m */; };
+		65DA035819710ABF00A6913B /* more_functions.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65DA035719710ABF00A6913B /* more_functions.jpg */; };
 		65DE7D111953D0B6000CF384 /* DZParallelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D101953D0B6000CF384 /* DZParallelTableViewController.m */; };
 		65DE7D151953D1EC000CF384 /* DZFuncsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D141953D1EC000CF384 /* DZFuncsViewController.m */; };
 		65DE7D181953D767000CF384 /* DZFuncCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D171953D767000CF384 /* DZFuncCell.m */; };
@@ -769,6 +770,7 @@
 		65D6BD41188F5BC00028F063 /* DZCommonStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZCommonStrings.h; sourceTree = "<group>"; };
 		65D6BD42188F5BC00028F063 /* DZCommonStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZCommonStrings.m; sourceTree = "<group>"; };
 		65DA02FE196D43AC00A6913B /* DZRestoreTrickDataNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZRestoreTrickDataNI.h; sourceTree = "<group>"; };
+		65DA035719710ABF00A6913B /* more_functions.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = more_functions.jpg; sourceTree = "<group>"; };
 		65DE7D0F1953D0B6000CF384 /* DZParallelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZParallelTableViewController.h; sourceTree = "<group>"; };
 		65DE7D101953D0B6000CF384 /* DZParallelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZParallelTableViewController.m; sourceTree = "<group>"; };
 		65DE7D131953D1EC000CF384 /* DZFuncsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZFuncsViewController.h; sourceTree = "<group>"; };
@@ -2180,6 +2182,7 @@
 		65CE6D2E187AC70900DACA12 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				65DA035719710ABF00A6913B /* more_functions.jpg */,
 				65FF97431959874F000CE463 /* more.png */,
 				657906B81958200400310F26 /* funcsBackground */,
 				65FF97331958011F000CE463 /* dragItem */,
@@ -2451,6 +2454,7 @@
 				6547403D18EE60070007361C /* BucketResource.bundle in Resources */,
 				65768600185D624B006D7C0F /* icon-info.png in Resources */,
 				65F28FD218658899009403D1 /* basketball.png in Resources */,
+				65DA035819710ABF00A6913B /* more_functions.jpg in Resources */,
 				65FF97441959874F000CE463 /* more.png in Resources */,
 				65768601185D624B006D7C0F /* icon-info@2x.png in Resources */,
 				65FF973C1958011F000CE463 /* down2.png in Resources */,

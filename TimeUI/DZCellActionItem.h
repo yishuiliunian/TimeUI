@@ -13,4 +13,5 @@
 @interface DZCellActionItem : UIButton
 @property (nonatomic, weak) DZTableViewCell* linkedTableViewCell;
 @property (nonatomic, assign) UIEdgeInsets edgeInset;
+@property (nonatomic, strong) UIColor* enableColor;
 @end

@@ -13,7 +13,7 @@
 #import "DZNotificationCenter.h"
 #import "DZSelecteTypeInterface.h"
 @interface DZLineChartViewController () <DZSelecteTypeInterface>
-
+DEFINE_PROPERTY_STRONG(DZTimeType*, lastTimeType);
 @end
 
 @implementation DZLineChartViewController
@@ -35,6 +35,9 @@
 
 - (void) didSelectedTimeType:(DZTimeType *)timetype
 {
+    if (!timetype) {
+        timetype = _lastTimeType;
+    }
     [self showAnalisyOfType:timetype];
 }
 - (void) loadView
@@ -92,6 +95,7 @@
     if (!type) {
         return;
     }
+    _lastTimeType = type;
     NSArray* array =  [DZActiveTimeDataBase timesInOneWeakByType:type];
     NSArray* nodes = [self parseOnweakTimeData:array];
     _lineChart.values = nodes;

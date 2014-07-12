@@ -140,7 +140,29 @@
     UIView* view = [UIView new];
     view.frame = CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 20);
     [view addSubview:label];
+    label.textColor = [UIColor lightGrayColor];
+    label.frame = CGRectMake(13, 0, CGRectGetWidth(self.tableView.frame)-28, 20);
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    return view;
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString* text = [self tableView:tableView titleForHeaderInSection:section];
+    if (!text) {
+        return nil;
+    }
+    UILabel* label = [UILabel new];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = text;
+    label.textAlignment = NSTextAlignmentLeft;
+    label.numberOfLines = 0;
     
+    UIView* view = [UIView new];
+    view.frame = CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 20);
+    [view addSubview:label];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:16];
     label.frame = CGRectMake(13, 0, CGRectGetWidth(self.tableView.frame)-28, 20);
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     return view;
@@ -154,14 +176,17 @@
     }
     UIFont* font = [UIFont systemFontOfSize:14];
     CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(CGRectGetWidth(self.tableView.frame), CGFLOAT_MAX)];
-    return size.height + 10;
+    return size.height + 15;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 20;
+    NSString* text = [self tableView:tableView titleForHeaderInSection:section];
+    if (!text) {
+        return 10;
     }
-    return 10;
+    UIFont* font = [UIFont systemFontOfSize:14];
+    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(CGRectGetWidth(self.tableView.frame), CGFLOAT_MAX)];
+    return size.height + 15;
 }
 
 @end

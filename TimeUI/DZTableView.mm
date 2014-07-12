@@ -339,16 +339,16 @@ typedef vector<float>   DZCellHeightVector;
     if (!cell) {
         cell = [_dataSource dzTableView:self cellAtRow:rowIndex];
         DZCellActionItem* deleteItem = [DZCellActionItem buttonWithType:UIButtonTypeCustom];
-        deleteItem.backgroundColor = [UIColor redColor];
         [deleteItem addTarget:self action:@selector(deleteCellOfItem:) forControlEvents:UIControlEventTouchUpInside];
-        [deleteItem setTitle:@"删除" forState:UIControlStateNormal];
-        deleteItem.edgeInset = UIEdgeInsetsMake(0, 10, 0, 260);
-        DZCellActionItem* editItem = [DZCellActionItem buttonWithType:UIButtonTypeCustom];
-        editItem.edgeInset = UIEdgeInsetsMake(0, 80, 0, 180);
-        editItem.backgroundColor = [UIColor greenColor];
-        [editItem setTitle:@"编辑" forState:UIControlStateNormal];
-        [editItem addTarget:self action:@selector(editCellOfItem:) forControlEvents:UIControlEventTouchUpInside];
-        cell.actionsView.items = @[deleteItem,editItem ];
+        deleteItem.enableColor = [UIColor redColor];
+        [deleteItem setTitle:@"隐藏" forState:UIControlStateNormal];
+        deleteItem.edgeInset = UIEdgeInsetsMake(0, 0, 0, 200);
+//        DZCellActionItem* editItem = [DZCellActionItem buttonWithType:UIButtonTypeCustom];
+//        editItem.edgeInset = UIEdgeInsetsMake(0, 60, 0, 180);
+//        editItem.backgroundColor = [UIColor greenColor];
+//        [editItem setTitle:@"编辑" forState:UIControlStateNormal];
+//        [editItem addTarget:self action:@selector(editCellOfItem:) forControlEvents:UIControlEventTouchUpInside];
+        cell.actionsView.items = @[deleteItem ];
     }
     return cell;
 }
