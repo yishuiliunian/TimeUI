@@ -32,6 +32,10 @@ static NSString* const kDZ_T_Type_C_Other_Infos = @"OTHER_INFOS";
 static NSString* const kDZ_T_Type_C_FINISHED = @"FINISHED";
 
 
+DEFINE_NSStringValue(TableDeletedObject, DZDELETED);
+DEFINE_NSStringValue(_T_DELETED_C_GUID, GUID);
+DEFINE_NSStringValue(_T_DELETED_C_TYPE, TYPE);
+DEFINE_NSStringValue(_T_DELETED_C_DATE, DELETEDDATE);
 
 //
 static NSString* const kDZTableMeta = @"DZMETA";
@@ -48,6 +52,7 @@ static NSString* const kDZ_T_Meta_C_VALUE = @"META_VALUE";
 static NSString* const kDZSyncVersion = @"sync_version";
 static NSString* const kDZSyncTimeVersion = @"time";
 static NSString* const kDZSyncTimeTypeVersion = @"time.type";
+static NSString* const KDZSyncTimeDeletedVersion = @"time.deleted";
 
 @implementation DZTimeDB
 @dynamic lastError;
@@ -65,6 +70,57 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     return exist;
 }
 
+#pragma mark - Deleted
+
+- (BOOL) isDeletedRowExistByGuid:(NSString*)guid
+{
+    return [self isExistAtTable:kDZTableDeletedObject primayKey:kDZ_T_DELETED_C_GUID value:guid];
+}
+
+- (BOOL) updateDeletedObject:(DZDeletedObject*)object
+{
+    BOOL ret;
+    if ([self isDeletedRowExistByGuid:object.guid]) {
+        NSString* updateSql = [NSString updateSql:kDZTableDeletedObject setFields:@[kDZ_T_DELETED_C_DATE,
+                                                                                    kDZ_T_DELETED_C_TYPE] whereArray:@[kDZ_T_DELETED_C_GUID]];
+        ret = [_dataBase executeUpdate:updateSql, [object.deletedDate ISO8601String],
+               object.type,
+               object.guid];
+    } else {
+        NSString* insertSql = [NSString insertSql:kDZTableDeletedObject columns:@[kDZ_T_DELETED_C_DATE,
+                                                                                  kDZ_T_DELETED_C_TYPE,
+                                                                                  kDZ_T_DELETED_C_GUID]];
+        ret = [_dataBase executeUpdate:insertSql, [object.deletedDate ISO8601String],
+               object.type,
+               object.guid];
+    }
+    return ret;
+}
+
+- (NSArray*) deletedObjectsFromResult:(FMResultSet*)result
+{
+    NSMutableArray* deleteds = [NSMutableArray array];
+    while ([result next]) {
+        DZDeletedObject* object = [DZDeletedObject new];
+        object.guid = [result stringForColumn:kDZ_T_DELETED_C_GUID];
+        object.type = [result stringForColumn:kDZ_T_DELETED_C_TYPE];
+        object.deletedDate = [NSDate dateFromISO8601String:[result stringForColumn:kDZ_T_DELETED_C_DATE]];
+        [deleteds addObject:object];
+    }
+    [result close];
+    return deleteds;
+}
+
+- (NSArray*) deletedObjectsArrayFromSQL:(NSString*)sql
+{
+    return [self deletedObjectsFromResult:[_dataBase executeQuery:sql]];
+}
+
+- (NSArray*) allDeletedObjcts
+{
+    NSString* sql = [NSString selecteSql:kDZTableTimeName whereArray:nil decorate:Nil];
+    return [self deletedObjectsArrayFromSQL:sql];
+}
 #pragma mark - Time
 
 - (BOOL) isTimeExist:(DZTime*)time
@@ -164,8 +220,19 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     FMResultSet* reset = [_dataBase executeQuery:sql withArgumentsInArray:@[type.guid]];
     return [self timeArrayFromFMResult:reset];
 }
+- (BOOL) deleteTime:(DZTime*)time
+{
+    return [self deleteTimeByGuid:time.guid];
+}
 
-- (BOOL) delteTimeType:(DZTimeType *)type
+
+- (BOOL) deleteTimeByGuid:(NSString *)guid
+{
+    NSAssert(guid, @"time guid is null");
+    NSString* deletesql = [NSString deleteSql:kDZTableDeletedObject whereArray:@[kDZ_T_DELETED_C_GUID] decorate:nil];
+    return [_dataBase executeUpdate:deletesql,guid];
+}
+- (BOOL) hiddenTimeType:(DZTimeType *)type
 {
     type.isFinished = YES;
     type.localChanged = YES;
@@ -173,6 +240,18 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     //
     NSString* sql = [NSString deleteSql:kDZTableType whereArray:@[kDZ_T_Type_C_GUID] decorate:nil];
     return [_dataBase executeUpdate:sql withArgumentsInArray:@[type.guid]];
+}
+
+- (BOOL) deleteTimeType:(DZTimeType *)type
+{
+    return [self deleteTimeTypeByGuid:type.guid];
+}
+
+- (BOOL) deleteTimeTypeByGuid:(NSString *)guid
+{
+    NSAssert(guid, @"time guid is null");
+    NSString* deletesql = [NSString deleteSql:kDZTableType whereArray:@[kDZ_T_Type_C_GUID] decorate:nil];
+    return [_dataBase executeUpdate:deletesql, guid];
 }
 
 - (NSArray*) timesInOneWeakByType:(DZTimeType *)type
@@ -288,6 +367,12 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
     return [self timeTypeArrayFromFMResult:[_dataBase executeQuery:sql withArgumentsInArray:@[@(1)]]];
 }
 
+- (NSArray*) allDeletedObjects
+{
+    NSString* sql = [NSString selecteSql:kDZTableDeletedObject whereArray:nil decorate:nil];
+    return [self deletedObjectsArrayFromSQL:sql];
+}
+
 - (BOOL) setTimeType:(DZTimeType*)type localchanged:(BOOL)changed
 {
     NSString* updateSQL = [NSString updateSql:kDZTableType setFields:@[kDZ_T_Type_C_LocalChanged] whereArray:@[kDZ_T_Type_C_GUID]];
@@ -398,5 +483,12 @@ static NSString* const kDZSyncTimeTypeVersion = @"time.type";
         }
     }
     return cost;
+}
+
+
+- (BOOL) removeDeletedRow:(NSString*)guid
+{
+    NSString* sql = [NSString deleteSql:kDZTableDeletedObject whereArray:@[kDZ_T_DELETED_C_GUID] decorate:nil];
+    return [_dataBase executeUpdate:sql, guid];
 }
 @end

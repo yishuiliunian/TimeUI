@@ -51,5 +51,14 @@
 		<key>PRIMARAY_KEY</key>
 		<string>GUID</string>
 	</dict>
+	<key>DZDELETED</key>
+	<dict>
+		<key>GUID</key>
+		<string>varchar(200)</string>
+		<key>TYPE</key>
+		<string>varchar(200)</string>
+		<key>DELETEDDATE</key>
+		<string>varchar(200)</string>
+	</dict>
 </dict>
 </plist>

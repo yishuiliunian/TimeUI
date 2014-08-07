@@ -18,7 +18,9 @@ typedef enum {
     DZSyncContextSyncAppleToken   = 1 << 4  |0x00000001,
     DZSyncContextSyncDownloadTime = 1 << 5  |0x00000001,
     DZSyncContextSyncDownloadType = 1 << 6  |0x00000001,
-    DZSyncContextSyncError        = 1 << 7
+    DZSyncContextSyncDownloadDeleted = 1 << 7  |0x00000001,
+    DZSyncContextSyncUploadDeleted = 1 << 8  |0x00000001,
+    DZSyncContextSyncError        = 1 << 9
 }DZSyncContext;
 
 #define DZDefaultContextManager [DZContextManager shareManager]

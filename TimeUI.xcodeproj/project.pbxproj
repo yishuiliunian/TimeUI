@@ -285,6 +285,8 @@
 		65DE7D181953D767000CF384 /* DZFuncCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D171953D767000CF384 /* DZFuncCell.m */; };
 		65DE7D1B1953DF27000CF384 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65DE7D1D1953DF27000CF384 /* Localized.strings */; };
 		65DE7D211953E08E000CF384 /* DZBackgroudLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE7D201953E08E000CF384 /* DZBackgroudLabel.m */; };
+		65DFA02B1992235E00873871 /* DZDeletedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DFA02A1992235E00873871 /* DZDeletedObject.m */; };
+		65DFA02F19922FCF00873871 /* DZDBShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DFA02E19922FCF00873871 /* DZDBShort.m */; };
 		65E4E06F1859664E005316E8 /* DZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4E06E1859664E005316E8 /* DZTableViewCell.m */; };
 		65E65EFC1892139B00AFA60E /* DZSawtoothView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E65EFB1892139B00AFA60E /* DZSawtoothView.m */; };
 		65EE100D185F312100FA0882 /* NSError+dz.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EE100C185F312100FA0882 /* NSError+dz.m */; };
@@ -787,6 +789,10 @@
 		65DE7D1E1953DF2E000CF384 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localized.strings"; sourceTree = "<group>"; };
 		65DE7D1F1953E08E000CF384 /* DZBackgroudLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZBackgroudLabel.h; sourceTree = "<group>"; };
 		65DE7D201953E08E000CF384 /* DZBackgroudLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZBackgroudLabel.m; sourceTree = "<group>"; };
+		65DFA0291992235E00873871 /* DZDeletedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDeletedObject.h; sourceTree = "<group>"; };
+		65DFA02A1992235E00873871 /* DZDeletedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZDeletedObject.m; sourceTree = "<group>"; };
+		65DFA02D19922FCF00873871 /* DZDBShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDBShort.h; sourceTree = "<group>"; };
+		65DFA02E19922FCF00873871 /* DZDBShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZDBShort.m; sourceTree = "<group>"; };
 		65E4E06D1859664E005316E8 /* DZTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZTableViewCell.h; sourceTree = "<group>"; };
 		65E4E06E1859664E005316E8 /* DZTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZTableViewCell.m; sourceTree = "<group>"; };
 		65E65EFA1892139B00AFA60E /* DZSawtoothView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZSawtoothView.h; sourceTree = "<group>"; };
@@ -1304,6 +1310,8 @@
 				65238F081857366E00FE5D89 /* DZTimeDB.h */,
 				65238F091857366E00FE5D89 /* DZTimeDB.m */,
 				65238F0B185736E000FE5D89 /* DZDBManager.h */,
+				65DFA02D19922FCF00873871 /* DZDBShort.h */,
+				65DFA02E19922FCF00873871 /* DZDBShort.m */,
 				65238F0C185736E000FE5D89 /* DZDBManager.m */,
 				65238F0E1857373A00FE5D89 /* DZTimeDBInterface.h */,
 			);
@@ -1360,6 +1368,8 @@
 				65238F301857584300FE5D89 /* DZTimeType.m */,
 				65F0AAE9186DB6F4001C6302 /* DZObject.h */,
 				65F0AAEA186DB6F4001C6302 /* DZObject.m */,
+				65DFA0291992235E00873871 /* DZDeletedObject.h */,
+				65DFA02A1992235E00873871 /* DZDeletedObject.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2651,6 +2661,7 @@
 				6526C8DE1859893300A53B79 /* DZDevices.m in Sources */,
 				65F28FB318657A4C009403D1 /* DZResourcesManager.m in Sources */,
 				65C6BAA91859636D00984D25 /* DZTableView.mm in Sources */,
+				65DFA02B1992235E00873871 /* DZDeletedObject.m in Sources */,
 				65C38F321894F56500420CF7 /* CTime.mm in Sources */,
 				656F68BC18324B2D001F7B7C /* DZAppDelegate.m in Sources */,
 				659910B81856E3F9003EDCAD /* UIView+Shadow.m in Sources */,
@@ -2681,6 +2692,7 @@
 				6547407218EEB7E40007361C /* SBJson4Parser.m in Sources */,
 				6514654318640AB2005060CB /* DZAnalysisManager.m in Sources */,
 				65624F2D1890BFF400ECD113 /* DZPageScrollView.m in Sources */,
+				65DFA02F19922FCF00873871 /* DZDBShort.m in Sources */,
 				65C38F6318950A2000420CF7 /* DZSettingSectionModel.m in Sources */,
 				65FF974219595CD1000CE463 /* DZSyncManager.m in Sources */,
 				651465381863EEBE005060CB /* DZThemeManager.m in Sources */,
@@ -2860,8 +2872,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao Dong (FM9P6LZ2YK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhao Dong (FM9P6LZ2YK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TimeUI/ShareSDK/Connection",

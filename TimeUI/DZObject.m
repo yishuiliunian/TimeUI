@@ -7,7 +7,8 @@
 //
 
 #import "DZObject.h"
-
+#import "DZAccountManager.h"
+#import "DZAccount.h"
 @implementation DZObject
 
 - (instancetype) initGenGUID
@@ -21,5 +22,12 @@
 - (NSDictionary*) toJsonObject
 {
     return @{};
+}
+- (id) valueForKey:(NSString *)key
+{
+    if ([key isEqualToString:SJKeyUserGUID]) {
+        return [DZActiveAccount identifiy];
+    }
+    return [NSNull null];
 }
 @end

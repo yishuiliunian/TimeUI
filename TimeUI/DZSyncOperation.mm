@@ -92,7 +92,16 @@ static float const DZDefaultRequestCount = 100;
 
 - (BOOL) syncAllDatas:(NSError* __autoreleasing*)error
 {
+
     if (![self getAllVersions:error]) {
+        return NO;
+    }
+
+    if (![self getDeletedObjects:error]) {
+        return NO;
+    }
+    
+    if (![self updateDeletedObjects:error]) {
         return NO;
     }
     if (![self getTimes:error]) {
@@ -211,6 +220,21 @@ static float const DZDefaultRequestCount = 100;
     return YES;
 }
 
+- (BOOL) updateDeletedObjects:(NSError* __autoreleasing*) error
+{
+    DZSyncContextSet(DZSyncContextSyncUploadDeleted);
+    NSArray* allDeobs = [_database allDeletedObjects];
+    for (DZDeletedObject* deob  in allDeobs) {
+        NSDictionary* json = [deob toJsonObject];
+        id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodUpdateDeletedObjects token:_token bodyDatas:json error:error];
+        NSLog(@"%@", sobj);
+        if (!*error) {
+            [_database removeDeletedRow:deob.guid];
+        }
+    }
+    return YES;
+}
+
 - (BOOL) getTimeTypes:(NSError* __autoreleasing*)error
 {
     DZSyncContextSet(DZSyncContextSyncDownloadType);
@@ -235,6 +259,37 @@ static float const DZDefaultRequestCount = 100;
     return YES;
 }
 
+- (BOOL) removeDBObjectBy:(DZDeletedObject*)deob
+{
+    if ([deob.type isEqualToString:kDZObjectTypeTime]) {
+        return [_database deleteTimeByGuid:deob.guid];
+    } else if ([deob.type isEqualToString:kDZObjectTypeType]) {
+        return [_database deleteTimeTypeByGuid:deob.guid];
+    }
+    return YES;
+}
+
+- (BOOL) getDeletedObjects:(NSError* __autoreleasing*)error{
+    
+    DZSyncContextSet(DZSyncContextSyncDownloadDeleted);
+    if (![self getEditedServerObject:DZServerMethodGetDeletedObjects
+                         updateBlock:^NSError *(NSDictionary *jsonDic) {
+        
+        DZDeletedObject* deo = [DZDeletedObject new];
+        [deo setValuesForKeysWithDictionary:jsonDic];
+                             [self removeDBObjectBy:deo];
+                             
+                             return nil;
+                             
+                
+    }
+                               error:error])
+    {
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL) getAllVersions:(NSError* __autoreleasing*)error
 {
     id sobj = [DZDefaultRouter sendServerMethod:DZServerMethodVersionsGetAll token:_token bodyDatas:@{} error:error];
@@ -245,6 +300,7 @@ static float const DZDefaultRequestCount = 100;
         NSDictionary* dic = (NSDictionary*)sobj;
         _serverVersions[DZServerMethodGetTimes] = @([dic[@"times"] longLongValue]);
         _serverVersions[DZServerMethodGetTypes] = @([dic[@"types"] longLongValue]);
+        _serverVersions[DZServerMethodGetDeletedObjects] = @([dic[@"deletedobjects"] longLongValue]);
     }
     return YES;
 }

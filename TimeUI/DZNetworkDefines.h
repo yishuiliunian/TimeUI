@@ -36,5 +36,7 @@ static NSString* const DZServerMethodVersionsGetAll = @"version.get_all";
 static NSString* const DZServerMethodGetTimes       = @"time.get";
 static NSString* const DZServerMethodUpdateType     = @"type.update";
 static NSString* const DZServerMethodGetTypes       = @"type.get_all";
+static NSString* const DZServerMethodGetDeletedObjects = @"deleted.get";
+static NSString* const DZServerMethodUpdateDeletedObjects = @"deleted.update";
 
 #endif

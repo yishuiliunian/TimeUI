@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import  "DZDeletedObject.h"
 @class DZTime;
 @class DZTimeType;
+
 
 @protocol DZTimeDBInterface <NSObject>
 @property (nonatomic, strong, readonly) NSError* lastError;
@@ -28,8 +29,11 @@
 - (NSArray*) allUnFinishedTimeTypes;
 - (NSArray*) allChangedTimes;
 - (BOOL) setTime:(DZTime*)time localchanged:(BOOL)localchanged;
-
-- (BOOL) delteTimeType:(DZTimeType*)type;
+- (BOOL) deleteTime:(DZTime*)time;
+- (BOOL) deleteTimeByGuid:(NSString *)guid;
+- (BOOL) hiddenTimeType:(DZTimeType*)type;
+- (BOOL) deleteTimeType:(DZTimeType*)type;
+- (BOOL) deleteTimeTypeByGuid:(NSString*)guid;
 - (NSArray*) allLocalChangedTypes;
 - (BOOL) setTimeType:(DZTimeType*)type localchanged:(BOOL)changed;
 //
@@ -46,4 +50,10 @@
 
 //
 - (NSTimeInterval) timeCostWithTypeGUID:(NSString*)guid;
+
+
+- (NSArray*) deletedObjectsArrayFromSQL:(NSString*)sql;
+- (BOOL) updateDeletedObject:(DZDeletedObject*)object;
+- (NSArray*) allDeletedObjects;
+- (BOOL) removeDeletedRow:(NSString*)guid;
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString* const SJKeyObjectGuid = @"Guid";
+static NSString* const SJKeyUserGUID = @"UserGUID";
 @interface DZObject : NSObject
 {
     BOOL isMarshalSucceed;

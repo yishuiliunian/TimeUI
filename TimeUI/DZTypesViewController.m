@@ -178,7 +178,7 @@
     DZTimeType* type = _timeTypes[row];
     [_timeTypes removeObjectAtIndex:row];
     [self.tableView removeRowAt:row withAnimation:YES];
-    [DZActiveTimeDataBase delteTimeType:type];
+    [DZActiveTimeDataBase hiddenTimeType:type];
     [self localizedSotreTypes];
     
     [DZShareAnalysisManager triggleAnaylysisTimeCost];

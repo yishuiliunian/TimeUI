@@ -18,6 +18,7 @@ static float const kDefaultDragItemHeight = 40;
 
 @interface DZTimeControl () <DZSelecteTypeInterface, DZRestoreTrickDateNI>
 {
+    @package
     UITapGestureRecognizer* _tapGerg;
 }
 @end

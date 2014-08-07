@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "DZTimeDBInterface.h"
-
+#import "DZDBShort.h"
 #define DZActiveTimeDataBase [[DZDBManager shareManager] timeDBInterface]
+
+
 
 @class DZAccount;
 

@@ -140,6 +140,25 @@ void(^SortTypesArray)(NSMutableArray*) = ^(NSMutableArray* types) {
         infos[@"method"] = kDZTypesChangedModified;
         [DZDefaultNotificationCenter postMessage:kDZNotification_TypesChanged userInfo:infos];
     }
+}
 
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        DZTimeType* type = _allTypes[indexPath.section][indexPath.row];
+        DBDeleteTimeTypeRow(type);
+        
+        NSMutableDictionary* infos = [NSMutableDictionary dictionary];
+        if (type) {
+            infos[@"type"] = type;
+        }
+        infos[@"method"] = kDZTypesChangedRemove;
+        [DZDefaultNotificationCenter postMessage:kDZNotification_TypesChanged userInfo:infos];
+    }
+    
 }
 @end

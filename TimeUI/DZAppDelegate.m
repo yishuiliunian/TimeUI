@@ -49,18 +49,7 @@ DEFINE_PROPERTY_STRONG_UILabel(label);
 
 
 - (void) test{
-    DZFunctionsDefaultManager.functions;
-    DZTimeType* type = [DZActiveTimeDataBase allTimeTypes].firstObject;
-    type.isFinished = YES;
-    type.localChanged = NO;
-    type.name = @"asdfsd";
-    if (![DZActiveTimeDataBase updateTimeType:type]) {
-        NSLog(@"error ");
-    }
-    
-    DZTimeType* type2 = [DZActiveTimeDataBase timeTypByGUID:type.guid];
-    
-    NSLog(@"");
+
 
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
