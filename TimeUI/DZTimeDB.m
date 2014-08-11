@@ -229,7 +229,7 @@ static NSString* const KDZSyncTimeDeletedVersion = @"time.deleted";
 - (BOOL) deleteTimeByGuid:(NSString *)guid
 {
     NSAssert(guid, @"time guid is null");
-    NSString* deletesql = [NSString deleteSql:kDZTableDeletedObject whereArray:@[kDZ_T_DELETED_C_GUID] decorate:nil];
+    NSString* deletesql = [NSString deleteSql:kDZTableTimeName whereArray:@[kDZ_T_DELETED_C_GUID] decorate:nil];
     return [_dataBase executeUpdate:deletesql,guid];
 }
 - (BOOL) hiddenTimeType:(DZTimeType *)type

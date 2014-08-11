@@ -67,13 +67,11 @@ DEFINE_NSStringValue(LocalNotificationKey, localKey)
     NSArray* allNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     for (UILocalNotification* notifi in allNotifications) {
         if (notifi.userInfo[kDZLocalNotificationKey]) {
-            float duration = [notifi.userInfo[kDZLocalNotificationKey] floatValue];
-            if (duration < 5) {
-                [[UIApplication sharedApplication] cancelLocalNotification:notifi];
-            }
+            [[UIApplication sharedApplication] cancelLocalNotification:notifi];
         }
     }
     [self postAllNotifications];
 }
+
 @end
 

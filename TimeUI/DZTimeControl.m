@@ -55,12 +55,14 @@ static float const kDefaultDragItemHeight = 40;
 }
 - (void) commonInit
 {
+    INIT_SELF_SUBVIEW_UIImageView(_contentBackgroundView);
+    _contentBackgroundView.backgroundColor = [UIColor whiteColor];
+    //
     INIT_SELF_SUBVIEW_UIImageView(_dragBackgroundImageView);
     INIT_SUBVIEW_UIImageView(_dragBackgroundImageView, _dragItemImageView);
     INIT_SELF_SUBVIEW_UIImageView(_labelsBackgroundImageView);
     INIT_SUBVIEW_UIButton(_dragBackgroundImageView, _leftButton);
     INIT_SUBVIEW_UIButton(_dragBackgroundImageView, _rightButton);
-    
     
     _counterLabel = [[DZTimeCountLabel alloc] init];
     [_labelsBackgroundImageView addSubview:_counterLabel];
@@ -69,6 +71,8 @@ static float const kDefaultDragItemHeight = 40;
     _typeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     INIT_SUBVIEW_UILabel(_labelsBackgroundImageView, _bottomLabel);
     
+    INIT_SELF_SUBVIEW(DZListHanldeView, _listHandleView);
+
     _counterLabel.beginTimeOffset = ABS([[DZTimeTrickManger shareManager].lastTrickDate timeIntervalSinceNow]);
     [_counterLabel start];
     
@@ -95,22 +99,44 @@ static float const kDefaultDragItemHeight = 40;
 
 - (void) layoutSubviews
 {
-    LAYOUT_SUBVIEW_TOP_FILL_WIDTH(_dragBackgroundImageView, 0 , 0 , kDefaultDragItemHeight);
-    LAYOUT_SUBVIEW_CENTER(_dragItemImageView, _dragBackgroundImageView, 137, 8);
-    LAYOUT_VIEW_FILL_WIDTH_RELY_MAX_Y(_labelsBackgroundImageView, 10, _dragBackgroundImageView, 5, CGRectViewHeight - 5 - CGRectGetMaxY(_dragBackgroundImageView.frame));
+    
+    
+    LAYOUT_SUBVIEW_TOP_FILL_WIDTH(_listHandleView, 0 , 0 , kDefaultDragItemHeight+2);
+    LAYOUT_SUBVIEW_FILL_WIDTH_RELY_MAX_Y(_dragBackgroundImageView, self, 0, _listHandleView, -2, kDefaultDragItemHeight+2);
+//    LAYOUT_SUBVIEW_CENTER(_dragItemImageView, _dragBackgroundImageView, 137, 8);
+    
+    
+    LAYOUT_VIEW_FILL_WIDTH_RELY_MAX_Y(_labelsBackgroundImageView,
+                                      10,
+                                      _dragBackgroundImageView,
+                                      5,
+                                      CGRectViewHeight - 5 - CGRectGetMaxY(_dragBackgroundImageView.frame));
+    
+    
     LAYOUT_VIEW_TOP_FILL_WIDTH(_typeLabel, _labelsBackgroundImageView, 5, 5, 15);
-    LAYOUT_SUBVIEW_FILL_WIDTH_RELY_MAX_Y(_counterLabel, _labelsBackgroundImageView,0, _typeLabel, 0, CGRectGetHeight(_labelsBackgroundImageView.frame) - CGRectGetMaxY(_typeLabel.frame) - 20);
+    LAYOUT_SUBVIEW_FILL_WIDTH_RELY_MAX_Y(_counterLabel,
+                                         _labelsBackgroundImageView,0,
+                                         _typeLabel,
+                                         0,
+                                         CGRectGetHeight(_labelsBackgroundImageView.frame) - CGRectGetMaxY(_typeLabel.frame) - 20);
     LAYOUT_SUBVIEW_FILL_WIDTH_RELY_MAX_Y(_bottomLabel,_labelsBackgroundImageView, 0, _counterLabel, 0, CGRectGetHeight(_labelsBackgroundImageView.frame) - CGRectGetMaxY(_counterLabel.frame));
     
     static float ButttonHeight = 35;
+    
+#define DragBackgroundImageViewHeight CGRectGetHeight(_dragBackgroundImageView.frame)
     _leftButton.frame = CGRectMake(10,
-                                   (CGRectGetHeight(_dragBackgroundImageView.frame) - ButttonHeight) /2,
+                                    (DragBackgroundImageViewHeight - ButttonHeight) /2,
                                    ButttonHeight ,
                                    ButttonHeight);
     
     _rightButton.frame = CGRectMake(CGRectGetWidth(rect_dragBackgroundImageView) - 10 -ButttonHeight,
-                                    (CGRectGetHeight(_dragBackgroundImageView.frame) - ButttonHeight) /2,
+                                     (DragBackgroundImageViewHeight - ButttonHeight) /2,
                                     ButttonHeight,  ButttonHeight);
+    
+    
+    //
+    _contentBackgroundView.frame = CGRectMake(0, CGRectGetMaxY(_listHandleView.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)- CGRectGetMaxY(_listHandleView.frame));
+
 }
 
 @end

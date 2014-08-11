@@ -11,4 +11,7 @@
 @interface UIViewController (PullDown)
 @property (nonatomic, strong) DZPullDownViewController* pdSuperViewController;
 - (void) addLeftBackItem;
+
+
+- (void) willPbTrigglePulldownDismiss:(DZPullDownViewController*)pdVC;
 @end

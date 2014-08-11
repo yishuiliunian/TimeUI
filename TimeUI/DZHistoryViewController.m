@@ -137,6 +137,30 @@
 {
     return 40;
 }
+
+
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        DZTime* time = __timeHistoryArray[indexPath.section][indexPath.row];
+        DBDeleteTimeRow(time);
+        
+        NSMutableArray* array = __timeHistoryArray[indexPath.section];
+        if (array.count == 1) {
+            [__timeHistoryArray removeObjectAtIndex:indexPath.section];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else {
+            [__timeHistoryArray[indexPath.section] removeObjectAtIndex:indexPath.row];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

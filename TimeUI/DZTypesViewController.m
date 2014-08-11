@@ -27,6 +27,11 @@
 
 @implementation DZTypesViewController
 @synthesize selectDelegate = _selectDelegate;
+
+- (void) dealloc
+{
+    [[DZNotificationCenter defaultCenter] removeObserver:self];
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

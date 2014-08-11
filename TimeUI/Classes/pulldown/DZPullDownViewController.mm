@@ -278,12 +278,31 @@ DEFINE_PROPERTY_ASSIGN(DZTopViewControllerStatues, pullDownState);
                 
             }];
         } else {
-            [self pdPopViewControllerAnimated:YES completion:^{
-                
-            }];
+            [self triggleDismiss];
         }
         _moveData.clearData();
     }
+}
+
+- (void) triggleDismiss
+{
+    
+    UIViewController* viewController = [_pdChildViewControllers lastObject];
+    if (!viewController) {
+        return;
+    }
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navvc = (UINavigationController*)viewController;
+        UIViewController* top = navvc.topViewController;
+        if ([top respondsToSelector:@selector(willPbTrigglePulldownDismiss:)]) {
+            [top willPbTrigglePulldownDismiss:self];
+        }
+    }
+
+    
+    [self pdPopViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 @end

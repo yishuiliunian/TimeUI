@@ -18,7 +18,9 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
 
 
 @interface DZSplitChartViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
+{
+    UILabel* _avatarHolderLabel;
+}
 @end
 
 @implementation DZSplitChartViewController
@@ -52,6 +54,8 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
                                                            delegate:self
                                                   cancelButtonTitle:kBTTileCancel destructiveButtonTitle:nil otherButtonTitles:kBTTileCamera,kBTTileScrolls, nil];
         [sheet showInView:self.view];
+        
+        _splitChartView.avatarHolderLabel.hidden = YES;
     }
 }
 
@@ -92,7 +96,7 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
     self.splitChartView.avatarImageView.userInteractionEnabled = YES;
     
     UITapGestureRecognizer* tapPress = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandle:)];
-    tapPress.numberOfTapsRequired = 2;
+    tapPress.numberOfTapsRequired = 1;
     [self.splitChartView.avatarImageView addGestureRecognizer:tapPress];
     
     
@@ -106,9 +110,14 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareCurrent)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    //
     
 }
-
+- (void) viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+}
 - (void) dismiss
 {
     [self.pdSuperViewController pdPopViewControllerAnimated:YES completion:^{
@@ -117,16 +126,18 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
 }
 - (void) shareCurrent
 {
-    UIGraphicsBeginImageContext(self.view.bounds.size);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    CGSize size = self.splitChartView.contentSize;
+    size.width *= 2;
+    size.height *=2;
+    UIGraphicsBeginImageContext(self.splitChartView.contentSize);
+    [self.splitChartView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     id<ISSContent> publishContent = [ShareSDK content:@"时间都去哪儿了？时间猎手，捕获时间，抓住那些匆匆溜走的岁月。"
                                        defaultContent:@"时间都去哪儿了？时间猎手，捕获时间，抓住那些匆匆溜走的岁月。"
                                                 image:[ShareSDK pngImageWithImage:image]
-                                                title:@"分享自时间猎手" url:@"www.baidu.com" description:@"" mediaType:SSPublishContentMediaTypeNews];
-    
+                                                title:@"分享自时间猎手" url:nil description:@"" mediaType:SSPublishContentMediaTypeImage];
    
     
     

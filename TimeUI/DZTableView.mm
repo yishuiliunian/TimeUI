@@ -335,6 +335,7 @@ typedef vector<float>   DZCellHeightVector;
 }
 - (DZTableViewCell*) _cellForRow:(NSInteger)rowIndex
 {
+    
     DZTableViewCell* cell = [_visibleCellsMap objectForKey:@(rowIndex)];
     if (!cell) {
         cell = [_dataSource dzTableView:self cellAtRow:rowIndex];
@@ -369,9 +370,10 @@ typedef vector<float>   DZCellHeightVector;
         height = CGRectGetHeight(self.frame) + 2;
     }
     height += 10;
-    CGSize size = CGSizeMake(CGRectGetWidth(self.frame), height);
-    
-    [self setContentSize:size];
+    CGSize sizeBase = CGSizeMake(CGRectViewWidth, height);
+//    CGSize size = CGSizeMake(CGRectGetWidth(self.frame) + self.contentInset.left + self.contentInset.right,
+//                             height + self.contentInset.top + self.contentInset.bottom);
+    [self setContentSize:sizeBase];
     [self reloadPiceGradientColor];
 }
 - (void) reloadData

@@ -1,1 +1,5 @@
-[{"identifiy":"吃饭","Name":"吃饭","Detail":"吃饭"}]
+[{"identifiy":"吃饭","Name":"吃饭","Detail":"吃饭"},
+ {"identifiy":"睡觉","Name":"睡觉","Detail":"睡觉"},
+ {"identifiy":"工作","Name":"工作","Detail":"工作"},
+ {"identifiy":"在路上","Name":"在路上","Detail":"在路上"},
+ {"identifiy":"无聊中","Name":"无聊中","Detail":"无聊中"}]

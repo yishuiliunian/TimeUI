@@ -65,6 +65,7 @@
 - (void) loadControls
 {
     _timeControl = [DZTimeControl new];
+    
     _timeControl.bottomLabel.text = NSLocalizedString(@"Click Save", nil);
     _timeControl.bottomLabel.textAlignment = NSTextAlignmentCenter;
     _timeControl.bottomLabel.textColor = [UIColor blueColor];
@@ -75,7 +76,7 @@
     _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     _pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     
-    _timeControl.backgroundColor = [UIColor whiteColor];
+    _timeControl.backgroundColor = [UIColor clearColor];
 }
 
 - (void) viewWillLayoutSubviews
@@ -112,7 +113,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.pageScrollView.backgroundColor = [UIColor whiteColor];
+    self.pageScrollView.backgroundColor = [UIColor clearColor];
+    
+    self.pageScrollView.contentBackgroudView.backgroundColor = [UIColor whiteColor];
     self.pageScrollView.showGestrueIndicatoryView = NO;
     [self loadControls];
     [self loadChartsViewControllers];
@@ -155,7 +158,7 @@
 }
 - (UIEdgeInsets) edgeInsetsOfTopToolViewInPageScrollView:(DZPageScrollView *)pageScrollView
 {
-    return UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.view.frame) - 150, 0);
+    return UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.view.frame) - 160, 0);
 }
 
 - (UIEdgeInsets) edgeInsetsOfPageCellInPageScrollView:(DZPageScrollView *)pageScrollView

@@ -10,8 +10,9 @@
 #import "DZChartNode.h"
 #import "UIColor+DZColor.h"
 #import "DZPieChartNode.h"
-
+#import "DZColorUnit.h"
 @interface DZPieChart ()
+DEFINE_PROPERTY_STRONG(DZColorUnit*, colorUnit);
 DEFINE_PROPERTY_STRONG(UITapGestureRecognizer*, tapGesture);
 @end
 
@@ -19,6 +20,8 @@ DEFINE_PROPERTY_STRONG(UITapGestureRecognizer*, tapGesture);
 
 - (void) commonInit
 {
+    _colorUnit = [DZColorUnit new];
+    //
     _nodes = [NSMutableArray new];
     _selectedItemFont = [UIFont systemFontOfSize:16];
     _selectedItemColor = [UIColor blackColor];
@@ -61,6 +64,7 @@ DEFINE_PROPERTY_STRONG(UITapGestureRecognizer*, tapGesture);
 - (void) addChartNode:(DZChartNode *)node
 {
     DZPieChartNode* pieChartNode = [[DZPieChartNode alloc] initWithChartNode:node];
+    pieChartNode.shapeLayer.fillColor = [_colorUnit randomColor].CGColor;
     [_nodes addObject:pieChartNode];
     [self.layer addSublayer:pieChartNode.shapeLayer];
     [self setNeedsDisplay];

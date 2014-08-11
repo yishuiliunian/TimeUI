@@ -87,6 +87,8 @@ struct DZPageScrollViewDelegateReseponse {
     [_tapRcg requireGestureRecognizerToFail:rightTapRcg];
     [_tapRcg requireGestureRecognizerToFail:leftTapRcg];
     [self addGestureRecognizer:_tapRcg];
+    
+    INIT_SELF_SUBVIEW(UIImageView, _contentBackgroudView);
 }
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
@@ -313,6 +315,10 @@ struct DZPageScrollViewDelegateReseponse {
     {
         _pageCellEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     }
+    
+
+    
+    //
     if ([_pageDelegate respondsToSelector:@selector(edgeInsetsOfTopToolViewInPageScrollView:)]) {
         _topToolViewEdgeInsets = [_pageDelegate edgeInsetsOfTopToolViewInPageScrollView:self];
     }
@@ -377,10 +383,13 @@ struct DZPageScrollViewDelegateReseponse {
         
         _bottomToolView.frame = rect;
         
-    
-        NSLog(@"%@,%@,%@",NSStringFromUIEdgeInsets(_bottomToolViewEdgeInsets),NSStringFromCGPoint(self.contentOffset),NSStringFromCGRect(rect));
+
         [self bringSubviewToFront:_bottomToolView];
     }
+    
+    
+    _contentBackgroudView.frame = CGRectMake(0 + self.contentOffset.x, _pageCellEdgeInsets.top, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - _pageCellEdgeInsets.top - _pageCellEdgeInsets.bottom);
+    
     if (_topToolView) {
         CGRect rect = CGRectWithEdgeInsetsForRect(_topToolViewEdgeInsets, CGRectMake(0, 0, CGRectViewWidth, CGRectViewHeight));
         _topToolView.frame =  CGRectOffset(rect, self.contentOffset.x, self.contentOffset.y);

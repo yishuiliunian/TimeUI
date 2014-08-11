@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DZTimeCountLabel.h"
+#import "DZListHanldeView.h"
 @interface DZTimeControl : UIView
+DEFINE_PROPERTY_STRONG_UIImageView(contentBackgroundView);
 DEFINE_PROPERTY_ASSIGN_Float(dragBackgroudHeight);
 DEFINE_PROPERTY_STRONG_UIImageView(dragBackgroundImageView);
 DEFINE_PROPERTY_STRONG_UIImageView(dragItemImageView);
@@ -17,6 +19,6 @@ DEFINE_PROPERTY_STRONG_UILabel(bottomLabel);
 DEFINE_PROPERTY_STRONG_UIImageView(labelsBackgroundImageView);
 DEFINE_PROPERTY_STRONG_UIButton(leftButton);
 DEFINE_PROPERTY_STRONG_UIButton(rightButton);
-
+DEFINE_PROPERTY_STRONG(DZListHanldeView*, listHandleView);
 @property (nonatomic, strong, readonly) DZTimeCountLabel* counterLabel;
 @end

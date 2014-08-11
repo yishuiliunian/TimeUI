@@ -58,7 +58,10 @@
     _willAddRote = rote;
     DZSelectTypeViewController* selectVC = [[DZSelectTypeViewController alloc] init];
     selectVC.typeSelectDelegate = self;
-    [self presentViewController:selectVC animated:YES completion:^{
+    
+    //
+    UINavigationController* navVC = [[UINavigationController alloc] initWithRootViewController:selectVC];
+    [self presentViewController:navVC animated:YES completion:^{
         
     }];
 }
@@ -70,6 +73,11 @@
 - (void) editTimeSegmentView:(DZEditTimeSegmentView *)timeView finishEditLine:(DZEditTimeLine *)line
 {
     self.pdSuperViewController.pulldownEnable = YES;
+}
+
+- (void) willPbTrigglePulldownDismiss:(DZPullDownViewController *)pdVC
+{
+    [self restoreTimeTrickToDate:_initialTime.dateBegin];
 }
 - (void)viewDidLoad
 {
@@ -83,6 +91,7 @@
     _editTimeSegementView.delegate = self;
     [self.view addSubview:_editTimeSegementView];
     
+    self.title = @"记录时间";
 	// Do any additional setup after loading the view.
     
     //

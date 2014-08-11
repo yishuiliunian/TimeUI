@@ -26,7 +26,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBar.translucent = NO;
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backToPreviousViewController)];
+    self.navigationItem.leftBarButtonItem = item;	// Do any additional setup after loading the view.
+    self.title = @"选择时间种类";
+}
+
+- (void) backToPreviousViewController {
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning

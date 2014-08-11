@@ -73,10 +73,18 @@
     _chartsViewController.timeControl.dragBackgroundImageView.userInteractionEnabled = YES;
     _panGestureRecognizer.minimumNumberOfTouches = 1;
     _panGestureRecognizer.maximumNumberOfTouches = 1;
-    
     _panGestureRecognizer.delegate = self;
     [_chartsViewController.timeControl.leftButton addTapTarget:self selector:@selector(didGetShareMessage)];
     [_chartsViewController.timeControl.leftButton setImage:DZCachedImageByName(@"more") forState:UIControlStateNormal];
+    
+    //
+    UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestrueRecg:)];
+    [_chartsViewController.timeControl.listHandleView addGestureRecognizer:panGestureRecognizer];
+    _chartsViewController.timeControl.listHandleView.userInteractionEnabled = YES;
+    panGestureRecognizer.minimumNumberOfTouches = 1;
+    panGestureRecognizer.maximumNumberOfTouches = 1;
+    panGestureRecognizer.delegate = self;
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -117,6 +125,7 @@
             _lastPoint = point;
         }
         [self layoutChildViewControllerOffSet:point.y Animation:YES];
+        _chartsViewController.timeControl.listHandleView.state = DZListHanldeStateMoving;
     } else if (swipRcg.state == UIGestureRecognizerStateEnded) {
 
         if (direction == DZDirectionUp) {
@@ -147,6 +156,9 @@
         _chartsViewController.timeControl.dragItemImageView.animationImages = imges;
         _chartsViewController.timeControl.dragItemImageView.animationDuration = 1.5;
         [_chartsViewController.timeControl.dragItemImageView startAnimating];
+        
+        //
+        _chartsViewController.timeControl.listHandleView.state = DZListHanldeStateBottom;
     } else {
         NSArray* imges = @[DZCachedImageByName(@"down0"),
                            DZCachedImageByName(@"down1"),
@@ -154,6 +166,7 @@
         _chartsViewController.timeControl.dragItemImageView.animationImages = imges;
         _chartsViewController.timeControl.dragItemImageView.animationDuration = 1.5;
         [_chartsViewController.timeControl.dragItemImageView startAnimating];
+        _chartsViewController.timeControl.listHandleView.state = DZListHanldeStateTop;
     }
     [self layoutChildViewControllerOffSet:offset Animation:animation];
 }
@@ -164,7 +177,10 @@
     rect.size.width = CGRectGetViewControllerWidth;
     rect.size.height = CGRectGetViewControllerHeight - offset;
     _chartsViewController.view.frame = rect;
-    _typesViewController.view.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight - CGRectGetHeight(rect));
+    
+    CGFloat bottonRedundancy = 40;
+    _typesViewController.tableView.contentInset = UIEdgeInsetsMake(0, 0, bottonRedundancy, 0);
+    _typesViewController.view.frame = CGRectMake(0, 0, CGRectGetViewControllerWidth, CGRectGetViewControllerHeight - CGRectGetHeight(rect) + bottonRedundancy);
 }
 
 - (void) viewWillLayoutSubviews

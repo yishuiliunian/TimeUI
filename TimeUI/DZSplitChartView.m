@@ -9,6 +9,7 @@
 #import "DZSplitChartView.h"
 #import "DZChartNode.h"
 #import "DZPieChartNode.h"
+#import "DZColorUnit.h"
 
 static CGFloat kTextLayerHeight = 40;
 @interface DZNoteLayer : CALayer
@@ -28,6 +29,7 @@ static CGFloat kTextLayerHeight = 40;
     _textLayer = [CATextLayer new];
     _textLayer.alignmentMode = kCAAlignmentRight;
     _textLayer.fontSize = 15;
+    _textLayer.contentsScale = 2;
     _textLayer.foregroundColor = [UIColor blackColor].CGColor;
     _colorLayer = [CAShapeLayer new];
     [self addSublayer:_textLayer];
@@ -53,6 +55,7 @@ static CGFloat kTextLayerHeight = 40;
     NSMutableArray* _allTextLayers;
     NSMutableDictionary* _colorMap;
 }
+DEFINE_PROPERTY_STRONG(DZColorUnit*, colorUnit);
 DEFINE_PROPERTY_STRONG_UILabel(zeroHourLabel);
 DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
 @end
@@ -61,19 +64,23 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
 - (void) addChartNode:(DZChartNode *)node
 {
     DZPieChartNode* pieChartNode = [[DZPieChartNode alloc] initWithChartNode:node];
+    
     [_nodes addObject:pieChartNode];
     [self.layer addSublayer:pieChartNode.shapeLayer];
     if (_colorMap[node.key]) {
         pieChartNode.shapeLayer.fillColor = [_colorMap[node.key] CGColor];
     } else
     {
-        _colorMap[node.key] = [UIColor colorWithCGColor:pieChartNode.shapeLayer.fillColor];
+        UIColor* color  = [_colorUnit randomColor];
+        pieChartNode.shapeLayer.fillColor = color.CGColor;
+        _colorMap[node.key] = color;
     }
     [self setNeedsDisplay];
 }
 
 - (void) commitInit
 {
+    _colorUnit = [DZColorUnit new];
     _nodes = [NSMutableArray new];
     _colorMap = [NSMutableDictionary new];
     _24nodes = [NSMutableArray array];
@@ -84,18 +91,30 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     INIT_SELF_SUBVIEW_UILabel(_zeroHourLabel);
     INIT_SELF_SUBVIEW_UILabel(_twHourLabel);
     INIT_SELF_SUBVIEW(DZOvalMaskImageView, _avatarImageView);
-    
+    INIT_SUBVIEW_UILabel(_avatarImageView, _avatarHolderLabel);
+    //
+    _avatarHolderLabel.backgroundColor = [UIColor orangeColor];
+    _avatarHolderLabel.alpha = 0.7;
+    _avatarHolderLabel.textColor = [UIColor whiteColor];
+    _avatarHolderLabel.textAlignment = NSTextAlignmentCenter;
+    _avatarHolderLabel.text = @"点击设置头像";
+    //
     _zeroHourLabel.text = @"00:00 AM";
     _twHourLabel.text = @"12:00 PM";
     _zeroHourLabel.font = [UIFont boldSystemFontOfSize:13];
     _twHourLabel.font = [UIFont boldSystemFontOfSize:13];
     self.backgroundColor = [UIColor whiteColor];
+    
+    //
+    INIT_SELF_SUBVIEW(UITextField, _titleTextField);
+    _titleTextField.text = @"我的一天";
+    _titleTextField.textAlignment = NSTextAlignmentCenter;
 }
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    if (!self) {
+        return self;
     }
     [self commitInit];
     return self;
@@ -244,8 +263,15 @@ DEFINE_PROPERTY_STRONG_UILabel(twHourLabel);
     
     _avatarImageView.frame = centerRect;
     _avatarImageView.image = image;
-}
 
+    LAYOUT_SUBVIEW_CENTER(_avatarHolderLabel, _avatarImageView, 20, 70);
+    LAYOUT_VIEW_TOP_FILL_WIDTH(_titleTextField, self, 20, 20, 60);
+}
+- (void) layoutSubviews
+{
+    [super layoutSubviews];
+    
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

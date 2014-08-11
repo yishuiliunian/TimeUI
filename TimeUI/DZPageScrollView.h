@@ -63,6 +63,7 @@
 
 @interface DZPageScrollView : UIScrollView
 @property (nonatomic, strong, readonly) UIImageView* backgroudView;
+@property (nonatomic, strong, readonly) UIImageView* contentBackgroudView;
 @property (nonatomic, assign) BOOL showGestrueIndicatoryView;
 @property (nonatomic, strong, readonly) UIImageView* leftArrowIndicatorView;
 @property (nonatomic, strong, readonly) UIImageView* rightArrowIndicatorView;

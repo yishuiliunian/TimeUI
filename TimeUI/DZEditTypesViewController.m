@@ -158,6 +158,9 @@ void(^SortTypesArray)(NSMutableArray*) = ^(NSMutableArray* types) {
         }
         infos[@"method"] = kDZTypesChangedRemove;
         [DZDefaultNotificationCenter postMessage:kDZNotification_TypesChanged userInfo:infos];
+        [_allTypes[indexPath.section] removeObjectAtIndex:indexPath.row];
+
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     
 }
