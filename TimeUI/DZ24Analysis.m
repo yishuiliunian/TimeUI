@@ -81,7 +81,7 @@
     for (DZTime* time  in times) {
         NSDate* begin = time.dateBegin;
         NSDate* day0 = [begin TKDateByMovingToBeginningOfDay];
-        NSTimeInterval from0 = [begin timeIntervalSinceDate:day0];
+        NSTimeInterval from0 = [begin timeIntervalSinceDate:day0] / _granularity;
         NSTimeInterval length = [time.dateEnd timeIntervalSinceDate:begin];
         for (int localLength = 0 , tIndex = (int)from0 % _timeSpitCount;
              localLength < length; localLength += _granularity, tIndex++) {

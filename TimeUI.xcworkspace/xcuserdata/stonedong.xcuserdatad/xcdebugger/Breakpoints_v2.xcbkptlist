@@ -486,11 +486,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeUI/DZAppConfigure.m"
-            timestampString = "426591681.451381"
+            timestampString = "432639273.874772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-syncContextChangedFrom:toContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -658,11 +658,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeUI/DZAppConfigure.m"
-            timestampString = "426843792.653344"
+            timestampString = "432639273.874772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "+initApp"
             landmarkType = "5">
          </BreakpointContent>
@@ -2077,8 +2077,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
             endingLineNumber = "105"
-            landmarkName = "@implementation DZAppDelegate"
-            landmarkType = "3">
+            landmarkName = "-applicationDidBecomeActive:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2532,7 +2532,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeUI/Classes/pulldown/UIViewController+PullDown.m"
@@ -2545,13 +2545,13 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[UIViewController(PullDown) backToPreviousViewController]"
                   moduleName = "TimeUI"
                   urlString = "file:///Users/stonedong/Documents/myproject/TimeUI/TimeUI/Classes/pulldown/UIViewController+PullDown.m"
-                  timestampString = "429429824.120291"
+                  timestampString = "432639942.978698"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "42"
@@ -2559,13 +2559,13 @@
                   offsetFromSymbolStart = "32">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__58-[UIViewController(PullDown) backToPreviousViewController]_block_invoke"
                   moduleName = "TimeUI"
                   urlString = "file:///Users/stonedong/Documents/myproject/TimeUI/TimeUI/Classes/pulldown/UIViewController+PullDown.m"
-                  timestampString = "429429824.120518"
+                  timestampString = "432639942.978837"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
@@ -2573,6 +2573,54 @@
                   offsetFromSymbolStart = "6">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeUI/DZAppDelegate.m"
+            timestampString = "429540828.895581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-application:didReceiveLocalNotification:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeUI/DZ24Analysis.m"
+            timestampString = "432639413.741982"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-loadTypes:times:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeUI/DZ24Analysis.m"
+            timestampString = "432639623.935488"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-loadTypes:times:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

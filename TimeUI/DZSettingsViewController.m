@@ -12,6 +12,7 @@
 #import "DZ24Analysis.h"
 #import <CTFeedbackViewController.h>
 #import "DZEditTypesViewController.h"
+#import <iRate.h>
 DEFINE_NSStringValue(RowServerHost, 服务器地址);
 @interface DZSettingsViewController ()
 
@@ -43,7 +44,9 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 
 - (void) rateMyApp
 {
-    
+#define iRateShareInstance [iRate sharedInstance]
+        iRateShareInstance.appStoreID = 907821391;
+        [[iRate sharedInstance] openRatingsPageInAppStore];
 }
 
 - (void) editAllTypes
@@ -161,9 +164,6 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 {
     [super viewWillAppear:animated];
     [self reloadAllData];
-    
-    
-    
 }
 /*
 #pragma mark - Navigation

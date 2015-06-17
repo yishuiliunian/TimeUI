@@ -33,11 +33,17 @@ typedef enum {
 @property BOOL  smartReporting;                 //智能上报开关：在WIFI模式下实时上报，默认TRUE
 @property BOOL  autoExceptionCaught;            //智能捕获未catch的异常，默认TRUE；设置为False需要在startWithAppkey前调用
 @property uint32_t maxReportEventLength;        //最大上报的单条event长度，超过不上报
-@property (nonatomic, retain) NSString* qq;
+@property (nonatomic, retain) NSString* qq;           //QQ号或者帐号
+@property (nonatomic, retain) NSString* account;      //帐号
+@property int8_t accountType;                       //帐号类型
+@property (nonatomic, retain) NSString* accountExt;   //帐号的扩展信息
 @property BOOL statEnable;
+//@property BOOL enableReportIDFA;               //是否上报IDFA，默认为NO，注意：苹果限制只有带广告的APP才能获取，开启前请确保符合要求67
 
 @property (nonatomic, retain) NSString* customerUserID;
 @property (nonatomic, retain) NSString* customerAppVersion;
+@property (nonatomic, retain) NSString* ifa;
+@property (nonatomic, retain) NSString* pushDeviceToken;
 
 @property (nonatomic, retain) NSString* statReportURL; //自定义的上报url
 @property int32_t maxSessionStatReportCount;

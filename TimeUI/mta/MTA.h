@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define MTA_SDK_VERSION @"1.2.4"
+#define MTA_SDK_VERSION @"1.4.0"
 #define MTA_APP_USER_VERSION  @"MTA_USER_APP_VER" 
 
 typedef enum {
@@ -25,7 +25,7 @@ typedef enum {
 @property int32_t returnCode;                       //业务返回的应答码
 @property MTAAppMonitorErrorType resultType;        //业务返回类型
 @property uint32_t sampling;                        //上报采样率，默认0含义为无采样
-@end 
+@end
 
 
 @interface MTA : NSObject
@@ -41,6 +41,7 @@ typedef enum {
 +(void) trackCustomEvent:(NSString*)event_id args:(NSArray*) array;
 +(void) trackCustomEventBegin:(NSString*)event_id args:(NSArray*) array;
 +(void) trackCustomEventEnd:(NSString*)event_id args:(NSArray*) array;
+
 +(void) trackCustomKeyValueEvent:(NSString*)event_id props:(NSDictionary*) kvs;
 +(void) trackCustomKeyValueEventBegin:(NSString*)event_id props:(NSDictionary*) kvs;
 +(void) trackCustomKeyValueEventEnd:(NSString*)event_id props:(NSDictionary*) kvs;
@@ -51,8 +52,44 @@ typedef enum {
 +(void) stopSession;
 
 +(void) reportAppMonitorStat:(MTAAppMonitorStat*)stat;
+
 +(void) reportQQ:(NSString*)qq;
+
++(void) reportAccount:(NSString *)account type:(uint32_t)type ext:(NSString *)ext;
 
 +(void) trackGameUser:(NSString*)uid world:(NSString*)wd level:(NSString*)lev;
 
++(NSString *) getMtaUDID;
+
++(id)getInstance;
+
+-(void) handleCrashReport;
+/*********************************************************************
+ 以下是需要自定义的增强接口,
+ appkey:指定appkey进行上报
+ isRealTime:如果为true，则进行实时上报。如果为false,则进行默认MTAConfig中的上报策略进行上报
+*********************************************************************/
++(void) trackPageViewBegin:(NSString*) page appkey:(NSString *)appkey;
++(void) trackPageViewEnd:(NSString*) page appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) trackError:(NSString*)error appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
++(void) trackException:(NSException*)exception appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) trackCustomEvent:(NSString*)event_id args:(NSArray*) array appkey:(NSString *)appkey  isRealTime:(BOOL)isRealTime;
++(void) trackCustomEventBegin:(NSString*)event_id args:(NSArray*) array appkey:(NSString *)appkey;
++(void) trackCustomEventEnd:(NSString*)event_id args:(NSArray*) array appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) trackCustomKeyValueEvent:(NSString*)event_id props:(NSDictionary*) kvs appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
++(void) trackCustomKeyValueEventBegin:(NSString*)event_id props:(NSDictionary*) kvs appkey:(NSString *)appkey;
++(void) trackCustomKeyValueEventEnd:(NSString*)event_id props:(NSDictionary*) kvs appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) reportAppMonitorStat:(MTAAppMonitorStat*)stat appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) reportQQ:(NSString*)qq appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) reportAccount:(NSString *)account type:(uint32_t)type ext:(NSString *)ext appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) trackGameUser:(NSString*)uid world:(NSString*)wd level:(NSString*)lev appkey:(NSString *)appkey isRealTime:(BOOL)isRealTime;
+
++(void) startNewSession:(BOOL)isRealTime;
 @end

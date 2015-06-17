@@ -111,4 +111,19 @@
     }
     return YES;
 }
+
+
++ (DZTimeType*) randomType
+{
+    static int i = 0;
+    NSString* key = [@(i) stringValue];
+    DZTimeType* type = [[DZTimeType alloc] initGenGUID];
+    type.name = key;
+    type.detail = key;
+    type.isFinished = NO;
+    type.localChanged = YES;
+    type.createDate = [NSDate date];
+    i++;
+    return type;
+}
 @end

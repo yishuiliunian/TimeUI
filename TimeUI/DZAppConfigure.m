@@ -35,7 +35,6 @@
 //
 #import <RennSDK/RennSDK.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
-#import <GooglePlus/GooglePlus.h>
 #import <Pinterest/Pinterest.h>
 #import "WeiboApi.h"
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -45,6 +44,8 @@
 #import "DZSyncManager.h"
 #import <iRate.h>
 #import "DZRestoreTrickDataNI.h"
+#import "NSDate+SSToolkitAdditions.h"
+#import <NSDate-TKExtensions.h>
 static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
 
 @interface DZAppConfigure () <DZNotificationInitDelegaete, DZSyncContextChangedInterface>
@@ -245,6 +246,20 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
             [DZActiveTimeDataBase updateTimeType:type];
         }
         [[DZUserDataManager shareManager] setActiveUserData:@(YES) forKey:key];
+        
+//        
+//        NSDate* dateBegin = [[NSDate date] TKDateByMovingToBeginningOfDay];
+//        for (int i = 1 ; i < 5; i++) {
+//            DZTimeType* type = [DZTimeType randomType];
+//            id<DZTimeDBInterface> db = DZActiveTimeDataBase;
+//            
+//            [db updateTimeType:type];
+//            NSDate* dateEnd = [dateBegin dateByAddingTimeInterval:6*60*60];
+//            DZTime* time = [[DZTime alloc] initWithType:type begin:dateBegin end:dateEnd detal:@""];
+//            [db updateTime:time];
+//            
+//            dateBegin = dateEnd;
+//        }
     }
     //
     [DZAppConfigure initNotifications];
@@ -255,16 +270,21 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[DZLocalNotificationCenter defaultCenter] repostAllNotifications];
         DZSyncShareManager;
+        [self initializeRate];
     });
     [self initShareSDK];
-    [self initializeRate];
+    
     return YES;
 }
 
 + (void)initializeRate
 {
     //overriding the default iRate strings
+    
+#define iRateShareInstance [iRate sharedInstance]
     if ([[iRate sharedInstance] shouldPromptForRating]) {
+        iRateShareInstance.appStoreID = 907821391;
+        iRateShareInstance.applicationName = @"时间猎人";
         [iRate sharedInstance].messageTitle = @"亲，给个好评呗！";
         [iRate sharedInstance].message = @"如果你觉得这个应用不错，就给个好评，让更多的小伙伴一起来用吧。";
         [iRate sharedInstance].cancelButtonLabel = @"忙着呢，没时间";
@@ -344,11 +364,6 @@ static NSString* const DZThirdToolKeyQQMTA = @"IN1Q4USC75PL";
      连接Google+应用以使用相关功能，此应用需要引用GooglePlusConnection.framework、GooglePlus.framework和GoogleOpenSource.framework库
      https://code.google.com/apis/console上注册应用，并将相关信息填写到以下字段
      **/
-    [ShareSDK connectGooglePlusWithClientId:@"232554794995.apps.googleusercontent.com"
-                               clientSecret:@"PEdFgtrMw97aCvf0joQj7EMk"
-                                redirectUri:@"http://localhost"
-                                  signInCls:[GPPSignIn class]
-                                   shareCls:[GPPShare class]];
     
 
     

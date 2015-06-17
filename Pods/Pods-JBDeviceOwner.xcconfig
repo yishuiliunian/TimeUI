@@ -1,1 +1,0 @@
-PODS_JBDEVICEOWNER_OTHER_LDFLAGS = -framework AddressBook

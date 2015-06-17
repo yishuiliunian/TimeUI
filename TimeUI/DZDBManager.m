@@ -11,6 +11,8 @@
 #import "DZAccountManager.h"
 #import "DZSingletonFactory.h"
 #import "DZFileUtility.h"
+
+
 @implementation DZDBManager
 + (DZDBManager*) shareManager
 {
@@ -19,9 +21,6 @@
 
 - (id<DZTimeDBInterface>) timeDBInterface
 {
-    
-
-    
     return [self timeDBInterfaceForAccount:DZActiveAccount];
 }
 

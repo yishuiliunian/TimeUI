@@ -36,4 +36,5 @@ static NSString* const SJKTypeOtherInfos = @"OtherInfos";
 @property (nonatomic, strong) NSString* userGuid;
 @property (nonatomic, strong, readonly) UIImage* imageAvatar;
 
++ (DZTimeType*) randomType;
 @end
