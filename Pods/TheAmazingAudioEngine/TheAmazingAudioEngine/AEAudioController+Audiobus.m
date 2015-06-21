@@ -35,9 +35,13 @@ __attribute__((weak)) BOOL ABReceiverPortIsConnected(ABReceiverPort *receiverPor
     return NO;
 }
 
-__attribute__((weak)) BOOL ABSenderPortSend(ABSenderPort* senderPort, const AudioBufferList *audio, UInt32 lengthInFrames, const AudioTimeStamp *timestamp) {
-    printf("ABSenderPortSend stub called\n");
+__attribute__((weak)) BOOL ABFilterPortIsConnected(ABFilterPort *filterPort) {
+    printf("ABFilterPortIsConnected stub called\n");
     return NO;
+}
+
+__attribute__((weak)) void ABSenderPortSend(ABSenderPort* senderPort, const AudioBufferList *audio, UInt32 lengthInFrames, const AudioTimeStamp *timestamp) {
+    printf("ABSenderPortSend stub called\n");
 }
 
 __attribute__((weak)) BOOL ABSenderPortIsConnected(ABSenderPort *senderPort) {
@@ -55,4 +59,4 @@ __attribute__((weak)) NSTimeInterval ABSenderPortGetAverageLatency(ABSenderPort 
     return 0;
 }
 
-__attribute__((weak)) NSString * ABConnectionsChangedNotification = @"ABConnectionsChangedNotification";
+__attribute__((weak)) NSString * const ABConnectionsChangedNotification = @"ABConnectionsChangedNotification";

@@ -42,6 +42,9 @@ extern "C" {
  *  Notification that the audio session interrupted has ended, and control
  *  has been passed back to the application.
  *
+ * @var AEAudioControllerSessionRouteChangeNotification
+ *  Notification that the system's audio route has changed.
+ *
  * @var AEAudioControllerDidRecreateGraphNotification
  *  Notification that AEAudioController has shut down and re-initialized
  *  the audio graph. This can happen in response to some unexpected system 
@@ -55,6 +58,7 @@ extern "C" {
  */
 extern NSString * const AEAudioControllerSessionInterruptionBeganNotification;
 extern NSString * const AEAudioControllerSessionInterruptionEndedNotification;
+extern NSString * const AEAudioControllerSessionRouteChangeNotification;
 extern NSString * const AEAudioControllerDidRecreateGraphNotification;
 extern NSString * const AEAudioControllerErrorOccurredNotification;
     
@@ -440,17 +444,6 @@ typedef void (*AEAudioControllerMainThreadMessageHandler)(AEAudioController *aud
 #pragma mark - Setup and start/stop
 /** @name Setup and start/stop */
 ///@{
-
-/*!
- * Canonical Audio Unit audio description
- *
- *  This is the non-interleaved audio description associated with the kAudioFormatFlagsAudioUnitCanonical flag,
- *  at 44.1kHz that can be used with @link initWithAudioDescription: @endlink.
- *
- *  This is the 8.24 fixed-point audio format recommended by Apple, although it is relatively 
- *  inconvenient to work with individual samples without converting.
- */
-+ (AudioStreamBasicDescription)audioUnitCanonicalAudioDescription;
 
 /*!
  * 16-bit stereo audio description, interleaved
@@ -1114,9 +1107,22 @@ NSTimeInterval AEConvertFramesToSeconds(AEAudioController *audioController, long
 /*!
  * Whether to use the "Measurement" Audio Session Mode for improved audio quality and bass response.
  *
+ *  Note also the @link avoidMeasurementModeForBuiltInMic @endlink property.
+ *
  * Default: NO
  */
 @property (nonatomic, assign) BOOL useMeasurementMode;
+
+/*!
+ * Whether to avoid using Measurement Mode with the built-in mic
+ *
+ *  When used with the built-in microphone, Measurement Mode results in quite low audio
+ *  input levels. Setting this property to YES causes TAAE to avoid using Measurement Mode
+ *  with the built-in mic, avoiding this problem.
+ *
+ *  Default is YES.
+ */
+@property (nonatomic, assign) BOOL avoidMeasurementModeForBuiltInMic;
 
 /*! 
  * Mute output
@@ -1137,6 +1143,8 @@ NSTimeInterval AEConvertFramesToSeconds(AEAudioController *audioController, long
 
 /*!
  * Enable audio input from Bluetooth devices
+ *
+ *  Note that setting this property to YES may have implications for input latency.
  *
  *  Default is NO.
  */
@@ -1218,7 +1226,7 @@ NSTimeInterval AEConvertFramesToSeconds(AEAudioController *audioController, long
  *  values for greater latency with lower processing overhead.  This parameter affects
  *  the length of the audio buffers received by the various callbacks.
  *
- *  Default is 0.005.
+ *  System default is ~23ms, or 1024 frames.
  */
 @property (nonatomic, assign) NSTimeInterval preferredBufferDuration;
 
@@ -1260,6 +1268,13 @@ NSTimeInterval AEConvertFramesToSeconds(AEAudioController *audioController, long
  *  This property is observable
  */
 @property (nonatomic, readonly) BOOL playingThroughDeviceSpeaker;
+
+/*!
+ * Determine whether audio is currently being recorded through the device's mic
+ *
+ *  This property is observable
+ */
+@property (nonatomic, readonly) BOOL recordingThroughDeviceMicrophone;
 
 /*!
  * Whether audio input is currently available
@@ -1315,6 +1330,8 @@ NSTimeInterval AEConvertFramesToSeconds(AEAudioController *audioController, long
  *
  *      timestamp.mHostTime += AEAudioControllerInputLatency(audioController)*__secondsToHostTicks;
  *
+ *  Note that you should not use this value when connected to Audiobus, as it does not apply in this case.
+ *
  * @param controller The audio controller
  * @returns The currently-reported hardware input latency
  */
@@ -1328,6 +1345,8 @@ NSTimeInterval AEAudioControllerInputLatency(AEAudioController *controller);
  *  For example:
  *
  *      timestamp.mHostTime += AEAudioControllerOutputLatency(audioController)*__secondsToHostTicks;
+ *
+ *  Note that when connected to Audiobus, this value will automatically account for any Audiobus latency.
  *
  * @param controller The audio controller
  * @returns The currently-reported hardware output latency

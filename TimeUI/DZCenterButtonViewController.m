@@ -74,7 +74,7 @@
     _centerButton.states = @[s1, s2];
     _centerButton.frame = s1.frame;
     
-    _countLabel = [[TTCounterLabel alloc] init];
+    _countLabel = [TTCounterLabel new];
     _countLabel.states = @[DZAnimatinStateCreateWithDic(@{kDZKeyAlpha:@(1),
                                                           kDZKeyFrame:[NSValue valueWithCGRect:CGRectMake(10, 0, 200, 100)]}),
                            DZAnimatinStateCreateWithDic(@{kDZKeyAlpha:@(1),

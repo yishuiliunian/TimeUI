@@ -24,7 +24,6 @@
 #import "MTA.h"
 #import "DZContextManager.h"
 #import "DZThemeManager.h"
-#import <TestFlight.h>
 #import "DZUserDataManager.h"
 #import "DZSelecteTypeInterface.h"
 #import "DZAnalysisNotificationInterface.h"

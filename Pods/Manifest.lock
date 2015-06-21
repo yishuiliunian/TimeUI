@@ -1,39 +1,50 @@
 PODS:
-  - CocoaLumberjack (1.9.0):
-    - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.9.0)
-  - CocoaLumberjack/Extensions (1.9.0):
+  - CocoaLumberjack (2.0.0):
+    - CocoaLumberjack/Default (= 2.0.0)
+    - CocoaLumberjack/Extensions (= 2.0.0)
+  - CocoaLumberjack/Core (2.0.0)
+  - CocoaLumberjack/Default (2.0.0):
     - CocoaLumberjack/Core
-  - CTFeedback (1.0.10)
-  - FMDB (2.3):
-    - FMDB/standard
-  - FMDB/common (2.3)
-  - FMDB/standard (2.3):
+  - CocoaLumberjack/Extensions (2.0.0):
+    - CocoaLumberjack/Default
+  - CTFeedback (1.0.18)
+  - DZCache (1.0.9):
+    - DZCDNFiles
+    - DZGeometryTools
+    - DZSinglonFactory
+  - DZCDNFiles (1.0.1):
+    - DZSinglonFactory
+  - DZGeometryTools (1.0.9)
+  - DZSinglonFactory (1.0.2)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
     - FMDB/common
   - HexColors (2.2.1)
-  - InAppSettingsKit (2.1)
-  - iRate (1.10.2)
+  - InAppSettingsKit (2.6)
+  - iRate (1.11.4)
   - JBChartView (1.1.6)
   - KXKiOS7ColorsAndGradients (1.0.0)
-  - MBProgressHUD (0.8)
+  - MBProgressHUD (0.9.1)
   - MTLocation (0.9)
   - NSDate-TKExtensions (0.4)
   - ObjectiveSugar (1.1.0)
   - PNChart (0.2.2)
   - PulsingHalo (0.0.1)
   - SKBounceAnimation (1.0.04)
-  - SSKeychain (1.2.2)
-  - TestFlightSDK (3.0.2)
-  - TheAmazingAudioEngine (1.4)
-  - TSMessages (0.9.9):
+  - SSKeychain (1.2.3)
+  - TheAmazingAudioEngine (1.4.6)
+  - TSMessages (0.9.12):
     - HexColors
-  - TTCounterLabel (1.1.2):
+  - TTCounterLabel (1.2.0):
     - TTTAttributedLabel
-  - TTTAttributedLabel (1.10.1)
+  - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
   - CocoaLumberjack
   - CTFeedback
+  - DZCache
   - FMDB
   - InAppSettingsKit
   - iRate
@@ -47,7 +58,6 @@ DEPENDENCIES:
   - PulsingHalo
   - SKBounceAnimation
   - SSKeychain
-  - TestFlightSDK
   - TheAmazingAudioEngine
   - TSMessages
   - TTCounterLabel
@@ -56,27 +66,35 @@ EXTERNAL SOURCES:
   PNChart:
     :git: git://github.com/yishuiliunian/PNChart.git
 
-SPEC CHECKSUMS:
-  CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
-  CTFeedback: b17fce906e474d1e1ee286adc06a827efebddf07
-  FMDB: 31ec26773c7f7b7890a6038235a1f2bbd933a7cb
-  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
-  InAppSettingsKit: 853cdc9fcc76b87a4694f8d2b930e116463b5a29
-  iRate: 7d204971bab2f727195b868e32e05216fe257681
-  JBChartView: 6d2e6045673212f7b04fa5da8ef708b014b9bb21
-  KXKiOS7ColorsAndGradients: 52635e53e3c41a4610c2a185da2df10f061a57cc
-  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
-  MTLocation: d28759a525166a3c212ac1cd61e2af735e33304f
-  NSDate-TKExtensions: 761871e14c2781fae49ac15db7a272f333c908a0
-  ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
-  PNChart: f4487b9ced2e765d967d922b9c4f4892c18394f2
-  PulsingHalo: 4f5fbc25f9efb9f949e4ddad05ca885a11667aa0
-  SKBounceAnimation: a47c30f67d3e4b948b1823ce5957d72d4382dd73
-  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
-  TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
-  TheAmazingAudioEngine: 6d722e47e1f28c86829b49e7650986226413a658
-  TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
-  TTCounterLabel: 42118559debb3539006d4a3ab3b32a562eb0e496
-  TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
+CHECKOUT OPTIONS:
+  PNChart:
+    :commit: dee694ab091fea676fe429e4aae650a4ee7743f9
+    :git: git://github.com/yishuiliunian/PNChart.git
 
-COCOAPODS: 0.33.1
+SPEC CHECKSUMS:
+  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  CTFeedback: 1eeebc5fd4fc22e5a9c166e1b3c0ef82f5f5b099
+  DZCache: 4e4c8470c077a84d5fc25e2d8b1337f110fbf9a6
+  DZCDNFiles: 4e5d9d3facb81dc783ecda98efc759ee06e5961b
+  DZGeometryTools: 6a875726d83ae18d5ff593b4cb02af11f947b86c
+  DZSinglonFactory: 2b43251e9dcb1053c79a7c776dff5bbe0dea602b
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  InAppSettingsKit: cc56d3ec45f11352a16d5b210da8a3fa1b9d05ed
+  iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
+  JBChartView: c1408bf0b2d2eea492299890e84514ffb2e86330
+  KXKiOS7ColorsAndGradients: 903f3232d0908601097262cd3978c30ffa543d74
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MTLocation: d441a68bf8392b28ec1c8278a177371c4f6ab863
+  NSDate-TKExtensions: 73572c96f1afc60632391948dd8016d194f688d3
+  ObjectiveSugar: a6a25f23d657c19df0a0b972466d5b5ca9f5295c
+  PNChart: f4487b9ced2e765d967d922b9c4f4892c18394f2
+  PulsingHalo: 1583823bd6c989fff3469bb417bc42f0d268f98e
+  SKBounceAnimation: c1be441b78e1a38c44609d6e38ae20ad79ecc180
+  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  TheAmazingAudioEngine: 014e942f20456feaf5ccb48f440402306350abf8
+  TSMessages: 2a52642128d7ab15b46930c810b9c9403a2b58f3
+  TTCounterLabel: 184be6e977525c57019d9ed03787048bd2fb115f
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
+
+COCOAPODS: 0.37.2

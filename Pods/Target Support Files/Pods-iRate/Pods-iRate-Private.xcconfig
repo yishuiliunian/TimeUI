@@ -1,0 +1,6 @@
+#include "Pods-iRate.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/iRate" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CTFeedback" "${PODS_ROOT}/Headers/Public/CocoaLumberjack" "${PODS_ROOT}/Headers/Public/DZCDNFiles" "${PODS_ROOT}/Headers/Public/DZCache" "${PODS_ROOT}/Headers/Public/DZGeometryTools" "${PODS_ROOT}/Headers/Public/DZSinglonFactory" "${PODS_ROOT}/Headers/Public/FMDB" "${PODS_ROOT}/Headers/Public/HexColors" "${PODS_ROOT}/Headers/Public/InAppSettingsKit" "${PODS_ROOT}/Headers/Public/JBChartView" "${PODS_ROOT}/Headers/Public/KXKiOS7ColorsAndGradients" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/MTLocation" "${PODS_ROOT}/Headers/Public/NSDate-TKExtensions" "${PODS_ROOT}/Headers/Public/ObjectiveSugar" "${PODS_ROOT}/Headers/Public/PNChart" "${PODS_ROOT}/Headers/Public/PulsingHalo" "${PODS_ROOT}/Headers/Public/SKBounceAnimation" "${PODS_ROOT}/Headers/Public/SSKeychain" "${PODS_ROOT}/Headers/Public/TSMessages" "${PODS_ROOT}/Headers/Public/TTCounterLabel" "${PODS_ROOT}/Headers/Public/TTTAttributedLabel" "${PODS_ROOT}/Headers/Public/TheAmazingAudioEngine" "${PODS_ROOT}/Headers/Public/iRate"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES
