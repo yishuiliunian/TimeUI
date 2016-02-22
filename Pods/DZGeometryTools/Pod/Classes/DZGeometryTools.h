@@ -71,6 +71,40 @@ extern "C"
     CGFloat CGRectWidthOffsetCenter(CGRect rect , CGFloat width);
     CGRect CGRectShrink(CGRect origin, CGFloat offset, CGRectEdge edge);
     
+    /**
+     *  将一个Rect横向切割成多个
+     *
+     *  @param origin 原始REct
+     *  @param rects  输出的rect们
+     *  @param count  数量
+     *  @param space  间距
+     */
+    void CGRectHorizontalSplit(CGRect origin, CGRect rects[], int count, CGFloat space);
+    
+    /**
+     *  将一个Rect垂直切割成多个
+     *
+     *  @param origin 原始REct
+     *  @param rects  输出的rect们
+     *  @param count  数量
+     *  @param space  间距
+     */
+    void CGRectVerticalSplit(CGRect origin, CGRect rects[], int count, CGFloat space);
+    
+    /**
+     *  按照指定方向将一个Size偏移到参照Rect的对应位置
+     *
+     *  @param rect   参照Rect
+     *  @param size   需要偏移的Size
+     *  @param margin 中间的间距
+     *  @param edge   指定方向
+     *
+     *  @return 偏移好的Rect
+     */
+    CGRect CGRectCenterOffsetSize(CGRect rect, CGSize size, CGFloat margin,  CGRectEdge edge);
+    
+    CGSize CGSizeAlignWidth(CGSize size, CGFloat width);
+    CGSize CGSizeAlignHeight(CGSize size, CGFloat height);
     
 #ifdef __cplusplus
 }
@@ -151,6 +185,3 @@ view.frame = rect##view;
 
 #define LAYOUT_SUBVIEW_CENTER(view, refSV, xMargin ,yMargin)  view.frame = CGRectCenter(refSV.bounds, CGSizeMake(CGRectGetWidth(refSV.bounds) - xMargin*2,CGRectGetHeight(refSV.bounds) - yMargin*2));
 
-@interface DZGeometryTools : NSObject
-
-@end

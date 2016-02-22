@@ -34,7 +34,7 @@
     NSError* error = nil;
     NSURL* resoureUrl = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"m4a"];
     AEAudioFilePlayer* oneshot = [AEAudioFilePlayer audioFilePlayerWithURL: resoureUrl
-                                             audioController:_audioController
+                                  
                                                        error:&error];
     oneshot.removeUponFinish = YES;
     oneshot.completionBlock = ^{

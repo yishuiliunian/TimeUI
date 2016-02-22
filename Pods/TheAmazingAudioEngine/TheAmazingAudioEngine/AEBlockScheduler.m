@@ -122,7 +122,7 @@ struct _schedule_t {
 }
 
 -(NSArray *)schedules {
-    return _scheduledIdentifiers;
+	return [NSArray arrayWithArray:_scheduledIdentifiers];
 }
 
 -(void)cancelScheduleWithIdentifier:(id<NSCopying>)identifier {
@@ -154,15 +154,16 @@ struct _schedule_t {
         }
     }];
 
-    [_scheduledIdentifiers removeObject:identifier];
-    
-    for ( int i=0; i<scheduleCount; i++ ) {
-        CFBridgingRelease(values[i].block);
-        if ( values[i].responseBlock ) {
-            CFBridgingRelease(values[i].responseBlock);
-        }
-        CFBridgingRelease(values[i].identifier);
-    }
+	if ( [_scheduledIdentifiers containsObject:identifier] ) {
+		[_scheduledIdentifiers removeObject:identifier];
+		for ( int i=0; i<scheduleCount; i++ ) {
+			CFBridgingRelease(values[i].block);
+			if ( values[i].responseBlock ) {
+				CFBridgingRelease(values[i].responseBlock);
+			}
+			CFBridgingRelease(values[i].identifier);
+		}
+	}
 }
 
 - (NSDictionary*)infoForScheduleWithIdentifier:(id<NSCopying>)identifier {
@@ -186,7 +187,7 @@ struct _schedule_t {
 }
 
 struct _timingReceiverFinishSchedule_t { struct _schedule_t schedule; void *THIS; };
-static void timingReceiverFinishSchedule(AEAudioController *audioController, void *userInfo, int len) {
+static void timingReceiverFinishSchedule(void *userInfo, int len) {
     struct _timingReceiverFinishSchedule_t *arg = (struct _timingReceiverFinishSchedule_t*)userInfo;
     __unsafe_unretained AEBlockScheduler *THIS = (__bridge AEBlockScheduler*)arg->THIS;
     
@@ -225,7 +226,7 @@ static void timingReceiver(__unsafe_unretained AEBlockScheduler *THIS,
     }
 }
 
--(AEAudioControllerTimingCallback)timingReceiverCallback {
+-(AEAudioTimingCallback)timingReceiverCallback {
     return timingReceiver;
 }
 

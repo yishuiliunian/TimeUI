@@ -10,7 +10,7 @@
 #import "DZEditServerHostViewController.h"
 #import "DZAccountManager.h"
 #import "DZ24Analysis.h"
-#import <CTFeedbackViewController.h>
+//#import <CTFeedbackViewController.h>
 #import "DZEditTypesViewController.h"
 #import <iRate.h>
 DEFINE_NSStringValue(RowServerHost, 服务器地址);
@@ -30,15 +30,15 @@ DEFINE_NSStringValue(RowServerHost, 服务器地址);
 }
 - (void) feedbackUsingMail
 {
-    CTFeedbackViewController* fdVC = [CTFeedbackViewController new];
-    fdVC.topics = @[@"提些建议，以便用起来更爽",
-                    @"吐槽一下，有问题",
-                    @"亲，Crash了！！！",
-                    @"随便说说"];
-    fdVC.localizedTopics = fdVC.topics;
-    fdVC.selectedTopic = fdVC.topics[3];
-    fdVC.toRecipients = @[@"yishuiliunian@gmail.com"];
-    [self.navigationController pushViewController:fdVC animated:YES];
+//    CTFeedbackViewController* fdVC = [CTFeedbackViewController new];
+//    fdVC.topics = @[@"提些建议，以便用起来更爽",
+//                    @"吐槽一下，有问题",
+//                    @"亲，Crash了！！！",
+//                    @"随便说说"];
+//    fdVC.localizedTopics = fdVC.topics;
+//    fdVC.selectedTopic = fdVC.topics[3];
+//    fdVC.toRecipients = @[@"yishuiliunian@gmail.com"];
+//    [self.navigationController pushViewController:fdVC animated:YES];
     
 }
 

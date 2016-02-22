@@ -76,7 +76,7 @@ DEFINE_PROPERTY_STRONG(DZTimeType*, lastTimeType);
     node##name.value = a[i];\
     [nodes addObject:node##name];\
     if (i == weekDay) { node##name.isSpecial = YES;}
-    
+   
     
     ADD_NODE(Mon, 1);
     ADD_NODE(Tue, 2);

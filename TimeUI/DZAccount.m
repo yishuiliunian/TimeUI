@@ -81,6 +81,7 @@ static NSString* const kDZCatchITimeServiceAccountData = @"com.catchitime.accoun
     _email = email;
     _password = [SSKeychain passwordForService:kDZCatchITimeService account:email];
     _identifiy = [SSKeychain passwordForService:kDZCatchITimeServiceAccountData account:_email];
+    _identifiy = email;
     return self;
 }
 

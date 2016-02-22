@@ -106,9 +106,9 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
     }
     // Do any additional setup after loading the view.
     
-    
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareCurrent)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+//    
+//    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareCurrent)];
+//    self.navigationItem.rightBarButtonItem = rightItem;
     
     //
     
@@ -134,61 +134,21 @@ static NSString* const kBTTileScrolls  = @"从相册选择";
     UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    id<ISSContent> publishContent = [ShareSDK content:@"时间都去哪儿了？时间猎手，捕获时间，抓住那些匆匆溜走的岁月。"
-                                       defaultContent:@"时间都去哪儿了？时间猎手，捕获时间，抓住那些匆匆溜走的岁月。"
-                                                image:[ShareSDK pngImageWithImage:image]
-                                                title:@"分享自时间猎手" url:nil description:@"" mediaType:SSPublishContentMediaTypeImage];
-   
     
-    
-    //创建弹出菜单容器
-    id<ISSContainer> container = [ShareSDK container];
-    [container setIPadContainerWithView:nil arrowDirect:UIPopoverArrowDirectionUp];
-    
-    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
-                                                         allowCallback:NO
-                                                         authViewStyle:SSAuthViewStyleFullScreenPopup
-                                                          viewDelegate:nil
-                                               authManagerViewDelegate:nil];
-    
-    //在授权页面中添加关注官方微博
-    [authOptions setFollowAccounts:[NSDictionary dictionaryWithObjectsAndKeys:
-                                    [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"ShareSDK"],
-                                    SHARE_TYPE_NUMBER(ShareTypeSinaWeibo),
-                                    [ShareSDK userFieldWithType:SSUserFieldTypeName value:@"ShareSDK"],
-                                    SHARE_TYPE_NUMBER(ShareTypeTencentWeibo),
-                                    nil]];
-    
-    id<ISSShareOptions> shareOptions = [ShareSDK defaultShareOptionsWithTitle:NSLocalizedString(@"TEXT_SHARE_TITLE", @"内容分享")
-                                                              oneKeyShareList:[NSArray defaultOneKeyShareList]
-                                                               qqButtonHidden:YES
-                                                        wxSessionButtonHidden:YES
-                                                       wxTimelineButtonHidden:YES
-                                                         showKeyboardOnAppear:NO
-                                                            shareViewDelegate:nil
-                                                          friendsViewDelegate:nil
-                                                        picViewerViewDelegate:nil];
-    
-    //弹出分享菜单
-    [ShareSDK showShareActionSheet:container
-                         shareList:nil
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:authOptions
-                      shareOptions:shareOptions
-                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                
-                                if (state == SSResponseStateSuccess)
-                                {
-                                    NSLog(NSLocalizedString(@"TEXT_ShARE_SUC", @"分享成功"));
-                                }
-                                else if (state == SSResponseStateFail)
-                                {
-                                    NSString* s = [NSString stringWithFormat:@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]];
-                                    NSLog(@"%@",s);
-                                }
-                            }];
-
+    NSArray* imageArray = @[[UIImage imageNamed:@"shareImg.png"]];
+    if (imageArray) {
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:@"分享内容"
+                                         images:imageArray
+                                            url:[NSURL URLWithString:@"http://mob.com"]
+                                          title:@"分享标题"
+                                           type:SSDKContentTypeAuto];
+        //2、分享（可以弹出我们的分享菜单和编辑界面）
+        [ShareSDK share:SSDKPlatformTypeQQ parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+            
+        }];
+        
+    }
 }
 - (void)didReceiveMemoryWarning
 {

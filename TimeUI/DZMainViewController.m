@@ -233,9 +233,6 @@
     }
     DZGlobalActionView* actionView = [[DZGlobalActionView alloc] init];
     actionView.delegate = self;
-    DZSyncActionItemView* syncItem = [[DZSyncActionItemView alloc] init];
-    syncItem.height = 40;
-    syncItem.accountDelegate = self;
     
     
     DZLabelActionItem* historyItem = [[DZLabelActionItem alloc] init];
@@ -255,7 +252,7 @@
     funcsItem.height = 70;
     
     cancelItem.textLabel.textAlignment = NSTextAlignmentRight;
-    [actionView.actionContentView setItems:@[syncItem, funcsItem, historyItem, settingItem,cancelItem]];
+    [actionView.actionContentView setItems:@[ funcsItem, historyItem, settingItem,cancelItem]];
     [actionView showWithAnimation:YES];
     //
     self.globalActionView = actionView;
@@ -263,15 +260,13 @@
 
 - (BOOL) actionView:(DZActionView *)actionView shouldHideTapAtIndex:(NSInteger)index item:(DZActionItemView *)item
 {
-    if (index == 0) {
-        return NO;
-    }
+
     return YES;
 }
 
 - (void) actionView:(DZActionView *)actionView didHideWithTapAtIndex:(NSInteger)index item:(DZActionItemView *)item
 {
-    if (index == 1) {
+    if (index == 0) {
         DZFuncsViewController* splitVC = [DZFuncsViewController new];
         [self.pdSuperViewController pdPresentViewController:[[UINavigationController alloc] initWithRootViewController:splitVC]
                                                    animated:YES
@@ -279,7 +274,7 @@
             
         }];
     }
-     else if (index == 2) {
+     else if (index == 1) {
       UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZHistoryViewController new]];
         
         [self.pdSuperViewController  pdPresentViewController:navigationVC animated:YES completion:^{
@@ -291,7 +286,7 @@
         [self presentViewController:navigationVC animated:YES completion:^{
            
         }];
-    } else if (index == 3)
+    } else if (index == 2)
     {
         UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:[DZSettingsViewController new]];
         [self.pdSuperViewController pdPresentViewController:navigationVC animated:YES completion:^{

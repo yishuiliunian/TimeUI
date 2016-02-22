@@ -142,7 +142,10 @@ float CGDistanceBetweenPoints(CGPoint p1, CGPoint p2)
 
 CGRect CGRectCenter(CGRect rect, CGSize size)
 {
-    return CGRectMake((CGRectGetWidth(rect) - size.width) /2, (CGRectGetHeight(rect) - size.height) /2, size.width, size.height);
+    return CGRectMake(CGRectGetMinX(rect) + (CGRectGetWidth(rect) - size.width) /2,
+                      CGRectGetMinY(rect) + (CGRectGetHeight(rect) - size.height) /2,
+                      size.width,
+                      size.height);
 }
 
 CGSize CGCurrentScreenSize()
@@ -186,19 +189,23 @@ CGRect CGRectShrink(CGRect origin, CGFloat offset, CGRectEdge edge) {
         {
             rect.origin.y += offset;
             rect.size.height -= offset;
+            break;
         }
         case CGRectMinXEdge:
         {
             rect.origin.x += offset;
             rect.size.width -= offset;
+            break;
         }
         case CGRectMaxXEdge:
         {
             rect.size.width -= offset;
+            break;
         }
         case CGRectMaxYEdge:
         {
             rect.size.height -= offset;
+            break;
         }
             
         default:
@@ -207,6 +214,93 @@ CGRect CGRectShrink(CGRect origin, CGFloat offset, CGRectEdge edge) {
     return rect;
     
 }
-@implementation DZGeometryTools
 
-@end
+void CGRectHorizontalSplit(CGRect origin, CGRect rects[], int count, CGFloat space) {
+    if (count == 0) {
+        return;
+    }
+    CGFloat width = CGRectGetWidth(origin);
+    width -= space*(count-1);
+    CGFloat itemSize = width/count;
+    CGRect firstRect = CGRectMake(CGRectGetMinX(origin), CGRectGetMinY(origin), itemSize, CGRectGetHeight(origin));
+    for (int i = 0; i < count; i++) {
+        CGRect origin = CGRectOffset(firstRect, itemSize*i + space*i, 0);
+        rects[i].origin.x = origin.origin.x;
+        rects[i].origin.y = origin.origin.y;
+        rects[i].size.width = origin.size.width;
+        rects[i].size.height = origin.size.height;
+    }
+}
+
+void CGRectVerticalSplit(CGRect origin, CGRect rects[], int count, CGFloat space) {
+    if (count == 0) {
+        return;
+    }
+    CGFloat height = CGRectGetHeight(origin);
+    height -= space*(count-1);
+    CGFloat itemSize = height/count;
+    CGRect firstRect = CGRectMake(CGRectGetMinX(origin), CGRectGetMinY(origin), CGRectGetWidth(origin), itemSize);
+    for (int i = 0; i < count; i++) {
+        CGRect origin = CGRectOffset(firstRect, 0 , itemSize*i + space*i);
+        rects[i].origin.x = origin.origin.x;
+        rects[i].origin.y = origin.origin.y;
+        rects[i].size.width = origin.size.width;
+        rects[i].size.height = origin.size.height;
+    }
+}
+
+
+
+
+CGRect CGRectCenterOffsetSize(CGRect rect, CGSize size, CGFloat margin,  CGRectEdge edge) {
+    CGRect aim;
+    aim.size = size;
+    switch (edge) {
+        case CGRectMaxXEdge:
+        {
+            aim.origin.x = CGRectGetMaxX(rect) + margin ;
+            aim.origin.y = CGRectHeightOffsetCenter(rect, size.height);
+        }
+            break;
+        case CGRectMaxYEdge:
+        {
+            aim.origin.x = CGRectWidthOffsetCenter(rect, size.width);
+            aim.origin.y = CGRectGetMaxY(rect) + margin;
+        }
+            break;
+            
+        case CGRectMinXEdge:{
+            aim.origin.x = CGRectGetMinX(rect) - margin - size.width;
+            aim.origin.y = CGRectHeightOffsetCenter(rect, size.height);
+        }
+            break;
+        case CGRectMinYEdge:{
+            aim.origin.x = CGRectWidthOffsetCenter(rect, size.width);
+            aim.origin.y = CGRectGetMinY(rect) - margin - size.height;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    return aim;
+}
+
+CGSize CGSizeAlignWidth(CGSize size, CGFloat width){
+    CGSize aimSize;
+    aimSize.width = width;
+    if (width > 0) {
+        aimSize.height =  width / size.width * size.height;
+    }
+    return aimSize;
+}
+CGSize CGSizeAlignHeight(CGSize size, CGFloat height) {
+    CGSize aimSize;
+    aimSize.height = height;
+    if (height > 0) {
+        aimSize.width = height / size.height * size.width;
+    }
+    
+    return aimSize;
+}
+

@@ -33,7 +33,6 @@ NSString * AERecorderDidEncounterErrorNotification = @"AERecorderDidEncounterErr
 NSString * kAERecorderErrorKey = @"error";
 
 @interface AERecorder () {
-    BOOL _recording;
     AudioBufferList *_buffer;
 }
 @property (nonatomic, strong) AEMixerBuffer *mixer;
@@ -52,10 +51,11 @@ NSString * kAERecorderErrorKey = @"error";
     if ( !(self = [super init]) ) return nil;
     self.mixer = [[AEMixerBuffer alloc] initWithClientFormat:audioController.audioDescription];
     self.writer = [[AEAudioFileWriter alloc] initWithAudioDescription:audioController.audioDescription];
-    if ( audioController.audioInputAvailable && audioController.inputAudioDescription.mChannelsPerFrame != audioController.audioDescription.mChannelsPerFrame ) {
+    
+    if ( audioController.inputEnabled && audioController.audioInputAvailable && audioController.inputAudioDescription.mChannelsPerFrame != audioController.audioDescription.mChannelsPerFrame ) {
         [_mixer setAudioDescription:*AEAudioControllerInputAudioDescription(audioController) forSource:AEAudioSourceInput];
     }
-    _buffer = AEAllocateAndInitAudioBufferList(audioController.audioDescription, 0);
+    _buffer = AEAudioBufferListCreate(audioController.audioDescription, 0);
     
     return self;
 }
@@ -64,20 +64,49 @@ NSString * kAERecorderErrorKey = @"error";
     free(_buffer);
 }
 
+
 -(BOOL)beginRecordingToFileAtPath:(NSString *)path fileType:(AudioFileTypeID)fileType error:(NSError **)error {
-    BOOL result = [self prepareRecordingToFileAtPath:path fileType:fileType error:error];
+    return [self beginRecordingToFileAtPath:path fileType:fileType bitDepth:16 channels:0 error:error];
+}
+
+- (BOOL)beginRecordingToFileAtPath:(NSString*)path fileType:(AudioFileTypeID)fileType bitDepth:(UInt32)bits error:(NSError**)error {
+    return [self beginRecordingToFileAtPath:path fileType:fileType bitDepth:16 channels:0 error:error];
+}
+
+- (BOOL)beginRecordingToFileAtPath:(NSString*)path fileType:(AudioFileTypeID)fileType bitDepth:(UInt32)bits channels:(UInt32)channels error:(NSError**)error
+{
+    BOOL result = [self prepareRecordingToFileAtPath:path fileType:fileType bitDepth:bits channels:channels error:error];
     _recording = YES;
     return result;
 }
 
 - (BOOL)prepareRecordingToFileAtPath:(NSString*)path fileType:(AudioFileTypeID)fileType error:(NSError**)error {
+    return [self prepareRecordingToFileAtPath:path fileType:fileType bitDepth:16 channels:0 error:error];
+}
+
+- (BOOL)prepareRecordingToFileAtPath:(NSString*)path fileType:(AudioFileTypeID)fileType bitDepth:(UInt32)bits error:(NSError**)error {
+    return [self prepareRecordingToFileAtPath:path fileType:fileType bitDepth:16 channels:0 error:error];
+}
+
+- (BOOL)prepareRecordingToFileAtPath:(NSString*)path fileType:(AudioFileTypeID)fileType bitDepth:(UInt32)bits channels:(UInt32)channels error:(NSError**)error
+{
     _currentTime = 0.0;
-    BOOL result = [_writer beginWritingToFileAtPath:path fileType:fileType error:error];
+    BOOL result = [_writer beginWritingToFileAtPath:path fileType:fileType bitDepth:bits channels:channels error:error];
+    
+    if ( result ) {
+        // Initialize async writing
+        AECheckOSStatus(AEAudioFileWriterAddAudio(_writer, NULL, 0), "AEAudioFileWriterAddAudio");
+    }
+    
     return result;
 }
 
 void AERecorderStartRecording(__unsafe_unretained AERecorder* THIS) {
     THIS->_recording = YES;
+}
+
+void AERecorderStopRecording(__unsafe_unretained AERecorder* THIS) {
+    THIS->_recording = NO;
 }
 
 - (void)finishRecording {
@@ -90,8 +119,9 @@ void AERecorderStartRecording(__unsafe_unretained AERecorder* THIS) {
 }
 
 struct reportError_t { void *THIS; OSStatus result; };
-static void reportError(AEAudioController *audioController, void *userInfo, int length) {
+static void reportError(void *userInfo, int length) {
     struct reportError_t *arg = userInfo;
+    [((__bridge AERecorder*)arg->THIS) finishRecording];
     NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain 
                                          code:arg->result
                                      userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Error while saving audio: Code %d", @""), arg->result]}];
@@ -124,6 +154,7 @@ static void audioCallback(__unsafe_unretained AERecorder *THIS,
     if ( bufferLength > 0 ) {
         OSStatus status = AEAudioFileWriterAddAudio(THIS->_writer, THIS->_buffer, bufferLength);
         if ( status != noErr ) {
+            THIS->_recording = NO;
             AEAudioControllerSendAsynchronousMessageToMainThread(audioController, 
                                                                  reportError, 
                                                                  &(struct reportError_t) { .THIS = (__bridge void*)THIS, .result = status },
@@ -132,7 +163,7 @@ static void audioCallback(__unsafe_unretained AERecorder *THIS,
     }
 }
 
--(AEAudioControllerAudioCallback)receiverCallback {
+-(AEAudioReceiverCallback)receiverCallback {
     return audioCallback;
 }
 

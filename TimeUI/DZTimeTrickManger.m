@@ -57,7 +57,7 @@ static NSString* const kDZCurrentTimeType = @"kDZCurrentTimeType";
 - (void) addTimeLogWithType:(DZTimeType*)type detail:(NSString*)detail
 {
     if (!type) {
-        DDLogCError(@"时间类型是空的，坑爹呢！");
+        DDLogError(@"时间类型是空的，坑爹呢！");
         return;
     }
     DZTime* time = [[DZTime alloc] initGenGUID];
